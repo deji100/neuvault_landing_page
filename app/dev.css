@@ -1,0 +1,9 @@
+.me {
+  @apply text-base leading-[normal] font-bold tracking-[0.128px] text-black;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.my-regular-text {
+  @apply text-base leading-[normal] font-normal tracking-[0.128px] text-[#494848];
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
