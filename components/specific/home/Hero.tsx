@@ -81,7 +81,7 @@ const floatingIcons = [
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[80vh] pt-40 px-6 py-24 md:py-32 bg-[#0B0F19] text-white overflow-hidden">
+    <section className="relative min-h-[100vh] pt-40 px-6 py-24 md:py-32 bg-[#0B0F19] text-white overflow-hidden">
       {/* Subtle gradient background glow */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0B0F19] via-[#1a2536] to-[#203B6E] z-0" />
       <motion.div
@@ -125,7 +125,7 @@ export default function Hero() {
       ))}
 
       {/* Hero Content */}
-      <div className="relative z-10 max-w-6xl mx-auto text-center md:text-left">
+      <div className="relative z-10 max-w-6xl mx-auto -mt-5 lg:mt-10 text-center md:text-left">
         <motion.p
           className="text-sm md:text-base text-[#6DD1FF] mb-3 tracking-wide uppercase"
           initial={{ opacity: 0, y: 10 }}
