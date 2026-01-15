@@ -1,4 +1,5 @@
 "use client";
+
 import { motion } from "framer-motion";
 import { FaTags, FaFolderOpen, FaSearch } from "react-icons/fa";
 import { PiChatCircleDotsFill } from "react-icons/pi";
@@ -33,32 +34,32 @@ const steps = [
   {
     title: "Smart Intake & Auto-Organization",
     description:
-      "Scan, upload, or type notes. NeuVault instantly tags, summarizes, and groups your content without lifting a finger.",
+      "Upload documents, scan papers, or capture document images. NeuVault extracts text, summarizes, auto-tags, and groups related files instantly.",
     icon: <FaTags className="text-[#3F8CFF]" size={28} />,
   },
   {
-    title: "Your Vault, Well-Organized",
+    title: "Your Vault, Clearly Organized",
     description:
-      "Access a clean, category-based view of all your files, with subcategories for faster navigation and better focus.",
+      "Browse your vault by groups, tags, and document types — and manually link related files when they belong together.",
     icon: <FaFolderOpen className="text-yellow-400" size={28} />,
   },
   {
-    title: "Find Anything, Instantly",
+    title: "Search & Filters (Offline-Friendly)",
     description:
-      "Search by title, summary, tags, file type, or even filter offline — all without breaking your flow.",
+      "Find anything by title, tags, summary keywords, document type, or date — with fast filters designed for offline vaults.",
     icon: <FaSearch className="text-green-400" size={28} />,
   },
   {
-    title: "Chat with Nova",
+    title: "Nova Assistant (Chat • Vault • Web)",
     description:
-      "Ask Nova anything about your files — from earnings reports to health records — and get instant, accurate answers.",
+      "Chat normally, ask questions about your vault, or browse the web — all from one assistant that understands context.",
     icon: <PiChatCircleDotsFill className="text-purple-400" size={28} />,
     conversational: true,
   },
   {
-    title: "More Magic Coming Soon",
+    title: "Smart Suggestions & Resurfacing",
     description:
-      "Stay tuned for features like voice commands, real-time collaboration, and more.",
+      "NeuVault can notify you when to run Smart Suggestions (manual) to detect deadlines, event dates, reminders, and expiries — while Resurfacing lets you set your own reminders for important documents or grouped files.",
     icon: <UnlockIcon />,
     comingSoon: true,
   },
@@ -66,13 +67,14 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="relative z-10 px-6 py-24 bg-transparent text-white border-t border-white/10">
+    <section id="how-it-works" className="relative z-10 px-6 py-24 bg-transparent text-white border-t border-white/10">
       <div className="max-w-6xl mx-auto text-center mb-16">
         <motion.h2
           className="text-3xl md:text-4xl font-bold mb-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
         >
           How It Works
         </motion.h2>
@@ -81,8 +83,9 @@ export default function HowItWorks() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
+          viewport={{ once: true }}
         >
-          From the moment you add a file to the moment you find it again —
+          From the moment you add a document to the moment you find it again —
           NeuVault makes the journey effortless.
         </motion.p>
       </div>
@@ -102,6 +105,7 @@ export default function HowItWorks() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.1, duration: 0.6 }}
+            viewport={{ once: true }}
           >
             <div className="mb-4">{step.icon}</div>
             <h3 className="text-lg font-semibold mb-3">{step.title}</h3>
@@ -112,54 +116,47 @@ export default function HowItWorks() {
                 {/* Chat 1 */}
                 <div className="flex justify-end items-start gap-2">
                   <span className="bg-[#3F8CFF]/20 px-3 py-2 rounded-lg max-w-[80%]">
-                    What are my business earnings over the last 5 months?
+                    Summarize my lease agreement and tell me the renewal date.
                   </span>
                   <span className="text-xs text-gray-400 self-center">You</span>
                 </div>
                 <div className="flex justify-start items-start gap-2">
-                  <span className="text-xs text-gray-400 self-center">
-                    Nova
-                  </span>
+                  <span className="text-xs text-gray-400 self-center">Nova</span>
                   <span className="bg-purple-400/20 px-3 py-2 rounded-lg max-w-[80%]">
-                    📊 Sure! Your total earnings were <strong>$125,400</strong>.
-                    Here’s the month-by-month breakdown: Jan — $22,000 | Feb —
-                    $20,500 | Mar — $25,300 | Apr — $28,600 | May — $29,000.
+                    ✅ Summary: 12-month lease, monthly rent due on the 1st.
+                    Renewal window starts <strong>Nov 1</strong> and the lease
+                    ends <strong>Dec 1</strong>. Want this added to Smart
+                    Suggestions?
                   </span>
                 </div>
 
                 {/* Chat 2 */}
                 <div className="flex justify-end items-start gap-2">
                   <span className="bg-[#3F8CFF]/20 px-3 py-2 rounded-lg max-w-[80%]">
-                    Find my latest medical results.
+                    Find my latest medical results in my vault.
                   </span>
                   <span className="text-xs text-gray-400 self-center">You</span>
                 </div>
                 <div className="flex justify-start items-start gap-2">
-                  <span className="text-xs text-gray-400 self-center">
-                    Nova
-                  </span>
+                  <span className="text-xs text-gray-400 self-center">Nova</span>
                   <span className="bg-purple-400/20 px-3 py-2 rounded-lg max-w-[80%]">
                     🩺 I found 2 documents in your “Health” group: • Blood Test
-                    — March 12 • MRI Report — July 4 Would you like me to
-                    summarize them?
+                    • MRI Report. Do you want a quick summary or deep insights?
                   </span>
                 </div>
 
                 {/* Chat 3 */}
                 <div className="flex justify-end items-start gap-2">
                   <span className="bg-[#3F8CFF]/20 px-3 py-2 rounded-lg max-w-[80%]">
-                    Show invoices from February.
+                    Show invoices from February and export a summary.
                   </span>
                   <span className="text-xs text-gray-400 self-center">You</span>
                 </div>
                 <div className="flex justify-start items-start gap-2">
-                  <span className="text-xs text-gray-400 self-center">
-                    Nova
-                  </span>
+                  <span className="text-xs text-gray-400 self-center">Nova</span>
                   <span className="bg-purple-400/20 px-3 py-2 rounded-lg max-w-[80%]">
-                    💼 Found 8 invoices in “Business/Finance” from February.
-                    Total amount: <strong>$12,780</strong>. Want me to export
-                    them as a PDF summary?
+                    💼 Found 8 invoices from February. Total amount:{" "}
+                    <strong>$12,780</strong>. Want a PDF or Excel summary?
                   </span>
                 </div>
               </div>

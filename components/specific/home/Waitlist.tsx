@@ -1,21 +1,74 @@
 "use client";
+
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import emailjs from "@emailjs/browser";
+
+type Status = "idle" | "sending" | "success" | "error";
 
 export default function WaitlistCTA() {
   const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const isEmailValid = useMemo(() => {
+    // Simple, reliable email check (not perfect, but good UX)
+    const v = email.trim().toLowerCase();
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  }, [email]);
+
+  const isBusy = status === "sending";
+  const submitted = status === "success";
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email.trim() !== "") {
-      console.log("Email submitted:", email);
-      setSubmitted(true);
+    setErrorMessage("");
+
+    const trimmedEmail = email.trim();
+
+    if (!trimmedEmail || !isEmailValid) {
+      setStatus("error");
+      setErrorMessage("Please enter a valid email address.");
+      return;
+    }
+
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setStatus("error");
+      setErrorMessage(
+        "Email service is not configured yet. Please try again later."
+      );
+      return;
+    }
+
+    setStatus("sending");
+
+    try {
+      // Send to YOU (admin notify). Template should use variables like:
+      // {{subscriber_email}} and {{source}}
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          subscriber_email: trimmedEmail,
+          source: "NeuVault Waitlist",
+        },
+        { publicKey }
+      );
+
+      setStatus("success");
+    } catch (err) {
+      console.error("EmailJS send failed:", err);
+      setStatus("error");
+      setErrorMessage("Something went wrong. Please try again.");
     }
   };
 
   return (
-    <section className="relative bg-[#0B0F19] px-6 py-24 text-white overflow-hidden">
+    <section id="waitlist" className="relative bg-[#0B0F19] px-6 py-24 text-white overflow-hidden">
       {/* Soft animated background glow */}
       <motion.div
         className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-[#3F8CFF]/10 blur-[140px] -z-10"
@@ -37,6 +90,7 @@ export default function WaitlistCTA() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true }}
         >
           Get Early Access to NeuVault
         </motion.h2>
@@ -47,9 +101,11 @@ export default function WaitlistCTA() {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true }}
         >
-          Be among the first to try NeuVault — your private, AI-powered second
-          brain.
+          Be among the first to try NeuVault — your private AI vault that reads
+          your documents, organizes them automatically, and reminds you before
+          they matter.
         </motion.p>
 
         {/* Form */}
@@ -60,11 +116,18 @@ export default function WaitlistCTA() {
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true }}
           >
             <motion.input
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                if (status === "error") {
+                  setStatus("idle");
+                  setErrorMessage("");
+                }
+              }}
               required
               placeholder="you@email.com"
               className="px-4 py-3 rounded-lg w-full sm:w-auto flex-1
@@ -72,15 +135,23 @@ export default function WaitlistCTA() {
                 focus:outline-none focus:ring-2 focus:ring-[#3F8CFF]
                 transition-all duration-300 ease-in-out"
               whileFocus={{ scale: 1.02 }}
+              aria-label="Email address"
+              disabled={isBusy}
             />
 
             <motion.button
               type="submit"
-              className="px-6 py-3 rounded-lg bg-[#3F8CFF] text-white font-medium hover:bg-[#60aaff] transition-all duration-300 ease-in-out shadow-lg shadow-[#3F8CFF]/30"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              disabled={isBusy}
+              className={`px-6 py-3 rounded-lg text-white font-medium transition-all duration-300 ease-in-out shadow-lg
+                ${
+                  isBusy
+                    ? "bg-[#3F8CFF]/60 cursor-not-allowed shadow-[#3F8CFF]/10"
+                    : "bg-[#3F8CFF] hover:bg-[#60aaff] shadow-[#3F8CFF]/30"
+                }`}
+              whileHover={isBusy ? undefined : { scale: 1.05 }}
+              whileTap={isBusy ? undefined : { scale: 0.95 }}
             >
-              Join Waitlist
+              {isBusy ? "Joining..." : "Join Waitlist"}
             </motion.button>
           </motion.form>
         ) : (
@@ -94,12 +165,26 @@ export default function WaitlistCTA() {
           </motion.p>
         )}
 
+        {/* Error */}
+        {status === "error" && !!errorMessage && (
+          <motion.p
+            className="mt-3 text-sm text-red-300"
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25 }}
+            role="alert"
+          >
+            {errorMessage}
+          </motion.p>
+        )}
+
         {/* Small reassurance note */}
         <motion.p
           className="text-xs text-gray-500 mt-3"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
+          viewport={{ once: true }}
         >
           No spam — ever. Unsubscribe anytime.
         </motion.p>

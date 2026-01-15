@@ -1,106 +1,175 @@
 "use client";
-import { motion } from "framer-motion";
+
+import Link from "next/link";
 import Image from "next/image";
-import { FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
-import Logo from "@/public/logo2.png"
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-[#0B0F19] to-black text-white border-t border-white/10">
-      <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
-        {/* NeuVault Logo + Tagline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col items-center md:items-start"
-        >
-          {/* Placeholder Logo */}
-          <div className="w-12 h-12 rounded-full bg-[#3F8CFF] flex items-center justify-center text-xl font-bold">
-            <Image src={Logo} width={50} height={50} alt="NeuVault Logo" />
+    <footer className="relative bg-[#0B0F19] text-gray-400 border-t border-white/10 px-6 py-16">
+      <div className="max-w-7xl mx-auto">
+        {/* Top */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          {/* Brand */}
+          <div className="space-y-4">
+            <Link href="/" className="flex items-center gap-2">
+              <Image
+                src="/logo2.png"
+                alt="NeuVault logo"
+                width={60}
+                height={60}
+                className="rounded w-10"
+              />
+              <span className="text-xl font-semibold text-white">
+                NeuVault
+              </span>
+            </Link>
+            <p className="text-sm leading-relaxed text-gray-400 max-w-xs">
+              A private, local-first AI vault for your most important documents.
+              Your data stays yours — always.
+            </p>
           </div>
-          <p className="mt-4 text-gray-400 text-sm max-w-xs text-center md:text-left">
-            NeuVault — Your private, AI-powered vault for all your files, notes,
-            and ideas.
-          </p>
-        </motion.div>
 
-        {/* Quick Links */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.6 }}
-        >
-          <h3 className="text-white font-semibold mb-4">Quick Links</h3>
-          <ul className="space-y-2 text-gray-400 text-sm">
-            <li>
-              <a href="#features" className="hover:text-white transition">
-                Features
-              </a>
-            </li>
-            <li>
-              <a href="#how-it-works" className="hover:text-white transition">
-                How It Works
-              </a>
-            </li>
-            <li>
-              <a href="#waitlist" className="hover:text-white transition">
-                Join Waitlist
-              </a>
-            </li>
-            <li>
-              <a href="#contact" className="hover:text-white transition">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </motion.div>
+          {/* Product */}
+          <div>
+            <h3 className="text-sm font-semibold text-white uppercase mb-4">
+              Product
+            </h3>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <button
+                  onClick={() =>
+                    document.getElementById("features")?.scrollIntoView({
+                      behavior: "smooth",
+                    })
+                  }
+                  className="hover:text-white transition"
+                >
+                  Features
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() =>
+                    document.getElementById("how-it-works")?.scrollIntoView({
+                      behavior: "smooth",
+                    })
+                  }
+                  className="hover:text-white transition"
+                >
+                  How It Works
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() =>
+                    document
+                      .getElementById("see-it-in-action")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                  className="hover:text-white transition"
+                >
+                  Demo
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() =>
+                    document
+                      .getElementById("testimonials")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                  className="hover:text-white transition"
+                >
+                  Testimonials
+                </button>
+              </li>
+            </ul>
+          </div>
 
-        {/* Socials */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-        >
-          <h3 className="text-white font-semibold mb-4">Follow Us</h3>
-          <div className="flex space-x-4 text-gray-400 text-lg">
-            <a href="#" className="hover:text-[#3F8CFF] transition">
-              <FaTwitter />
+          {/* Company */}
+          <div>
+            <h3 className="text-sm font-semibold text-white uppercase mb-4">
+              Company
+            </h3>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <Link href="#waitlist" className="hover:text-white transition">
+                  Join Beta
+                </Link>
+              </li>
+              {/* <li>
+                <Link href="/contact" className="hover:text-white transition">
+                  Contact
+                </Link>
+              </li> */}
+              <li>
+                <Link href="/docs" className="hover:text-white transition">
+                  Documentation
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h3 className="text-sm font-semibold text-white uppercase mb-4">
+              Legal
+            </h3>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <Link href="/privacy-policy" className="hover:text-white transition">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms-and-conditions" className="hover:text-white transition">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <span className="text-xs text-gray-500">
+                  No documents are stored on our servers.
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-6 text-sm">
+          <span>
+            © {new Date().getFullYear()}{" "}
+            <Link href="/" className="text-white hover:underline">
+              NeuVault
+            </Link>
+            . All rights reserved.
+          </span>
+
+          <div className="flex items-center gap-4">
+            {/* Social placeholders */}
+            <a
+              href="#"
+              aria-label="Twitter"
+              className="hover:text-white transition"
+            >
+              Twitter
             </a>
-            <a href="#" className="hover:text-[#3F8CFF] transition">
-              <FaLinkedin />
-            </a>
-            <a href="#" className="hover:text-[#3F8CFF] transition">
-              <FaGithub />
+            {/* <a
+              href="#"
+              aria-label="GitHub"
+              className="hover:text-white transition"
+            >
+              GitHub
+            </a> */}
+            <a
+              href="#"
+              aria-label="LinkedIn"
+              className="hover:text-white transition"
+            >
+              LinkedIn
             </a>
           </div>
-        </motion.div>
-
-        {/* Legal */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-        >
-          <h3 className="text-white font-semibold mb-4">Legal</h3>
-          <ul className="space-y-2 text-gray-400 text-sm">
-            <li>
-              <a href="#" className="hover:text-white transition">
-                Privacy Policy
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-white transition">
-                Terms of Service
-              </a>
-            </li>
-          </ul>
-        </motion.div>
-      </div>
-
-      {/* Bottom Bar */}
-      <div className="border-t border-white/10 py-4 text-center text-gray-500 text-xs">
-        © {new Date().getFullYear()} NeuVault. All rights reserved.
+        </div>
       </div>
     </footer>
   );

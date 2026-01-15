@@ -1,8 +1,20 @@
 "use client";
+
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Logo from "@/public/logo1.png"
+import Logo from "@/public/logo1.png";
+
+const scrollToId = (id: string) => {
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  const yOffset = -80; // height of fixed navbar
+  const y =
+    el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+  window.scrollTo({ top: y, behavior: "smooth" });
+};
 
 export default function Navbar() {
   return (
@@ -17,40 +29,51 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src={Logo} // replace with your logo file in /public
+              src={Logo}
               alt="NeuVault Logo"
-              width={1000}
-              height={1000}
-              className="h-40 w-40"
+              width={160}
+              height={40}
+              className="h-50 w-auto"
+              priority
             />
           </Link>
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center gap-8">
-            <a
-              href="#features"
+            <button
+              onClick={() => scrollToId("features")}
               className="text-gray-300 hover:text-white transition"
             >
               Features
-            </a>
-            <a
-              href="#how-it-works"
+            </button>
+
+            <button
+              onClick={() => scrollToId("how-it-works")}
               className="text-gray-300 hover:text-white transition"
             >
               How It Works
-            </a>
-            <a
-              href="#testimonials"
+            </button>
+
+            <button
+              onClick={() => scrollToId("see-it-in-action")}
+              className="text-gray-300 hover:text-white transition"
+            >
+              Demo
+            </button>
+
+            <button
+              onClick={() => scrollToId("testimonials")}
               className="text-gray-300 hover:text-white transition"
             >
               Testimonials
-            </a>
-            <a
-              href="#waitlist"
+            </button>
+
+            <button
+              onClick={() => scrollToId("waitlist")}
               className="text-white bg-[#3F8CFF] px-4 py-2 rounded-lg hover:bg-[#60aaff] transition"
             >
               Join Beta
-            </a>
+            </button>
           </div>
         </div>
       </div>

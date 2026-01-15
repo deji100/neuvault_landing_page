@@ -1,5 +1,7 @@
 "use client";
+
 import { motion } from "framer-motion";
+import Link from "next/link";
 import {
   FaFilePdf,
   FaFileWord,
@@ -103,7 +105,7 @@ export default function Hero() {
             item.showOnMobile ? "block" : "hidden md:block"
           } text-3xl md:text-5xl lg:text-6xl ${item.class}`}
           animate={{
-            y: [0, -20, 0, 20, 0], // up-down drift
+            y: [0, -20, 0, 20, 0],
             x: [0, idx % 2 === 0 ? 10 : -10, 0],
             rotate: [0, idx % 2 === 0 ? 8 : -8, 0],
             opacity: [0.25, 0.35, 0.25],
@@ -119,6 +121,7 @@ export default function Hero() {
             left: item.left,
             zIndex: 0,
           }}
+          aria-hidden="true"
         >
           {item.icon}
         </motion.div>
@@ -130,73 +133,117 @@ export default function Hero() {
           className="text-sm md:text-base text-[#6DD1FF] mb-3 tracking-wide uppercase"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
+          transition={{ delay: 0.35, duration: 0.8 }}
         >
-          Own your data. Let AI handle the mess.
+          Stored on your device. Encrypted backups you control.
         </motion.p>
 
         <motion.h1
           className="text-4xl md:text-6xl font-bold tracking-tight leading-tight mb-6"
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
+          transition={{ delay: 0.55, duration: 0.8 }}
         >
-          Your Private, AI-Powered Vault
+          Your private AI vault for life documents.
         </motion.h1>
 
         <motion.p
-          className="text-lg md:text-xl text-gray-300 max-w-2xl mb-4"
+          className="text-lg md:text-xl text-gray-300 max-w-2xl mb-4 leading-8"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
+          transition={{ delay: 0.75, duration: 0.8 }}
         >
-          Upload files, scan notes, or type ideas. NeuVault automatically
-          summarizes, groups, and protects your information — all on-device.
+          Upload files, scan notes, record voice notes, or write anything. Voice
+          notes are transcribed and structured automatically, with easy
+          conversion to Word, PDF, or Excel. NeuVault summarizes, tags, links
+          related documents, and surfaces deadlines from invoices, renewals,
+          school docs, IDs, and more, all processed privately, with no documents
+          stored on our servers.
         </motion.p>
-
+        {/* 
         <motion.p
-          className="text-md md:text-lg text-gray-400 max-w-2xl mb-8"
+          className="text-sm md:text-base text-gray-400 max-w-2xl mb-8"
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.0, duration: 0.8 }}
+          transition={{ delay: 0.92, duration: 0.8 }}
         >
-          Think of it as your second brain — one that reads, remembers, and
-          organizes every file you throw at it. With privacy built-in and AI
-          that actually helps, NeuVault turns chaos into clarity.
-        </motion.p>
+          You control when AI runs (quick vs deep insights).
+        </motion.p> */}
 
         <motion.div
-          className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mb-12"
+          className="flex flex-wrap items-center gap-3 text-sm text-gray-400 max-w-2xl mb-8 justify-center md:justify-start"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.05, duration: 0.8 }}
+        >
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
+            <span className="text-[#6DD1FF]">Smart Intake</span>
+            <span className="text-white/20">•</span>
+            Summaries + tags on import
+          </span>
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
+            <span className="text-[#6DD1FF]">Resurfacing</span>
+            <span className="text-white/20">•</span>
+            Reminders from your docs
+          </span>
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
+            <span className="text-[#6DD1FF]">Nova Assistant</span>
+            <span className="text-white/20">•</span>
+            Chat freely, search your vault, explore the web
+          </span>
+        </motion.div>
+
+        <motion.div
+          className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mb-10"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.8 }}
         >
-          <motion.button
-            className="px-6 py-3 rounded-lg bg-[#3F8CFF] text-white font-medium hover:bg-[#60aaff] transition shadow-lg"
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 2, repeat: Infinity, repeatType: "mirror" }}
-          >
-            Join the Beta
-          </motion.button>
-          <button className="px-6 py-3 rounded-lg border border-white text-white hover:bg-white hover:text-[#0B0F19] transition">
-            Contact Us
-          </button>
+          {/* Primary CTA */}
+          <Link href="#waitlist" className="inline-flex">
+            <motion.span
+              className="px-6 py-3 rounded-lg bg-[#3F8CFF] text-white font-medium hover:bg-[#60aaff] transition shadow-lg text-center"
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatType: "mirror",
+              }}
+            >
+              Join the Beta
+            </motion.span>
+          </Link>
+
+          {/* Secondary CTA */}
+          <Link href="#see-it-in-action" className="inline-flex">
+            <span className="px-6 py-3 rounded-lg border border-white/20 text-white hover:bg-white hover:text-[#0B0F19] transition text-center">
+              Watch 60s Demo
+            </span>
+          </Link>
+
+          {/* Tertiary CTA (trust) */}
+          <Link href="/privacy-policy" className="inline-flex">
+            <span className="px-6 py-3 rounded-lg bg-white/5 border border-white/10 text-white/90 hover:bg-white/10 transition text-center">
+              See how privacy works
+            </span>
+          </Link>
         </motion.div>
 
+        {/* Encrypted backup note */}
         <motion.div
           className="text-sm text-gray-400"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
+          transition={{ delay: 1.35 }}
         >
-          Works with:
+          Encrypted export / backup to:
         </motion.div>
 
         <motion.div
           className="flex flex-wrap gap-6 mt-2 justify-center md:justify-start text-white/80 items-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.6 }}
+          transition={{ delay: 1.45 }}
         >
           <span className="flex items-center gap-2">
             <SiGoogledrive className="text-yellow-400" size={20} />
@@ -210,7 +257,23 @@ export default function Hero() {
             <SiDropbox className="text-blue-400" size={20} />
             Dropbox
           </span>
+
+          {/* Tail statement */}
+          <span className="text-white/40 hidden sm:inline">•</span>
+          <span className="text-white/70">
+            or any cloud storage of your choice
+          </span>
         </motion.div>
+
+        <motion.p
+          className="mt-3 text-xs md:text-sm text-gray-500 max-w-2xl"
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.55, duration: 0.6 }}
+        >
+          Your backup is encrypted and cannot be decrypted by third parties — it
+          can only be restored inside NeuVault.
+        </motion.p>
       </div>
     </section>
   );

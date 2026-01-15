@@ -1,4 +1,5 @@
 "use client";
+
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
@@ -7,57 +8,66 @@ import "swiper/css/pagination";
 
 const testimonials = [
   {
-    name: "Sarah Johnson",
-    role: "Freelance Designer",
-    text: "NeuVault completely transformed how I store and find my project files. It’s like having a personal assistant.",
-    avatar: "https://i.pravatar.cc/100?img=5",
-  },
-  {
-    name: "David Lee",
+    name: "Ayo K.",
     role: "Small Business Owner",
-    text: "Finding invoices used to take forever. Now it’s instant — and I love the privacy-first approach.",
+    text: "Invoices and receipts used to be chaos. Now NeuVault keeps everything organized, and I can find what I need instantly — without handing my documents to a server.",
     avatar: "https://i.pravatar.cc/100?img=12",
   },
   {
-    name: "Maria Gonzalez",
-    role: "Research Analyst",
-    text: "The AI summaries save me hours every week. I can’t imagine working without NeuVault now.",
+    name: "Sarah Johnson",
+    role: "Graduate Student",
+    text: "I scan class documents and handouts, and NeuVault groups them automatically. When I’m stressed, being able to search fast is everything.",
     avatar: "https://i.pravatar.cc/100?img=20",
   },
   {
-    name: "Michael Thompson",
-    role: "Doctor",
-    text: "I use NeuVault to keep track of patient records securely. The AI search is unmatched.",
-    avatar: "https://i.pravatar.cc/100?img=30",
+    name: "Daniel O.",
+    role: "Freelancer",
+    text: "The summaries are clean and actually useful. It feels like my documents finally make sense — not just stored somewhere.",
+    avatar: "https://i.pravatar.cc/100?img=18",
   },
   {
-    name: "Sophia Lee",
-    role: "Photographer",
-    text: "Finally, an app that organizes my photos, contracts, and invoices without me doing anything.",
-    avatar: "https://i.pravatar.cc/100?img=40",
+    name: "Michael Thompson",
+    role: "Healthcare Worker",
+    text: "I keep personal medical documents in NeuVault. I like that I can back up encrypted and restore on a new phone without exposing anything.",
+    avatar: "https://i.pravatar.cc/100?img=11",
+  },
+  {
+    name: "Chris T.",
+    role: "Working Professional",
+    text: "I use resurfacing reminders for important documents and renewals. It’s the first app that actually brings the right file back at the right time.",
+    avatar: "https://i.pravatar.cc/100?img=50",
   },
 ];
 
 export default function TestimonialsCarousel() {
   return (
-    <section className="relative px-6 py-24 bg-[#0B0F19] text-white border-t border-white/10">
+    <section id="testimonials" className="relative px-6 py-24 bg-[#0B0F19] text-white border-t border-white/10 overflow-hidden">
+      {/* Subtle background glow */}
+      <motion.div
+        className="absolute -top-32 left-1/2 -translate-x-1/2 w-[780px] h-[780px] rounded-full bg-[#3F8CFF]/10 blur-[140px] -z-10"
+        animate={{ scale: [1, 1.05, 1], opacity: [0.55, 0.75, 0.55] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      />
+
       <div className="max-w-6xl mx-auto text-center mb-12">
         <motion.h2
           className="text-3xl md:text-4xl font-bold mb-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
         >
-          What People Are Saying
+          What Early Testers Are Saying
         </motion.h2>
         <motion.p
           className="text-gray-400 max-w-2xl mx-auto"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
+          viewport={{ once: true }}
         >
-          Real feedback from our early testers who’ve made NeuVault part of
-          their daily workflow.
+          Feedback from people using NeuVault to organize real-world documents —
+          privately, locally, and fast.
         </motion.p>
       </div>
 
@@ -72,7 +82,7 @@ export default function TestimonialsCarousel() {
           bulletClass: "swiper-pagination-bullet",
           bulletActiveClass: "swiper-pagination-bullet-active",
         }}
-        autoplay={{ delay: 3500, disableOnInteraction: false }}
+        autoplay={{ delay: 3800, disableOnInteraction: false }}
         loop
         breakpoints={{
           640: { slidesPerView: 1.2 },
@@ -82,21 +92,37 @@ export default function TestimonialsCarousel() {
         {testimonials.map((item, idx) => (
           <SwiperSlide key={idx}>
             <motion.div
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 flex flex-col justify-between min-h-[200px] h-full"
-              initial={{ opacity: 0, y: 30 }}
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 flex flex-col justify-between min-h-[220px] h-full hover:shadow-lg hover:shadow-[#3F8CFF]/10 transition"
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.1, duration: 0.6 }}
+              transition={{ delay: idx * 0.08, duration: 0.55 }}
+              viewport={{ once: true }}
             >
-              <p className="text-gray-300 text-base mb-6">{item.text}</p>
-              <div className="flex items-center gap-3">
+              {/* Quote */}
+              <div className="mb-6">
+                <div className="text-[#6DD1FF] text-2xl leading-none mb-2">
+                  “
+                </div>
+                <p className="text-gray-200 text-base leading-relaxed">
+                  {item.text}
+                </p>
+              </div>
+
+              {/* Person */}
+              <div className="flex items-center gap-3 pt-4 border-t border-white/10">
                 <img
                   src={item.avatar}
                   alt={item.name}
                   className="w-10 h-10 rounded-full border border-white/20"
+                  loading="lazy"
                 />
-                <div>
-                  <p className="font-semibold text-white">{item.name}</p>
-                  <p className="text-sm text-gray-500">{item.role}</p>
+                <div className="text-left">
+                  <p className="font-semibold text-white leading-tight">
+                    {item.name}
+                  </p>
+                  <p className="text-sm text-gray-500 leading-tight">
+                    {item.role}
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -109,23 +135,24 @@ export default function TestimonialsCarousel() {
         className="custom-pagination mt-8 flex justify-center"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.6 }}
+        transition={{ delay: 0.25, duration: 0.6 }}
+        viewport={{ once: true }}
       />
 
       {/* Bullet Styles */}
       <style jsx global>{`
         .custom-pagination .swiper-pagination-bullet {
-          background-color: rgba(255, 255, 255, 0.3);
+          background-color: rgba(255, 255, 255, 0.28);
           width: 10px;
           height: 10px;
-          margin: 0 4px;
-          border-radius: 50%;
-          transition: all 0.3s ease;
+          margin: 0 5px;
+          border-radius: 999px;
+          transition: all 0.25s ease;
         }
         .custom-pagination .swiper-pagination-bullet-active {
           background-color: #3f8cff;
-          width: 12px;
-          height: 12px;
+          width: 22px;
+          height: 10px;
         }
       `}</style>
     </section>

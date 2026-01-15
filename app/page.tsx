@@ -5,14 +5,11 @@ import SeeItInAction from "@/components/specific/home/Proof";
 import WaitlistCTA from "@/components/specific/home/Waitlist";
 import TestimonialsSection from "@/components/specific/home/Testimonials";
 import FloatingDownloadButtons from "@/components/specific/home/FloatingDownloadButtons";
-import Footer from "@/components/specific/home/Footer";
 import FloatingBlobs from "@/components/specific/home/FloatingBlobs";
-import Navbar from "@/components/general/Navbar";
 
 export default function Home() {
   return (
     <main className="">
-      <Navbar />
 
       <Hero />
 
@@ -29,7 +26,6 @@ export default function Home() {
         <FloatingDownloadButtons />
       </section>
 
-      <Footer />
     </main>
   );
 }
