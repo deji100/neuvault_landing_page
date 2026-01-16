@@ -171,7 +171,7 @@ export default function Hero() {
         </motion.p> */}
 
         <motion.div
-          className="flex flex-wrap items-center gap-3 text-sm text-gray-400 max-w-2xl mb-8 justify-center md:justify-start"
+          className="flex flex-wrap items-center gap-3 text-sm text-gray-400 max-w-2xl mb-8 justify-center md:justify-start max-[530px]:hidden"
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.05, duration: 0.8 }}
@@ -194,15 +194,15 @@ export default function Hero() {
         </motion.div>
 
         <motion.div
-          className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mb-10"
+          className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mb-10 max-[530px]:w-full"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.8 }}
         >
           {/* Primary CTA */}
-          <Link href="#waitlist" className="inline-flex">
+          <Link href="#waitlist" className="inline-flex max-[530px]:w-full">
             <motion.span
-              className="px-6 py-3 rounded-lg bg-[#3F8CFF] text-white font-medium hover:bg-[#60aaff] transition shadow-lg text-center"
+              className="px-6 py-3 rounded-lg bg-[#3F8CFF] text-white font-medium hover:bg-[#60aaff] transition shadow-lg text-center max-[530px]:w-full"
               animate={{ scale: [1, 1.05, 1] }}
               transition={{
                 duration: 2,
@@ -215,15 +215,15 @@ export default function Hero() {
           </Link>
 
           {/* Secondary CTA */}
-          <Link href="#see-it-in-action" className="inline-flex">
-            <span className="px-6 py-3 rounded-lg border border-white/20 text-white hover:bg-white hover:text-[#0B0F19] transition text-center">
+          <Link href="#see-it-in-action" className="inline-flex max-[530px]:w-full">
+            <span className="px-6 py-3 rounded-lg border border-white/20 text-white hover:bg-white hover:text-[#0B0F19] transition text-center max-[530px]:w-full">
               Watch 60s Demo
             </span>
           </Link>
 
           {/* Tertiary CTA (trust) */}
-          <Link href="/privacy-policy" className="inline-flex">
-            <span className="px-6 py-3 rounded-lg bg-white/5 border border-white/10 text-white/90 hover:bg-white/10 transition text-center">
+          <Link href="/privacy-policy" className="inline-flex max-[530px]:w-full">
+            <span className="px-6 py-3 rounded-lg bg-white/5 border border-white/10 text-white/90 hover:bg-white/10 transition text-center max-[530px]:w-full">
               See how privacy works
             </span>
           </Link>

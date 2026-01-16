@@ -102,11 +102,11 @@ export default function Footer() {
                   Contact
                 </Link>
               </li> */}
-              <li>
+              {/* <li>
                 <Link href="/docs" className="hover:text-white transition">
                   Documentation
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 
