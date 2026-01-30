@@ -178,7 +178,7 @@ export default function Footer() {
                 alt="Proud to be listed on SaaS Browser"
                 width="200"
                 loading="lazy"
-                fetchpriority="low"
+                fetchPriority="low"
               />
             </a>
           </div>
