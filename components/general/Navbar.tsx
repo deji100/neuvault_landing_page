@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useState } from "react";
 import Logo from "@/public/logo1.png";
 
 const scrollToId = (id: string) => {
@@ -17,6 +18,10 @@ const scrollToId = (id: string) => {
 };
 
 export default function Navbar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const closeMobile = () => setMobileOpen(false);
+
   return (
     <motion.nav
       className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/5 border-b border-white/10"
@@ -27,7 +32,10 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
+          <Link
+            href="/"
+            className="flex items-center gap-2 p-2 -ml-2 sm:p-0 sm:ml-0"
+          >
             <Image
               src={Logo}
               alt="NeuVault Logo"
@@ -68,6 +76,13 @@ export default function Navbar() {
               Testimonials
             </button>
 
+            <Link
+              href="/contact"
+              className="text-gray-300 hover:text-white transition"
+            >
+              Contact
+            </Link>
+
             <button
               onClick={() => scrollToId("waitlist")}
               className="text-white bg-[#3F8CFF] px-4 py-2 rounded-lg hover:bg-[#60aaff] transition"
@@ -75,8 +90,81 @@ export default function Navbar() {
               Join Beta
             </button>
           </div>
+
+          {/* Mobile toggle */}
+          <button
+            type="button"
+            onClick={() => setMobileOpen((v) => !v)}
+            className="md:hidden p-2 -mr-2 text-gray-300 hover:text-white transition"
+            aria-label="Toggle navigation"
+            aria-expanded={mobileOpen}
+          >
+            <span className="block w-6 h-0.5 bg-current mb-1" />
+            <span className="block w-6 h-0.5 bg-current mb-1" />
+            <span className="block w-6 h-0.5 bg-current" />
+          </button>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div className="md:hidden border-t border-white/10 bg-[#0B0F19]/95 backdrop-blur-md">
+          <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-3">
+            <button
+              onClick={() => {
+                scrollToId("features");
+                closeMobile();
+              }}
+              className="text-gray-300 hover:text-white transition text-left"
+            >
+              Features
+            </button>
+            <button
+              onClick={() => {
+                scrollToId("how-it-works");
+                closeMobile();
+              }}
+              className="text-gray-300 hover:text-white transition text-left"
+            >
+              How It Works
+            </button>
+            <button
+              onClick={() => {
+                scrollToId("see-it-in-action");
+                closeMobile();
+              }}
+              className="text-gray-300 hover:text-white transition text-left"
+            >
+              Demo
+            </button>
+            <button
+              onClick={() => {
+                scrollToId("testimonials");
+                closeMobile();
+              }}
+              className="text-gray-300 hover:text-white transition text-left"
+            >
+              Testimonials
+            </button>
+            <Link
+              href="/contact"
+              onClick={closeMobile}
+              className="text-gray-300 hover:text-white transition"
+            >
+              Contact
+            </Link>
+            <button
+              onClick={() => {
+                scrollToId("waitlist");
+                closeMobile();
+              }}
+              className="text-white bg-[#3F8CFF] px-4 py-2 rounded-lg hover:bg-[#60aaff] transition text-left"
+            >
+              Join Beta
+            </button>
+          </div>
+        </div>
+      )}
     </motion.nav>
   );
 }

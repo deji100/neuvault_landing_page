@@ -145,7 +145,7 @@ export default function Footer() {
             . All rights reserved.
           </span>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 bg-white border-none">
             {/* Social placeholders */}
             {/* <a
               href="#"
