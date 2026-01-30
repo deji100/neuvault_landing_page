@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 
 const EFFECTIVE_DATE = "January 15, 2026"; // update when needed
-const SUPPORT_EMAIL = "legal@neuvault.app";
+const SUPPORT_EMAIL = "support@neuvault.app";
 
 const Section = ({
   id,

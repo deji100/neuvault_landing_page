@@ -147,13 +147,13 @@ export default function Footer() {
 
           <div className="flex items-center gap-4">
             {/* Social placeholders */}
-            <a
+            {/* <a
               href="#"
               aria-label="Twitter"
               className="hover:text-white transition"
             >
               Twitter
-            </a>
+            </a> */}
             {/* <a
               href="#"
               aria-label="GitHub"
@@ -161,12 +161,25 @@ export default function Footer() {
             >
               GitHub
             </a> */}
-            <a
+            {/* <a
               href="#"
               aria-label="LinkedIn"
               className="hover:text-white transition"
             >
               LinkedIn
+            </a> */}
+            <a
+              href="https://saasbrowser.com/en/saas/1019052/neuvault"
+              target="_blank"
+              rel="noopener"
+            >
+              <img
+                src="https://static-files.saasbrowser.com/saas-browser-badge-13.svg"
+                alt="Proud to be listed on SaaS Browser"
+                width="200"
+                loading="lazy"
+                fetchpriority="low"
+              />
             </a>
           </div>
         </div>

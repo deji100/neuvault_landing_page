@@ -14,7 +14,7 @@ import {
 } from "react-icons/fa";
 
 const EFFECTIVE_DATE = "January 15, 2026"; // change anytime
-const PRIVACY_EMAIL = "privacy@neuvault.app"; // change to your real inbox
+const PRIVACY_EMAIL = "support@neuvault.app";
 
 const Section = ({
   id,

@@ -129,7 +129,7 @@ export default function WaitlistCTA() {
                 }
               }}
               required
-              placeholder="you@email.com"
+              placeholder="support@neuvault.app"
               className="px-4 py-3 rounded-lg w-full sm:w-auto flex-1
                 bg-white/90 text-black placeholder-gray-500 text-base
                 focus:outline-none focus:ring-2 focus:ring-[#3F8CFF]
