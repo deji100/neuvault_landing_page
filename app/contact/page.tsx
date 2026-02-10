@@ -90,7 +90,7 @@ export default function ContactPage() {
                   Talk to the NeuVault team
                 </h1>
                 <p className="text-gray-300 mt-4 leading-relaxed">
-                  Have a question, feedback, or a partnership idea? We are happy
+                  Have a question, feedback, or a feature idea? We are happy
                   to help. Tell us a bit about what you need and we will get
                   back to you.
                 </p>
@@ -239,7 +239,7 @@ export default function ContactPage() {
                 },
                 {
                   q: "How does backup and recovery work?",
-                  a: "You can export an encrypted version of your vault and store it in your own cloud or offline storage. Only you control the encryption keys.",
+                  a: "You can export an encrypted version of your vault and store it in your own cloud or offline storage. Backups are encrypted on-device and can only be restored by your account in the app.",
                 },
                 {
                   q: "Can I move my vault to a new device?",

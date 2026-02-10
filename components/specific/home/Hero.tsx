@@ -83,9 +83,11 @@ const floatingIcons = [
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[100vh] pt-40 px-6 py-24 md:py-32 bg-[#0B0F19] text-white overflow-hidden">
-      {/* Subtle gradient background glow */}
+    <section className="relative min-h-[100vh] pt-36 px-6 py-24 md:py-32 bg-[#0B0F19] text-white overflow-hidden">
+      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0B0F19] via-[#1a2536] to-[#203B6E] z-0" />
+
+      {/* Floating glows */}
       <motion.div
         className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-[#3F8CFF]/10 blur-3xl z-0"
         animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.7, 0.5] }}
@@ -97,7 +99,7 @@ export default function Hero() {
         transition={{ duration: 5, repeat: Infinity }}
       />
 
-      {/* Floating magical icons with smoother drift */}
+      {/* Floating icons */}
       {floatingIcons.map((item, idx) => (
         <motion.div
           key={idx}
@@ -116,134 +118,114 @@ export default function Hero() {
             ease: "easeInOut",
             delay: item.delay,
           }}
-          style={{
-            top: item.top,
-            left: item.left,
-            zIndex: 0,
-          }}
-          aria-hidden="true"
+          style={{ top: item.top, left: item.left }}
+          aria-hidden
         >
           {item.icon}
         </motion.div>
       ))}
 
-      {/* Hero Content */}
-      <div className="relative z-10 max-w-6xl mx-auto -mt-5 lg:mt-10 text-center md:text-left">
+      {/* Content */}
+      <div className="relative z-10 max-w-6xl mx-auto text-left">
         <motion.p
           className="text-sm md:text-base text-[#6DD1FF] mb-3 tracking-wide uppercase"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.35, duration: 0.8 }}
+          transition={{ delay: 0.3 }}
         >
           Stored on your device. Encrypted backups you control.
         </motion.p>
 
         <motion.h1
-          className="text-4xl md:text-6xl font-bold tracking-tight leading-tight mb-6"
-          initial={{ opacity: 0, scale: 0.92 }}
+          className="text-4xl md:text-6xl font-bold tracking-tight leading-tight mb-6 max-w-3xl"
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.55, duration: 0.8 }}
+          transition={{ delay: 0.45 }}
         >
-          Your private AI vault for life documents.
+          Your private, local-first AI that understands your documents.
         </motion.h1>
 
         <motion.p
-          className="text-lg md:text-xl text-gray-300 max-w-2xl mb-4 leading-8"
+          className="text-lg md:text-xl text-gray-300 max-w-2xl mb-6 leading-8"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.75, duration: 0.8 }}
+          transition={{ delay: 0.65 }}
         >
-          Upload files, scan notes, record voice notes, or write anything. Voice
-          notes are transcribed and structured automatically, with easy
-          conversion to Word, PDF, or Excel. NeuVault summarizes, tags, links
-          related documents, and surfaces deadlines from invoices, renewals,
-          school docs, IDs, and more, all processed privately, with no documents
-          stored on our servers.
+          Upload files, scan paper, write notes, or record voice. NeuVault
+          transcribes audio into structured notes, summarizes and tags everything
+          on import, surfaces deadlines and renewals, and lets you export to
+          Word, PDF, or Excel — all without storing your documents on our servers.
         </motion.p>
-        {/* 
-        <motion.p
-          className="text-sm md:text-base text-gray-400 max-w-2xl mb-8"
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.92, duration: 0.8 }}
-        >
-          You control when AI runs (quick vs deep insights).
-        </motion.p> */}
 
+        {/* Feature pills */}
         <motion.div
-          className="flex flex-wrap items-center gap-3 text-sm text-gray-400 max-w-2xl mb-8 justify-center md:justify-start max-[530px]:hidden"
+          className="flex flex-wrap gap-3 text-sm text-gray-400 max-w-2xl mb-8"
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.05, duration: 0.8 }}
+          transition={{ delay: 0.85 }}
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
             <span className="text-[#6DD1FF]">Smart Intake</span>
             <span className="text-white/20">•</span>
-            Summaries + tags on import
+            Summaries + tags
           </span>
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
             <span className="text-[#6DD1FF]">Resurfacing</span>
             <span className="text-white/20">•</span>
-            Reminders from your docs
+            Document reminders
           </span>
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
             <span className="text-[#6DD1FF]">Nova Assistant</span>
             <span className="text-white/20">•</span>
-            Chat freely, search your vault, explore the web
+            42+ languages
           </span>
         </motion.div>
 
+        {/* CTAs */}
         <motion.div
-          className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mb-10 max-[530px]:w-full"
+          className="flex flex-col sm:flex-row gap-4 mb-10 w-full"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
+          transition={{ delay: 1.05 }}
         >
-          {/* Primary CTA */}
-          <Link href="#waitlist" className="inline-flex max-[530px]:w-full">
+          <Link href="#waitlist" className="w-full sm:w-auto">
             <motion.span
-              className="px-6 py-3 rounded-lg bg-[#3F8CFF] text-white font-medium hover:bg-[#60aaff] transition shadow-lg text-center max-[530px]:w-full"
+              className="block px-6 py-3 rounded-lg bg-[#3F8CFF] text-white font-medium hover:bg-[#60aaff] transition shadow-lg text-left"
               animate={{ scale: [1, 1.05, 1] }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                repeatType: "mirror",
-              }}
+              transition={{ duration: 2, repeat: Infinity }}
             >
               Join the Beta
             </motion.span>
           </Link>
 
-          {/* Secondary CTA */}
-          <Link href="#see-it-in-action" className="inline-flex max-[530px]:w-full">
-            <span className="px-6 py-3 rounded-lg border border-white/20 text-white hover:bg-white hover:text-[#0B0F19] transition text-center max-[530px]:w-full">
+          <Link href="#see-it-in-action" className="w-full sm:w-auto">
+            <span className="block px-6 py-3 rounded-lg border border-white/20 text-white hover:bg-white hover:text-[#0B0F19] transition text-left">
               Watch 60s Demo
             </span>
           </Link>
 
-          {/* Tertiary CTA (trust) */}
-          <Link href="/privacy-policy" className="inline-flex max-[530px]:w-full">
-            <span className="px-6 py-3 rounded-lg bg-white/5 border border-white/10 text-white/90 hover:bg-white/10 transition text-center max-[530px]:w-full">
+          <Link href="/privacy-policy" className="w-full sm:w-auto">
+            <span className="block px-6 py-3 rounded-lg bg-white/5 border border-white/10 text-white/90 hover:bg-white/10 transition text-left">
               See how privacy works
             </span>
           </Link>
         </motion.div>
 
-        {/* Encrypted backup note */}
+        {/* Backup providers */}
         <motion.div
           className="text-sm text-gray-400"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.35 }}
+          transition={{ delay: 1.2 }}
         >
           Encrypted export / backup to:
         </motion.div>
 
         <motion.div
-          className="flex flex-wrap gap-6 mt-2 justify-center md:justify-start text-white/80 items-center"
+          className="flex flex-wrap gap-6 mt-2 text-white/80 items-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.45 }}
+          transition={{ delay: 1.3 }}
         >
           <span className="flex items-center gap-2">
             <SiGoogledrive className="text-yellow-400" size={20} />
@@ -257,22 +239,16 @@ export default function Hero() {
             <SiDropbox className="text-blue-400" size={20} />
             Dropbox
           </span>
-
-          {/* Tail statement */}
-          <span className="text-white/40 hidden sm:inline">•</span>
-          <span className="text-white/70">
-            or any cloud storage of your choice
-          </span>
+          <span className="text-white/70">or any cloud storage</span>
         </motion.div>
 
         <motion.p
           className="mt-3 text-xs md:text-sm text-gray-500 max-w-2xl"
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.55, duration: 0.6 }}
+          transition={{ delay: 1.4 }}
         >
-          Your backup is encrypted and cannot be decrypted by third parties — it
-          can only be restored inside NeuVault.
+          Your backup is encrypted and can only be restored inside NeuVault.
         </motion.p>
       </div>
     </section>
