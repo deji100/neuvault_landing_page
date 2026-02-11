@@ -10,13 +10,13 @@ const testimonials = [
   {
     name: "Ayo K.",
     role: "Small Business Owner",
-    text: "Invoices and receipts used to be chaos. Now NeuVault keeps everything organized, and I can find what I need instantly — without handing my documents to a server.",
+    text: "Invoices and receipts used to be chaos. Now NeuVault keeps everything organized, and I can find what I need fast — without storing my documents on someone else’s server.",
     avatar: "https://i.pravatar.cc/100?img=12",
   },
   {
-    name: "Sarah Johnson",
+    name: "Sarah J.",
     role: "Graduate Student",
-    text: "I scan class documents and handouts, and NeuVault groups them automatically. When I’m stressed, being able to search fast is everything.",
+    text: "I scan handouts and upload PDFs, and NeuVault summarizes and groups them automatically. When I’m stressed, being able to search instantly is everything.",
     avatar: "https://i.pravatar.cc/100?img=20",
   },
   {
@@ -26,22 +26,31 @@ const testimonials = [
     avatar: "https://i.pravatar.cc/100?img=18",
   },
   {
-    name: "Michael Thompson",
+    name: "Michael T.",
     role: "Healthcare Worker",
-    text: "I keep personal medical documents in NeuVault. I like that I can back up encrypted and restore on a new phone without exposing anything.",
+    text: "I keep personal medical documents in NeuVault. I like that I can export an encrypted backup and restore on a new phone without exposing anything in plain text.",
     avatar: "https://i.pravatar.cc/100?img=11",
   },
   {
     name: "Chris T.",
     role: "Working Professional",
-    text: "I use resurfacing reminders for important documents and renewals. It’s the first app that actually brings the right file back at the right time.",
+    text: "I set reminders on documents I don’t want to forget. And when I run Smart Suggestions, it helps me catch dates buried inside files. It’s the first app that actually keeps me ahead.",
     avatar: "https://i.pravatar.cc/100?img=50",
+  },
+  {
+    name: "Nneka A.",
+    role: "Busy Parent",
+    text: "I added documents while offline, and NeuVault queued everything until I got internet. Later it processed them and saved everything neatly in my vault. That flow is so smooth.",
+    avatar: "https://i.pravatar.cc/100?img=32",
   },
 ];
 
 export default function TestimonialsCarousel() {
   return (
-    <section id="testimonials" className="relative px-6 py-24 bg-[#0B0F19] text-white border-t border-white/10 overflow-hidden">
+    <section
+      id="testimonials"
+      className="relative px-6 py-24 bg-[#0B0F19] text-white border-t border-white/10 overflow-hidden"
+    >
       {/* Subtle background glow */}
       <motion.div
         className="absolute -top-32 left-1/2 -translate-x-1/2 w-[780px] h-[780px] rounded-full bg-[#3F8CFF]/10 blur-[140px] -z-10"
@@ -49,7 +58,7 @@ export default function TestimonialsCarousel() {
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="max-w-6xl mx-auto text-center mb-12">
+      <div className="max-w-6xl mx-auto text-left md:text-center mb-12">
         <motion.h2
           className="text-3xl md:text-4xl font-bold mb-4"
           initial={{ opacity: 0, y: 20 }}
@@ -60,14 +69,14 @@ export default function TestimonialsCarousel() {
           What Early Testers Are Saying
         </motion.h2>
         <motion.p
-          className="text-gray-400 max-w-2xl mx-auto"
+          className="text-gray-400 max-w-2xl md:mx-auto"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
           viewport={{ once: true }}
         >
-          Feedback from people using NeuVault to organize real-world documents —
-          privately, locally, and fast.
+          Real feedback from people using NeuVault to capture documents, stay
+          organized, and get AI help when they choose — privately and fast.
         </motion.p>
       </div>
 
@@ -92,10 +101,10 @@ export default function TestimonialsCarousel() {
         {testimonials.map((item, idx) => (
           <SwiperSlide key={idx}>
             <motion.div
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 flex flex-col justify-between min-h-[220px] h-full hover:shadow-lg hover:shadow-[#3F8CFF]/10 transition"
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 flex flex-col justify-between min-h-[240px] h-full hover:shadow-lg hover:shadow-[#3F8CFF]/10 transition"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.08, duration: 0.55 }}
+              transition={{ delay: idx * 0.06, duration: 0.55 }}
               viewport={{ once: true }}
             >
               {/* Quote */}

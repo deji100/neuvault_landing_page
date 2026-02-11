@@ -4,14 +4,13 @@ import { motion } from "framer-motion";
 import {
   FaLock,
   FaMagic,
-  FaFileAlt,
   FaTags,
   FaBell,
   FaShieldAlt,
   FaCalendarCheck,
   FaArrowUp,
   FaMicrophone,
-  FaGlobe,
+  FaWifi,
 } from "react-icons/fa";
 
 import { BsStars } from "react-icons/bs";
@@ -19,100 +18,78 @@ import { PiVaultBold } from "react-icons/pi";
 
 const features = [
   {
-    title: "Local-First Privacy",
+    title: "Local-First Document Storage",
     description:
-      "Your vault lives on your device by default — we don’t store your documents on our servers.",
-    context:
-      "Back up an encrypted bundle to your cloud and restore only inside NeuVault.",
+      "Your documents are stored on your device by default. NeuVault does not store your files on its servers. No fee is charged for storage — you only pay for the AI processing you use.",
+    context: "Your vault stays yours — always.",
     icon: <FaShieldAlt className="text-[#6DD1FF]" size={28} />,
   },
   {
     title: "Smart Intake (5 Ways)",
     description:
-      "Upload documents, scan paper, upload scanned files, write notes, or record or upload voice notes — NeuVault turns everything into structured, searchable information.",
-    context: "Capture anything fast, without changing how you already work.",
+      "Upload documents, scan paper, write notes, capture images, or record/upload voice notes. Smart Intake securely processes text to generate summaries, tags, and structured organization.",
+    context:
+      "Supports PDFs, Word, Excel, scans, document photos, notes, and audio.",
     icon: <PiVaultBold className="text-pink-400" size={28} />,
   },
   {
-    title: "Voice Notes → Notes",
+    title: "Offline Capture & Queue",
     description:
-      "Record or upload audio (WhatsApp notes, recordings, lectures). NeuVault transcribes and formats it cleanly into a note you can keep or convert.",
+      "Add documents, scans, notes, and voice even without internet. NeuVault stores everything locally and securely processes it when you're back online.",
     context:
-      "Optionally convert voice notes to PDF, Word, or Excel when structure makes sense.",
+      "Track every item in the Queue — pending, processing, completed, or failed.",
+    icon: <FaWifi className="text-green-300" size={28} />,
+  },
+  {
+    title: "Voice → Structured Notes",
+    description:
+      "Record or upload audio (lectures, WhatsApp notes, meetings). NeuVault transcribes and formats it into structured notes you can search or convert.",
+    context: "Export to PDF, Word, or Excel when structure makes sense.",
     icon: <FaMicrophone className="text-green-300" size={28} />,
   },
   {
-    title: "Instant Summaries",
+    title: "Instant Summaries & Auto-Tagging",
     description:
-      "Get clear summaries for documents, scans, and notes — so you understand what matters in seconds.",
-    context: "Skip the fluff. Keep the signal.",
+      "Understand documents in seconds. NeuVault extracts key information, assigns tags, and groups related files automatically.",
+    context: "Skip the clutter. Keep the signal.",
     icon: <BsStars className="text-yellow-400" size={28} />,
   },
   {
-    title: "Auto-Tag & Group",
+    title: "Auto-Organization (Groups + Subgroups)",
     description:
-      "NeuVault detects document types, assigns tags, and groups related files automatically during intake.",
-    context: "Everything lands where it should, the moment you add it.",
+      "NeuVault places each item into the right group and subgroup during intake, so your vault stays structured without manual sorting.",
+    context: "Everything lands where it should, the moment you add it. You can also link documents together to create custom groups based on relationships you define.",
     icon: <FaTags className="text-green-400" size={28} />,
   },
   {
-    title: "Smart Suggestions",
+    title: "Smart Suggestions & Resurfacing",
     description:
-      "Run Smart Suggestions when you choose. NeuVault can detect deadlines, event dates, renewals, and expiries inside documents.",
-    context:
-      "You control when it runs — NeuVault can notify you when it’s time to review.",
+      "Detect deadlines, renewals, and event dates — or set your own reminders on a document or linked group.",
+    context: "NeuVault brings important documents back when they matter.",
     icon: <FaCalendarCheck className="text-[#6DD1FF]" size={28} />,
   },
   {
-    title: "Resurfacing & Reminders",
+    title: "Nova Assistant (42+ Languages + Web)",
     description:
-      "Bring important documents back at the right time with one-time or recurring reminders — on a document or a linked group.",
-    context: "Set it once. NeuVault reminds you when it matters.",
-    icon: <FaBell className="text-[#3F8CFF]" size={28} />,
-  },
-  {
-    title: "Nova Assistant (42+ Languages)",
-    description:
-      "Chat naturally in your preferred language. Ask questions about your vault, get insights, or explore the web — all in one place.",
+      "Chat naturally in your preferred language. Ask questions about your vault, find document(s), get deep document insights, and browse the web through normal conversation.",
     context:
-      "From “summarize this contract” to “what did I save about X?” — Nova knows.",
+      "From quick answers to deep analysis — Nova understands context.",
     icon: <FaMagic className="text-purple-400" size={28} />,
   },
   {
-    title: "Web Browsing (Conversational)",
+    title: "Encrypted Backup & Restore",
     description:
-      "Nova can browse the web through normal conversation — not just keywords — and help you connect outside info with what’s in your vault.",
-    context: "Ask like a human. Get answers like a researcher.",
-    icon: <FaGlobe className="text-[#6DD1FF]" size={28} />,
-  },
-  {
-    title: "Encrypted Export & Restore",
-    description:
-      "Export an encrypted backup to your cloud (Drive, iCloud, Dropbox, or any storage) and restore on another device inside NeuVault.",
+      "Export an encrypted backup to your preferred cloud storage and restore it on another device inside NeuVault.",
     context:
-      "Your backup can’t be decrypted by third parties — only NeuVault can restore it.",
+      "Backups are encrypted locally using a unique per-user key before export.",
     icon: <FaArrowUp className="text-sky-300" size={28} />,
   },
   {
-    title: "Universal Document Support",
+    title: "Security by Design",
     description:
-      "PDF, Word, Excel, scanned images, document photos, and audio notes — everything important in one private vault.",
-    context: "Built for real life, not just text.",
-    icon: <FaFileAlt className="text-white" size={28} />,
-  },
-  {
-    title: "Secure by Design",
-    description:
-      "Encrypted exports, optional deep insights, and privacy controls that keep you in charge of what’s processed.",
-    context: "You decide what gets analyzed — and when.",
+      "Secure transmission, per-user encryption keys for backup, optional deep insights, and full visibility into processing states.",
+    context: "Transparency and control at every layer.",
     icon: <FaLock className="text-white/70" size={28} />,
-  },
-  {
-    title: "Beautifully Minimal",
-    description:
-      "A calm, distraction-free experience designed for clarity — with serious power underneath.",
-    context: "Simple UI. Real intelligence.",
-    icon: <PiVaultBold className="text-[#6DD1FF]" size={28} />,
   },
 ];
 
@@ -141,8 +118,8 @@ export default function FeaturesSection() {
           viewport={{ once: true }}
         >
           NeuVault is a private, local-first AI vault built for real-world
-          documents and voice — helping you organize, understand, and act on
-          what matters, without storing your files on our servers.
+          documents and voice. Capture anything, organize automatically, and
+          understand what matters — without storing your files on our servers.
         </motion.p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -152,7 +129,7 @@ export default function FeaturesSection() {
               className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:shadow-lg hover:shadow-[#3F8CFF]/30 transition-transform duration-300 hover:-translate-y-2"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: idx * 0.06 }}
+              transition={{ duration: 0.6, delay: idx * 0.05 }}
               viewport={{ once: true }}
             >
               <motion.div

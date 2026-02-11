@@ -133,7 +133,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
         >
-          Stored on your device. Encrypted backups you control.
+          Documents stored on your device. Encrypted backups you control.
         </motion.p>
 
         <motion.h1
@@ -142,7 +142,7 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.45 }}
         >
-          Your private, local-first AI that understands your documents.
+          A private system that understands your documents.
         </motion.h1>
 
         <motion.p
@@ -151,10 +151,13 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.65 }}
         >
-          Upload files, scan paper, write notes, or record voice. NeuVault
-          transcribes audio into structured notes, summarizes and tags everything
-          on import, surfaces deadlines and renewals, and lets you export to
-          Word, PDF, or Excel — all without storing your documents on our servers.
+          Upload files, scan paper, write notes, or record voice — even offline.
+          Smart Intake securely processes text to generate summaries, tags, and
+          organization. Voice notes are transcribed into structured entries.
+          When you run Smart Suggestions, NeuVault can detect deadlines,
+          renewals, and key dates — and Resurfacing reminds you only if you set
+          a reminder on a document or a linked group of documents. Your documents remain stored
+          on your device, never on NeuVault servers.
         </motion.p>
 
         {/* Feature pills */}
@@ -167,12 +170,12 @@ export default function Hero() {
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
             <span className="text-[#6DD1FF]">Smart Intake</span>
             <span className="text-white/20">•</span>
-            Summaries + tags
+            Auto summaries + tags
           </span>
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
-            <span className="text-[#6DD1FF]">Resurfacing</span>
+            <span className="text-[#6DD1FF]">Offline Capture</span>
             <span className="text-white/20">•</span>
-            Document reminders
+            Queued processing
           </span>
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
             <span className="text-[#6DD1FF]">Nova Assistant</span>
@@ -248,7 +251,8 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.4 }}
         >
-          Your backup is encrypted and can only be restored inside NeuVault.
+          Backups are encrypted locally using a unique per-user key and can only
+          be restored inside NeuVault.
         </motion.p>
       </div>
     </section>

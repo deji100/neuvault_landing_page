@@ -5,9 +5,11 @@ import {
   FaFileInvoiceDollar,
   FaHeartbeat,
   FaBookOpen,
-  FaReceipt,
   FaIdCard,
   FaShieldAlt,
+  FaMicrophone,
+  FaWifi,
+  FaCalendarCheck,
 } from "react-icons/fa";
 
 const scenarios = [
@@ -15,25 +17,31 @@ const scenarios = [
     icon: <FaFileInvoiceDollar className="text-[#3F8CFF]" size={28} />,
     title: "Business & Finance",
     description:
-      "Store invoices, receipts, contracts, and statements — then ask Nova to summarize, find totals, or export a clean report.",
+      "Store invoices, receipts, and statements — then ask Nova to summarize, find totals, or export a clean PDF/Excel report when you need it.",
+  },
+  {
+    icon: <FaMicrophone className="text-emerald-300" size={28} />,
+    title: "Voice, Meetings & Lectures",
+    description:
+      "Record a voice note in NeuVault or upload existing audio (WhatsApp notes, recordings). Get a structured transcript you can search, keep, and convert.",
   },
   {
     icon: <FaHeartbeat className="text-pink-400" size={28} />,
     title: "Health & Medical",
     description:
-      "Keep lab results, prescriptions, and hospital documents organized — searchable, summarized, and easy to resurface when needed.",
+      "Keep lab results, prescriptions, and hospital documents organized — searchable, summarized, and easy to retrieve when you need them again.",
   },
   {
     icon: <FaBookOpen className="text-yellow-400" size={28} />,
     title: "School & Research",
     description:
-      "Organize course documents, PDFs, and scanned notes — grouped by topic so you can find what you need fast.",
+      "Organize course PDFs and scanned notes — summarized, tagged, and grouped so you can find what matters fast.",
   },
   {
     icon: <FaIdCard className="text-green-400" size={28} />,
     title: "Life Documents",
     description:
-      "IDs, visas, warranties, agreements, and important forms — stored locally and backed up as encrypted export bundles.",
+      "IDs, visas, warranties, and agreements — stored on-device, backed up as encrypted export bundles, restorable inside NeuVault.",
   },
 ];
 
@@ -51,7 +59,7 @@ export default function SeeItInAction() {
       />
 
       {/* Section header */}
-      <div className="text-center mb-16">
+      <div className="text-left md:text-center mb-16 max-w-6xl mx-auto">
         <motion.h2
           className="text-3xl md:text-4xl font-bold mb-4"
           initial={{ opacity: 0, y: 20 }}
@@ -62,14 +70,15 @@ export default function SeeItInAction() {
           See NeuVault in Action
         </motion.h2>
         <motion.p
-          className="text-gray-400 max-w-2xl mx-auto"
+          className="text-gray-400 max-w-2xl md:mx-auto"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
           viewport={{ once: true }}
         >
           NeuVault is built for real-world documents — the ones you actually
-          need to find again, understand fast, and stay ahead of.
+          need to understand quickly, keep organized, and find again without
+          digging.
         </motion.p>
       </div>
 
@@ -83,7 +92,7 @@ export default function SeeItInAction() {
               className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:shadow-lg hover:shadow-[#3F8CFF]/10 transition"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: idx * 0.15, duration: 0.6 }}
+              transition={{ delay: idx * 0.12, duration: 0.6 }}
               viewport={{ once: true }}
             >
               <div className="mb-3">{item.icon}</div>
@@ -122,10 +131,22 @@ export default function SeeItInAction() {
             </svg>
           </motion.div>
 
-          <div className="absolute bottom-4 left-4 right-4">
+          {/* Bottom caption */}
+          <div className="absolute bottom-4 left-4 right-4 space-y-2">
             <div className="flex items-center gap-2 text-xs text-white/70">
               <FaShieldAlt className="text-white/50" />
-              Local-first • Encrypted export backups • No document server storage
+              Stored on-device • No document server storage • Encrypted exports
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3 text-[11px] text-white/55">
+              <span className="inline-flex items-center gap-2">
+                <FaWifi className="text-white/40" />
+                Offline capture → queued processing
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <FaCalendarCheck className="text-white/40" />
+                Dates detected when you run Smart Suggestions
+              </span>
             </div>
           </div>
         </motion.div>
@@ -138,7 +159,7 @@ export default function SeeItInAction() {
               className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:shadow-lg hover:shadow-[#3F8CFF]/10 transition"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: idx * 0.15, duration: 0.6 }}
+              transition={{ delay: idx * 0.12, duration: 0.6 }}
               viewport={{ once: true }}
             >
               <div className="mb-3">{item.icon}</div>
