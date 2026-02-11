@@ -119,7 +119,7 @@ const steps: Step[] = [
 
         <div className="mt-3 text-xs text-white/45 flex items-center gap-2">
           <FaWifi className="opacity-80" />
-          Works offline — items queue for processing when you're back online.
+          Works offline — items queue for processing when you&apos;re back online.
         </div>
       </div>
     ),
