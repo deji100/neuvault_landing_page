@@ -107,7 +107,8 @@ export default function PrivacyPolicyPage() {
           <p className="text-gray-300 mt-5 max-w-3xl">
             NeuVault is built on a privacy-first, local-first philosophy. This
             policy explains what we collect, what we do not collect, and how AI,
-            offline queues, and encrypted exports work.
+            offline queues, encrypted exports, and App Store privacy disclosures
+            work.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3 sm:items-center text-sm text-gray-400">
@@ -153,6 +154,7 @@ export default function PrivacyPolicyPage() {
                   ["offline", "Offline queue & processing"],
                   ["backup", "Encrypted export & backup"],
                   ["analytics", "Analytics & diagnostics"],
+                  ["appstore", "App Store privacy summary (iOS)"],
                   ["retention", "Data retention"],
                   ["rights", "Your rights"],
                   ["children", "Children’s privacy"],
@@ -412,6 +414,42 @@ export default function PrivacyPolicyPage() {
                 content. If an error report includes text, it is typically
                 technical information needed to debug the issue.
               </p>
+            </Section>
+
+            <Section
+              id="appstore"
+              title="App Store privacy summary (iOS)"
+              icon={<FaShieldAlt />}
+            >
+              <p className="text-gray-300">
+                This section summarizes NeuVault{"'"}s data handling in App Store
+                privacy terms.
+              </p>
+              <ul className="space-y-2">
+                <Bullet>
+                  <strong className="text-white">No tracking:</strong> NeuVault does not
+                  track you across third-party apps, websites, or services for
+                  advertising.
+                </Bullet>
+                <Bullet>
+                  <strong className="text-white">
+                    Account-linked data we may process:
+                  </strong>{" "}
+                  email/contact info, account/session identifiers, subscription or
+                  purchase status, and limited diagnostics.
+                </Bullet>
+                <Bullet>
+                  <strong className="text-white">User content:</strong> documents,
+                  notes, images, and audio you submit are processed only to deliver
+                  requested features (for example intake, search, summaries, and
+                  transcription).
+                </Bullet>
+                <Bullet>
+                  <strong className="text-white">Third-party content rights:</strong>{" "}
+                  users are responsible for ensuring they have the right to upload,
+                  store, or share any third-party content in NeuVault.
+                </Bullet>
+              </ul>
             </Section>
 
             <Section id="retention" title="9. Data retention" icon={<FaLock />}>
