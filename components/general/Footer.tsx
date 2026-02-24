@@ -127,6 +127,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/account-deletion" className="hover:text-white transition">
+                  Account Deletion
+                </Link>
+              </li>
+              <li>
                 <span className="text-xs text-gray-500">
                   No documents are stored on our servers.
                 </span>

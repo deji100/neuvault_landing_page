@@ -15,79 +15,21 @@
 // import { SiGoogledrive, SiIcloud, SiDropbox } from "react-icons/si";
 
 // const floatingIcons = [
-//   {
-//     icon: <FaFilePdf />,
-//     class: "text-red-400",
-//     top: "8%",
-//     left: "75%",
-//     delay: 0,
-//     showOnMobile: true,
-//   },
-//   {
-//     icon: <FaFileWord />,
-//     class: "text-blue-400",
-//     top: "35%",
-//     left: "65%",
-//     delay: 0.2,
-//     showOnMobile: true,
-//   },
-//   {
-//     icon: <FaFileExcel />,
-//     class: "text-green-400",
-//     top: "30%",
-//     left: "82%",
-//     delay: 0.4,
-//     showOnMobile: false,
-//   },
-//   {
-//     icon: <FaRegNoteSticky />,
-//     class: "text-yellow-300",
-//     top: "60%",
-//     left: "70%",
-//     delay: 0.6,
-//     showOnMobile: false,
-//   },
-//   {
-//     icon: <FaLock />,
-//     class: "text-white/20",
-//     top: "70%",
-//     left: "80%",
-//     delay: 0.8,
-//     showOnMobile: true,
-//   },
-//   {
-//     icon: <BsStars />,
-//     class: "text-[#6DD1FF]",
-//     top: "18%",
-//     left: "7%",
-//     delay: 1.0,
-//     showOnMobile: true,
-//   },
-//   {
-//     icon: <PiNotePencilLight />,
-//     class: "text-green-300",
-//     top: "87%",
-//     left: "12%",
-//     delay: 1.2,
-//     showOnMobile: true,
-//   },
-//   {
-//     icon: <IoSparklesSharp />,
-//     class: "text-[#3F8CFF]",
-//     top: "60%",
-//     left: "40%",
-//     delay: 1.4,
-//     showOnMobile: true,
-//   },
+//   { icon: <FaFilePdf />, class: "text-red-400", top: "8%", left: "75%", delay: 0, showOnMobile: true },
+//   { icon: <FaFileWord />, class: "text-blue-400", top: "35%", left: "65%", delay: 0.2, showOnMobile: true },
+//   { icon: <FaFileExcel />, class: "text-green-400", top: "30%", left: "82%", delay: 0.4, showOnMobile: false },
+//   { icon: <FaRegNoteSticky />, class: "text-yellow-300", top: "60%", left: "70%", delay: 0.6, showOnMobile: false },
+//   { icon: <FaLock />, class: "text-white/20", top: "70%", left: "80%", delay: 0.8, showOnMobile: true },
+//   { icon: <BsStars />, class: "text-[#6DD1FF]", top: "18%", left: "7%", delay: 1.0, showOnMobile: true },
+//   { icon: <PiNotePencilLight />, class: "text-green-300", top: "87%", left: "12%", delay: 1.2, showOnMobile: true },
+//   { icon: <IoSparklesSharp />, class: "text-[#3F8CFF]", top: "60%", left: "40%", delay: 1.4, showOnMobile: true },
 // ];
 
 // export default function Hero() {
 //   return (
 //     <section className="relative min-h-[100vh] pt-36 px-6 py-24 md:py-32 bg-[#0B0F19] text-white overflow-hidden">
-//       {/* Background */}
 //       <div className="absolute inset-0 bg-gradient-to-br from-[#0B0F19] via-[#1a2536] to-[#203B6E] z-0" />
 
-//       {/* Floating glows */}
 //       <motion.div
 //         className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-[#3F8CFF]/10 blur-3xl z-0"
 //         animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.7, 0.5] }}
@@ -99,7 +41,6 @@
 //         transition={{ duration: 5, repeat: Infinity }}
 //       />
 
-//       {/* Floating icons */}
 //       {floatingIcons.map((item, idx) => (
 //         <motion.div
 //           key={idx}
@@ -125,7 +66,6 @@
 //         </motion.div>
 //       ))}
 
-//       {/* Content */}
 //       <div className="relative z-10 max-w-6xl mx-auto text-left">
 //         <motion.p
 //           className="text-sm md:text-base text-[#6DD1FF] mb-3 tracking-wide uppercase"
@@ -133,7 +73,7 @@
 //           animate={{ opacity: 1, y: 0 }}
 //           transition={{ delay: 0.3 }}
 //         >
-//           Documents stored on your device. Encrypted backups you control.
+//           Stored on your device • No server document storage • Encrypted backups you control
 //         </motion.p>
 
 //         <motion.h1
@@ -151,16 +91,20 @@
 //           animate={{ opacity: 1, y: 0 }}
 //           transition={{ delay: 0.65 }}
 //         >
-//           Upload files, scan paper, write notes, or record voice — even offline.
-//           Smart Intake securely processes text to generate summaries, tags, and
-//           organization. Voice notes are transcribed into structured entries.
-//           When you run Smart Suggestions, NeuVault can detect deadlines,
-//           renewals, and key dates — and Resurfacing reminds you only if you set
-//           a reminder on a document or a linked group of documents. Your documents remain stored
-//           on your device, never on NeuVault servers.
+//           Upload files, scan paper, write notes, or record/upload voice notes, even offline.
+//           NeuVault turns messy inputs into clear summaries, tags, and groups you can search instantly.
 //         </motion.p>
 
-//         {/* Feature pills */}
+//         {/* Trust micro-line (keeps your “resurfacing” nuance without bloating the hero) */}
+//         <motion.p
+//           className="text-lg md:text-xl text-gray-300 max-w-2xl mb-6 leading-8"
+//           initial={{ opacity: 0, y: 6 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ delay: 0.95 }}
+//         >
+//           Smart Suggestions can detect deadlines & renewals, and Resurfacing only reminds you when you set a reminder on a document or a group of documents.
+//         </motion.p>
+
 //         <motion.div
 //           className="flex flex-wrap gap-3 text-sm text-gray-400 max-w-2xl mb-8"
 //           initial={{ opacity: 0, y: 8 }}
@@ -180,11 +124,10 @@
 //           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
 //             <span className="text-[#6DD1FF]">Nova Assistant</span>
 //             <span className="text-white/20">•</span>
-//             42+ languages
+//             42+ languages + web
 //           </span>
 //         </motion.div>
 
-//         {/* CTAs */}
 //         <motion.div
 //           className="flex flex-col sm:flex-row gap-4 mb-10 w-full"
 //           initial={{ opacity: 0, y: 10 }}
@@ -214,7 +157,6 @@
 //           </Link>
 //         </motion.div>
 
-//         {/* Backup providers */}
 //         <motion.div
 //           className="text-sm text-gray-400"
 //           initial={{ opacity: 0 }}
@@ -251,13 +193,13 @@
 //           animate={{ opacity: 1, y: 0 }}
 //           transition={{ delay: 1.4 }}
 //         >
-//           Backups are encrypted locally using a unique per-user key and can only
-//           be restored inside NeuVault.
+//           Backups are encrypted locally using a unique per-user key and can only be restored inside NeuVault.
 //         </motion.p>
 //       </div>
 //     </section>
 //   );
 // }
+
 
 
 
@@ -322,7 +264,7 @@ export default function Hero() {
             y: [0, -20, 0, 20, 0],
             x: [0, idx % 2 === 0 ? 10 : -10, 0],
             rotate: [0, idx % 2 === 0 ? 8 : -8, 0],
-            opacity: [0.25, 0.35, 0.25],
+            opacity: [0.22, 0.35, 0.22],
           }}
           transition={{
             duration: 10,
@@ -338,44 +280,50 @@ export default function Hero() {
       ))}
 
       <div className="relative z-10 max-w-6xl mx-auto text-left">
+        {/* Updated kicker: emotional + trust, not spec */}
         <motion.p
           className="text-sm md:text-base text-[#6DD1FF] mb-3 tracking-wide uppercase"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
         >
-          Stored on your device • No server document storage • Encrypted backups you control
+          Private by default • Stored on your device • Backups you control
         </motion.p>
 
+        {/* Updated headline */}
         <motion.h1
           className="text-4xl md:text-6xl font-bold tracking-tight leading-tight mb-6 max-w-3xl"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.45 }}
         >
-          A private system that understands your documents.
+          Stop losing peace over the one document you can’t find.
         </motion.h1>
 
+        {/* Updated body: pain → relief */}
         <motion.p
           className="text-lg md:text-xl text-gray-300 max-w-2xl mb-6 leading-8"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.65 }}
         >
-          Upload files, scan paper, write notes, or record/upload voice notes, even offline.
-          NeuVault turns messy inputs into clear summaries, tags, and groups you can search instantly.
+          Receipts in screenshots. IDs in WhatsApp. PDFs buried in downloads.
+          NeuVault turns scattered files, notes, and voice into a calm vault that
+          feels present — organized, searchable, and clear at a glance.
         </motion.p>
 
-        {/* Trust micro-line (keeps your “resurfacing” nuance without bloating the hero) */}
+        {/* Updated trust micro-line: shorter + human */}
         <motion.p
           className="text-lg md:text-xl text-gray-300 max-w-2xl mb-6 leading-8"
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.95 }}
         >
-          Smart Suggestions can detect deadlines & renewals, and Resurfacing only reminds you when you set a reminder on a document or a group of documents.
+          Set a reminder on a document (or a group) and NeuVault brings it back
+          when it matters — not when it’s noisy.
         </motion.p>
 
+        {/* Updated pills: benefit language, avoid “AI” wording */}
         <motion.div
           className="flex flex-wrap gap-3 text-sm text-gray-400 max-w-2xl mb-8"
           initial={{ opacity: 0, y: 8 }}
@@ -385,20 +333,21 @@ export default function Hero() {
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
             <span className="text-[#6DD1FF]">Smart Intake</span>
             <span className="text-white/20">•</span>
-            Auto summaries + tags
+            From messy → clear
           </span>
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
             <span className="text-[#6DD1FF]">Offline Capture</span>
             <span className="text-white/20">•</span>
-            Queued processing
+            Queue + process later
           </span>
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
-            <span className="text-[#6DD1FF]">Nova Assistant</span>
+            <span className="text-[#6DD1FF]">Instant Understanding</span>
             <span className="text-white/20">•</span>
-            42+ languages + web
+            Summaries + structure
           </span>
         </motion.div>
 
+        {/* CTAs unchanged */}
         <motion.div
           className="flex flex-col sm:flex-row gap-4 mb-10 w-full"
           initial={{ opacity: 0, y: 10 }}
@@ -428,6 +377,7 @@ export default function Hero() {
           </Link>
         </motion.div>
 
+        {/* Backup row unchanged */}
         <motion.div
           className="text-sm text-gray-400"
           initial={{ opacity: 0 }}
@@ -464,7 +414,8 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.4 }}
         >
-          Backups are encrypted locally using a unique per-user key and can only be restored inside NeuVault.
+          Backups are encrypted locally using a unique per-user key and can only
+          be restored inside NeuVault.
         </motion.p>
       </div>
     </section>
