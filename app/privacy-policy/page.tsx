@@ -156,6 +156,7 @@ export default function PrivacyPolicyPage() {
                   ["analytics", "Analytics & diagnostics"],
                   ["appstore", "App Store privacy summary (iOS)"],
                   ["retention", "Data retention"],
+                  ["account-deletion", "Account deletion"],
                   ["rights", "Your rights"],
                   ["children", "Children’s privacy"],
                   ["security", "Security"],
@@ -469,7 +470,29 @@ export default function PrivacyPolicyPage() {
               </ul>
             </Section>
 
-            <Section id="rights" title="10. Your rights" icon={<FaUserShield />}>
+            <Section id="account-deletion" title="10. Account deletion" icon={<FaTrash />}>
+              <p className="text-gray-300">
+                You can request account deletion directly in the app (Settings &gt; Delete
+                Account) or by using our public account deletion page:
+              </p>
+              <p>
+                <Link href="/account-deletion" className="text-[#6DD1FF] hover:underline">
+                  neuvault.app/account-deletion
+                </Link>
+              </p>
+              <ul className="space-y-2">
+                <Bullet>
+                  Account deletion removes server-side account metadata and authentication
+                  records.
+                </Bullet>
+                <Bullet>
+                  Local vault content on your device is not removed by server-side account
+                  deletion.
+                </Bullet>
+              </ul>
+            </Section>
+
+            <Section id="rights" title="11. Your rights" icon={<FaUserShield />}>
               <p className="text-gray-300">
                 Depending on your jurisdiction, you may have rights to access,
                 correct, or delete your account data, and to withdraw consent
@@ -484,14 +507,14 @@ export default function PrivacyPolicyPage() {
               </p>
             </Section>
 
-            <Section id="children" title="11. Children’s privacy" icon={<FaShieldAlt />}>
+            <Section id="children" title="12. Children’s privacy" icon={<FaShieldAlt />}>
               <p className="text-gray-300">
                 NeuVault is not intended for children under 13, and we do not
                 knowingly collect personal data from children.
               </p>
             </Section>
 
-            <Section id="security" title="12. Security" icon={<FaLock />}>
+            <Section id="security" title="13. Security" icon={<FaLock />}>
               <p className="text-gray-300">
                 We use industry-standard security practices to protect account
                 data and provide encrypted exports, including secure transport
@@ -503,7 +526,7 @@ export default function PrivacyPolicyPage() {
               </p>
             </Section>
 
-            <Section id="changes" title="13. Changes to this policy" icon={<FaFileAlt />}>
+            <Section id="changes" title="14. Changes to this policy" icon={<FaFileAlt />}>
               <p className="text-gray-300">
                 We may update this policy to reflect product changes or legal
                 requirements. When we do, we will update the effective date and
@@ -511,7 +534,7 @@ export default function PrivacyPolicyPage() {
               </p>
             </Section>
 
-            <Section id="contact" title="14. Contact" icon={<FaUserShield />}>
+            <Section id="contact" title="15. Contact" icon={<FaUserShield />}>
               <p className="text-gray-300">
                 For privacy questions or requests, contact:
               </p>
@@ -544,3 +567,4 @@ export default function PrivacyPolicyPage() {
     </main>
   );
 }
+

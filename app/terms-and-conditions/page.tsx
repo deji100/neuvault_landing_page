@@ -15,6 +15,7 @@ import {
   FaCreditCard,
   FaSyncAlt,
   FaShieldAlt,
+  FaTrash,
 } from "react-icons/fa";
 import { FaBell } from "react-icons/fa6";
 
@@ -390,7 +391,28 @@ export default function TermsPage() {
           </p>
         </Section>
 
-        <Section id="liability" title="13. Disclaimers & limitation of liability" icon={<FaExclamationTriangle />}>
+        <Section id="account-deletion" title="13. Account deletion" icon={<FaTrash />}>
+          <p>
+            You can request account deletion in-app from Settings &gt; Delete Account or
+            through our account deletion page:
+          </p>
+          <p>
+            <Link href="/account-deletion" className="text-[#6DD1FF] hover:underline">
+              neuvault.app/account-deletion
+            </Link>
+          </p>
+          <ul className="space-y-2">
+            <Bullet>
+              Account deletion removes server-side account records and authentication records.
+            </Bullet>
+            <Bullet>
+              Account deletion does not automatically remove local vault content stored on
+              your device.
+            </Bullet>
+          </ul>
+        </Section>
+
+        <Section id="liability" title="14. Disclaimers & limitation of liability" icon={<FaExclamationTriangle />}>
           <p>
             To the maximum extent permitted by law, NeuVault disclaims all
             warranties, express or implied, including fitness for a particular
@@ -411,14 +433,14 @@ export default function TermsPage() {
           </ul>
         </Section>
 
-        <Section id="law" title="14. Governing law" icon={<FaGavel />}>
+        <Section id="law" title="15. Governing law" icon={<FaGavel />}>
           <p>
             These Terms are governed by applicable laws in your jurisdiction,
             without regard to conflict-of-law principles.
           </p>
         </Section>
 
-        <Section id="changes" title="15. Changes to these Terms" icon={<FaFileAlt />}>
+        <Section id="changes" title="16. Changes to these Terms" icon={<FaFileAlt />}>
           <p>
             We may update these Terms to reflect product or legal changes. We
             will update the effective date above. Continued use after changes
@@ -426,7 +448,7 @@ export default function TermsPage() {
           </p>
         </Section>
 
-        <Section id="contact" title="16. Contact" icon={<FaUserShield />}>
+        <Section id="contact" title="17. Contact" icon={<FaUserShield />}>
           <p>For questions about these Terms, contact:</p>
           <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-4">
             <p className="text-sm">
