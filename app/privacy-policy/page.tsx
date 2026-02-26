@@ -154,6 +154,7 @@ export default function PrivacyPolicyPage() {
                   ["offline", "Offline queue & processing"],
                   ["backup", "Encrypted export & backup"],
                   ["analytics", "Analytics & diagnostics"],
+                  ["admin-access", "Administrative access & support operations"],
                   ["appstore", "App Store privacy summary (iOS)"],
                   ["retention", "Data retention"],
                   ["account-deletion", "Account deletion"],
@@ -418,8 +419,40 @@ export default function PrivacyPolicyPage() {
             </Section>
 
             <Section
+              id="admin-access"
+              title="9. Administrative access & support operations"
+              icon={<FaUserShield />}
+            >
+              <p className="text-gray-300">
+                NeuVault uses restricted internal administrative tools to
+                operate the service, resolve support incidents, enforce security
+                controls, and manage billing/account issues.
+              </p>
+              <ul className="space-y-2">
+                <Bullet>
+                  Administrative actions are limited to authorized personnel
+                  with role-based access.
+                </Bullet>
+                <Bullet>
+                  Administrative access is purpose-limited (for example:
+                  account disable/re-enable, session revocation, notification
+                  troubleshooting, and billing corrections).
+                </Bullet>
+                <Bullet>
+                  High-risk actions require an internal reason and are recorded
+                  in immutable audit logs (who, what, when, and before/after
+                  state where applicable).
+                </Bullet>
+                <Bullet>
+                  We do not use administrative access for advertising,
+                  profiling, or unrelated processing.
+                </Bullet>
+              </ul>
+            </Section>
+
+            <Section
               id="appstore"
-              title="App Store privacy summary (iOS)"
+              title="10. App Store privacy summary (iOS)"
               icon={<FaShieldAlt />}
             >
               <p className="text-gray-300">
@@ -453,7 +486,7 @@ export default function PrivacyPolicyPage() {
               </ul>
             </Section>
 
-            <Section id="retention" title="9. Data retention" icon={<FaLock />}>
+            <Section id="retention" title="11. Data retention" icon={<FaLock />}>
               <ul className="space-y-2">
                 <Bullet>Account data is retained while your account remains active.</Bullet>
                 <Bullet>
@@ -470,7 +503,7 @@ export default function PrivacyPolicyPage() {
               </ul>
             </Section>
 
-            <Section id="account-deletion" title="10. Account deletion" icon={<FaTrash />}>
+            <Section id="account-deletion" title="12. Account deletion" icon={<FaTrash />}>
               <p className="text-gray-300">
                 You can request account deletion directly in the app (Settings &gt; Delete
                 Account) or by using our public account deletion page:
@@ -492,7 +525,7 @@ export default function PrivacyPolicyPage() {
               </ul>
             </Section>
 
-            <Section id="rights" title="11. Your rights" icon={<FaUserShield />}>
+            <Section id="rights" title="13. Your rights" icon={<FaUserShield />}>
               <p className="text-gray-300">
                 Depending on your jurisdiction, you may have rights to access,
                 correct, or delete your account data, and to withdraw consent
@@ -507,14 +540,14 @@ export default function PrivacyPolicyPage() {
               </p>
             </Section>
 
-            <Section id="children" title="12. Children’s privacy" icon={<FaShieldAlt />}>
+            <Section id="children" title="14. Children’s privacy" icon={<FaShieldAlt />}>
               <p className="text-gray-300">
                 NeuVault is not intended for children under 13, and we do not
                 knowingly collect personal data from children.
               </p>
             </Section>
 
-            <Section id="security" title="13. Security" icon={<FaLock />}>
+            <Section id="security" title="15. Security" icon={<FaLock />}>
               <p className="text-gray-300">
                 We use industry-standard security practices to protect account
                 data and provide encrypted exports, including secure transport
@@ -526,7 +559,7 @@ export default function PrivacyPolicyPage() {
               </p>
             </Section>
 
-            <Section id="changes" title="14. Changes to this policy" icon={<FaFileAlt />}>
+            <Section id="changes" title="16. Changes to this policy" icon={<FaFileAlt />}>
               <p className="text-gray-300">
                 We may update this policy to reflect product changes or legal
                 requirements. When we do, we will update the effective date and
@@ -534,7 +567,7 @@ export default function PrivacyPolicyPage() {
               </p>
             </Section>
 
-            <Section id="contact" title="15. Contact" icon={<FaUserShield />}>
+            <Section id="contact" title="17. Contact" icon={<FaUserShield />}>
               <p className="text-gray-300">
                 For privacy questions or requests, contact:
               </p>
