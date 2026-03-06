@@ -1,237 +1,99 @@
-// "use client";
-
-// import { motion } from "framer-motion";
-// import {
-//   FaLock,
-//   FaMagic,
-//   FaTags,
-//   FaBell,
-//   FaShieldAlt,
-//   FaCalendarCheck,
-//   FaArrowUp,
-//   FaMicrophone,
-//   FaWifi,
-// } from "react-icons/fa";
-
-// import { BsStars } from "react-icons/bs";
-// import { PiVaultBold } from "react-icons/pi";
-
-// const features = [
-//   {
-//     title: "Local-First Document Storage",
-//     description:
-//       "Your documents are stored on your device by default. NeuVault does not store your files on its servers. No fee is charged for storage — you only pay for the AI processing you use.",
-//     context: "Your vault stays yours — always.",
-//     icon: <FaShieldAlt className="text-[#6DD1FF]" size={28} />,
-//   },
-//   {
-//     title: "Smart Intake (5 Ways)",
-//     description:
-//       "Upload documents, scan paper, write notes, capture images, or record/upload voice notes. Smart Intake securely processes text to generate summaries, tags, and structured organization.",
-//     context:
-//       "Supports PDFs, Word, Excel, scans, document photos, notes, and audio.",
-//     icon: <PiVaultBold className="text-pink-400" size={28} />,
-//   },
-//   {
-//     title: "Offline Capture & Queue",
-//     description:
-//       "Add documents, scans, notes, and voice even without internet. NeuVault stores everything locally and securely processes it when you're back online.",
-//     context:
-//       "Track every item in the Queue — pending, processing, completed, or failed.",
-//     icon: <FaWifi className="text-green-300" size={28} />,
-//   },
-//   {
-//     title: "Voice → Structured Notes",
-//     description:
-//       "Record or upload audio (lectures, WhatsApp notes, meetings). NeuVault transcribes and formats it into structured notes you can search or convert.",
-//     context: "Export to PDF, Word, or Excel when structure makes sense.",
-//     icon: <FaMicrophone className="text-green-300" size={28} />,
-//   },
-//   {
-//     title: "Instant Summaries & Auto-Tagging",
-//     description:
-//       "Understand documents in seconds. NeuVault extracts key information, assigns tags, and groups related files automatically.",
-//     context: "Skip the clutter. Keep the signal.",
-//     icon: <BsStars className="text-yellow-400" size={28} />,
-//   },
-//   {
-//     title: "Auto-Organization (Groups + Subgroups)",
-//     description:
-//       "NeuVault places each item into the right group and subgroup during intake, so your vault stays structured without manual sorting.",
-//     context: "Everything lands where it should, the moment you add it. You can also link documents together to create custom groups based on relationships you define.",
-//     icon: <FaTags className="text-green-400" size={28} />,
-//   },
-//   {
-//     title: "Smart Suggestions & Resurfacing",
-//     description:
-//       "Detect deadlines, renewals, and event dates — or set your own reminders on a document or linked group.",
-//     context: "NeuVault brings important documents back when they matter.",
-//     icon: <FaCalendarCheck className="text-[#6DD1FF]" size={28} />,
-//   },
-//   {
-//     title: "Nova Assistant (42+ Languages + Web)",
-//     description:
-//       "Chat naturally in your preferred language. Ask questions about your vault, find document(s), get deep document insights, and browse the web through normal conversation.",
-//     context:
-//       "From quick answers to deep analysis — Nova understands context.",
-//     icon: <FaMagic className="text-purple-400" size={28} />,
-//   },
-//   {
-//     title: "Encrypted Backup & Restore",
-//     description:
-//       "Export an encrypted backup to your preferred cloud storage and restore it on another device inside NeuVault.",
-//     context:
-//       "Backups are encrypted locally using a unique per-user key before export.",
-//     icon: <FaArrowUp className="text-sky-300" size={28} />,
-//   },
-//   {
-//     title: "Security by Design",
-//     description:
-//       "Secure transmission, per-user encryption keys for backup, optional deep insights, and full visibility into processing states.",
-//     context: "Transparency and control at every layer.",
-//     icon: <FaLock className="text-white/70" size={28} />,
-//   },
-// ];
-
-// export default function FeaturesSection() {
-//   return (
-//     <section
-//       id="features"
-//       className="relative px-6 py-24 bg-[#0B0F19] text-white overflow-hidden border-t border-white/10"
-//     >
-//       <div className="max-w-6xl mx-auto">
-//         <motion.h2
-//           className="text-3xl md:text-4xl font-bold text-left md:text-center mb-4"
-//           initial={{ opacity: 0, y: 20 }}
-//           whileInView={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.6 }}
-//           viewport={{ once: true }}
-//         >
-//           Why NeuVault?
-//         </motion.h2>
-
-//         <motion.p
-//           className="text-gray-400 text-left md:text-center max-w-2xl md:mx-auto mb-12"
-//           initial={{ opacity: 0 }}
-//           whileInView={{ opacity: 1 }}
-//           transition={{ delay: 0.2 }}
-//           viewport={{ once: true }}
-//         >
-//           NeuVault is a private, local-first AI vault built for real-world
-//           documents and voice. Capture anything, organize automatically, and
-//           understand what matters — without storing your files on our servers.
-//         </motion.p>
-
-//         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-//           {features.map((feature, idx) => (
-//             <motion.div
-//               key={idx}
-//               className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:shadow-lg hover:shadow-[#3F8CFF]/30 transition-transform duration-300 hover:-translate-y-2"
-//               initial={{ opacity: 0, y: 30 }}
-//               whileInView={{ opacity: 1, y: 0 }}
-//               transition={{ duration: 0.6, delay: idx * 0.05 }}
-//               viewport={{ once: true }}
-//             >
-//               <motion.div
-//                 animate={{ y: [0, -4, 0], rotate: [0, 4, -4, 0] }}
-//                 transition={{
-//                   duration: 4,
-//                   repeat: Infinity,
-//                   repeatType: "mirror",
-//                   ease: "easeInOut",
-//                 }}
-//                 className="mb-4"
-//               >
-//                 {feature.icon}
-//               </motion.div>
-
-//               <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-//               <p className="text-gray-300 text-sm mb-2">
-//                 {feature.description}
-//               </p>
-//               <p className="text-gray-500 text-xs italic">{feature.context}</p>
-//             </motion.div>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-
-
-
-
-
-
-
-
-
-
-
 "use client";
 
 import { motion } from "framer-motion";
 import {
-  FaLock,
   FaMagic,
   FaBell,
-  FaMicrophone,
-  FaWifi,
   FaShieldAlt,
   FaArrowUp,
+  FaSearch,
+  FaLayerGroup,
+  FaRegEye,
+  FaGlobe,
+  FaStickyNote,
+  FaRegFileAlt,
 } from "react-icons/fa";
 import { BsStars } from "react-icons/bs";
 import { PiVaultBold } from "react-icons/pi";
 
 const painToRelief = [
   {
-    painTitle: "Your life is spread across files you can’t feel",
+    painTitle: "Your life is scattered across places that were never built to hold it",
     pain:
-      "Receipts in screenshots. IDs in WhatsApp. Contracts in email. A PDF you downloaded once and never found again. You *know* it exists — but it’s not *present*. And when you need it, your mind goes blank.",
-    reliefTitle: "NeuVault brings your documents back into your hands",
+      "Receipts in screenshots. IDs in WhatsApp. Contracts in email. PDFs in Downloads. Notes in random apps. You know your important information exists — but it’s spread across too many places to feel usable.",
+    reliefTitle: "NeuVault gives everything important one home",
     relief:
-      "Everything lives on your device by default — organized, searchable, and understandable at a glance. Not another cloud folder. A private vault that feels like control.",
+      "Upload, scan, create and save notes, and bring your personal documents into one private vault. Everything stays structured, searchable, and easy to revisit when you actually need it.",
     icon: <PiVaultBold className="text-pink-400" size={26} />,
     accent: "from-pink-500/20 via-sky-500/10 to-transparent",
   },
   {
-    painTitle: "You don’t lose documents — you lose time and peace",
+    painTitle: "You don’t lose files — you lose time, clarity, and calm",
     pain:
-      "The panic isn’t the missing file. It’s the moment you realize you’re late, stuck, or exposed because you couldn’t find one thing fast enough.",
-    reliefTitle: "NeuVault turns “searching” into “knowing”",
+      "The real frustration isn’t that a document disappeared. It’s opening folder after folder, app after app, trying to remember what it was called, where you saved it, and why you needed it in the first place.",
+    reliefTitle: "NeuVault turns searching into finding",
     relief:
-      "Instant summaries, auto-tagging, and smart grouping means you don’t open ten files to understand one. You see what matters in seconds — and move on.",
+      "Smart summaries, tags, grouping, and search help you locate and understand what matters fast. Instead of digging through clutter, you get straight to the right document and the right context.",
     icon: <BsStars className="text-yellow-400" size={24} />,
     accent: "from-yellow-500/15 via-white/5 to-transparent",
   },
   {
-    painTitle: "Deadlines don’t announce themselves until it’s painful",
+    painTitle: "Some documents matter later — and later is exactly when people forget",
     pain:
-      "Renewals. Expirations. Appointments. Follow-ups. They don’t hurt when they’re far away — they hurt when they’re due and you’re unprepared.",
-    reliefTitle: "NeuVault resurfaces what matters before it hurts",
+      "Deadlines, renewals, appointments, expiring IDs, follow-ups, and one-time documents usually go quiet until the worst possible moment. By then, the stress has already started.",
+    reliefTitle: "Smart Suggestions & Resurfacing keeps important things alive",
     relief:
-      "Dates get detected. Reminders can live on the document itself. And when the moment comes, NeuVault brings it back — quietly, on time.",
+      "NeuVault helps resurface what matters before it becomes urgent. With reminders, smart suggestions, and resurfacing built around your documents, important items don’t stay buried until it’s too late.",
     icon: <FaBell className="text-sky-300" size={24} />,
     accent: "from-sky-500/15 via-white/5 to-transparent",
   },
   {
-    painTitle: "You can’t always type what you’re carrying",
+    painTitle: "A file is useless when you still have to decode it",
     pain:
-      "Meetings. Lectures. Voice notes. Random thoughts at 2am. You record them, then they disappear into a graveyard of audio you’ll never revisit.",
-    reliefTitle: "NeuVault turns voice into structured memory",
+      "A document can be right in front of you and still not help. Long PDFs, forms, letters, statements, and records often take too much effort to understand when you’re already busy or under pressure.",
+    reliefTitle: "NeuVault helps you understand before you react",
     relief:
-      "Record or upload audio. Get clean, structured notes you can search, export, and actually use — not just listen to later (never).",
-    icon: <FaMicrophone className="text-green-300" size={24} />,
-    accent: "from-green-500/15 via-white/5 to-transparent",
+      "Summaries, extracted context, and structured organization make documents easier to grasp at a glance. You spend less time interpreting and more time acting on what matters.",
+    icon: <FaRegFileAlt className="text-violet-300" size={24} />,
+    accent: "from-violet-500/15 via-white/5 to-transparent",
   },
   {
-    painTitle: "The cloud feels convenient… until it feels unsafe",
+    painTitle: "Your notes and documents live in separate worlds",
     pain:
-      "You don’t know where your files are. Who can access them. What gets stored. What gets scanned. Convenience starts to feel like surrender.",
-    reliefTitle: "NeuVault is local-first — trust, by design",
+      "You write something down in one place, save the related file somewhere else, and later the connection is gone. Context breaks when the thought and the document never stay together.",
+    reliefTitle: "NeuVault keeps notes and documents in one intelligent flow",
     relief:
-      "Your documents stay on your device by default. Processing is on-demand. You keep control — not as a setting, but as the foundation.",
+      "Typed notes, scanned files, uploaded documents, images, PDFs, markdown, and other supported files can live together in one vault, so context doesn’t disappear between apps.",
+    icon: <FaStickyNote className="text-orange-300" size={24} />,
+    accent: "from-orange-500/15 via-white/5 to-transparent",
+  },
+  {
+    painTitle: "The internet has answers, but your own information matters too",
+    pain:
+      "Sometimes you need help from the web. Other times you need answers from your own stored files. Most tools force you to choose one or the other, so your workflow keeps breaking.",
+    reliefTitle: "NeuVault’s Assistant helps with your vault and the web",
+    relief:
+      "Ask NeuVault about your documents, your notes, or broader questions that need web search. The assistant helps you move between your personal vault and outside information without losing flow.",
+    icon: <FaGlobe className="text-cyan-300" size={24} />,
+    accent: "from-cyan-500/15 via-white/5 to-transparent",
+  },
+  {
+    painTitle: "You can preview some things — but not everything fits neatly into memory",
+    pain:
+      "When files pile up, even opening them one by one becomes friction. People stop revisiting what they saved because it feels like work just to inspect what’s inside.",
+    reliefTitle: "NeuVault makes stored content easier to revisit",
+    relief:
+      "Preview support for images, PDFs, documents, markdown, and other supported document types helps reduce friction, so reviewing what you saved feels lighter and faster.",
+    icon: <FaRegEye className="text-emerald-300" size={24} />,
+    accent: "from-emerald-500/15 via-white/5 to-transparent",
+  },
+  {
+    painTitle: "The cloud feels convenient — until it starts to feel uncertain",
+    pain:
+      "You don’t always know where your files are, what gets stored, what gets processed, or how exposed your information really is. Convenience can start to feel like giving up control.",
+    reliefTitle: "NeuVault is local-first, private, and intentional",
+    relief:
+      "Your vault lives on your device by default. NeuVault is designed around privacy, user control, and trust — so your important information feels owned, not borrowed.",
     icon: <FaShieldAlt className="text-[#6DD1FF]" size={24} />,
     accent: "from-[#6DD1FF]/20 via-white/5 to-transparent",
   },
@@ -239,24 +101,24 @@ const painToRelief = [
 
 const quietProof = [
   {
-    title: "Offline doesn’t stop your life",
-    desc: "Capture scans, uploads, notes, and voice even with no internet. NeuVault keeps everything safe locally and processes when you’re back online.",
-    icon: <FaWifi className="text-green-300" size={20} />,
+    title: "Auto-organization that actually sticks",
+    desc: "Items are grouped into the right group and subgroup during intake, and you can link related documents so context stays connected.",
+    icon: <FaLayerGroup className="text-green-300" size={20} />,
   },
   {
-    title: "Ask in plain language, get real answers",
-    desc: "Talk to Nova about your vault like you’d talk to a person — find documents, pull details, summarize, explain, and even browse the web when needed.",
+    title: "Search that works even offline",
+    desc: "Find by title, tags, summary keywords, type, or date, with fast local search when your internet is unstable or unavailable.",
+    icon: <FaSearch className="text-emerald-300" size={20} />,
+  },
+  {
+    title: "Ask in plain language",
+    desc: "Talk to Nova in 42+ languages to find documents, pull details, summarize, explain, and browse the web when needed.",
     icon: <FaMagic className="text-purple-400" size={20} />,
   },
   {
-    title: "Backups without betrayal",
-    desc: "Export an encrypted backup to your preferred cloud storage and restore on another device — without handing us your vault.",
+    title: "Encrypted backup and restore",
+    desc: "Export an encrypted backup to your preferred cloud and restore on another device without exposing your vault in plain text.",
     icon: <FaArrowUp className="text-sky-300" size={20} />,
-  },
-  {
-    title: "Security that doesn’t require trust",
-    desc: "Local-first storage, secure transmission, and transparency in what’s processing — so you’re never guessing what’s happening.",
-    icon: <FaLock className="text-white/70" size={20} />,
   },
 ];
 
@@ -381,9 +243,7 @@ export default function FeaturesSection() {
                 </span>
               </h3>
               <p className="text-gray-400 mt-2 max-w-2xl">
-                Not more “features.” Just the small protections that make you
-                feel safe: offline capture, plain-language answers, encrypted
-                portability, and security you don’t have to overthink.
+                Practical protections that reduce stress: automatic grouping, offline-capable search, plain-language assistant help, and encrypted portability when you switch devices.
               </p>
             </div>
 
