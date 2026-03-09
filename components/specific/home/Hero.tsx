@@ -149,11 +149,11 @@ export default function Hero() {
             </motion.span>
           </Link>
 
-          {/* <Link href="#see-it-in-action" className="w-full sm:w-auto">
+          <Link href="#see-it-in-action" className="w-full sm:w-auto">
             <span className="block px-6 py-3 rounded-lg border border-white/20 text-white hover:bg-white hover:text-[#0B0F19] transition text-left">
-              Watch 60s Demo
+              Watch Demo
             </span>
-          </Link> */}
+          </Link>
 
           <Link href="/privacy-policy" className="w-full sm:w-auto">
             <span className="block px-6 py-3 rounded-lg bg-white/5 border border-white/10 text-white/90 hover:bg-white/10 transition text-left">
