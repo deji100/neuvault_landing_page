@@ -111,8 +111,8 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.38, duration: 0.55 }}
           >
-            NeuVault helps you capture scans, files, notes, and voice in one private vault,
-            understand them quickly, find them later, and bring them back before they become urgent.
+            NeuVault helps you capture the documents people panic about later,
+            understand them quickly, find them fast, and get reminded before they matter.
           </motion.p>
 
           <motion.div
@@ -252,3 +252,5 @@ export default function Hero() {
     </section>
   );
 }
+
+
