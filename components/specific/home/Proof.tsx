@@ -1,7 +1,7 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type ChangeEvent } from "react";
 import { motion } from "framer-motion";
 import {
   FaBookOpen,
@@ -126,13 +126,31 @@ const demoVideos: DemoVideo[] = [
 ];
 
 type VideoPhoneOverlayProps = {
-  video: DemoVideo | null;
+  videoIndex: number | null;
+  videos: DemoVideo[];
   onClose: () => void;
+  onSelectVideo: (index: number) => void;
 };
 
-function VideoPhoneOverlay({ video, onClose }: VideoPhoneOverlayProps) {
+const formatTime = (seconds: number) => {
+  if (!Number.isFinite(seconds) || seconds < 0) {
+    return "0:00";
+  }
+
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = Math.floor(seconds % 60)
+    .toString()
+    .padStart(2, "0");
+
+  return `${minutes}:${remainingSeconds}`;
+};
+
+function VideoPhoneOverlay({ videoIndex, videos, onClose, onSelectVideo }: VideoPhoneOverlayProps) {
+  const video = videoIndex !== null ? videos[videoIndex] : null;
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
   const frameWidth = "min(300vw, 440px, calc(86dvh * 9 / 20))";
 
   const togglePlayback = async () => {
@@ -151,10 +169,31 @@ function VideoPhoneOverlay({ video, onClose }: VideoPhoneOverlayProps) {
     player.pause();
   };
 
+  const handleSeek = (event: ChangeEvent<HTMLInputElement>) => {
+    const player = videoRef.current;
+    const nextTime = Number(event.target.value);
+
+    setCurrentTime(nextTime);
+    if (player) {
+      player.currentTime = nextTime;
+    }
+  };
+
+  const goToNextVideo = useCallback(() => {
+    if (videoIndex === null || videos.length === 0) {
+      return;
+    }
+
+    onSelectVideo((videoIndex + 1) % videos.length);
+  }, [onSelectVideo, videoIndex, videos.length]);
+
   useEffect(() => {
     if (!video) return;
 
     setIsPlaying(false);
+    setCurrentTime(0);
+    setDuration(0);
+
     const player = videoRef.current;
     if (player) {
       player.currentTime = 0;
@@ -229,11 +268,18 @@ function VideoPhoneOverlay({ video, onClose }: VideoPhoneOverlayProps) {
               key={video.url}
               ref={videoRef}
               src={video.url}
-              className="absolute inset-0 h-full w-full object-cover scale-[0.99]"
+              className="absolute inset-0 h-full w-full scale-[0.99] object-cover"
               preload="auto"
               playsInline
+              onLoadedMetadata={(event) => {
+                setDuration(event.currentTarget.duration || 0);
+              }}
+              onTimeUpdate={(event) => {
+                setCurrentTime(event.currentTarget.currentTime || 0);
+              }}
               onPlay={() => setIsPlaying(true)}
               onPause={() => setIsPlaying(false)}
+              onEnded={goToNextVideo}
             />
             <button
               type="button"
@@ -245,6 +291,23 @@ function VideoPhoneOverlay({ video, onClose }: VideoPhoneOverlayProps) {
             </button>
           </div>
         </motion.div>
+
+        <div className="mt-3 rounded-[1.2rem] border border-white/15 bg-black/45 px-4 py-2 backdrop-blur-xl">
+          <div className="flex items-center gap-2.5">
+            <span className="w-11 shrink-0 text-xs text-white/60">{formatTime(currentTime)}</span>
+            <input
+              type="range"
+              min={0}
+              max={duration || 0}
+              step={0.1}
+              value={Math.min(currentTime, duration || 0)}
+              onChange={handleSeek}
+              className="h-1 w-full cursor-pointer appearance-none rounded-full bg-white/15 accent-[#3F8CFF]"
+              aria-label="Seek demo video"
+            />
+            <span className="w-11 shrink-0 text-right text-xs text-white/60">{formatTime(duration)}</span>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -273,8 +336,6 @@ export default function SeeItInAction() {
   const goToSlide = (index: number) => {
     setActiveIndex(getWrappedIndex(index));
   };
-
-  const selectedVideo = overlayIndex !== null ? demoVideos[overlayIndex] : null;
 
   return (
     <section id="see-it-in-action" className="relative border-t border-white/10 px-6 py-24 text-white">
@@ -362,7 +423,7 @@ export default function SeeItInAction() {
               >
                 <div className="relative aspect-[9/16] overflow-hidden rounded-[1.9rem] border border-white/15 bg-black shadow-[0_25px_60px_-25px_rgba(63,140,255,0.65)]">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(63,140,255,0.42),transparent_44%),radial-gradient(circle_at_80%_75%,rgba(16,185,129,0.26),transparent_42%),linear-gradient(180deg,#020611_0%,#050a16_100%)]" />
-                  <div className="absolute inset-x-5 top-14 bottom-[34%] rounded-[1.5rem] border border-white/10 bg-white/5 backdrop-blur-sm" />
+                  <div className="absolute inset-x-5 bottom-[34%] top-14 rounded-[1.5rem] border border-white/10 bg-white/5 backdrop-blur-sm" />
                   <div className="absolute left-1/2 top-[22%] h-1.5 w-20 -translate-x-1/2 rounded-full bg-white/20" />
                   <div className="pointer-events-none absolute inset-x-0 top-[40%] flex -translate-y-1/2 justify-center">
                     <Image
@@ -439,7 +500,13 @@ export default function SeeItInAction() {
         </div>
       </div>
 
-      <VideoPhoneOverlay video={selectedVideo} onClose={() => setOverlayIndex(null)} />
+      <VideoPhoneOverlay
+        videoIndex={overlayIndex}
+        videos={demoVideos}
+        onClose={() => setOverlayIndex(null)}
+        onSelectVideo={setOverlayIndex}
+      />
     </section>
   );
 }
+

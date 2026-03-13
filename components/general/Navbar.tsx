@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Logo from "@/public/logo1.png";
@@ -24,8 +25,19 @@ const scrollToId = (id: string) => {
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   const closeMobile = () => setMobileOpen(false);
+
+  const navigateToSection = (id: string) => {
+    if (pathname === "/") {
+      scrollToId(id);
+      return;
+    }
+
+    router.push(`/#${id}`);
+  };
 
   return (
     <motion.nav
@@ -41,10 +53,9 @@ export default function Navbar() {
             alt="NeuVault logo"
             width={220}
             height={60}
-            className="h-46 w-auto md:h-50"
+            className="h-12 w-auto md:h-14"
             priority
           />
-          {/* <p className="hidden text-base font-semibold text-white md:block">NeuVault</p> */}
         </Link>
 
         <div className="hidden items-center gap-7 md:flex">
@@ -52,7 +63,7 @@ export default function Navbar() {
             <button
               key={item.id}
               type="button"
-              onClick={() => scrollToId(item.id)}
+              onClick={() => navigateToSection(item.id)}
               className="text-sm text-white/72 hover:text-white"
             >
               {item.label}
@@ -65,7 +76,7 @@ export default function Navbar() {
 
           <button
             type="button"
-            onClick={() => scrollToId("see-it-in-action")}
+            onClick={() => navigateToSection("see-it-in-action")}
             className="rounded-full border border-white/14 bg-white/5 px-4 py-2 text-sm font-medium text-white hover:bg-white/10"
           >
             Watch demo
@@ -73,7 +84,7 @@ export default function Navbar() {
 
           <button
             type="button"
-            onClick={() => scrollToId("waitlist")}
+            onClick={() => navigateToSection("waitlist")}
             className="rounded-full bg-[#3F8CFF] px-4 py-2 text-sm font-semibold text-white shadow-[0_12px_30px_-12px_rgba(63,140,255,0.7)] hover:bg-[#60aaff]"
           >
             Join beta
@@ -103,7 +114,7 @@ export default function Navbar() {
                 key={item.id}
                 type="button"
                 onClick={() => {
-                  scrollToId(item.id);
+                  navigateToSection(item.id);
                   closeMobile();
                 }}
                 className="rounded-2xl border border-white/8 bg-white/5 px-4 py-3 text-left text-sm text-white/80"
@@ -123,7 +134,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => {
-                scrollToId("waitlist");
+                navigateToSection("waitlist");
                 closeMobile();
               }}
               className="rounded-2xl bg-[#3F8CFF] px-4 py-3 text-left text-sm font-semibold text-white"
