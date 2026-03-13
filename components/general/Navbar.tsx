@@ -53,7 +53,7 @@ export default function Navbar() {
             alt="NeuVault logo"
             width={220}
             height={60}
-            className="h-12 w-auto md:h-14"
+            className="h-46 w-auto md:h-50"
             priority
           />
         </Link>
