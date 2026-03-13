@@ -1,57 +1,76 @@
-﻿"use client";
+"use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import {
+  FaFileExcel,
   FaFilePdf,
   FaFileWord,
-  FaFileExcel,
   FaLock,
   FaRegNoteSticky,
 } from "react-icons/fa6";
-import { PiNotePencilLight } from "react-icons/pi";
 import { BsStars } from "react-icons/bs";
+import { PiNotePencilLight } from "react-icons/pi";
 import { IoSparklesSharp } from "react-icons/io5";
-import { SiGoogledrive, SiIcloud, SiDropbox } from "react-icons/si";
+import { SiDropbox, SiGoogledrive, SiIcloud } from "react-icons/si";
+import { FaBell, FaSearch, FaShieldAlt } from "react-icons/fa";
 
 const floatingIcons = [
-  { icon: <FaFilePdf />, class: "text-red-400", top: "8%", left: "75%", delay: 0, showOnMobile: true },
-  { icon: <FaFileWord />, class: "text-blue-400", top: "35%", left: "65%", delay: 0.2, showOnMobile: true },
-  { icon: <FaFileExcel />, class: "text-green-400", top: "30%", left: "82%", delay: 0.4, showOnMobile: false },
-  { icon: <FaRegNoteSticky />, class: "text-yellow-300", top: "60%", left: "70%", delay: 0.6, showOnMobile: false },
-  { icon: <FaLock />, class: "text-white/20", top: "70%", left: "80%", delay: 0.8, showOnMobile: true },
-  { icon: <BsStars />, class: "text-[#6DD1FF]", top: "18%", left: "7%", delay: 1.0, showOnMobile: true },
-  { icon: <PiNotePencilLight />, class: "text-green-300", top: "87%", left: "12%", delay: 1.2, showOnMobile: true },
-  { icon: <IoSparklesSharp />, class: "text-[#3F8CFF]", top: "60%", left: "40%", delay: 1.4, showOnMobile: true },
+  { icon: <FaFilePdf />, className: "text-red-400", top: "9%", left: "76%", delay: 0, mobile: true },
+  { icon: <FaFileWord />, className: "text-blue-300", top: "34%", left: "67%", delay: 0.25, mobile: true },
+  { icon: <FaFileExcel />, className: "text-emerald-300", top: "28%", left: "84%", delay: 0.45, mobile: false },
+  { icon: <FaRegNoteSticky />, className: "text-amber-300", top: "63%", left: "71%", delay: 0.65, mobile: false },
+  { icon: <FaLock />, className: "text-white/20", top: "72%", left: "82%", delay: 0.85, mobile: true },
+  { icon: <BsStars />, className: "text-[#6DD1FF]", top: "17%", left: "7%", delay: 1.05, mobile: true },
+  { icon: <PiNotePencilLight />, className: "text-[#6ce6b3]", top: "86%", left: "12%", delay: 1.25, mobile: true },
+  { icon: <IoSparklesSharp />, className: "text-[#3F8CFF]", top: "58%", left: "43%", delay: 1.45, mobile: true },
+];
+
+const trustPills = [
+  "Local-first by default",
+  "Documents stay on your device",
+  "Encrypted backups you control",
+];
+
+const outcomeCards = [
+  {
+    title: "Find the right document fast",
+    body: "Search, summaries, tags, and linked items help you stop digging through clutter.",
+    icon: <FaSearch className="text-[#6DD1FF]" size={18} />,
+  },
+  {
+    title: "Stay ahead of deadlines",
+    body: "Set reminders on documents and let NeuVault resurface them before they become urgent.",
+    icon: <FaBell className="text-[#6ce6b3]" size={18} />,
+  },
 ];
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[100vh] pt-36 px-6 py-24 md:py-32 bg-[#0B0F19] text-white overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0B0F19] via-[#1a2536] to-[#203B6E] z-0" />
+    <section className="relative overflow-hidden px-6 pb-24 pt-32 text-white md:pb-28 md:pt-40">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(63,140,255,0.24),transparent_34%),linear-gradient(180deg,#07101b_0%,#091321_38%,#08111d_100%)]" />
+      <div className="section-grid absolute inset-0 opacity-[0.18]" />
 
       <motion.div
-        className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-[#3F8CFF]/10 blur-3xl z-0"
-        animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.7, 0.5] }}
-        transition={{ duration: 6, repeat: Infinity }}
+        className="absolute -left-28 top-12 h-[460px] w-[460px] rounded-full bg-[#3F8CFF]/12 blur-[120px]"
+        animate={{ scale: [1, 1.08, 1], opacity: [0.46, 0.7, 0.46] }}
+        transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-purple-500/10 blur-3xl z-0"
-        animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.5, 0.3] }}
-        transition={{ duration: 5, repeat: Infinity }}
+        className="absolute bottom-0 right-[-6%] h-[420px] w-[420px] rounded-full bg-[#6DD1FF]/12 blur-[120px]"
+        animate={{ scale: [1, 1.06, 1], opacity: [0.35, 0.58, 0.35] }}
+        transition={{ duration: 5.6, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {floatingIcons.map((item, idx) => (
+      {floatingIcons.map((item, index) => (
         <motion.div
-          key={idx}
-          className={`absolute pointer-events-none ${
-            item.showOnMobile ? "block" : "hidden md:block"
-          } text-3xl md:text-5xl lg:text-6xl ${item.class}`}
+          key={`${item.top}-${item.left}`}
+          className={`absolute pointer-events-none text-3xl md:text-5xl ${item.className} ${item.mobile ? "block" : "hidden md:block"}`}
           animate={{
-            y: [0, -20, 0, 20, 0],
-            x: [0, idx % 2 === 0 ? 10 : -10, 0],
-            rotate: [0, idx % 2 === 0 ? 8 : -8, 0],
-            opacity: [0.22, 0.35, 0.22],
+            y: [0, -18, 0, 16, 0],
+            x: [0, index % 2 === 0 ? 8 : -8, 0],
+            rotate: [0, index % 2 === 0 ? 8 : -8, 0],
+            opacity: [0.18, 0.34, 0.18],
           }}
           transition={{
             duration: 10,
@@ -66,142 +85,169 @@ export default function Hero() {
         </motion.div>
       ))}
 
-      <div className="relative z-10 max-w-6xl mx-auto text-left">
-        {/* Updated kicker: emotional + trust, not spec */}
-        <motion.p
-          className="text-sm md:text-base text-[#6DD1FF] mb-3 tracking-wide uppercase"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-        >
-          Private by default • Stored on your device • Backups you control
-        </motion.p>
+      <div className="relative z-10 mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
+        <div>
+          <motion.p
+            className="mb-5 inline-flex rounded-full border border-[#6DD1FF]/25 bg-[#6DD1FF]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+          >
+            Private mobile vault for important documents
+          </motion.p>
 
-        {/* Updated headline */}
-        <motion.h1
-          className="text-4xl md:text-6xl font-bold tracking-tight leading-tight mb-6 max-w-3xl"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.45 }}
-        >
-          Stop losing peace over the one document you can’t find.
-        </motion.h1>
+          <motion.h1
+            className="max-w-4xl text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.55 }}
+          >
+            Keep the documents that matter in one place you actually trust.
+          </motion.h1>
 
-        {/* Updated body: pain → relief */}
-        <motion.p
-          className="text-lg md:text-xl text-gray-300 max-w-2xl mb-6 leading-8"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.65 }}
-        >
-          NeuVault is more than a notes app. It is a private vault for your
-          personal information, documents, voice notes (converted to transcribed notes), scans, files, and notes, all organized and searchable in one place.
-        </motion.p>
+          <motion.p
+            className="mt-6 max-w-2xl text-lg leading-8 text-white/72 md:text-xl"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.38, duration: 0.55 }}
+          >
+            NeuVault helps you capture scans, files, notes, and voice in one private vault,
+            understand them quickly, find them later, and bring them back before they become urgent.
+          </motion.p>
 
-        {/* Updated trust micro-line: shorter + human */}
-        <motion.p
-          className="text-lg md:text-xl text-gray-300 max-w-2xl mb-6 leading-8"
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.95 }}
-        >
-          Set a reminder on a document (or a group of documents) and NeuVault brings it back when it matters, not when it’s noisy.
-        </motion.p>
+          <motion.div
+            className="mt-7 flex flex-wrap gap-3"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.45 }}
+          >
+            {trustPills.map((pill) => (
+              <span
+                key={pill}
+                className="rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm text-white/76 backdrop-blur-md"
+              >
+                {pill}
+              </span>
+            ))}
+          </motion.div>
 
-        {/* Updated pills: benefit language, avoid “AI” wording */}
-        <motion.div
-          className="flex flex-wrap gap-3 text-sm text-gray-400 max-w-2xl mb-8"
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.85 }}
-        >
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
-            <span className="text-[#6DD1FF]">Smart Intake</span>
-            <span className="text-white/20">•</span>
-            From messy → clear
-          </span>
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
-            <span className="text-[#6DD1FF]">Offline Capture</span>
-            <span className="text-white/20">•</span>
-            Queue + process later
-          </span>
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
-            <span className="text-[#6DD1FF]">Instant Understanding</span>
-            <span className="text-white/20">•</span>
-            Summaries + structure
-          </span>
-        </motion.div>
-
-        {/* CTAs unchanged */}
-        <motion.div
-          className="flex flex-col sm:flex-row gap-4 mb-10 w-full"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.05 }}
-        >
-          <Link href="#waitlist" className="w-full sm:w-auto">
-            <motion.span
-              className="block px-6 py-3 rounded-lg bg-[#3F8CFF] text-white font-medium hover:bg-[#60aaff] transition shadow-lg text-left"
-              animate={{ scale: [1, 1.05, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
+          <motion.div
+            className="mt-8 flex flex-col gap-4 sm:flex-row"
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.62, duration: 0.45 }}
+          >
+            <Link
+              href="#waitlist"
+              className="inline-flex items-center justify-center rounded-full bg-[#3F8CFF] px-6 py-3 text-base font-semibold text-white shadow-[0_18px_40px_-20px_rgba(63,140,255,0.9)] hover:bg-[#60aaff]"
             >
-              Join the Beta
-            </motion.span>
-          </Link>
+              Join the beta
+            </Link>
+            <Link
+              href="#see-it-in-action"
+              className="inline-flex items-center justify-center rounded-full border border-white/14 bg-white/5 px-6 py-3 text-base font-semibold text-white hover:bg-white/10"
+            >
+              Watch 10 demos
+            </Link>
+          </motion.div>
 
-          <Link href="#see-it-in-action" className="w-full sm:w-auto">
-            <span className="block px-6 py-3 rounded-lg border border-white/20 text-white hover:bg-white hover:text-[#0B0F19] transition text-left">
-              Watch Demo
-            </span>
-          </Link>
-
-          <Link href="/privacy-policy" className="w-full sm:w-auto">
-            <span className="block px-6 py-3 rounded-lg bg-white/5 border border-white/10 text-white/90 hover:bg-white/10 transition text-left">
+          <motion.div
+            className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm leading-7 text-white/52"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.72, duration: 0.45 }}
+          >
+            <p className="max-w-2xl">
+              Not another generic file manager. NeuVault is built for the real-life documents,
+              notes, and reminders people panic about when they need them fast.
+            </p>
+            <Link href="/privacy-policy" className="text-[#a8d8ff] hover:text-white">
               See how privacy works
+            </Link>
+          </motion.div>
+
+          <motion.div
+            className="mt-10 flex flex-wrap items-center gap-6 text-sm text-white/70"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.84, duration: 0.45 }}
+          >
+            <span className="text-white/46">Encrypted backup bundles work with:</span>
+            <span className="flex items-center gap-2">
+              <SiGoogledrive className="text-yellow-300" size={18} />
+              Google Drive
             </span>
-          </Link>
-        </motion.div>
-
-        {/* Backup row unchanged */}
-        <motion.div
-          className="text-sm text-gray-400"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-        >
-          Encrypted export / backup to:
-        </motion.div>
+            <span className="flex items-center gap-2">
+              <SiIcloud className="text-sky-300" size={18} />
+              iCloud
+            </span>
+            <span className="flex items-center gap-2">
+              <SiDropbox className="text-blue-300" size={18} />
+              Dropbox
+            </span>
+          </motion.div>
+        </div>
 
         <motion.div
-          className="flex flex-wrap gap-6 mt-2 text-white/80 items-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.3 }}
-        >
-          <span className="flex items-center gap-2">
-            <SiGoogledrive className="text-yellow-400" size={20} />
-            Google Drive
-          </span>
-          <span className="flex items-center gap-2">
-            <SiIcloud className="text-sky-300" size={20} />
-            iCloud
-          </span>
-          <span className="flex items-center gap-2">
-            <SiDropbox className="text-blue-400" size={20} />
-            Dropbox
-          </span>
-          <span className="text-white/70">or any cloud storage</span>
-        </motion.div>
-
-        <motion.p
-          className="mt-3 text-xs md:text-sm text-gray-500 max-w-2xl"
-          initial={{ opacity: 0, y: 6 }}
+          className="glass-panel relative overflow-hidden rounded-[2rem] p-6 sm:p-7"
+          initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.4 }}
+          transition={{ delay: 0.4, duration: 0.55 }}
         >
-          Backups are encrypted locally using a unique per-user key and can only
-          be restored inside NeuVault.
-        </motion.p>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(63,140,255,0.24),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(108,230,179,0.12),transparent_32%)]" />
+          <div className="relative">
+            <div className="mb-6 flex items-start justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
+                  Why it feels different
+                </p>
+                <h2 className="mt-2 text-2xl font-semibold text-white">
+                  Store it. Understand it. Remember it.
+                </h2>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/6 p-3 text-[#6DD1FF]">
+                <FaShieldAlt size={22} />
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              {outcomeCards.map((item) => (
+                <div key={item.title} className="rounded-2xl border border-white/10 bg-black/24 p-4">
+                  <div className="flex items-start gap-3">
+                    <div className="mt-1">{item.icon}</div>
+                    <div>
+                      <h3 className="text-base font-semibold text-white">{item.title}</h3>
+                      <p className="mt-1 text-sm leading-6 text-white/66">{item.body}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/44">
+                  Intake support
+                </p>
+                <p className="mt-2 text-sm leading-6 text-white/70">
+                  PDFs, photos, scans, typed notes, uploads, and voice notes can all enter the same vault.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/44">
+                  Context together
+                </p>
+                <p className="mt-2 text-sm leading-6 text-white/70">
+                  Notes, scans, files, and voice stay inside one vault instead of five disconnected apps.
+                </p>
+              </div>
+            </div>
+
+            <p className="mt-5 text-xs leading-6 text-white/46">
+              Documents live on your device by default. AI features can process selected content when you choose those workflows. See the privacy page for the full boundary.
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

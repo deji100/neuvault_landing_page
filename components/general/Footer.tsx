@@ -1,194 +1,147 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+
+const scrollToId = (id: string) => {
+  const element = document.getElementById(id);
+  if (!element) return;
+
+  const navOffset = 92;
+  const top = element.getBoundingClientRect().top + window.scrollY - navOffset;
+  window.scrollTo({ top, behavior: "smooth" });
+};
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#0B0F19] text-gray-400 border-t border-white/10 px-6 py-16">
-      <div className="max-w-7xl mx-auto">
-        {/* Top */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          {/* Brand */}
-          <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2">
+    <footer className="relative border-t border-white/10 bg-[#06101c] px-6 py-16 text-gray-400">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-12 grid grid-cols-1 gap-10 lg:grid-cols-[1.25fr_0.8fr_0.8fr_1fr]">
+          <div className="space-y-5">
+            <Link href="/" className="flex items-center gap-3">
               <Image
                 src="/logo2.png"
                 alt="NeuVault logo"
                 width={60}
                 height={60}
-                className="rounded w-10"
+                className="w-11 rounded-xl"
               />
-              <span className="text-xl font-semibold text-white">
-                NeuVault
-              </span>
+              <div>
+                <p className="text-lg font-semibold text-white">NeuVault</p>
+                <p className="text-sm text-white/55">Private mobile vault for important documents</p>
+              </div>
             </Link>
-            <p className="text-sm leading-relaxed text-gray-400 max-w-xs">
-              A private, local-first AI vault for your most important documents.
-              Your data stays yours — always.
+
+            <p className="max-w-md text-sm leading-7 text-white/70">
+              Keep the documents that actually matter in one place you control. Capture,
+              understand, find, and remember them without handing your life to another cloud silo.
             </p>
+
+            <div className="grid gap-3 sm:grid-cols-3">
+              <div className="glass-panel rounded-2xl px-4 py-3 text-sm text-white/78">
+                Local-first by default
+              </div>
+              <div className="glass-panel rounded-2xl px-4 py-3 text-sm text-white/78">
+                Encrypted backups you control
+              </div>
+              <div className="glass-panel rounded-2xl px-4 py-3 text-sm text-white/78">
+                Real product demos on site
+              </div>
+            </div>
           </div>
 
-          {/* Product */}
           <div>
-            <h3 className="text-sm font-semibold text-white uppercase mb-4">
-              Product
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-white/80">
+              Explore
             </h3>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-3 text-sm text-white/70">
               <li>
-                <button
-                  onClick={() =>
-                    document.getElementById("features")?.scrollIntoView({
-                      behavior: "smooth",
-                    })
-                  }
-                  className="hover:text-white transition"
-                >
-                  Features
+                <button type="button" onClick={() => scrollToId("features")} className="hover:text-white">
+                  Why NeuVault
                 </button>
               </li>
               <li>
-                <button
-                  onClick={() =>
-                    document.getElementById("how-it-works")?.scrollIntoView({
-                      behavior: "smooth",
-                    })
-                  }
-                  className="hover:text-white transition"
-                >
-                  How It Works
+                <button type="button" onClick={() => scrollToId("how-it-works")} className="hover:text-white">
+                  How it works
                 </button>
               </li>
               <li>
-                <button
-                  onClick={() =>
-                    document
-                      .getElementById("see-it-in-action")
-                      ?.scrollIntoView({ behavior: "smooth" })
-                  }
-                  className="hover:text-white transition"
-                >
-                  Demo
+                <button type="button" onClick={() => scrollToId("see-it-in-action")} className="hover:text-white">
+                  Watch the 10 demos
                 </button>
               </li>
               <li>
-                <button
-                  onClick={() =>
-                    document
-                      .getElementById("testimonials")
-                      ?.scrollIntoView({ behavior: "smooth" })
-                  }
-                  className="hover:text-white transition"
-                >
-                  Testimonials
+                <button type="button" onClick={() => scrollToId("waitlist")} className="hover:text-white">
+                  Join beta
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Company */}
           <div>
-            <h3 className="text-sm font-semibold text-white uppercase mb-4">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-white/80">
               Company
             </h3>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-3 text-sm text-white/70">
               <li>
-                <Link href="#waitlist" className="hover:text-white transition">
-                  Join Beta
-                </Link>
-              </li>
-              {/* <li>
-                <Link href="/contact" className="hover:text-white transition">
+                <Link href="/contact" className="hover:text-white">
                   Contact
                 </Link>
-              </li> */}
-              {/* <li>
-                <Link href="/docs" className="hover:text-white transition">
-                  Documentation
+              </li>
+              <li>
+                <Link href="/privacy-policy" className="hover:text-white">
+                  Privacy policy
                 </Link>
-              </li> */}
+              </li>
+              <li>
+                <Link href="/terms-and-conditions" className="hover:text-white">
+                  Terms of service
+                </Link>
+              </li>
+              <li>
+                <Link href="/account-deletion" className="hover:text-white">
+                  Account deletion
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Legal */}
-          <div>
-            <h3 className="text-sm font-semibold text-white uppercase mb-4">
-              Legal
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-white/80">
+              Trust note
             </h3>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <Link href="/privacy-policy" className="hover:text-white transition">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms-and-conditions" className="hover:text-white transition">
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link href="/account-deletion" className="hover:text-white transition">
-                  Account Deletion
-                </Link>
-              </li>
-              <li>
-                <span className="text-xs text-gray-500">
-                  No documents are stored on our servers.
-                </span>
-              </li>
-            </ul>
+            <p className="text-sm leading-7 text-white/70">
+              NeuVault is designed so your vault lives on your device by default. Documents are not stored permanently on our servers.
+            </p>
+            <div className="hidden rounded-2xl border border-white/10 bg-white p-4 shadow-[0_18px_40px_-24px_rgba(0,0,0,0.45)] md:block">
+              <a
+                href="https://saasbrowser.com/en/saas/1019052/neuvault"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <Image
+                  src="https://static-files.saasbrowser.com/saas-browser-badge-13.svg"
+                  alt="Listed on SaaS Browser"
+                  width={200}
+                  height={52}
+                  unoptimized
+                  className="h-auto w-[200px]"
+                />
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-6 text-sm">
-          <span>
-            © {new Date().getFullYear()}{" "}
-            <Link href="/" className="text-white hover:underline">
-              NeuVault
-            </Link>
-            . All rights reserved.
-          </span>
-
-          <div className="flex items-center gap-4 bg-white border-none">
-            {/* Social placeholders */}
-            {/* <a
-              href="#"
-              aria-label="Twitter"
-              className="hover:text-white transition"
-            >
-              Twitter
-            </a> */}
-            {/* <a
-              href="#"
-              aria-label="GitHub"
-              className="hover:text-white transition"
-            >
-              GitHub
-            </a> */}
-            {/* <a
-              href="#"
-              aria-label="LinkedIn"
-              className="hover:text-white transition"
-            >
-              LinkedIn
-            </a> */}
-            <a
-              href="https://saasbrowser.com/en/saas/1019052/neuvault"
-              target="_blank"
-              rel="noopener"
-            >
-              <img
-                src="https://static-files.saasbrowser.com/saas-browser-badge-13.svg"
-                alt="Proud to be listed on SaaS Browser"
-                width="200"
-                loading="lazy"
-                fetchPriority="low"
-              />
-            </a>
-          </div>
+        <div className="flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-white/55 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            (c) {new Date().getFullYear()} <Link href="/" className="text-white hover:underline">NeuVault</Link>. All rights reserved.
+          </p>
+          <p>Private by default. Useful when life gets noisy.</p>
         </div>
       </div>
     </footer>
   );
 }
+
+

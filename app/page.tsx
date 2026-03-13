@@ -1,4 +1,4 @@
-import Hero from "@/components/specific/home/Hero";
+﻿import Hero from "@/components/specific/home/Hero";
 import FeaturesSection from "@/components/specific/home/FeatureCards";
 import HowItWorks from "@/components/specific/home/HowITWorks";
 import SeeItInAction from "@/components/specific/home/Proof";
@@ -10,22 +10,17 @@ import FloatingBlobs from "@/components/specific/home/FloatingBlobs";
 export default function Home() {
   return (
     <main className="overflow-hidden">
-
       <Hero />
 
-      {/* Wrap the rest in relative so blobs position correctly */}
-      <section className="relative overflow-hidden bg-[#0B0F19]">
-        {/* Blobs will now appear behind these sections */}
+      <section className="relative overflow-hidden bg-transparent">
         <FloatingBlobs />
-
-        <WaitlistCTA />
+        <SeeItInAction />
         <FeaturesSection />
         <HowItWorks />
-        <SeeItInAction />
         <TestimonialsSection />
+        <WaitlistCTA />
         <FloatingDownloadButtons />
       </section>
-
     </main>
   );
 }

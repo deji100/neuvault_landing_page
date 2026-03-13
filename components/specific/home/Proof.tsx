@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -23,100 +23,103 @@ type DemoVideo = {
   url: string;
 };
 
+const demoHighlights = [
+  "10 short demos",
+  "Core product workflows",
+  "Best way to understand the app fast",
+];
+
 const scenarios = [
   {
     icon: <FaFileInvoiceDollar className="text-[#3F8CFF]" size={28} />,
-    title: "Business & Finance",
+    title: "Business and finance",
     description:
-      "Store invoices, receipts, and statements, then ask Nova to summarize, find totals, or export a clean PDF/Excel report when you need it.",
+      "Keep invoices, receipts, and statements in one place, then ask NeuVault to summarize, find totals, or export a clean report.",
   },
   {
     icon: <FaMicrophone className="text-emerald-300" size={28} />,
-    title: "Voice, Meetings & Lectures",
+    title: "Voice, meetings, and lectures",
     description:
-      "Record a voice note in NeuVault or upload existing audio (WhatsApp notes, recordings). Get a structured transcript you can search, keep, and convert.",
+      "Record voice notes or upload existing audio, then convert them into transcripts that are searchable and easier to act on.",
   },
   {
     icon: <FaHeartbeat className="text-pink-400" size={28} />,
-    title: "Health & Medical",
+    title: "Health and medical",
     description:
-      "Keep lab results, prescriptions, and hospital documents organized, searchable, summarized, and easy to retrieve when you need them again.",
+      "Store hospital documents, lab results, and prescriptions so they remain organized, searchable, and easier to revisit later.",
   },
   {
     icon: <FaBookOpen className="text-yellow-400" size={28} />,
-    title: "School & Research",
+    title: "School and research",
     description:
-      "Organize course PDFs and scanned notes, summarized, tagged, and grouped so you can find what matters fast.",
+      "Keep course PDFs, scanned notes, and references together so you can stop losing study context across folders and note apps.",
   },
   {
     icon: <FaIdCard className="text-green-400" size={28} />,
-    title: "Life Documents",
+    title: "Life documents",
     description:
-      "IDs, visas, warranties, and agreements stored on-device, backed up as encrypted export bundles, and restorable inside NeuVault.",
+      "IDs, visas, warranties, agreements, and personal records stay portable, encrypted, and much easier to find when they matter.",
   },
 ];
 
 const demoVideos: DemoVideo[] = [
   {
     title: "Smart Scan Intake",
-    summary: "Scan physical documents and convert them into clean digital entries.",
+    summary: "Scan a physical document and turn it into a clean digital record.",
     tag: "Scan",
     url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1773013073/smart-scan-intake_e2unwg.mp4",
   },
   {
     title: "Smart Note Intake",
-    summary:
-      "Capture fast notes and instantly convert them into structured records.",
+    summary: "Capture a quick note and convert it into a structured vault item.",
     tag: "Notes",
     url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1772991960/Smart_Note_Intake_ryp2nt.mp4",
   },
   {
     title: "Smart Voice Note Intake",
-    summary: "Turn voice notes into organized, searchable records automatically.",
+    summary: "Turn voice into a searchable record that stays linked to the rest of your vault.",
     tag: "Voice",
     url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1773013045/smart-voice-note-intake_m2mype.mp4",
   },
   {
     title: "Smart Upload Intake",
-    summary:
-      "Drop files and let NeuVault auto-categorize key details in seconds.",
-    tag: "Intake",
+    summary: "Drop in an existing file and let NeuVault organize key details for you.",
+    tag: "Upload",
     url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1772991651/Smart_Upload_Intake_lloxab.mp4",
   },
   {
     title: "Smart Suggestions",
-    summary:
-      "Get context-aware prompts for summaries, reminders, and follow-ups.",
-    tag: "AI Assist",
+    summary: "Get context-aware prompts for summaries, reminders, and follow-up actions.",
+    tag: "Suggestions",
     url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1773013022/smart-suggestion_yasmtv.mp4",
   },
   {
     title: "Document Resurfacing",
-    summary: "Surface forgotten files exactly when they are relevant again.",
+    summary: "Bring an important document back when the timing matters again.",
     tag: "Resurface",
     url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1773013061/document-resurfacing_nddqkc.mp4",
   },
   {
     title: "Document Linking",
-    summary: "Link related files together for faster retrieval and richer context.",
+    summary: "Connect related files so one issue can stay together as a usable set.",
     tag: "Links",
     url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1773013074/document-linking_llqage.mp4",
   },
   {
     title: "Nova Assistant",
-    summary: "Ask Nova natural questions and get instant answers from your files.",
+    summary: "Ask natural questions and get answers from your vault in seconds.",
     tag: "Assistant",
     url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1773013051/nova-assistant_jfn3am.mp4",
   },
   {
-    title: "Settings & Backup",
-    summary: "Control backup flow, privacy choices, and restore behavior in one place.",
+    title: "Settings and Backup",
+    summary: "Review privacy choices, backup flow, and restore behavior in one place.",
     tag: "Security",
     url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1773013053/setting-and-backup_fw3di5.mp4",
   },
   {
     title: "Offline Smart Intake",
-    summary: "Capture offline and sync safely once your connection is back.",
+    summary: "Capture while offline and process safely when your connection comes back.",
     tag: "Offline",
     url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1773042420/offline_smart_intake_og8tfk.mp4",
   },
@@ -167,6 +170,7 @@ function VideoPhoneOverlay({ video, onClose }: VideoPhoneOverlayProps) {
     };
 
     window.addEventListener("keydown", handleEsc);
+
     const autoplay = async () => {
       if (!player) return;
       try {
@@ -176,6 +180,7 @@ function VideoPhoneOverlay({ video, onClose }: VideoPhoneOverlayProps) {
         setIsPlaying(false);
       }
     };
+
     void autoplay();
 
     return () => {
@@ -194,23 +199,19 @@ function VideoPhoneOverlay({ video, onClose }: VideoPhoneOverlayProps) {
       <button
         type="button"
         aria-label="Close demo overlay"
-        className="absolute inset-0 bg-[#030714]/78 backdrop-blur-sm"
+        className="absolute inset-0 bg-[#030714]/80 backdrop-blur-sm"
         onClick={onClose}
       />
 
-      <div
-        className="relative z-10"
-        style={{ width: frameWidth }}
-        onClick={(event) => event.stopPropagation()}
-      >
+      <div className="relative z-10" style={{ width: frameWidth }} onClick={(event) => event.stopPropagation()}>
         <div className="mb-2 flex items-center justify-between px-1">
-          <div className="rounded-full border border-white/20 bg-black/30 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#9cc9ff] backdrop-blur-md">
+          <div className="rounded-full border border-white/20 bg-black/35 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#9cc9ff] backdrop-blur-md">
             {video.tag}
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full border border-white/20 bg-black/35 px-3 py-1 text-xs text-white/90 hover:bg-black/55 transition"
+            className="rounded-full border border-white/20 bg-black/35 px-3 py-1 text-xs text-white/90 hover:bg-black/55"
           >
             Close
           </button>
@@ -237,7 +238,7 @@ function VideoPhoneOverlay({ video, onClose }: VideoPhoneOverlayProps) {
             <button
               type="button"
               onClick={togglePlayback}
-              className="absolute left-1/2 top-1/2 z-20 inline-flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/40 text-white opacity-0 backdrop-blur-lg transition hover:bg-black/55 group-hover:pointer-events-auto group-hover:opacity-100 pointer-events-none"
+              className="pointer-events-none absolute left-1/2 top-1/2 z-20 inline-flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/40 text-white opacity-0 backdrop-blur-lg transition group-hover:pointer-events-auto group-hover:opacity-100 hover:bg-black/55"
               aria-label={isPlaying ? "Pause demo video" : "Play demo video"}
             >
               {isPlaying ? <FaPause size={18} /> : <FaPlay size={18} />}
@@ -276,56 +277,60 @@ export default function SeeItInAction() {
   const selectedVideo = overlayIndex !== null ? demoVideos[overlayIndex] : null;
 
   return (
-    <section
-      id="see-it-in-action"
-      className="relative px-6 py-24 bg-[#0B0F19] text-white border-t border-white/10"
-    >
+    <section id="see-it-in-action" className="relative border-t border-white/10 px-6 py-24 text-white">
       <motion.div
-        className="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-[#3F8CFF]/10 blur-[140px] -z-10"
+        className="absolute -top-40 left-1/2 h-[780px] w-[780px] -translate-x-1/2 rounded-full bg-[#3F8CFF]/10 blur-[140px]"
         animate={{ scale: [1, 1.05, 1], opacity: [0.6, 0.8, 0.6] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="text-left md:text-center mb-16 max-w-6xl mx-auto">
-        <motion.h2
-          className="text-3xl md:text-4xl font-bold mb-4"
-          initial={{ opacity: 0, y: 20 }}
+      <div className="relative mx-auto max-w-6xl">
+        <motion.div
+          className="max-w-3xl"
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.55 }}
           viewport={{ once: true }}
         >
-          See NeuVault in Action
-        </motion.h2>
-        <motion.p
-          className="text-gray-400 max-w-2xl md:mx-auto"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          Browse the product workflows below, then open any demo in the phone
-          overlay to watch with full controls.
-        </motion.p>
-      </div>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
+            See the product fast
+          </p>
+          <h2 className="mt-4 text-3xl font-bold leading-tight md:text-4xl">
+            The demos do the explaining.
+          </h2>
+          <p className="mt-5 max-w-2xl text-base leading-8 text-white/68 md:text-lg">
+            NeuVault has real product depth. The fastest way to understand it is to watch the core flows: intake, organization, reminders, assistant help, offline capture, and encrypted backup.
+          </p>
+        </motion.div>
 
-      <div className="max-w-6xl mx-auto">
-        <div className="flex items-center justify-between gap-4 mb-6">
+        <div className="mt-8 flex flex-wrap gap-3">
+          {demoHighlights.map((highlight) => (
+            <span
+              key={highlight}
+              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/76"
+            >
+              {highlight}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-8 flex items-center justify-between gap-4">
           <button
             type="button"
             onClick={() => goToSlide(activeIndex - 1)}
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/90 hover:bg-white/10 transition"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/90 hover:bg-white/10"
             aria-label="Previous demo video"
           >
             <FaChevronLeft size={12} />
             Prev
           </button>
-          <p className="text-xs sm:text-sm text-white/60">
+          <p className="text-xs text-white/60 sm:text-sm">
             {activeIndex + 1}/{totalVideos} demos
           </p>
           <button
             type="button"
             onClick={() => goToSlide(activeIndex + 1)}
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/90 hover:bg-white/10 transition"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/90 hover:bg-white/10"
             aria-label="Next demo video"
           >
             Next
@@ -333,7 +338,7 @@ export default function SeeItInAction() {
           </button>
         </div>
 
-        <div className="relative h-[520px] sm:h-[610px]">
+        <div className="relative mt-4 h-[520px] sm:h-[610px]">
           {demoVideos.map((video, index) => {
             const offset = slideOffsets[index];
             const distance = Math.abs(offset);
@@ -347,13 +352,12 @@ export default function SeeItInAction() {
                 initial={false}
                 animate={{
                   x: offset * 200,
-                  rotate: 0,
                   scale: isActive ? 1 : distance === 1 ? 0.92 : 0.84,
                   opacity: 1,
                   zIndex: 100 - distance,
                 }}
                 transition={{ type: "spring", stiffness: 240, damping: 28 }}
-                className="absolute left-1/2 top-1/2 w-[65vw] max-w-[340px] min-w-[240px] -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                className="absolute left-1/2 top-1/2 w-[65vw] min-w-[240px] max-w-[340px] -translate-x-1/2 -translate-y-1/2 cursor-pointer"
                 onClick={() => goToSlide(index)}
               >
                 <div className="relative aspect-[9/16] overflow-hidden rounded-[1.9rem] border border-white/15 bg-black shadow-[0_25px_60px_-25px_rgba(63,140,255,0.65)]">
@@ -366,17 +370,16 @@ export default function SeeItInAction() {
                       alt="NeuVault"
                       width={1600}
                       height={1000}
-                      className="w-50 opacity-90"
+                      className="w-40 opacity-90"
                     />
                   </div>
-
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
 
-                  <div className="absolute left-4 right-4 bottom-4 rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur-xl">
+                  <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur-xl">
                     <div className="inline-flex rounded-full bg-[#3F8CFF]/20 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#8ec0ff]">
                       {video.tag}
                     </div>
-                    <h3 className="mt-2 text-base font-semibold leading-tight">
+                    <h3 className="mt-2 text-base font-semibold leading-tight text-white">
                       {video.title}
                     </h3>
                     <p className="mt-1 text-xs leading-relaxed text-white/75">
@@ -384,7 +387,7 @@ export default function SeeItInAction() {
                     </p>
                     <button
                       type="button"
-                      className="mt-3 inline-flex items-center gap-2 rounded-xl border border-white/20 bg-black/45 px-3 py-2 text-xs font-semibold text-white hover:bg-black/60 transition"
+                      className="mt-3 inline-flex items-center gap-2 rounded-xl border border-white/20 bg-black/45 px-3 py-2 text-xs font-semibold text-white hover:bg-black/60"
                       onClick={(event) => {
                         event.stopPropagation();
                         setOverlayIndex(index);
@@ -418,28 +421,25 @@ export default function SeeItInAction() {
           })}
         </div>
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4">
+        <div className="mt-16 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
           {scenarios.map((item, index) => (
             <motion.div
               key={item.title}
-              className="bg-white/5 backdrop-blur-sm p-5 rounded-2xl border border-white/10 hover:shadow-lg hover:shadow-[#3F8CFF]/10 transition"
-              initial={{ opacity: 0, y: 20 }}
+              className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm"
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.08, duration: 0.45 }}
+              transition={{ delay: index * 0.06, duration: 0.45 }}
               viewport={{ once: true }}
             >
               <div className="mb-3">{item.icon}</div>
-              <h3 className="text-base font-semibold mb-2">{item.title}</h3>
-              <p className="text-gray-400 text-xs leading-relaxed">{item.description}</p>
+              <h3 className="text-base font-semibold text-white">{item.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-white/62">{item.description}</p>
             </motion.div>
           ))}
         </div>
       </div>
 
-      <VideoPhoneOverlay
-        video={selectedVideo}
-        onClose={() => setOverlayIndex(null)}
-      />
+      <VideoPhoneOverlay video={selectedVideo} onClose={() => setOverlayIndex(null)} />
     </section>
   );
 }

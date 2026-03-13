@@ -1,20 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  FaGooglePlay,
-  FaApple,
-  FaDownload,
-  FaClock,
-} from "react-icons/fa";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { FaApple, FaClock, FaDownload, FaGooglePlay } from "react-icons/fa";
 
-// Normalize env values (null / empty -> undefined)
-const ANDROID_URL =
-  process.env.NEXT_PUBLIC_ANDROID_URL?.trim() || undefined;
-
-const IOS_URL =
-  process.env.NEXT_PUBLIC_IOS_URL?.trim() || undefined;
+const ANDROID_URL = process.env.NEXT_PUBLIC_ANDROID_URL?.trim() || undefined;
+const IOS_URL = process.env.NEXT_PUBLIC_IOS_URL?.trim() || undefined;
 
 function DownloadCard({
   platform,
@@ -29,34 +20,27 @@ function DownloadCard({
 }) {
   const isAvailable = typeof url === "string" && url.length > 0;
 
-  const base =
-    "flex items-center gap-2 px-4 py-2 rounded-lg font-medium shadow-lg transition w-full justify-center";
-  const active =
+  const baseClassName = "flex w-full items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold shadow-lg";
+  const activeClassName =
     variant === "dark"
       ? "bg-[#3F8CFF] text-white hover:bg-[#60aaff]"
-      : "bg-white text-black hover:bg-gray-200";
-  const comingSoon =
-    "bg-white/10 text-white/60 border border-white/20 cursor-not-allowed";
+      : "bg-white text-black hover:bg-slate-200";
+  const inactiveClassName = "cursor-not-allowed border border-white/16 bg-white/8 text-white/60";
 
   if (!isAvailable) {
     return (
-      <div className={`${base} ${comingSoon}`}>
+      <div className={`${baseClassName} ${inactiveClassName}`}>
         {icon}
         {platform}
-        <span className="ml-1 flex items-center gap-1 text-xs opacity-70">
-          <FaClock /> Coming Soon
+        <span className="ml-1 inline-flex items-center gap-1 text-xs opacity-70">
+          <FaClock /> Coming soon
         </span>
       </div>
     );
   }
 
   return (
-    <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`${base} ${active}`}
-    >
+    <a href={url} target="_blank" rel="noopener noreferrer" className={`${baseClassName} ${activeClassName}`}>
       {icon}
       {platform}
     </a>
@@ -65,69 +49,85 @@ function DownloadCard({
 
 export default function FloatingDownloadButtons() {
   const [open, setOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const updateVisibility = () => {
+      const demoSection = document.getElementById("see-it-in-action");
+      if (!demoSection) {
+        setIsVisible(false);
+        setOpen(false);
+        return;
+      }
+
+      const isPastDemoSection = demoSection.getBoundingClientRect().bottom <= 0;
+      setIsVisible(isPastDemoSection);
+
+      if (!isPastDemoSection) {
+        setOpen(false);
+      }
+    };
+
+    updateVisibility();
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    window.addEventListener("resize", updateVisibility);
+
+    return () => {
+      window.removeEventListener("scroll", updateVisibility);
+      window.removeEventListener("resize", updateVisibility);
+    };
+  }, []);
+
+  if (!isVisible) {
+    return null;
+  }
 
   return (
-    <div className="fixed left-4 bottom-16 z-50">
-      {/* Desktop */}
-      <div className="hidden md:flex flex-col gap-3 w-[180px]">
+    <div className="fixed bottom-5 right-5 z-50">
+      <div className="hidden md:block">
         <motion.div
-          initial={{ x: -80, opacity: 0 }}
+          className="glass-panel w-[240px] rounded-[1.5rem] p-3"
+          initial={{ x: 40, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.2, type: "spring", stiffness: 120 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
         >
-          <DownloadCard
-            platform="Android"
-            icon={<FaGooglePlay />}
-            url={ANDROID_URL}
-          />
-        </motion.div>
-
-        <motion.div
-          initial={{ x: -80, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.3, type: "spring", stiffness: 120 }}
-        >
-          <DownloadCard
-            platform="iOS"
-            icon={<FaApple />}
-            url={IOS_URL}
-            variant="light"
-          />
+          <p className="px-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#9dd9ff]">
+            Mobile beta
+          </p>
+          <p className="mt-2 px-1 text-sm leading-6 text-white/72">
+            Get NeuVault on your phone when the beta links are live.
+          </p>
+          <div className="mt-3 space-y-3">
+            <DownloadCard platform="Android" icon={<FaGooglePlay />} url={ANDROID_URL} />
+            <DownloadCard platform="iOS" icon={<FaApple />} url={IOS_URL} variant="light" />
+          </div>
         </motion.div>
       </div>
 
-      {/* Mobile */}
-      <div className="md:hidden flex flex-col items-start gap-3">
+      <div className="flex flex-col items-end gap-3 md:hidden">
         <AnimatePresence>
-          {open && (
+          {open ? (
             <motion.div
-              className="flex flex-col gap-3 w-[180px]"
-              initial={{ opacity: 0, y: 16 }}
+              className="glass-panel w-[220px] rounded-[1.4rem] p-3"
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 16 }}
+              exit={{ opacity: 0, y: 12 }}
             >
-              <DownloadCard
-                platform="Android"
-                icon={<FaGooglePlay />}
-                url={ANDROID_URL}
-              />
-              <DownloadCard
-                platform="iOS"
-                icon={<FaApple />}
-                url={IOS_URL}
-                variant="light"
-              />
+              <div className="space-y-3">
+                <DownloadCard platform="Android" icon={<FaGooglePlay />} url={ANDROID_URL} />
+                <DownloadCard platform="iOS" icon={<FaApple />} url={IOS_URL} variant="light" />
+              </div>
             </motion.div>
-          )}
+          ) : null}
         </AnimatePresence>
 
-        {/* Toggle FAB */}
         <motion.button
-          onClick={() => setOpen(!open)}
-          className="w-12 h-12 flex items-center justify-center rounded-full bg-[#3F8CFF] text-white shadow-lg hover:bg-[#60aaff] transition"
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#3F8CFF] text-white shadow-[0_22px_50px_-20px_rgba(63,140,255,0.85)] hover:bg-[#60aaff]"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          whileTap={{ scale: 0.9 }}
+          whileTap={{ scale: 0.92 }}
           aria-label="Download NeuVault"
         >
           <FaDownload />

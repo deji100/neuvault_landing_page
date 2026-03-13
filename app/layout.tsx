@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/general/Navbar";
@@ -21,50 +21,37 @@ const poppins = Poppins({
 });
 
 const SITE_URL = "https://neuvault.app";
-
 const OG_IMAGE = "https://res.cloudinary.com/dos5wwgty/image/upload/v1771893076/android-chrome-512x512_togvtu.png";
-
-const TITLE = "NeuVault – A Private, Local-First Vault for Your Documents";
+const TITLE = "NeuVault | Private Mobile Vault for Important Documents";
 const DESCRIPTION =
-  "Organize personal documents securely on your device. NeuVault turns scattered files, notes, and voice into a calm, searchable vault — with privacy by default and encrypted backups you control.";
+  "NeuVault is a private, local-first mobile vault that helps you capture, understand, find, and remember important documents without turning your life into another file dump.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-
   title: {
     default: TITLE,
-    template: "%s – NeuVault",
+    template: "%s | NeuVault",
   },
-
   description: DESCRIPTION,
-
   applicationName: "NeuVault",
-  generator: "Next.js",
-  referrer: "origin-when-cross-origin",
   authors: [{ name: "NeuVault" }],
   creator: "NeuVault",
   publisher: "NeuVault",
-
   keywords: [
-    "document vault",
-    "document organizer",
-    "personal document management",
+    "private document vault",
+    "important documents app",
+    "local-first document organizer",
+    "mobile document vault",
     "secure document storage",
-    "local-first documents",
-    "private file organizer",
-    "offline document storage",
-    "scan documents",
+    "document reminders",
+    "offline document organizer",
     "voice notes to text",
-    "encrypted backup",
-    "file management app",
+    "scan and organize documents",
+    "encrypted document backup",
   ],
-
-  // Helps Google show the right canonical URL
   alternates: {
     canonical: "/",
   },
-
-  // Basic robots. (If you have staging, override there to noindex.)
   robots: {
     index: true,
     follow: true,
@@ -76,8 +63,6 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-
-  // OpenGraph for social sharing (FB, LinkedIn, etc.)
   openGraph: {
     type: "website",
     url: SITE_URL,
@@ -89,30 +74,22 @@ export const metadata: Metadata = {
         url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "NeuVault",
+        alt: "NeuVault private mobile vault preview",
       },
     ],
     locale: "en_US",
   },
-
-  // Twitter cards
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
     images: [OG_IMAGE],
-    // Optional: add your handle later
-    // site: "@neuvault",
-    // creator: "@neuvault",
   },
-
-  // Nice-to-have: PWA + platform hints
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-
   category: "technology",
 };
 

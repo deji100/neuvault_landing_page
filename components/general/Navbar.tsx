@@ -1,20 +1,25 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import Logo from "@/public/logo1.png";
 
+const navItems = [
+  { label: "Why NeuVault", id: "features" },
+  { label: "How It Works", id: "how-it-works" },
+  { label: "Demos", id: "see-it-in-action" },
+  { label: "Testimonials", id: "testimonials" },
+];
+
 const scrollToId = (id: string) => {
-  const el = document.getElementById(id);
-  if (!el) return;
+  const element = document.getElementById(id);
+  if (!element) return;
 
-  const yOffset = -80; // height of fixed navbar
-  const y =
-    el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-
-  window.scrollTo({ top: y, behavior: "smooth" });
+  const navOffset = 92;
+  const top = element.getBoundingClientRect().top + window.scrollY - navOffset;
+  window.scrollTo({ top, behavior: "smooth" });
 };
 
 export default function Navbar() {
@@ -24,143 +29,106 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 w-full z-1000 backdrop-blur-md bg-white/5 border-b border-white/10"
-      initial={{ y: -60, opacity: 0 }}
+      className="fixed inset-x-0 top-0 z-[1000] border-b border-white/10 bg-[#07101c]/78 backdrop-blur-xl"
+      initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 p-2 -ml-2 sm:p-0 sm:ml-0"
-          >
-            <Image
-              src={Logo}
-              alt="NeuVault Logo"
-              width={160}
-              height={40}
-              className="h-50 w-auto"
-              priority
-            />
+      <div className="mx-auto flex h-[74px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Link href="/" className="flex items-center gap-3">
+          <Image
+            src={Logo}
+            alt="NeuVault logo"
+            width={220}
+            height={60}
+            className="h-46 w-auto md:h-50"
+            priority
+          />
+          {/* <p className="hidden text-base font-semibold text-white md:block">NeuVault</p> */}
+        </Link>
+
+        <div className="hidden items-center gap-7 md:flex">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => scrollToId(item.id)}
+              className="text-sm text-white/72 hover:text-white"
+            >
+              {item.label}
+            </button>
+          ))}
+
+          <Link href="/privacy-policy" className="text-sm text-white/72 hover:text-white">
+            Privacy
           </Link>
 
-          {/* Navigation Links */}
-          <div className="hidden md:flex items-center gap-8">
-            <button
-              onClick={() => scrollToId("features")}
-              className="text-gray-300 hover:text-white transition"
-            >
-              Features
-            </button>
-
-            <button
-              onClick={() => scrollToId("how-it-works")}
-              className="text-gray-300 hover:text-white transition"
-            >
-              How It Works
-            </button>
-
-            <button
-              onClick={() => scrollToId("see-it-in-action")}
-              className="text-gray-300 hover:text-white transition"
-            >
-              Demo
-            </button>
-
-            <button
-              onClick={() => scrollToId("testimonials")}
-              className="text-gray-300 hover:text-white transition"
-            >
-              Testimonials
-            </button>
-
-            <Link
-              href="/contact"
-              className="text-gray-300 hover:text-white transition"
-            >
-              Contact
-            </Link>
-
-            <button
-              onClick={() => scrollToId("waitlist")}
-              className="text-white bg-[#3F8CFF] px-4 py-2 rounded-lg hover:bg-[#60aaff] transition"
-            >
-              Join Beta
-            </button>
-          </div>
-
-          {/* Mobile toggle */}
           <button
             type="button"
-            onClick={() => setMobileOpen((v) => !v)}
-            className="md:hidden p-2 -mr-2 text-gray-300 hover:text-white transition"
-            aria-label="Toggle navigation"
-            aria-expanded={mobileOpen}
+            onClick={() => scrollToId("see-it-in-action")}
+            className="rounded-full border border-white/14 bg-white/5 px-4 py-2 text-sm font-medium text-white hover:bg-white/10"
           >
-            <span className="block w-6 h-0.5 bg-current mb-1" />
-            <span className="block w-6 h-0.5 bg-current mb-1" />
-            <span className="block w-6 h-0.5 bg-current" />
+            Watch demo
+          </button>
+
+          <button
+            type="button"
+            onClick={() => scrollToId("waitlist")}
+            className="rounded-full bg-[#3F8CFF] px-4 py-2 text-sm font-semibold text-white shadow-[0_12px_30px_-12px_rgba(63,140,255,0.7)] hover:bg-[#60aaff]"
+          >
+            Join beta
           </button>
         </div>
+
+        <button
+          type="button"
+          onClick={() => setMobileOpen((value) => !value)}
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white md:hidden"
+          aria-label="Toggle navigation"
+          aria-expanded={mobileOpen}
+        >
+          <span className="space-y-1.5">
+            <span className="block h-0.5 w-5 rounded-full bg-current" />
+            <span className="block h-0.5 w-5 rounded-full bg-current" />
+            <span className="block h-0.5 w-5 rounded-full bg-current" />
+          </span>
+        </button>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-white/10 bg-[#0B0F19]/95 backdrop-blur-md">
-          <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-3">
-            <button
-              onClick={() => {
-                scrollToId("features");
-                closeMobile();
-              }}
-              className="text-gray-300 hover:text-white transition text-left"
-            >
-              Features
-            </button>
-            <button
-              onClick={() => {
-                scrollToId("how-it-works");
-                closeMobile();
-              }}
-              className="text-gray-300 hover:text-white transition text-left"
-            >
-              How It Works
-            </button>
-            <button
-              onClick={() => {
-                scrollToId("see-it-in-action");
-                closeMobile();
-              }}
-              className="text-gray-300 hover:text-white transition text-left"
-            >
-              Demo
-            </button>
-            <button
-              onClick={() => {
-                scrollToId("testimonials");
-                closeMobile();
-              }}
-              className="text-gray-300 hover:text-white transition text-left"
-            >
-              Testimonials
-            </button>
+        <div className="border-t border-white/10 bg-[#07101c]/96 px-4 py-5 backdrop-blur-xl md:hidden">
+          <div className="mx-auto flex max-w-7xl flex-col gap-3">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => {
+                  scrollToId(item.id);
+                  closeMobile();
+                }}
+                className="rounded-2xl border border-white/8 bg-white/5 px-4 py-3 text-left text-sm text-white/80"
+              >
+                {item.label}
+              </button>
+            ))}
+
             <Link
-              href="/contact"
+              href="/privacy-policy"
               onClick={closeMobile}
-              className="text-gray-300 hover:text-white transition"
+              className="rounded-2xl border border-white/8 bg-white/5 px-4 py-3 text-sm text-white/80"
             >
-              Contact
+              Privacy
             </Link>
+
             <button
+              type="button"
               onClick={() => {
                 scrollToId("waitlist");
                 closeMobile();
               }}
-              className="text-white bg-[#3F8CFF] px-4 py-2 rounded-lg hover:bg-[#60aaff] transition text-left"
+              className="rounded-2xl bg-[#3F8CFF] px-4 py-3 text-left text-sm font-semibold text-white"
             >
-              Join Beta
+              Join beta
             </button>
           </div>
         </div>
