@@ -97,7 +97,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.h1
-            className="max-w-4xl text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl"
+            className="max-w-3xl text-4xl font-bold leading-[0.98] tracking-tight sm:text-[4.4rem] md:text-[5.1rem]"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25, duration: 0.55 }}
@@ -147,7 +147,7 @@ export default function Hero() {
               href="#see-it-in-action"
               className="inline-flex items-center justify-center rounded-full border border-white/14 bg-white/5 px-6 py-3 text-base font-semibold text-white hover:bg-white/10"
             >
-              Watch 10 demos
+              See NeuVault in action
             </Link>
           </motion.div>
 
@@ -196,7 +196,7 @@ export default function Hero() {
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(63,140,255,0.24),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(108,230,179,0.12),transparent_32%)]" />
           <div className="relative">
-            <div className="mb-6 flex items-start justify-between gap-4">
+            <div className="mb-7 flex items-start justify-between gap-4">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
                   Why it feels different
@@ -230,7 +230,7 @@ export default function Hero() {
                   Intake support
                 </p>
                 <p className="mt-2 text-sm leading-6 text-white/70">
-                  PDFs, photos, scans, typed notes, uploads, and voice notes can all enter the same vault.
+                  PDFs, photos, scans, uploads, and voice notes all enter the same vault.
                 </p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
@@ -238,13 +238,13 @@ export default function Hero() {
                   Context together
                 </p>
                 <p className="mt-2 text-sm leading-6 text-white/70">
-                  Notes, scans, files, and voice stay inside one vault instead of five disconnected apps.
+                  Notes, scans, files, and voice stay together instead of across disconnected apps.
                 </p>
               </div>
             </div>
 
-            <p className="mt-5 text-xs leading-6 text-white/46">
-              Documents live on your device by default. AI features can process selected content when you choose those workflows. See the privacy page for the full boundary.
+            <p className="mt-6 max-w-md text-xs leading-6 text-white/48">
+              On-device by default. AI only processes content in workflows you choose.
             </p>
           </div>
         </motion.div>

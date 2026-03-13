@@ -10,7 +10,7 @@ import Logo from "@/public/logo1.png";
 const navItems = [
   { label: "Why NeuVault", id: "features" },
   { label: "How It Works", id: "how-it-works" },
-  { label: "Demos", id: "see-it-in-action" },
+  { label: "In action", id: "see-it-in-action" },
   { label: "Testimonials", id: "testimonials" },
 ];
 
@@ -53,7 +53,7 @@ export default function Navbar() {
             alt="NeuVault logo"
             width={220}
             height={60}
-            className="h-46 w-auto md:h-50"
+            className="h-12 w-auto md:h-14"
             priority
           />
         </Link>
@@ -79,7 +79,7 @@ export default function Navbar() {
             onClick={() => navigateToSection("see-it-in-action")}
             className="rounded-full border border-white/14 bg-white/5 px-4 py-2 text-sm font-medium text-white hover:bg-white/10"
           >
-            Watch demo
+            Watch demos
           </button>
 
           <button

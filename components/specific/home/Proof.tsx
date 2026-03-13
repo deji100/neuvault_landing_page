@@ -293,8 +293,16 @@ function VideoPhoneOverlay({ videoIndex, videos, onClose, onSelectVideo }: Video
         </motion.div>
 
         <div className="mt-3 rounded-[1.2rem] border border-white/15 bg-black/45 px-4 py-2 backdrop-blur-xl">
-          <div className="flex items-center gap-2.5">
-            <span className="w-11 shrink-0 text-xs text-white/60">{formatTime(currentTime)}</span>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={togglePlayback}
+              className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/8 text-white hover:bg-white/14"
+              aria-label={isPlaying ? "Pause demo video" : "Play demo video"}
+            >
+              {isPlaying ? <FaPause size={10} /> : <FaPlay size={10} />}
+            </button>
+            <span className="w-10 shrink-0 text-xs text-white/60">{formatTime(currentTime)}</span>
             <input
               type="range"
               min={0}
@@ -305,7 +313,7 @@ function VideoPhoneOverlay({ videoIndex, videos, onClose, onSelectVideo }: Video
               className="h-1 w-full cursor-pointer appearance-none rounded-full bg-white/15 accent-[#3F8CFF]"
               aria-label="Seek demo video"
             />
-            <span className="w-11 shrink-0 text-right text-xs text-white/60">{formatTime(duration)}</span>
+            <span className="w-10 shrink-0 text-right text-xs text-white/60">{formatTime(duration)}</span>
           </div>
         </div>
       </div>
@@ -509,4 +517,5 @@ export default function SeeItInAction() {
     </section>
   );
 }
+
 
