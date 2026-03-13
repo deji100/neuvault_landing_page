@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/general/Navbar";
@@ -22,9 +22,9 @@ const poppins = Poppins({
 
 const SITE_URL = "https://neuvault.app";
 const OG_IMAGE = "https://res.cloudinary.com/dos5wwgty/image/upload/v1771893076/android-chrome-512x512_togvtu.png";
-const TITLE = "NeuVault | Private Mobile Vault for Important Documents";
+const TITLE = "NeuVault | Private Document Vault for IDs, Receipts, Medical Records, and Reminders";
 const DESCRIPTION =
-  "NeuVault is a private, local-first mobile vault that helps you capture, understand, find, and remember important documents without turning your life into another file dump.";
+  "NeuVault is a private, local-first mobile vault for the documents people actually need later: passports, receipts, visas, warranties, medical records, notes, and voice. Capture them fast, find them quickly, and get reminders before they matter.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -40,14 +40,19 @@ export const metadata: Metadata = {
   keywords: [
     "private document vault",
     "important documents app",
+    "passport organizer app",
+    "receipt organizer app",
+    "visa document organizer",
+    "medical record organizer",
+    "document reminder app",
+    "document expiration reminders",
     "local-first document organizer",
-    "mobile document vault",
-    "secure document storage",
-    "document reminders",
     "offline document organizer",
+    "secure document storage",
+    "encrypted document backup",
     "voice notes to text",
     "scan and organize documents",
-    "encrypted document backup",
+    "family document vault",
   ],
   alternates: {
     canonical: "/",
@@ -74,7 +79,7 @@ export const metadata: Metadata = {
         url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "NeuVault private mobile vault preview",
+        alt: "NeuVault private document vault preview",
       },
     ],
     locale: "en_US",
@@ -90,7 +95,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  category: "technology",
+  category: "productivity",
 };
 
 export default function RootLayout({

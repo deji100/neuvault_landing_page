@@ -26,11 +26,16 @@ function DownloadCard({
       ? "bg-[#3F8CFF] text-white hover:bg-[#60aaff]"
       : "bg-white text-black hover:bg-slate-200";
   const inactiveClassName = "cursor-not-allowed border border-white/16 bg-white/8 text-white/60";
+  const iconClassName = isAvailable
+    ? variant === "dark"
+      ? "text-white"
+      : "text-black"
+    : "text-white/70";
 
   if (!isAvailable) {
     return (
       <div className={`${baseClassName} ${inactiveClassName}`}>
-        {icon}
+        <span className={iconClassName}>{icon}</span>
         {platform}
         <span className="ml-1 inline-flex items-center gap-1 text-xs opacity-70">
           <FaClock /> Coming soon
@@ -41,7 +46,7 @@ function DownloadCard({
 
   return (
     <a href={url} target="_blank" rel="noopener noreferrer" className={`${baseClassName} ${activeClassName}`}>
-      {icon}
+      <span className={iconClassName}>{icon}</span>
       {platform}
     </a>
   );
