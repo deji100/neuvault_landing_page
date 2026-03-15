@@ -185,6 +185,10 @@ export default function Hero() {
               <SiDropbox className="text-blue-300" size={18} />
               Dropbox
             </span>
+            <span className="flex items-center gap-2">
+              <SiDropbox className="text-blue-300" size={18} />
+              and any cloud storage of your choice
+            </span>
           </motion.div>
         </div>
 
