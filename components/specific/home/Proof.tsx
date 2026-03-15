@@ -64,6 +64,12 @@ const scenarios = [
 
 const demoVideos: DemoVideo[] = [
   {
+    title: "Smart Upload Intake",
+    summary: "Drop in an existing file and let NeuVault organize key details for you.",
+    tag: "Upload",
+    url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1772991651/Smart_Upload_Intake_lloxab.mp4",
+  },
+  {
     title: "Smart Scan Intake",
     summary: "Scan a physical document and turn it into a clean digital record.",
     tag: "Scan",
@@ -80,12 +86,6 @@ const demoVideos: DemoVideo[] = [
     summary: "Turn voice into a searchable record that stays linked to the rest of your vault.",
     tag: "Voice",
     url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1773013045/smart-voice-note-intake_m2mype.mp4",
-  },
-  {
-    title: "Smart Upload Intake",
-    summary: "Drop in an existing file and let NeuVault organize key details for you.",
-    tag: "Upload",
-    url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1772991651/Smart_Upload_Intake_lloxab.mp4",
   },
   {
     title: "Smart Suggestions",
