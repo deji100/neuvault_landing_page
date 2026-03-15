@@ -28,7 +28,7 @@ const floatingIcons = [
 
 const trustPills = [
   "Local-first by default",
-  "Documents stay on your device",
+  "Documents and notes stay on your device",
   "Encrypted backups you control",
 ];
 
