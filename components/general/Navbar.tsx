@@ -70,7 +70,10 @@ export default function Navbar() {
             </button>
           ))}
 
-          <Link href="/privacy-policy" className="text-sm text-white/72 hover:text-white">
+          <Link
+            href="/privacy-policy"
+            className="text-sm text-white/72 hover:text-white"
+          >
             Privacy
           </Link>
 
@@ -82,13 +85,14 @@ export default function Navbar() {
             Watch demos
           </button>
 
-          <button
-            type="button"
-            onClick={() => navigateToSection("waitlist")}
-            className="rounded-full bg-[#3F8CFF] px-4 py-2 text-sm font-semibold text-white shadow-[0_12px_30px_-12px_rgba(63,140,255,0.7)] hover:bg-[#60aaff]"
-          >
-            Join beta
-          </button>
+          <Link href={"contact"}>
+            <button
+              type="button"
+              className="rounded-full bg-[#3F8CFF] px-4 py-2 text-sm font-semibold text-white shadow-[0_12px_30px_-12px_rgba(63,140,255,0.7)] hover:bg-[#60aaff]"
+            >
+              Contact Us{" "}
+            </button>
+          </Link>
         </div>
 
         <button
@@ -131,16 +135,14 @@ export default function Navbar() {
               Privacy
             </Link>
 
-            <button
-              type="button"
-              onClick={() => {
-                navigateToSection("waitlist");
-                closeMobile();
-              }}
-              className="rounded-2xl bg-[#3F8CFF] px-4 py-3 text-left text-sm font-semibold text-white"
-            >
-              Join beta
-            </button>
+            <Link href={"contact"}>
+              <button
+                type="button"
+                className="rounded-2xl bg-[#3F8CFF] px-4 py-3 text-left text-sm font-semibold text-white"
+              >
+                Contact Us
+              </button>
+            </Link>
           </div>
         </div>
       )}
