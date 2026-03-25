@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useEffect, useState, type MouseEvent } from "react";
 import {
   FaFileExcel,
   FaFilePdf,
@@ -14,6 +15,9 @@ import { PiNotePencilLight } from "react-icons/pi";
 import { IoSparklesSharp } from "react-icons/io5";
 import { SiDropbox, SiGoogledrive, SiIcloud } from "react-icons/si";
 import { FaBell, FaSearch, FaShieldAlt } from "react-icons/fa";
+
+const IOS_APP_STORE_URL = "https://apps.apple.com/ng/app/neuvault/id6759370392";
+type DevicePlatform = "ios" | "android" | "other";
 
 const floatingIcons = [
   { icon: <FaFilePdf />, className: "text-red-400", top: "9%", left: "76%", delay: 0, mobile: true },
@@ -46,6 +50,65 @@ const outcomeCards = [
 ];
 
 export default function Hero() {
+  const [devicePlatform, setDevicePlatform] = useState<DevicePlatform>("other");
+
+  useEffect(() => {
+    const userAgent = navigator.userAgent || navigator.vendor || "";
+    const isAndroid = /android/i.test(userAgent);
+    const isIOS =
+      /iPad|iPhone|iPod/i.test(userAgent) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+    if (isAndroid) {
+      setDevicePlatform("android");
+      return;
+    }
+
+    if (isIOS) {
+      setDevicePlatform("ios");
+      return;
+    }
+
+    setDevicePlatform("other");
+  }, []);
+
+  const handleDownloadClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (window.innerWidth < 700 && devicePlatform === "android") {
+      event.preventDefault();
+
+      const mobileTriggerSection = document.getElementById("see-it-in-action");
+      if (!mobileTriggerSection) {
+        return;
+      }
+
+      const navOffset = 92;
+      const top = mobileTriggerSection.getBoundingClientRect().top + window.scrollY - navOffset;
+      window.scrollTo({ top, behavior: "smooth" });
+      return;
+    }
+
+    if (window.innerWidth < 700) {
+      return;
+    }
+
+    const featuresSection = document.getElementById("features");
+    if (!featuresSection) {
+      return;
+    }
+
+    event.preventDefault();
+
+    const navOffset = 92;
+    const top = featuresSection.getBoundingClientRect().top + window.scrollY - navOffset;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
+
+  const isAndroidMobile = devicePlatform === "android";
+  const downloadLabel = isAndroidMobile ? "Android coming soon" : "Explore with free 500 credits";
+  const downloadClassName = isAndroidMobile
+    ? "inline-flex items-center justify-center rounded-full border border-white/16 bg-white/8 px-6 py-3 text-base font-semibold text-white/72"
+    : "inline-flex items-center justify-center rounded-full bg-[#3F8CFF] px-6 py-3 text-base font-semibold text-white shadow-[0_18px_40px_-20px_rgba(63,140,255,0.9)] hover:bg-[#60aaff]";
+
   return (
     <section className="relative overflow-hidden px-6 pb-24 pt-32 text-white md:pb-28 md:pt-40">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(63,140,255,0.24),transparent_34%),linear-gradient(180deg,#07101b_0%,#091321_38%,#08111d_100%)]" />
@@ -137,12 +200,16 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.62, duration: 0.45 }}
           >
-            <Link
-              href="#waitlist"
-              className="inline-flex items-center justify-center rounded-full bg-[#3F8CFF] px-6 py-3 text-base font-semibold text-white shadow-[0_18px_40px_-20px_rgba(63,140,255,0.9)] hover:bg-[#60aaff]"
+            <a
+              href={IOS_APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleDownloadClick}
+              aria-disabled={isAndroidMobile}
+              className={downloadClassName}
             >
-              Join the beta
-            </Link>
+              {downloadLabel}
+            </a>
             <Link
               href="#see-it-in-action"
               className="inline-flex items-center justify-center rounded-full border border-white/14 bg-white/5 px-6 py-3 text-base font-semibold text-white hover:bg-white/10"
@@ -256,5 +323,3 @@ export default function Hero() {
     </section>
   );
 }
-
-

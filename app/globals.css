@@ -14,10 +14,12 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: #07101c;
 }
 
 body {
   min-height: 100vh;
+  background-color: #07101c;
   background:
     radial-gradient(circle at top, rgba(63, 140, 255, 0.22), transparent 32%),
     radial-gradient(circle at 20% 80%, rgba(109, 209, 255, 0.12), transparent 28%),

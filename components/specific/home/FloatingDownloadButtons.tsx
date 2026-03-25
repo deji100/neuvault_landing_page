@@ -5,7 +5,12 @@ import { useEffect, useState } from "react";
 import { FaApple, FaClock, FaDownload, FaGooglePlay } from "react-icons/fa";
 
 const ANDROID_URL = process.env.NEXT_PUBLIC_ANDROID_URL?.trim() || undefined;
-const IOS_URL = process.env.NEXT_PUBLIC_IOS_URL?.trim() || undefined;
+const IOS_URL =
+  process.env.NEXT_PUBLIC_IOS_URL?.trim() || "https://apps.apple.com/ng/app/neuvault/id6759370392";
+const DESKTOP_TRIGGER_OFFSET = 140;
+const MOBILE_TRIGGER_OFFSET = 120;
+
+type DevicePlatform = "ios" | "android" | "other";
 
 function DownloadCard({
   platform,
@@ -20,12 +25,12 @@ function DownloadCard({
 }) {
   const isAvailable = typeof url === "string" && url.length > 0;
 
-  const baseClassName = "flex w-full items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold shadow-lg";
+  const baseClassName = "flex w-full items-center rounded-2xl px-4 py-3 text-sm font-semibold shadow-lg";
   const activeClassName =
     variant === "dark"
-      ? "bg-[#3F8CFF] text-white hover:bg-[#60aaff]"
-      : "bg-white text-black hover:bg-slate-200";
-  const inactiveClassName = "cursor-not-allowed border border-white/16 bg-white/8 text-white/60";
+      ? "justify-center gap-2 bg-[#3F8CFF] text-white hover:bg-[#60aaff]"
+      : "justify-center gap-2 bg-white text-black hover:bg-slate-200";
+  const inactiveClassName = "justify-between gap-3 cursor-not-allowed border border-white/16 bg-white/8 text-white/60";
   const iconClassName = isAvailable
     ? variant === "dark"
       ? "text-white"
@@ -35,9 +40,11 @@ function DownloadCard({
   if (!isAvailable) {
     return (
       <div className={`${baseClassName} ${inactiveClassName}`}>
-        <span className={iconClassName}>{icon}</span>
-        {platform}
-        <span className="ml-1 inline-flex items-center gap-1 text-xs opacity-70">
+        <span className="inline-flex min-w-0 items-center gap-2">
+          <span className={`${iconClassName} shrink-0`}>{icon}</span>
+          <span>{platform}</span>
+        </span>
+        <span className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full border border-white/12 bg-white/6 px-2 py-1 text-[11px] opacity-80">
           <FaClock /> Coming soon
         </span>
       </div>
@@ -55,20 +62,49 @@ function DownloadCard({
 export default function FloatingDownloadButtons() {
   const [open, setOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [devicePlatform, setDevicePlatform] = useState<DevicePlatform>("other");
+
+  useEffect(() => {
+    const userAgent = navigator.userAgent || navigator.vendor || "";
+    const isAndroid = /android/i.test(userAgent);
+    const isIOS =
+      /iPad|iPhone|iPod/i.test(userAgent) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+    if (isAndroid) {
+      setDevicePlatform("android");
+      return;
+    }
+
+    if (isIOS) {
+      setDevicePlatform("ios");
+      return;
+    }
+
+    setDevicePlatform("other");
+  }, []);
 
   useEffect(() => {
     const updateVisibility = () => {
-      const demoSection = document.getElementById("see-it-in-action");
-      if (!demoSection) {
+      const desktopTrigger = document.getElementById("features");
+      const mobileTrigger = document.getElementById("see-it-in-action");
+      const footer = document.getElementById("site-footer");
+      const triggerSection = window.innerWidth >= 700 ? desktopTrigger : mobileTrigger;
+
+      if (!triggerSection || !footer) {
         setIsVisible(false);
         setOpen(false);
         return;
       }
 
-      const isPastDemoSection = demoSection.getBoundingClientRect().bottom <= 0;
-      setIsVisible(isPastDemoSection);
+      const triggerOffset = window.innerWidth >= 700 ? DESKTOP_TRIGGER_OFFSET : MOBILE_TRIGGER_OFFSET;
+      const isPastTriggerSection = triggerSection.getBoundingClientRect().top <= triggerOffset;
+      const isFooterVisible = footer.getBoundingClientRect().top <= window.innerHeight;
+      const shouldShow = isPastTriggerSection && !isFooterVisible;
 
-      if (!isPastDemoSection) {
+      setIsVisible(shouldShow);
+
+      if (!shouldShow) {
         setOpen(false);
       }
     };
@@ -87,9 +123,23 @@ export default function FloatingDownloadButtons() {
     return null;
   }
 
+  const mobileDownloadCards = [];
+
+  if (devicePlatform !== "android") {
+    mobileDownloadCards.push(
+      <DownloadCard key="ios" platform="iOS" icon={<FaApple />} url={IOS_URL} variant="light" />
+    );
+  }
+
+  if (devicePlatform !== "ios") {
+    mobileDownloadCards.push(
+      <DownloadCard key="android" platform="Android" icon={<FaGooglePlay />} url={ANDROID_URL} />
+    );
+  }
+
   return (
     <div className="fixed bottom-5 right-5 z-50">
-      <div className="hidden md:block">
+      <div className="hidden min-[700px]:block">
         <motion.div
           className="glass-panel w-[240px] rounded-[1.5rem] p-3"
           initial={{ x: 40, opacity: 0 }}
@@ -97,19 +147,19 @@ export default function FloatingDownloadButtons() {
           transition={{ duration: 0.45, ease: "easeOut" }}
         >
           <p className="px-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#9dd9ff]">
-            Mobile beta
+            Download NeuVault
           </p>
           <p className="mt-2 px-1 text-sm leading-6 text-white/72">
-            Get NeuVault on your phone when the beta links are live.
+            Start with 500 free credits. No commitment. Upgrade in the app if you need more.
           </p>
           <div className="mt-3 space-y-3">
-            <DownloadCard platform="Android" icon={<FaGooglePlay />} url={ANDROID_URL} />
             <DownloadCard platform="iOS" icon={<FaApple />} url={IOS_URL} variant="light" />
+            <DownloadCard platform="Android" icon={<FaGooglePlay />} url={ANDROID_URL} />
           </div>
         </motion.div>
       </div>
 
-      <div className="flex flex-col items-end gap-3 md:hidden">
+      <div className="flex flex-col items-end gap-3 min-[700px]:hidden">
         <AnimatePresence>
           {open ? (
             <motion.div
@@ -118,10 +168,7 @@ export default function FloatingDownloadButtons() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 12 }}
             >
-              <div className="space-y-3">
-                <DownloadCard platform="Android" icon={<FaGooglePlay />} url={ANDROID_URL} />
-                <DownloadCard platform="iOS" icon={<FaApple />} url={IOS_URL} variant="light" />
-              </div>
+              <div className="space-y-3">{mobileDownloadCards}</div>
             </motion.div>
           ) : null}
         </AnimatePresence>

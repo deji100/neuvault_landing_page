@@ -2,7 +2,7 @@
 import FeaturesSection from "@/components/specific/home/FeatureCards";
 import HowItWorks from "@/components/specific/home/HowITWorks";
 import SeeItInAction from "@/components/specific/home/Proof";
-import WaitlistCTA from "@/components/specific/home/Waitlist";
+// import WaitlistCTA from "@/components/specific/home/Waitlist";
 import TestimonialsSection from "@/components/specific/home/Testimonials";
 import FloatingDownloadButtons from "@/components/specific/home/FloatingDownloadButtons";
 import FloatingBlobs from "@/components/specific/home/FloatingBlobs";
@@ -18,7 +18,7 @@ export default function Home() {
         <FeaturesSection />
         <HowItWorks />
         <TestimonialsSection />
-        <WaitlistCTA />
+        {/* <WaitlistCTA /> */}
         <FloatingDownloadButtons />
       </section>
     </main>

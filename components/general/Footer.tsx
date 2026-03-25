@@ -14,7 +14,7 @@ const scrollToId = (id: string) => {
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/10 bg-[#06101c] px-6 py-16 text-gray-400">
+    <footer id="site-footer" className="relative border-t border-white/10 bg-[#06101c] px-6 py-16 text-gray-400">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 grid grid-cols-1 gap-10 lg:grid-cols-[1.25fr_0.8fr_0.8fr_1fr]">
           <div className="space-y-5">
@@ -36,18 +36,6 @@ export default function Footer() {
               Keep the documents that actually matter in one place you control. Capture,
               understand, find, and remember them without handing your life to another cloud silo.
             </p>
-
-            <div className="grid gap-3 sm:grid-cols-3">
-              <div className="glass-panel rounded-2xl px-4 py-3 text-sm text-white/78">
-                Local-first by default
-              </div>
-              <div className="glass-panel rounded-2xl px-4 py-3 text-sm text-white/78">
-                Encrypted backups you control
-              </div>
-              <div className="glass-panel rounded-2xl px-4 py-3 text-sm text-white/78">
-                Real product demos on site
-              </div>
-            </div>
           </div>
 
           <div>
@@ -70,11 +58,11 @@ export default function Footer() {
                   Watch the 10 demos
                 </button>
               </li>
-              <li>
+              {/* <li>
                 <button type="button" onClick={() => scrollToId("waitlist")} className="hover:text-white">
                   Join beta
                 </button>
-              </li>
+              </li> */}
             </ul>
           </div>
 
