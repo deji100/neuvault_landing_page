@@ -138,7 +138,7 @@ export default function FloatingDownloadButtons() {
   }
 
   return (
-    <div className="fixed bottom-5 right-5 z-50">
+    <div className="fixed bottom-5 right-5 z-5000">
       <div className="hidden min-[700px]:block">
         <motion.div
           className="glass-panel w-[240px] rounded-[1.5rem] p-3"
