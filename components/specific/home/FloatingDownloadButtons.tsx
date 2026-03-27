@@ -150,7 +150,7 @@ export default function FloatingDownloadButtons() {
             Download NeuVault
           </p>
           <p className="mt-2 px-1 text-sm leading-6 text-white/72">
-            Start with 500 free credits. No commitment. Upgrade in the app if you need more.
+            Stop searching through document chaos. Start with 500 free credits and explore the app.
           </p>
           <div className="mt-3 space-y-3">
             <DownloadCard platform="iOS" icon={<FaApple />} url={IOS_URL} variant="light" />

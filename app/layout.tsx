@@ -22,9 +22,9 @@ const poppins = Poppins({
 
 const SITE_URL = "https://neuvault.app";
 const OG_IMAGE = "https://res.cloudinary.com/dos5wwgty/image/upload/v1771893076/android-chrome-512x512_togvtu.png";
-const TITLE = "NeuVault | Private Document Vault for IDs, Receipts, Medical Records, and Reminders";
+const TITLE = "NeuVault | Stop Forgetting Your Important Documents";
 const DESCRIPTION =
-  "NeuVault is a private, local-first mobile vault for the documents people actually need later: passports, receipts, visas, warranties, medical records, notes, and voice. Capture them fast, find them quickly, and get reminders before they matter.";
+  "Stop forgetting your important documents. NeuVault is a private, local-first vault that turns scattered files, notes, scans, and voice into one organized, searchable system you control.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

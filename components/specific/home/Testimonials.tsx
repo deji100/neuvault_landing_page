@@ -10,12 +10,12 @@ const testimonials = [
   {
     name: "Ayo K.",
     role: "Small business owner",
-    text: "Invoices and receipts used to be chaos. Now NeuVault keeps everything organized, and I can find what I need fast without putting my documents in a generic cloud folder.",
+    text: "Invoices and receipts used to be chaos. Now I know where things are, and I can find them fast without throwing everything into a generic cloud folder.",
   },
   {
     name: "Sarah J.",
     role: "Graduate student",
-    text: "I scan handouts and upload PDFs, and NeuVault groups them in a way that actually makes sense later. The search is what keeps me coming back.",
+    text: "I scan handouts and upload PDFs, and NeuVault groups them in a way that actually makes sense later. It feels like I finally stopped losing track of my study materials.",
   },
   {
     name: "Daniel O.",
@@ -30,12 +30,12 @@ const testimonials = [
   {
     name: "Chris T.",
     role: "Working professional",
-    text: "Setting reminders on actual documents is the part that stands out. It is the first app that makes my paperwork feel less reactive.",
+    text: "Setting reminders on actual documents is the part that stands out. It is the first app that makes my paperwork feel less reactive and less easy to forget.",
   },
   {
     name: "Nneka A.",
     role: "Busy parent",
-    text: "I added documents while offline and NeuVault processed them later without me babysitting the whole thing. That flow feels thought through.",
+    text: "I added documents while offline and NeuVault processed them later without me babysitting the whole thing. That flow feels built for real life.",
   },
 ];
 
@@ -68,7 +68,7 @@ export default function TestimonialsCarousel() {
             Early feedback
           </p>
           <h2 className="mt-4 text-3xl font-bold leading-tight md:text-4xl">
-            What early testers notice first.
+            What people feel first.
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-8 text-white/68 md:text-lg">
             The strongest reactions are not about novelty. They are about relief: less clutter, less panic, faster retrieval, and a stronger sense of control over important records.

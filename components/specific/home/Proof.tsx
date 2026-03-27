@@ -26,7 +26,7 @@ type DemoVideo = {
 const demoHighlights = [
   "10 short demos",
   "Core product workflows",
-  "Best way to understand the app fast",
+  "Best way to understand the relief fast",
 ];
 
 const scenarios = [
@@ -34,7 +34,7 @@ const scenarios = [
     icon: <FaFileInvoiceDollar className="text-[#3F8CFF]" size={28} />,
     title: "Business and finance",
     description:
-      "Keep invoices, receipts, and statements in one place, then ask NeuVault to summarize, find totals, or export a clean report.",
+      "Keep invoices, receipts, and statements in one place, then ask NeuVault to summarize, find totals, or pull up what you need without the scramble.",
   },
   {
     icon: <FaMicrophone className="text-emerald-300" size={28} />,
@@ -325,6 +325,7 @@ export default function SeeItInAction() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [overlayIndex, setOverlayIndex] = useState<number | null>(null);
   const totalVideos = demoVideos.length;
+  const swipeThreshold = 60;
 
   const getWrappedIndex = useCallback(
     (value: number) => (value + totalVideos) % totalVideos,
@@ -362,13 +363,13 @@ export default function SeeItInAction() {
           viewport={{ once: true }}
         >
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
-            See the product fast
+            See the relief in action
           </p>
           <h2 className="mt-4 text-3xl font-bold leading-tight md:text-4xl">
-            The demos do the explaining.
+            Watch scattered information become usable.
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-8 text-white/68 md:text-lg">
-            NeuVault has real product depth. The fastest way to understand it is to watch the core flows: intake, organization, reminders, assistant help, offline capture, and encrypted backup.
+            The fastest way to understand NeuVault is to watch the moments that usually create friction: capture, organization, reminders, assistant help, offline intake, and encrypted backup.
           </p>
         </motion.div>
 
@@ -387,11 +388,11 @@ export default function SeeItInAction() {
           <button
             type="button"
             onClick={() => goToSlide(activeIndex - 1)}
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/90 hover:bg-white/10"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-sm text-white/90 hover:bg-white/10 sm:h-auto sm:w-auto sm:gap-2 sm:px-4 sm:py-2"
             aria-label="Previous demo video"
           >
             <FaChevronLeft size={12} />
-            Prev
+            <span className="hidden sm:inline">Prev</span>
           </button>
           <p className="text-xs text-white/60 sm:text-sm">
             {activeIndex + 1}/{totalVideos} demos
@@ -399,15 +400,30 @@ export default function SeeItInAction() {
           <button
             type="button"
             onClick={() => goToSlide(activeIndex + 1)}
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/90 hover:bg-white/10"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-sm text-white/90 hover:bg-white/10 sm:h-auto sm:w-auto sm:gap-2 sm:px-4 sm:py-2"
             aria-label="Next demo video"
           >
-            Next
+            <span className="hidden sm:inline">Next</span>
             <FaChevronRight size={12} />
           </button>
         </div>
 
-        <div className="relative mt-4 h-[520px] sm:h-[610px]">
+        <motion.div
+          className="relative mt-4 h-[520px] cursor-grab touch-pan-y active:cursor-grabbing sm:h-[610px]"
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.12}
+          onDragEnd={(_, info) => {
+            if (info.offset.x >= swipeThreshold) {
+              goToSlide(activeIndex - 1);
+              return;
+            }
+
+            if (info.offset.x <= -swipeThreshold) {
+              goToSlide(activeIndex + 1);
+            }
+          }}
+        >
           {demoVideos.map((video, index) => {
             const offset = slideOffsets[index];
             const distance = Math.abs(offset);
@@ -471,7 +487,7 @@ export default function SeeItInAction() {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         <div className="mt-6 flex items-center justify-center gap-2">
           {demoVideos.map((video, index) => {
@@ -517,5 +533,3 @@ export default function SeeItInAction() {
     </section>
   );
 }
-
-

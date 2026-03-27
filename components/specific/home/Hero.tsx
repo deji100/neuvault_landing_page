@@ -32,19 +32,19 @@ const floatingIcons = [
 
 const trustPills = [
   "Local-first by default",
-  "Encrypted backups you control",
-  "Documents and notes stay on your device",
+  "Private backups you control",
+  "Your documents stay on your device",
 ];
 
 const outcomeCards = [
   {
-    title: "Find the right document fast",
-    body: "Search, summaries, tags, and linked items help you stop digging through clutter.",
+    title: "Find what matters before the stress kicks in",
+    body: "Search, summaries, tags, and linked items help you stop digging through scattered folders.",
     icon: <FaSearch className="text-[#6DD1FF]" size={18} />,
   },
   {
-    title: "Stay ahead of deadlines",
-    body: "Set reminders on documents and let NeuVault resurface them before they become urgent.",
+    title: "Stay ahead of deadlines and renewals",
+    body: "Set reminders on documents and let NeuVault bring them back before they become urgent.",
     icon: <FaBell className="text-[#6ce6b3]" size={18} />,
   },
 ];
@@ -165,7 +165,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25, duration: 0.55 }}
           >
-            Keep the documents that matter in one place you actually trust.
+            Stop forgetting your documents. Organize everything in one private, intelligent vault.
           </motion.h1>
 
           <motion.p
@@ -174,8 +174,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.38, duration: 0.55 }}
           >
-            NeuVault helps you capture the documents people panic about later,
-            understand them quickly, find them fast, and get reminded before they matter.
+            NeuVault helps you turn scattered files, notes, scans, and voice notes into one organized system that stays searchable, private, and easy to trust.
           </motion.p>
 
           <motion.div
@@ -225,8 +224,7 @@ export default function Hero() {
             transition={{ delay: 0.72, duration: 0.45 }}
           >
             <p className="max-w-2xl">
-              Not another generic file manager. NeuVault is built for the real-life documents,
-              notes, and reminders people panic about when they need them fast.
+              For the moments when you know you saved it somewhere, but cannot afford to keep searching.
             </p>
             <Link href="/privacy-policy" className="text-[#a8d8ff] hover:text-white">
               See how privacy works
@@ -270,10 +268,10 @@ export default function Hero() {
             <div className="mb-7 flex items-start justify-between gap-4">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
-                  Why it feels different
+                  Why it feels better
                 </p>
                 <h2 className="mt-2 text-2xl font-semibold text-white">
-                  Store it. Understand it. Remember it.
+                  Less chaos. Less searching. More control.
                 </h2>
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/6 p-3 text-[#6DD1FF]">
@@ -301,7 +299,7 @@ export default function Hero() {
                   Intake support
                 </p>
                 <p className="mt-2 text-sm leading-6 text-white/70">
-                  PDFs, photos, scans, uploads, and voice notes all enter the same vault.
+                  PDFs, photos, scans, uploads, and voice notes all end up in one place instead of five.
                 </p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
@@ -309,7 +307,7 @@ export default function Hero() {
                   Context together
                 </p>
                 <p className="mt-2 text-sm leading-6 text-white/70">
-                  Notes, scans, files, and voice stay together instead of across disconnected apps.
+                  Notes, scans, files, and voice stay linked so future-you does not have to reconstruct the story.
                 </p>
               </div>
             </div>

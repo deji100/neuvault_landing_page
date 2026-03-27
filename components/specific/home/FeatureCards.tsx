@@ -14,14 +14,14 @@ import { PiVaultBold } from "react-icons/pi";
 
 const pillars = [
   {
-    title: "One home for important documents",
+    title: "One home for the documents you keep misplacing",
     description:
       "Receipts, IDs, agreements, warranties, medical files, school records, and personal notes stop living across screenshots, chats, downloads, and random folders.",
     icon: <PiVaultBold className="text-pink-300" size={26} />,
     accent: "from-pink-500/18 via-white/6 to-transparent",
   },
   {
-    title: "Understanding, not just storage",
+    title: "Understanding, not just dumping",
     description:
       "Summaries, tags, structure, and linked context help you understand what a document says and why it matters without rereading everything from scratch.",
     icon: <BsStars className="text-yellow-300" size={24} />,
@@ -97,14 +97,14 @@ export default function FeaturesSection() {
           viewport={{ once: true }}
         >
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
-            Why NeuVault stands out
+            Pain first, then relief
           </p>
           <h2 className="mt-4 text-3xl font-bold leading-tight md:text-4xl">
-            Most tools help you store files.
-            <span className="block text-white/68">NeuVault helps you remember what they mean and when they matter.</span>
+            Your files should not be this hard to find.
+            <span className="block text-white/68">NeuVault turns scattered documents into a private vault you can actually use.</span>
           </h2>
           <p className="mt-5 text-base leading-8 text-white/68 md:text-lg">
-            The goal is not to create one more place to dump PDFs. The goal is to make the important parts of your life easier to capture, easier to understand, and much harder to forget.
+            The goal is not to create one more dumping ground for PDFs. The goal is to help you capture what matters, understand it quickly, and stop losing time to document chaos.
           </p>
         </motion.div>
 
@@ -141,7 +141,7 @@ export default function FeaturesSection() {
             <div>
               <h3 className="text-2xl font-semibold text-white">Useful in the quiet moments.</h3>
               <p className="mt-2 max-w-2xl text-sm leading-7 text-white/66 md:text-base">
-                NeuVault is strongest when life is busy: a renewal date is coming up, a form needs context, a document is buried, or you need to move devices without losing trust in where everything lives.
+                NeuVault is strongest when life is busy: a renewal date is coming up, a form needs context, a document is buried, or you suddenly need something you thought you saved somewhere.
               </p>
             </div>
             <div className="rounded-full border border-[#6DD1FF]/18 bg-[#6DD1FF]/8 px-4 py-2 text-sm text-[#d7efff]">

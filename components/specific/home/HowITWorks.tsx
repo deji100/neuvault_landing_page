@@ -226,10 +226,10 @@ export default function HowItWorks() {
             How it works
           </p>
           <h2 className="mt-4 text-3xl font-bold leading-tight md:text-4xl">
-            A clear flow from capture to follow-through.
+            From scattered inputs to one organized vault.
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-8 text-white/68 md:text-lg">
-            NeuVault does not ask you to reorganize your whole life first. It takes in messy real-world inputs, helps you understand them, and keeps them useful later.
+            NeuVault does not ask you to reorganize your whole life first. It accepts messy real-world inputs, gives them structure, and keeps them easy to find later.
           </p>
         </motion.div>
       </div>
@@ -266,7 +266,7 @@ export default function HowItWorks() {
               <div className="mb-4"><PiChatCircleDotsFill className="text-purple-300" size={30} /></div>
               <h3 className="text-2xl font-semibold text-white">Nova Assistant</h3>
               <p className="mt-3 text-sm leading-7 text-white/66 md:text-base">
-                Ask questions in natural language about your vault, get summaries, export reports, or move to web search when the task needs outside information too.
+                Ask questions in natural language about your vault, get summaries, export reports, or get help finding what you forgot you already saved.
               </p>
             </div>
 
@@ -289,7 +289,7 @@ export default function HowItWorks() {
 
               <div className="mt-4 flex items-center gap-2 border-t border-white/10 pt-4 text-xs text-white/45">
                 <FaCalendarCheck className="opacity-80" />
-                Ask across documents, get insight, then act if needed.
+                Ask across documents, get clarity, then act if needed.
               </div>
             </div>
           </div>

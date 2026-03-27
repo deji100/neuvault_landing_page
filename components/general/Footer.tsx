@@ -28,13 +28,12 @@ export default function Footer() {
               />
               <div>
                 <p className="text-lg font-semibold text-white">NeuVault</p>
-                <p className="text-sm text-white/55">Private mobile vault for important documents</p>
+                <p className="text-sm text-white/55">Private mobile vault for life&apos;s important documents</p>
               </div>
             </Link>
 
             <p className="max-w-md text-sm leading-7 text-white/70">
-              Keep the documents that actually matter in one place you control. Capture,
-              understand, find, and remember them without handing your life to another cloud silo.
+              Stop forgetting where your important documents are. NeuVault helps you keep files, notes, scans, and voice in one place you control.
             </p>
           </div>
 
@@ -99,7 +98,7 @@ export default function Footer() {
               Trust note
             </h3>
             <p className="text-sm leading-7 text-white/70">
-              NeuVault is designed so your vault lives on your device by default. Documents are not stored permanently on our servers.
+              NeuVault is designed so your vault lives on your device by default. Your documents are not stored permanently on our servers.
             </p>
             <div className="hidden rounded-2xl border border-white/10 bg-white p-4 shadow-[0_18px_40px_-24px_rgba(0,0,0,0.45)] md:block">
               <a
@@ -125,7 +124,7 @@ export default function Footer() {
           <p>
             (c) {new Date().getFullYear()} <Link href="/" className="text-white hover:underline">NeuVault</Link>. All rights reserved.
           </p>
-          <p>Private by default. Useful when life gets noisy.</p>
+          <p>Private by default. Easier to trust when life gets noisy.</p>
         </div>
       </div>
     </footer>
