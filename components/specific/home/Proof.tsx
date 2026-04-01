@@ -472,6 +472,7 @@ export default function SeeItInAction() {
               <div
                 key={video.url}
                 className="absolute left-1/2 top-1/2 w-[65vw] min-w-[240px] max-w-[340px] -translate-x-1/2 -translate-y-1/2"
+                style={{ zIndex: 100 - distance }}
               >
                 <motion.div
                   initial={false}
@@ -479,7 +480,6 @@ export default function SeeItInAction() {
                     x: offset * 200,
                     scale: isActive ? 1 : distance === 1 ? 0.92 : 0.84,
                     opacity: 1,
-                    zIndex: 100 - distance,
                   }}
                   transition={{ type: "spring", stiffness: 240, damping: 28 }}
                   className="cursor-pointer transform-gpu will-change-transform"
