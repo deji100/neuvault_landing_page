@@ -67,61 +67,61 @@ const demoVideos: DemoVideo[] = [
     title: "Smart Upload Intake",
     summary: "Drop in an existing file and let NeuVault organize key details for you.",
     tag: "Upload",
-    url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1772991651/Smart_Upload_Intake_lloxab.mp4",
+    url: "https://res.cloudinary.com/dfaiohpa6/video/upload/v1775068982/Smart_Upload_Intake_wzikki.mp4",
   },
   {
     title: "Smart Scan Intake",
     summary: "Scan a physical document and turn it into a clean digital record.",
     tag: "Scan",
-    url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1773013073/smart-scan-intake_e2unwg.mp4",
+    url: "https://res.cloudinary.com/dfaiohpa6/video/upload/v1775068971/smart-scan-intake_wccyli.mp4",
   },
   {
     title: "Smart Note Intake",
     summary: "Capture a quick note and convert it into a structured vault item.",
     tag: "Notes",
-    url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1772991960/Smart_Note_Intake_ryp2nt.mp4",
+    url: "https://res.cloudinary.com/dfaiohpa6/video/upload/v1775068920/Smart_Note_Intake_xamar0.mp4",
   },
   {
     title: "Smart Voice Note Intake",
     summary: "Turn voice into a searchable record that stays linked to the rest of your vault.",
     tag: "Voice",
-    url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1773013045/smart-voice-note-intake_m2mype.mp4",
+    url: "https://res.cloudinary.com/dfaiohpa6/video/upload/v1775068925/smart-voice-note-intake_pjddwd.mp4",
   },
   {
     title: "Smart Suggestions",
     summary: "Get context-aware prompts for summaries, reminders, and follow-up actions.",
     tag: "Suggestions",
-    url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1773013022/smart-suggestion_yasmtv.mp4",
+    url: "https://res.cloudinary.com/dfaiohpa6/video/upload/v1775068927/smart-suggestion_qlgpl4.mp4",
   },
   {
     title: "Document Resurfacing",
     summary: "Bring an important document back when the timing matters again.",
     tag: "Resurface",
-    url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1773013061/document-resurfacing_nddqkc.mp4",
+    url: "https://res.cloudinary.com/dfaiohpa6/video/upload/v1775068966/document-resurfacing_rb4zrx.mp4",
   },
   {
     title: "Document Linking",
     summary: "Connect related files so one issue can stay together as a usable set.",
     tag: "Links",
-    url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1773013074/document-linking_llqage.mp4",
+    url: "https://res.cloudinary.com/dfaiohpa6/video/upload/v1775068949/document-linking_u4nkyd.mp4",
   },
   {
     title: "Nova Assistant",
     summary: "Ask natural questions and get answers from your vault in seconds.",
     tag: "Assistant",
-    url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1773013051/nova-assistant_jfn3am.mp4",
+    url: "https://res.cloudinary.com/dfaiohpa6/video/upload/v1775068919/nova-assistant_lcmhuq.mp4",
   },
   {
     title: "Settings and Backup",
     summary: "Review privacy choices, backup flow, and restore behavior in one place.",
     tag: "Security",
-    url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1773013053/setting-and-backup_fw3di5.mp4",
+    url: "https://res.cloudinary.com/dfaiohpa6/video/upload/v1775068959/setting-and-backup_w5jfuz.mp4",
   },
   {
     title: "Offline Smart Intake",
     summary: "Capture while offline and process safely when your connection comes back.",
     tag: "Offline",
-    url: "https://res.cloudinary.com/dos5wwgty/video/upload/v1773042420/offline_smart_intake_og8tfk.mp4",
+    url: "https://res.cloudinary.com/dfaiohpa6/video/upload/v1775068887/offline_smart_intake_rmhhc6.mp4",
   },
 ];
 
@@ -324,8 +324,11 @@ function VideoPhoneOverlay({ videoIndex, videos, onClose, onSelectVideo }: Video
 export default function SeeItInAction() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [overlayIndex, setOverlayIndex] = useState<number | null>(null);
+  const dragMovedRef = useRef(false);
+  const dragResetTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const totalVideos = demoVideos.length;
   const swipeThreshold = 60;
+  const tapCancelThreshold = 12;
 
   const getWrappedIndex = useCallback(
     (value: number) => (value + totalVideos) % totalVideos,
@@ -345,6 +348,25 @@ export default function SeeItInAction() {
   const goToSlide = (index: number) => {
     setActiveIndex(getWrappedIndex(index));
   };
+
+  const resetDragMoved = useCallback(() => {
+    if (dragResetTimeoutRef.current !== null) {
+      clearTimeout(dragResetTimeoutRef.current);
+    }
+
+    dragResetTimeoutRef.current = setTimeout(() => {
+      dragMovedRef.current = false;
+      dragResetTimeoutRef.current = null;
+    }, 0);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (dragResetTimeoutRef.current !== null) {
+        clearTimeout(dragResetTimeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <section id="see-it-in-action" className="relative border-t border-white/10 px-6 py-24 text-white">
@@ -409,19 +431,34 @@ export default function SeeItInAction() {
         </div>
 
         <motion.div
-          className="relative mt-4 h-[520px] cursor-grab touch-pan-y active:cursor-grabbing sm:h-[610px]"
+          className="relative mt-4 h-[520px] cursor-grab select-none touch-pan-y active:cursor-grabbing sm:h-[610px]"
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0.12}
+          dragElastic={0.08}
+          dragMomentum={false}
+          dragDirectionLock
+          onDragStart={() => {
+            dragMovedRef.current = false;
+          }}
+          onDrag={(_, info) => {
+            if (Math.abs(info.offset.x) > tapCancelThreshold) {
+              dragMovedRef.current = true;
+            }
+          }}
           onDragEnd={(_, info) => {
             if (info.offset.x >= swipeThreshold) {
               goToSlide(activeIndex - 1);
+              resetDragMoved();
               return;
             }
 
             if (info.offset.x <= -swipeThreshold) {
               goToSlide(activeIndex + 1);
+              resetDragMoved();
+              return;
             }
+
+            resetDragMoved();
           }}
         >
           {demoVideos.map((video, index) => {
@@ -432,59 +469,67 @@ export default function SeeItInAction() {
             if (distance > 2) return null;
 
             return (
-              <motion.div
+              <div
                 key={video.url}
-                initial={false}
-                animate={{
-                  x: offset * 200,
-                  scale: isActive ? 1 : distance === 1 ? 0.92 : 0.84,
-                  opacity: 1,
-                  zIndex: 100 - distance,
-                }}
-                transition={{ type: "spring", stiffness: 240, damping: 28 }}
-                className="absolute left-1/2 top-1/2 w-[65vw] min-w-[240px] max-w-[340px] -translate-x-1/2 -translate-y-1/2 cursor-pointer"
-                onClick={() => goToSlide(index)}
+                className="absolute left-1/2 top-1/2 w-[65vw] min-w-[240px] max-w-[340px] -translate-x-1/2 -translate-y-1/2"
               >
-                <div className="relative aspect-[9/16] overflow-hidden rounded-[1.9rem] border border-white/15 bg-black shadow-[0_25px_60px_-25px_rgba(63,140,255,0.65)]">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(63,140,255,0.42),transparent_44%),radial-gradient(circle_at_80%_75%,rgba(16,185,129,0.26),transparent_42%),linear-gradient(180deg,#020611_0%,#050a16_100%)]" />
-                  <div className="absolute inset-x-5 bottom-[34%] top-14 rounded-[1.5rem] border border-white/10 bg-white/5 backdrop-blur-sm" />
-                  <div className="absolute left-1/2 top-[22%] h-1.5 w-20 -translate-x-1/2 rounded-full bg-white/20" />
-                  <div className="pointer-events-none absolute inset-x-0 top-[40%] flex -translate-y-1/2 justify-center">
-                    <Image
-                      src={Logo}
-                      alt="NeuVault"
-                      width={1600}
-                      height={1000}
-                      className="w-40 opacity-90"
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
-
-                  <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur-xl">
-                    <div className="inline-flex rounded-full bg-[#3F8CFF]/20 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#8ec0ff]">
-                      {video.tag}
+                <motion.div
+                  initial={false}
+                  animate={{
+                    x: offset * 200,
+                    scale: isActive ? 1 : distance === 1 ? 0.92 : 0.84,
+                    opacity: 1,
+                    zIndex: 100 - distance,
+                  }}
+                  transition={{ type: "spring", stiffness: 240, damping: 28 }}
+                  className="cursor-pointer transform-gpu will-change-transform"
+                  onClick={() => {
+                    if (dragMovedRef.current) return;
+                    goToSlide(index);
+                  }}
+                >
+                  <div className="relative aspect-[9/16] overflow-hidden rounded-[1.9rem] border border-white/15 bg-black shadow-[0_25px_60px_-25px_rgba(63,140,255,0.65)]">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(63,140,255,0.42),transparent_44%),radial-gradient(circle_at_80%_75%,rgba(16,185,129,0.26),transparent_42%),linear-gradient(180deg,#020611_0%,#050a16_100%)]" />
+                    <div className="absolute inset-x-5 bottom-[34%] top-14 rounded-[1.5rem] border border-white/10 bg-white/5 backdrop-blur-sm" />
+                    <div className="absolute left-1/2 top-[22%] h-1.5 w-20 -translate-x-1/2 rounded-full bg-white/20" />
+                    <div className="pointer-events-none absolute inset-x-0 top-[40%] flex -translate-y-1/2 justify-center">
+                      <Image
+                        src={Logo}
+                        alt="NeuVault"
+                        width={1600}
+                        height={1000}
+                        className="w-40 opacity-90"
+                      />
                     </div>
-                    <h3 className="mt-2 text-base font-semibold leading-tight text-white">
-                      {video.title}
-                    </h3>
-                    <p className="mt-1 text-xs leading-relaxed text-white/75">
-                      {video.summary}
-                    </p>
-                    <button
-                      type="button"
-                      className="mt-3 inline-flex items-center gap-2 rounded-xl border border-white/20 bg-black/45 px-3 py-2 text-xs font-semibold text-white hover:bg-black/60"
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        setOverlayIndex(index);
-                      }}
-                      aria-label={`Open ${video.title} in overlay`}
-                    >
-                      <FaPlay size={10} />
-                      Watch demo
-                    </button>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
+
+                    <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur-xl">
+                      <div className="inline-flex rounded-full bg-[#3F8CFF]/20 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#8ec0ff]">
+                        {video.tag}
+                      </div>
+                      <h3 className="mt-2 text-base font-semibold leading-tight text-white">
+                        {video.title}
+                      </h3>
+                      <p className="mt-1 text-xs leading-relaxed text-white/75">
+                        {video.summary}
+                      </p>
+                      <button
+                        type="button"
+                        className="mt-3 inline-flex items-center gap-2 rounded-xl border border-white/20 bg-black/45 px-3 py-2 text-xs font-semibold text-white hover:bg-black/60"
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          if (dragMovedRef.current) return;
+                          setOverlayIndex(index);
+                        }}
+                        aria-label={`Open ${video.title} in overlay`}
+                      >
+                        <FaPlay size={10} />
+                        Watch demo
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </div>
             );
           })}
         </motion.div>
