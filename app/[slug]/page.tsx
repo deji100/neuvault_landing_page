@@ -505,6 +505,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
               "@type": "VideoObject",
               name: demoVideo.title,
               description: demoVideo.summary,
+              uploadDate: demoVideo.uploadDate,
               contentUrl: demoVideo.url,
               embedUrl: demoVideo.url,
               thumbnailUrl: LOGO_URL,
@@ -724,3 +725,5 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
     </main>
   );
 }
+
+
