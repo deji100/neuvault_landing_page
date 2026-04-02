@@ -269,7 +269,7 @@ function VideoPhoneOverlay({ videoIndex, videos, onClose, onSelectVideo }: Video
               ref={videoRef}
               src={video.url}
               className="absolute inset-0 h-full w-full scale-[0.99] object-cover"
-              preload="auto"
+              preload="metadata"
               playsInline
               onLoadedMetadata={(event) => {
                 setDuration(event.currentTarget.duration || 0);
@@ -578,3 +578,4 @@ export default function SeeItInAction() {
     </section>
   );
 }
+

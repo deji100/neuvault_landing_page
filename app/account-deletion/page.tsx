@@ -1,7 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { buildMetadata } from "@/lib/seo";
 
 const SUPPORT_EMAIL = "support@neuvault.app";
 const EFFECTIVE_DATE = "February 23, 2026";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Account Deletion",
+  description:
+    "Learn how to delete your NeuVault account, what data is removed, what stays on your device, and how encrypted backups are handled.",
+  path: "/account-deletion",
+  keywords: ["neuvault account deletion", "delete neuvault account", "document vault account deletion"],
+});
 
 export default function AccountDeletionPage() {
   return (

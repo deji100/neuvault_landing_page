@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ANDROID_PLAY_STORE_URL, IOS_APP_STORE_URL, solutionPages } from "@/lib/seo";
 
 const scrollToId = (id: string) => {
   const element = document.getElementById(id);
@@ -16,7 +17,7 @@ export default function Footer() {
   return (
     <footer id="site-footer" className="relative border-t border-white/10 bg-[#06101c] px-6 py-16 text-gray-400">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-12 grid grid-cols-1 gap-10 lg:grid-cols-[1.25fr_0.8fr_0.8fr_1fr]">
+        <div className="mb-12 grid grid-cols-1 gap-10 lg:grid-cols-[1.25fr_0.8fr_0.95fr_0.8fr_1fr]">
           <div className="space-y-5">
             <Link href="/" className="flex items-center gap-3">
               <Image
@@ -62,6 +63,36 @@ export default function Footer() {
                   Join beta
                 </button>
               </li> */}
+              <li>
+                <a href={IOS_APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                  App Store
+                </a>
+              </li>
+              <li>
+                <a
+                  href={ANDROID_PLAY_STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white"
+                >
+                  Google Play
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-white/80">
+              Workflows
+            </h3>
+            <ul className="space-y-3 text-sm text-white/70">
+              {solutionPages.map((page) => (
+                <li key={page.slug}>
+                  <Link href={`/${page.slug}`} className="hover:text-white">
+                    {page.metaTitle}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
