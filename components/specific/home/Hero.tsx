@@ -17,6 +17,7 @@ import { SiDropbox, SiGoogledrive, SiIcloud } from "react-icons/si";
 import { FaBell, FaSearch, FaShieldAlt } from "react-icons/fa";
 
 const IOS_APP_STORE_URL = "https://apps.apple.com/ng/app/neuvault/id6759370392";
+const ANDROID_PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=app.neuvault";
 type DevicePlatform = "ios" | "android" | "other";
 
 const floatingIcons = [
@@ -73,20 +74,6 @@ export default function Hero() {
   }, []);
 
   const handleDownloadClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    if (window.innerWidth < 700 && devicePlatform === "android") {
-      event.preventDefault();
-
-      const mobileTriggerSection = document.getElementById("see-it-in-action");
-      if (!mobileTriggerSection) {
-        return;
-      }
-
-      const navOffset = 92;
-      const top = mobileTriggerSection.getBoundingClientRect().top + window.scrollY - navOffset;
-      window.scrollTo({ top, behavior: "smooth" });
-      return;
-    }
-
     if (window.innerWidth < 700) {
       return;
     }
@@ -103,11 +90,15 @@ export default function Hero() {
     window.scrollTo({ top, behavior: "smooth" });
   };
 
-  const isAndroidMobile = devicePlatform === "android";
-  const downloadLabel = isAndroidMobile ? "Android coming soon" : "Explore with free 500 credits";
-  const downloadClassName = isAndroidMobile
-    ? "inline-flex items-center justify-center rounded-full border border-white/16 bg-white/8 px-6 py-3 text-base font-semibold text-white/72"
-    : "inline-flex items-center justify-center rounded-full bg-[#3F8CFF] px-6 py-3 text-base font-semibold text-white shadow-[0_18px_40px_-20px_rgba(63,140,255,0.9)] hover:bg-[#60aaff]";
+  const downloadUrl = devicePlatform === "android" ? ANDROID_PLAY_STORE_URL : IOS_APP_STORE_URL;
+  const downloadLabel =
+    devicePlatform === "android"
+      ? "Download on Google Play"
+      : devicePlatform === "ios"
+        ? "Download on the App Store"
+        : "Explore with free 500 credits";
+  const downloadClassName =
+    "inline-flex items-center justify-center rounded-full bg-[#3F8CFF] px-6 py-3 text-base font-semibold text-white shadow-[0_18px_40px_-20px_rgba(63,140,255,0.9)] hover:bg-[#60aaff]";
 
   return (
     <section className="relative overflow-hidden px-6 pb-24 pt-32 text-white md:pb-28 md:pt-40">
@@ -200,11 +191,10 @@ export default function Hero() {
             transition={{ delay: 0.62, duration: 0.45 }}
           >
             <a
-              href={IOS_APP_STORE_URL}
+              href={downloadUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleDownloadClick}
-              aria-disabled={isAndroidMobile}
               className={downloadClassName}
             >
               {downloadLabel}

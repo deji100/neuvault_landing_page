@@ -4,7 +4,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FaApple, FaClock, FaDownload, FaGooglePlay } from "react-icons/fa";
 
-const ANDROID_URL = process.env.NEXT_PUBLIC_ANDROID_URL?.trim() || undefined;
+const ANDROID_URL =
+  process.env.NEXT_PUBLIC_ANDROID_URL?.trim() ||
+  "https://play.google.com/store/apps/details?id=app.neuvault";
 const IOS_URL =
   process.env.NEXT_PUBLIC_IOS_URL?.trim() || "https://apps.apple.com/ng/app/neuvault/id6759370392";
 const DESKTOP_TRIGGER_OFFSET = 140;
