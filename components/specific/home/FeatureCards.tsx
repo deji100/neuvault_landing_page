@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import {
@@ -59,8 +59,8 @@ const pillars = [
 
 const supportPoints = [
   {
-    title: "Organize automatically",
-    desc: "Items can be grouped into the right bucket during intake so the vault stays usable as it grows.",
+    title: "Organize automatically or group things yourself",
+    desc: "Items can be organized automatically during intake, and you can also group them manually when you want more control.",
     icon: <FaLayerGroup className="text-[#6ce6b3]" size={18} />,
   },
   {

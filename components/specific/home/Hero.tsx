@@ -37,6 +37,13 @@ const trustPills = [
   "Your documents stay on your device",
 ];
 
+const workflowShortcuts = [
+  { href: "/scan-organization", label: "Scan and organize documents" },
+  { href: "/document-reminder", label: "Track renewal dates" },
+  { href: "/document-retrieval", label: "Find documents faster" },
+  { href: "/secure-document-backup", label: "Back up important files" },
+];
+
 const outcomeCards = [
   {
     title: "Find what matters before the stress kicks in",
@@ -156,7 +163,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25, duration: 0.55 }}
           >
-            Stop forgetting your documents. Organize everything in one private, intelligent vault.
+            Scan, organize, find, and back up important documents in one private vault.
           </motion.h1>
 
           <motion.p
@@ -165,7 +172,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.38, duration: 0.55 }}
           >
-            NeuVault helps you turn scattered files, notes, scans, and voice notes into one organized system that stays searchable, private, and easy to trust.
+            NeuVault helps you turn scattered files, scans, notes, and voice notes into one organized, searchable system with reminder dates, private backups, and local-first control.
           </motion.p>
 
           <motion.div
@@ -181,6 +188,23 @@ export default function Hero() {
               >
                 {pill}
               </span>
+            ))}
+          </motion.div>
+
+          <motion.div
+            className="mt-6 flex flex-wrap gap-3 text-sm"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.56, duration: 0.45 }}
+          >
+            {workflowShortcuts.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="rounded-full border border-white/12 bg-white/5 px-4 py-2 text-white/78 hover:bg-white/10 hover:text-white"
+              >
+                {item.label}
+              </Link>
             ))}
           </motion.div>
 

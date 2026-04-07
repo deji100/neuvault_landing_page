@@ -4,6 +4,7 @@ import { notFound, permanentRedirect } from "next/navigation";
 import WorkflowDemoPlayer from "@/components/specific/home/WorkflowDemoPlayer";
 import { LOGO_URL } from "@/lib/brand";
 import { demoVideos } from "@/lib/demo-videos";
+import { getGuidesForSolution } from "@/lib/guides";
 import {
   ANDROID_PLAY_STORE_URL,
   IOS_APP_STORE_URL,
@@ -12,6 +13,7 @@ import {
   buildMetadata,
   buildSoftwareApplicationJsonLd,
   getSolutionPageBySlug,
+  getSolutionPagesBySlugs,
   solutionPages,
 } from "@/lib/seo";
 
@@ -62,7 +64,7 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
         limitation:
           "Cloud drives store files, but they usually leave the real organizing work to manual folders, filenames, and memory.",
         neuvaultAdvantage:
-          "NeuVault adds smart grouping, summaries, tags, linked items, and document-aware follow-up actions around the file itself.",
+          "NeuVault adds automatic organization, manual grouping when needed, summaries, tags, linked items, and document-aware follow-up actions around the file itself.",
       },
       {
         title: "Compared with a notes app plus attachments",
@@ -76,14 +78,14 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
         limitation:
           "Manual cleanup works briefly, then collapses once new uploads, scans, and voice notes arrive from different places.",
         neuvaultAdvantage:
-          "NeuVault is designed to organize during intake so the vault stays usable as volume grows.",
+          "NeuVault is designed to organize during intake while still letting you group things manually as the vault grows.",
       },
     ],
     extraFaqs: [
       {
         question: "Can NeuVault organize documents without forcing strict folders first?",
         answer:
-          "Yes. NeuVault is designed so intake, grouping, summaries, and linked context reduce how much manual folder maintenance you need upfront.",
+          "Yes. NeuVault is designed so automatic organization, manual grouping, summaries, and linked context reduce how much folder maintenance you need upfront.",
       },
       {
         question: "Is this only for personal paperwork?",
@@ -434,7 +436,7 @@ export async function generateMetadata({ params }: SolutionPageProps): Promise<M
   if (!resolved) {
     return buildMetadata({
       title: "Page Not Found",
-      description: "NeuVault workflow page not found.",
+      description: "NeuVault page not found.",
       path: "/",
       noindex: true,
     });
@@ -464,7 +466,8 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
   const supplemental = supplementalContentBySlug[page.slug];
   const pageFaqs = [...page.faqs, ...supplemental.extraFaqs];
   const demoVideo = demoVideos.find((item) => item.title === demoVideoTitleBySlug[page.slug]) ?? null;
-  const relatedPages = solutionPages.filter((item) => item.slug !== page.slug).slice(0, 3);
+  const relatedPages = getSolutionPagesBySlugs(page.relatedSlugs);
+  const relatedGuides = getGuidesForSolution(page.slug).slice(0, 2);
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: page.metaTitle, path: `/${page.slug}` },
@@ -603,7 +606,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
           <div className="max-w-3xl">
             <h2 className="text-2xl font-semibold text-white">Where this workflow fits best</h2>
             <p className="mt-4 text-sm leading-7 text-white/68">
-              These are the real situations where this NeuVault workflow is stronger than a generic document page with broad marketing copy.
+              These are the situations where this part of NeuVault is most useful in day-to-day life, not just in theory.
             </p>
           </div>
 
@@ -643,10 +646,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
                 Also useful with
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
-                {solutionPages
-                  .filter((item) => item.slug !== page.slug)
-                  .slice(0, 5)
-                  .map((item) => (
+                {relatedPages.map((item) => (
                     <Link
                       key={item.slug}
                       href={`/${item.slug}`}
@@ -664,7 +664,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
           <div className="max-w-3xl">
             <h2 className="text-2xl font-semibold text-white">How NeuVault compares</h2>
             <p className="mt-4 text-sm leading-7 text-white/68">
-              Search engines need topical depth, and visitors need a clear answer to why this workflow should live in NeuVault instead of a generic alternative.
+              See how this workflow compares with more generic tools and why NeuVault is built to handle the surrounding context too.
             </p>
           </div>
 
@@ -681,6 +681,36 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
             ))}
           </div>
         </section>
+        {relatedGuides.length ? (
+          <section className="mt-14 rounded-[1.8rem] border border-white/10 bg-white/5 p-7 backdrop-blur-sm">
+            <div className="flex items-end justify-between gap-5">
+              <div>
+                <h2 className="text-2xl font-semibold text-white">Helpful guides for this workflow</h2>
+                <p className="mt-3 max-w-2xl text-sm leading-7 text-white/68">
+                  These guides expand on closely related document tasks so you can go deeper without losing your place.
+                </p>
+              </div>
+              <Link href="/guides" className="hidden text-sm font-semibold text-[#9dd9ff] hover:text-white md:inline-flex">
+                View all guides
+              </Link>
+            </div>
+
+            <div className="mt-6 grid gap-5 md:grid-cols-2">
+              {relatedGuides.map((guide) => (
+                <Link
+                  key={guide.slug}
+                  href={`/guides/${guide.slug}`}
+                  className="rounded-[1.4rem] border border-white/10 bg-black/20 p-5 transition hover:border-[#6DD1FF]/28 hover:bg-white/8"
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#9dd9ff]">{guide.primaryKeyword}</p>
+                  <h3 className="mt-3 text-lg font-semibold text-white">{guide.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-white/66">{guide.description}</p>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
         <section className="mt-14 rounded-[1.8rem] border border-white/10 bg-white/5 p-7 backdrop-blur-sm">
           <h2 className="text-2xl font-semibold text-white">Frequently asked questions</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -690,6 +720,34 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
                 <p className="mt-3 text-sm leading-7 text-white/68">{faq.answer}</p>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section className="mt-14 rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(11,19,34,0.94),rgba(9,15,27,0.82))] p-7">
+          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">Take the next step</p>
+              <h2 className="mt-4 text-2xl font-semibold text-white">{page.ctaTitle}</h2>
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-white/70">{page.ctaDescription}</p>
+            </div>
+            <div className="flex flex-wrap gap-3 lg:justify-end">
+              <a
+                href={IOS_APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full bg-[#3F8CFF] px-5 py-3 text-sm font-semibold text-white hover:bg-[#60aaff]"
+              >
+                Get NeuVault on the App Store
+              </a>
+              <a
+                href={ANDROID_PLAY_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-white/14 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
+              >
+                Get NeuVault on Google Play
+              </a>
+            </div>
           </div>
         </section>
 

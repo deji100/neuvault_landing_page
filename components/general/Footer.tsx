@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { guidePages } from "@/lib/guides";
 import { ANDROID_PLAY_STORE_URL, IOS_APP_STORE_URL, solutionPages } from "@/lib/seo";
 
 const scrollToId = (id: string) => {
@@ -14,10 +15,12 @@ const scrollToId = (id: string) => {
 };
 
 export default function Footer() {
+  const featuredGuides = guidePages.slice(0, 3);
+
   return (
     <footer id="site-footer" className="relative border-t border-white/10 bg-[#06101c] px-6 py-16 text-gray-400">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-12 grid grid-cols-1 gap-10 lg:grid-cols-[1.25fr_0.8fr_0.95fr_0.8fr_1fr]">
+        <div className="mb-12 grid grid-cols-1 gap-10 lg:grid-cols-[1.15fr_0.7fr_0.95fr_0.95fr_0.8fr_1fr]">
           <div className="space-y-5">
             <Link href="/" className="flex items-center gap-3">
               <Image
@@ -58,11 +61,11 @@ export default function Footer() {
                   Watch the 10 demos
                 </button>
               </li>
-              {/* <li>
-                <button type="button" onClick={() => scrollToId("waitlist")} className="hover:text-white">
-                  Join beta
-                </button>
-              </li> */}
+              <li>
+                <Link href="/guides" className="hover:text-white">
+                  Guides
+                </Link>
+              </li>
               <li>
                 <a href={IOS_APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white">
                   App Store
@@ -93,6 +96,26 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-white/80">
+              Guides
+            </h3>
+            <ul className="space-y-3 text-sm text-white/70">
+              {featuredGuides.map((guide) => (
+                <li key={guide.slug}>
+                  <Link href={`/guides/${guide.slug}`} className="hover:text-white">
+                    {guide.metaTitle}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href="/guides" className="text-[#8ec0ff] hover:text-white">
+                  View all guides
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -161,5 +184,3 @@ export default function Footer() {
     </footer>
   );
 }
-
-

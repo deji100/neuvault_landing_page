@@ -7,6 +7,7 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Contact NeuVault about the private document vault for organizing files, reminders, scans, notes, voice capture, and secure backup.",
   path: "/contact",
+  noindex: true,
   keywords: ["contact neuvault", "neuvault support", "document vault support"],
 });
 

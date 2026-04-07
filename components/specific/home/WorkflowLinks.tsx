@@ -15,7 +15,7 @@ export default function WorkflowLinks() {
             Explore by workflow
           </p>
           <h2 className="mt-4 text-3xl font-bold leading-tight md:text-4xl">
-            Search-focused pages for the jobs NeuVault actually handles.
+            Explore the document workflows NeuVault is built for.
           </h2>
           <p className="mt-5 text-base leading-8 text-white/68 md:text-lg">
             If you are comparing document apps by problem, not by brand, start with the workflow that

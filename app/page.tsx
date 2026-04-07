@@ -7,10 +7,10 @@ import TestimonialsSection from "@/components/specific/home/Testimonials";
 import FloatingDownloadButtons from "@/components/specific/home/FloatingDownloadButtons";
 import FloatingBlobs from "@/components/specific/home/FloatingBlobs";
 import WorkflowLinks from "@/components/specific/home/WorkflowLinks";
+import GuidesPreview from "@/components/specific/home/GuidesPreview";
 import { LOGO_URL } from "@/lib/brand";
 import {
   ANDROID_PLAY_STORE_URL,
-  DEFAULT_DESCRIPTION,
   IOS_APP_STORE_URL,
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
@@ -22,15 +22,16 @@ import {
 } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Private Document Vault for Search, Reminders, Backup, Notes, and Scans",
-  description: DEFAULT_DESCRIPTION,
+  title: "Private Document Vault App to Scan, Organize, Find, and Back Up Important Documents",
+  description:
+    "NeuVault is a private, local-first document vault app to scan and organize documents, find files faster, set reminder dates, export notes, transcribe voice notes, and back up important records securely.",
   path: "/",
   keywords: [
     "private document vault app",
-    "organize scans notes and uploads",
-    "voice note transcription",
-    "document reminders and resurfacing",
-    "encrypted vault backup",
+    "scan and organize documents app",
+    "document reminder app",
+    "document retrieval app",
+    "secure document backup app",
   ],
 });
 
@@ -49,7 +50,12 @@ export default function Home() {
     {
       question: "What kind of app is NeuVault?",
       answer:
-        "NeuVault is a private, local-first mobile document vault for organizing files, scans, notes, voice capture, reminders, and encrypted backups.",
+        "NeuVault is a private, local-first mobile document vault for scanning and organizing documents, finding files faster, setting reminders, exporting notes, and keeping encrypted backups under your control.",
+    },
+    {
+      question: "Can NeuVault help me scan and organize documents?",
+      answer:
+        "Yes. NeuVault includes scan intake, OCR-backed extraction, automatic organization, manual grouping when needed, and searchable retrieval so scanned paperwork does not get lost after capture.",
     },
     {
       question: "Does NeuVault support both iPhone and Android?",
@@ -103,6 +109,7 @@ export default function Home() {
         <SeeItInAction />
         <FeaturesSection />
         <WorkflowLinks />
+        <GuidesPreview />
         <HowItWorks />
         <TestimonialsSection />
         <FloatingDownloadButtons />
@@ -110,7 +117,3 @@ export default function Home() {
     </main>
   );
 }
-
-
-
-

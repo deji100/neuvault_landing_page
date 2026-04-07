@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -123,7 +123,7 @@ const steps: Step[] = [
   {
     title: "3. Organize",
     description:
-      "Documents can land in the right group automatically, and related items can stay linked instead of drifting apart.",
+      "Documents can land in the right group automatically, and you can still group related items manually when you want tighter control.",
     icon: <FaLayerGroup className="text-[#6ce6b3]" size={28} />,
     demo: (
       <div className="mt-4 rounded-xl border border-white/10 bg-black/25 p-4">

@@ -7,6 +7,7 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Read the NeuVault privacy policy for the local-first mobile document vault, including data handling, backup, reminders, notes, scans, and assistant workflows.",
   path: "/privacy-policy",
+  noindex: true,
   keywords: ["neuvault privacy policy", "document vault privacy policy", "local-first privacy policy"],
 });
 

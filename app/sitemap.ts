@@ -1,13 +1,8 @@
 import type { MetadataRoute } from "next";
+import { guidePages } from "@/lib/guides";
 import { SITE_URL, solutionPages } from "@/lib/seo";
 
-const staticRoutes = [
-  "/",
-  "/contact",
-  "/privacy-policy",
-  "/terms-and-conditions",
-  "/account-deletion",
-];
+const staticRoutes = ["/", "/guides", "/press"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -15,8 +10,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries = staticRoutes.map((route) => ({
     url: `${SITE_URL}${route}`,
     lastModified: now,
-    changeFrequency: (route === "/" ? "weekly" : "monthly") as "weekly" | "monthly",
-    priority: route === "/" ? 1 : 0.7,
+    changeFrequency: "weekly" as const,
+    priority: route === "/" ? 1 : route === "/press" ? 0.55 : 0.75,
   }));
 
   const solutionEntries = solutionPages.map((page) => ({
@@ -26,5 +21,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticEntries, ...solutionEntries];
+  const guideEntries = guidePages.map((guide) => ({
+    url: `${SITE_URL}/guides/${guide.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.65,
+  }));
+
+  return [...staticEntries, ...solutionEntries, ...guideEntries];
 }

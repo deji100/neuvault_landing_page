@@ -7,6 +7,7 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Read the NeuVault terms and conditions for the private document vault app across uploads, scans, notes, voice, reminders, assistant help, and secure backup.",
   path: "/terms-and-conditions",
+  noindex: true,
   keywords: ["neuvault terms", "document vault terms", "neuvault terms and conditions"],
 });
 
