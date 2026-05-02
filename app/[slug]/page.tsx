@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
+
 import WorkflowDemoPlayer from "@/components/specific/home/WorkflowDemoPlayer";
 import { LOGO_URL } from "@/lib/brand";
 import { demoVideos } from "@/lib/demo-videos";
 import { getGuidesForSolution } from "@/lib/guides";
+
 import {
   ANDROID_PLAY_STORE_URL,
   IOS_APP_STORE_URL,
+  SITE_URL,
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
   buildMetadata,
@@ -25,7 +28,11 @@ type SolutionPageProps = {
 
 type SupplementalContent = {
   useCases: { title: string; description: string }[];
-  comparisons: { title: string; limitation: string; neuvaultAdvantage: string }[];
+  comparisons: {
+    title: string;
+    limitation: string;
+    neuvaultAdvantage: string;
+  }[];
   extraFaqs: { question: string; answer: string }[];
 };
 
@@ -43,17 +50,17 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
   "document-organization": {
     useCases: [
       {
-        title: "Personal records that keep multiplying",
+        title: "Scattered personal records",
         description:
-          "Keep IDs, warranties, receipts, travel paperwork, and household records inside one structure instead of scattered downloads and screenshots.",
+          "Bring IDs, receipts, warranties, agreements, travel files, and household paperwork into one private vault instead of leaving them across downloads, screenshots, and folders.",
       },
       {
-        title: "Business admin without a document team",
+        title: "Business admin without folder chaos",
         description:
-          "Organize invoices, tax files, contracts, and proof-of-payment records without maintaining a complicated shared-drive system.",
+          "Keep invoices, tax files, contracts, and proof-of-payment records organized without maintaining a complicated shared-drive system.",
       },
       {
-        title: "School, research, and mixed-reference folders",
+        title: "School, research, and mixed records",
         description:
           "Keep PDFs, notes, scans, and voice capture tied to the same topic so retrieval still works later when memory is partial.",
       },
@@ -64,19 +71,19 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
         limitation:
           "Cloud drives store files, but they usually leave the real organizing work to manual folders, filenames, and memory.",
         neuvaultAdvantage:
-          "NeuVault adds automatic organization, manual grouping when needed, summaries, tags, linked items, and document-aware follow-up actions around the file itself.",
+          "NeuVault adds automatic organization, manual grouping, summaries, tags, linked records, and follow-up actions around the file itself.",
       },
       {
         title: "Compared with a notes app plus attachments",
         limitation:
           "A notes app can describe a document, but the file, reminder, and surrounding context usually split across separate tools.",
         neuvaultAdvantage:
-          "NeuVault keeps the note, upload, scan, reminder, and related records in one private workflow instead of making you stitch them back together.",
+          "NeuVault keeps the note, upload, scan, reminder, and related records in one private workflow.",
       },
       {
         title: "Compared with manual folder cleanup",
         limitation:
-          "Manual cleanup works briefly, then collapses once new uploads, scans, and voice notes arrive from different places.",
+          "Manual cleanup works briefly, then collapses once new uploads, scans, screenshots, and voice notes arrive from different places.",
         neuvaultAdvantage:
           "NeuVault is designed to organize during intake while still letting you group things manually as the vault grows.",
       },
@@ -85,7 +92,7 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
       {
         question: "Can NeuVault organize documents without forcing strict folders first?",
         answer:
-          "Yes. NeuVault is designed so automatic organization, manual grouping, summaries, and linked context reduce how much folder maintenance you need upfront.",
+          "Yes. NeuVault combines automatic organization, manual grouping, summaries, and linked context so you do not need perfect folders before the vault becomes useful.",
       },
       {
         question: "Is this only for personal paperwork?",
@@ -94,6 +101,7 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
       },
     ],
   },
+
   "document-reminder": {
     useCases: [
       {
@@ -130,16 +138,16 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
       {
         title: "Compared with manual date tracking",
         limitation:
-          "Spreadsheets and manual reminders break when dates are buried inside many documents or scattered across multiple people.",
+          "Spreadsheets and manual reminders break when dates are buried inside many documents or scattered across multiple places.",
         neuvaultAdvantage:
-          "NeuVault adds smart suggestions and resurfacing flows designed around dates that live inside real paperwork.",
+          "NeuVault adds Attention and resurfacing flows designed around dates that live inside real paperwork.",
       },
     ],
     extraFaqs: [
       {
         question: "Can NeuVault handle both one-time and recurring reminders?",
         answer:
-          "Yes. NeuVault supports resurfacing for future revisit workflows, including recurring cadence and one-time reminder behavior.",
+          "Yes. NeuVault supports future resurfacing workflows, including recurring cadence and one-time reminder behavior.",
       },
       {
         question: "Why use NeuVault instead of a calendar alert?",
@@ -148,31 +156,32 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
       },
     ],
   },
+
   "document-retrieval": {
     useCases: [
       {
         title: "Pressure moments when time is short",
         description:
-          "Pull up the right agreement, receipt, ID, or medical file fast when you only remember part of the story and need it now.",
+          "Pull up the right agreement, receipt, ID, certificate, or medical file fast when you only remember part of the story.",
       },
       {
         title: "Large mixed vaults",
         description:
-          "Find what matters in a vault that contains uploads, scans, notes, and voice-derived records instead of only cleanly named files.",
+          "Find what matters in a vault that contains uploads, scans, screenshots, notes, and voice-derived records instead of only cleanly named files.",
       },
       {
         title: "Question-led retrieval",
         description:
-          "Use assistant-style prompts to narrow down results when the faster route is asking what happened rather than browsing folders manually.",
+          "Use Nova to narrow down results when asking what happened is faster than browsing folders manually.",
       },
     ],
     comparisons: [
       {
         title: "Compared with filename search",
         limitation:
-          "Filename search depends on remembering exact wording, which breaks down when documents arrive from email, scans, or old exports.",
+          "Filename search depends on remembering exact wording, which breaks down when documents arrive from email, scans, WhatsApp, or old exports.",
         neuvaultAdvantage:
-          "NeuVault supports retrieval through summaries, tags, groups, linked items, and assistant-guided search instead of relying on filenames alone.",
+          "NeuVault supports retrieval through summaries, tags, groups, linked records, and Nova instead of relying on filenames alone.",
       },
       {
         title: "Compared with a plain document repository",
@@ -184,7 +193,7 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
       {
         title: "Compared with searching across many apps",
         limitation:
-          "Context gets fragmented when documents, notes, and reminders live in separate tools, making every retrieval attempt partial.",
+          "Context gets fragmented when documents, notes, and reminders live in separate tools.",
         neuvaultAdvantage:
           "NeuVault reduces that fragmentation by letting more of the workflow live in one vault-aware system.",
       },
@@ -193,21 +202,22 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
       {
         question: "Does retrieval work across notes and linked records too?",
         answer:
-          "Yes. NeuVault is built so notes, grouped items, tags, and linked records all improve recall instead of staying isolated from the retrieval flow.",
+          "Yes. NeuVault is built so notes, grouped items, tags, and linked records all improve recall instead of staying isolated from retrieval.",
       },
       {
         question: "Why is NeuVault stronger than a standard search bar?",
         answer:
-          "Because standard search usually depends on exact text matches. NeuVault adds document context, grouping, assistant help, and linked items so you can retrieve what you need with less precision.",
+          "Because standard search usually depends on exact text matches. NeuVault adds document context, grouping, Nova, and linked records so you can retrieve what you need with less precision.",
       },
     ],
   },
+
   "secure-document-backup": {
     useCases: [
       {
         title: "Protecting irreplaceable records",
         description:
-          "Keep a recoverable copy of IDs, contracts, receipts, health files, and long-term notes without surrendering the vault to always-on cloud sync.",
+          "Keep a recoverable copy of IDs, contracts, receipts, health files, school records, and long-term notes without surrendering the vault to always-on cloud sync.",
       },
       {
         title: "Portable recovery planning",
@@ -217,7 +227,7 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
       {
         title: "Backup discipline without guesswork",
         description:
-          "Use reminder settings so secure backup becomes a repeatable routine instead of a task you remember only after a problem.",
+          "Use reminder settings so secure backup becomes a repeatable routine instead of something you remember only after a problem.",
       },
     ],
     comparisons: [
@@ -256,22 +266,23 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
       },
     ],
   },
+
   "notes-export": {
     useCases: [
       {
-        title: "Meeting and follow-up notes with source files",
+        title: "Notes with source documents",
         description:
-          "Keep the note beside the contract, invoice, scan, or uploaded file it references, then export it when you need to share or archive the outcome.",
+          "Keep the note beside the contract, invoice, scan, AI response, or uploaded file it references, then export it when you need to share or archive the outcome.",
       },
       {
         title: "Reporting and spreadsheet workflows",
         description:
-          "Export structured note content to CSV when your next step is analysis, handoff, or data cleanup in another tool.",
+          "Export structured note content when your next step is analysis, handoff, or cleanup in another tool.",
       },
       {
         title: "Portable records for clients or teams",
         description:
-          "Move note content into PDF or Word when a stakeholder needs a durable format outside the app.",
+          "Move note content into PDF or Word when someone needs a durable format outside the app.",
       },
     ],
     comparisons: [
@@ -287,7 +298,7 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
         limitation:
           "Manual copy-paste into Word or spreadsheets is slow, inconsistent, and easy to break once formatting matters.",
         neuvaultAdvantage:
-          "NeuVault provides dedicated export flows for PDF, Word, and CSV so the output stays structured and usable.",
+          "NeuVault provides dedicated export flows so the output stays structured and usable.",
       },
       {
         title: "Compared with leaving notes trapped in one app",
@@ -304,18 +315,19 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
           "NeuVault includes dedicated note export flows for PDF, Word, and CSV output.",
       },
       {
-        question: "Is the exported note still structured or just plain text?",
+        question: "Can Nova responses become notes?",
         answer:
-          "NeuVault is built to preserve useful structure during export so the result is easier to read, share, and process elsewhere.",
+          "Yes. Useful Nova responses can become notes, helping important AI-generated context stay inside the vault instead of disappearing in chat history.",
       },
     ],
   },
+
   "voice-note-transcription": {
     useCases: [
       {
         title: "Fast capture during movement",
         description:
-          "Save a thought, instruction, or reminder while walking, driving, or handling paperwork without needing to stop and type.",
+          "Save a thought, instruction, or reminder while walking, commuting, or handling paperwork without needing to stop and type.",
       },
       {
         title: "Meeting and field-note capture",
@@ -364,6 +376,7 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
       },
     ],
   },
+
   "scan-organization": {
     useCases: [
       {
@@ -388,7 +401,7 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
         limitation:
           "Scanner apps are good at capture, but many stop at producing a PDF or image with little help for long-term organization.",
         neuvaultAdvantage:
-          "NeuVault continues after capture with OCR, grouping, summaries, tags, linked items, and vault-based retrieval.",
+          "NeuVault continues after capture with OCR, grouping, summaries, tags, linked records, and vault-based retrieval.",
       },
       {
         title: "Compared with keeping scans in photos",
@@ -429,7 +442,9 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export async function generateMetadata({ params }: SolutionPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: SolutionPageProps): Promise<Metadata> {
   const { slug } = await params;
   const resolved = getSolutionPageBySlug(slug);
 
@@ -446,8 +461,22 @@ export async function generateMetadata({ params }: SolutionPageProps): Promise<M
     title: resolved.page.metaTitle,
     description: resolved.page.description,
     path: `/${resolved.canonicalSlug}`,
-    keywords: resolved.page.keywords,
+    keywords: [
+      resolved.page.primaryKeyword,
+      ...resolved.page.secondaryKeywords,
+      ...resolved.page.keywords,
+      "document memory",
+      "private AI document vault",
+      "local-first document app",
+      "NeuVault",
+    ],
   });
+}
+
+function jsonLdScript(data: Record<string, unknown>) {
+  return {
+    __html: JSON.stringify(data).replace(/</g, "\\u003c"),
+  };
 }
 
 export default async function SolutionPage({ params }: SolutionPageProps) {
@@ -464,64 +493,73 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
 
   const page = resolved.page;
   const supplemental = supplementalContentBySlug[page.slug];
+
+  if (!supplemental) {
+    notFound();
+  }
+
   const pageFaqs = [...page.faqs, ...supplemental.extraFaqs];
-  const demoVideo = demoVideos.find((item) => item.title === demoVideoTitleBySlug[page.slug]) ?? null;
+  const demoVideo =
+    demoVideos.find((item) => item.title === demoVideoTitleBySlug[page.slug]) ??
+    null;
+
   const relatedPages = getSolutionPagesBySlugs(page.relatedSlugs);
   const relatedGuides = getGuidesForSolution(page.slug).slice(0, 2);
+
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: page.metaTitle, path: `/${page.slug}` },
   ]);
+
   const faqJsonLd = buildFaqJsonLd(pageFaqs);
+
   const softwareJsonLd = {
     ...buildSoftwareApplicationJsonLd(),
     image: LOGO_URL,
+    name: `NeuVault ${page.metaTitle}`,
+    url: `${SITE_URL}/${page.slug}`,
+    description: page.description,
   };
+
+  const videoJsonLd = demoVideo
+    ? {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        name: demoVideo.title,
+        description: demoVideo.summary,
+        uploadDate: demoVideo.uploadDate,
+        contentUrl: demoVideo.url,
+        embedUrl: demoVideo.url,
+        thumbnailUrl: LOGO_URL,
+        publisher: {
+          "@type": "Organization",
+          name: "NeuVault",
+          logo: {
+            "@type": "ImageObject",
+            url: LOGO_URL,
+          },
+        },
+      }
+    : null;
 
   return (
     <main className="relative overflow-hidden bg-[#08111d] px-6 pb-24 pt-28 text-white">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        dangerouslySetInnerHTML={jsonLdScript(breadcrumbJsonLd)}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        dangerouslySetInnerHTML={jsonLdScript(faqJsonLd)}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            ...softwareJsonLd,
-            name: `NeuVault ${page.metaTitle}`,
-            url: `https://neuvault.app/${page.slug}`,
-            description: page.description,
-          }),
-        }}
+        dangerouslySetInnerHTML={jsonLdScript(softwareJsonLd)}
       />
-      {demoVideo ? (
+      {videoJsonLd ? (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "VideoObject",
-              name: demoVideo.title,
-              description: demoVideo.summary,
-              uploadDate: demoVideo.uploadDate,
-              contentUrl: demoVideo.url,
-              embedUrl: demoVideo.url,
-              thumbnailUrl: LOGO_URL,
-              publisher: {
-                "@type": "Organization",
-                name: "NeuVault",
-                logo: {
-                  "@type": "ImageObject",
-                  url: LOGO_URL,
-                },
-              },
-            }),
-          }}
+          dangerouslySetInnerHTML={jsonLdScript(videoJsonLd)}
         />
       ) : null}
 
@@ -531,7 +569,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
       </div>
 
       <div className="relative mx-auto max-w-6xl">
-        <nav className="text-sm text-white/55">
+        <nav className="text-sm text-white/55" aria-label="Breadcrumb">
           <Link href="/" className="hover:text-white">
             Home
           </Link>
@@ -539,34 +577,51 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
           <span>{page.metaTitle}</span>
         </nav>
 
-        <section className="mt-8 rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-sm md:p-10">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">{page.eyebrow}</p>
-          <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-tight md:text-5xl">{page.title}</h1>
-          <p className="mt-6 max-w-3xl text-base leading-8 text-white/72 md:text-lg">{page.intro}</p>
+        <section className="relative mt-8 overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-sm md:p-10">
+          <div
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(63,140,255,0.18),transparent_34%)]"
+            aria-hidden="true"
+          />
 
-          <div className="mt-8 flex flex-wrap gap-3 text-sm">
-            <a
-              href={IOS_APP_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full bg-[#3F8CFF] px-5 py-3 font-semibold text-white hover:bg-[#60aaff]"
-            >
-              Get NeuVault on the App Store
-            </a>
-            <a
-              href={ANDROID_PLAY_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full bg-[#3F8CFF] px-5 py-3 font-semibold text-white hover:bg-[#60aaff]"
-            >
-              Get NeuVault on Google Play
-            </a>
-            <Link
-              href="/#see-it-in-action"
-              className="rounded-full border border-white/14 bg-white/5 px-5 py-3 font-semibold text-white hover:bg-white/10"
-            >
-              Watch all product demos
-            </Link>
+          <div className="relative">
+            <p className="inline-flex rounded-full border border-[#6DD1FF]/15 bg-[#6DD1FF]/8 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#9dd9ff]">
+              {page.eyebrow}
+            </p>
+
+            <h1 className="mt-5 max-w-4xl text-4xl font-bold leading-tight md:text-6xl">
+              {page.title}
+            </h1>
+
+            <p className="mt-6 max-w-3xl text-base leading-8 text-white/72 md:text-lg">
+              {page.intro}
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-3 text-sm">
+              <a
+                href={IOS_APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full bg-[#3F8CFF] px-5 py-3 font-semibold text-white hover:bg-[#60aaff]"
+              >
+                Get NeuVault on the App Store
+              </a>
+
+              <a
+                href={ANDROID_PLAY_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-white/14 bg-white/5 px-5 py-3 font-semibold text-white hover:bg-white/10"
+              >
+                Get NeuVault on Google Play
+              </a>
+
+              <Link
+                href="/#see-it-in-action"
+                className="rounded-full border border-white/14 bg-white/5 px-5 py-3 font-semibold text-white hover:bg-white/10"
+              >
+                Watch product demos
+              </Link>
+            </div>
           </div>
         </section>
 
@@ -578,43 +633,78 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
                 Matching product demo
               </p>
-              <h2 className="mt-4 text-2xl font-semibold text-white">{demoVideo.title}</h2>
-              <p className="mt-4 text-sm leading-7 text-white/70">{demoVideo.summary}</p>
+
+              <h2 className="mt-4 text-2xl font-semibold text-white">
+                {demoVideo.title}
+              </h2>
+
+              <p className="mt-4 text-sm leading-7 text-white/70">
+                {demoVideo.summary}
+              </p>
+
               <div className="mt-6 inline-flex rounded-full border border-white/12 bg-white/8 px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white/76">
                 {demoVideo.tag}
               </div>
+
               <p className="mt-6 text-sm leading-7 text-white/68">
-                This page now shows the most relevant NeuVault demo directly in context instead of making visitors bounce back to the homepage carousel.
+                This demo shows how the workflow fits into the larger NeuVault
+                loop: capture important records, keep context attached, find
+                what matters, and recover your vault when needed.
               </p>
             </div>
           </section>
         ) : null}
 
         <section className="mt-14 grid gap-6 lg:grid-cols-3">
-          {page.benefits.map((benefit) => (
+          {page.benefits.map((benefit, index) => (
             <article
               key={benefit.title}
               className="rounded-[1.6rem] border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
             >
-              <h2 className="text-xl font-semibold text-white">{benefit.title}</h2>
-              <p className="mt-3 text-sm leading-7 text-white/68">{benefit.description}</p>
+              <span className="mb-4 inline-flex h-8 w-8 items-center justify-center rounded-full border border-[#6DD1FF]/20 bg-[#6DD1FF]/10 text-sm font-semibold text-[#9dd9ff]">
+                {index + 1}
+              </span>
+
+              <h2 className="text-xl font-semibold text-white">
+                {benefit.title}
+              </h2>
+
+              <p className="mt-3 text-sm leading-7 text-white/68">
+                {benefit.description}
+              </p>
             </article>
           ))}
         </section>
 
         <section className="mt-14 rounded-[1.8rem] border border-white/10 bg-white/5 p-7 backdrop-blur-sm">
           <div className="max-w-3xl">
-            <h2 className="text-2xl font-semibold text-white">Where this workflow fits best</h2>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
+              Best fit
+            </p>
+
+            <h2 className="mt-3 text-2xl font-semibold text-white">
+              Where this workflow helps most
+            </h2>
+
             <p className="mt-4 text-sm leading-7 text-white/68">
-              These are the situations where this part of NeuVault is most useful in day-to-day life, not just in theory.
+              These are the moments where this part of NeuVault becomes useful
+              in everyday life, not just in a polished demo.
             </p>
           </div>
 
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {supplemental.useCases.map((item) => (
-              <article key={item.title} className="rounded-2xl border border-white/10 bg-black/20 p-5">
-                <h3 className="text-base font-semibold text-white">{item.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-white/68">{item.description}</p>
+              <article
+                key={item.title}
+                className="rounded-2xl border border-white/10 bg-black/20 p-5"
+              >
+                <h3 className="text-base font-semibold text-white">
+                  {item.title}
+                </h3>
+
+                <p className="mt-3 text-sm leading-7 text-white/68">
+                  {item.description}
+                </p>
               </article>
             ))}
           </div>
@@ -622,10 +712,20 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
 
         <section className="mt-14 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="rounded-[1.8rem] border border-white/10 bg-white/5 p-7 backdrop-blur-sm">
-            <h2 className="text-2xl font-semibold text-white">How NeuVault supports this workflow</h2>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
+              Product support
+            </p>
+
+            <h2 className="mt-3 text-2xl font-semibold text-white">
+              How NeuVault supports this
+            </h2>
+
             <div className="mt-5 space-y-4">
               {page.appProof.map((proof) => (
-                <div key={proof} className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                <div
+                  key={proof}
+                  className="rounded-2xl border border-white/10 bg-black/20 p-4"
+                >
                   <p className="text-sm leading-7 text-white/72">{proof}</p>
                 </div>
               ))}
@@ -633,28 +733,37 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
           </div>
 
           <div className="rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(11,19,34,0.92),rgba(9,15,27,0.78))] p-7">
-            <h2 className="text-2xl font-semibold text-white">Why this matters</h2>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
+              Why it matters
+            </p>
+
+            <h2 className="mt-3 text-2xl font-semibold text-white">
+              Useful records need more than storage.
+            </h2>
+
             <p className="mt-4 text-sm leading-7 text-white/70">
-              NeuVault is strongest when the document is not just stored, but retrievable, understandable,
-              and connected to the follow-up actions around it. That is why the product combines intake,
-              reminders, linked context, structured outputs, and private backup rather than solving only one
-              narrow part of the workflow.
+              NeuVault is strongest when a record is not just saved, but
+              retrievable, understandable, connected, remembered, and
+              recoverable. That is why the product combines intake, summaries,
+              reminders, linked context, Nova, and private backup instead of
+              solving only one narrow part of the workflow.
             </p>
 
             <div className="mt-6 rounded-2xl border border-[#6DD1FF]/16 bg-[#6DD1FF]/8 p-5">
               <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#cce8ff]">
                 Also useful with
               </p>
+
               <div className="mt-4 flex flex-wrap gap-2">
                 {relatedPages.map((item) => (
-                    <Link
-                      key={item.slug}
-                      href={`/${item.slug}`}
-                      className="rounded-full border border-white/10 bg-white/8 px-3 py-2 text-xs font-semibold text-white/80 hover:bg-white/12"
-                    >
-                      {item.metaTitle}
-                    </Link>
-                  ))}
+                  <Link
+                    key={item.slug}
+                    href={`/${item.slug}`}
+                    className="rounded-full border border-white/10 bg-white/8 px-3 py-2 text-xs font-semibold text-white/80 hover:bg-white/12"
+                  >
+                    {item.metaTitle}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
@@ -662,36 +771,72 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
 
         <section className="mt-14 rounded-[1.8rem] border border-white/10 bg-white/5 p-7 backdrop-blur-sm">
           <div className="max-w-3xl">
-            <h2 className="text-2xl font-semibold text-white">How NeuVault compares</h2>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
+              Comparison
+            </p>
+
+            <h2 className="mt-3 text-2xl font-semibold text-white">
+              How NeuVault compares
+            </h2>
+
             <p className="mt-4 text-sm leading-7 text-white/68">
-              See how this workflow compares with more generic tools and why NeuVault is built to handle the surrounding context too.
+              NeuVault avoids competing as a generic cloud drive, scanner, note
+              app, or chatbot. It focuses on the document memory layer around
+              important records.
             </p>
           </div>
 
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {supplemental.comparisons.map((item) => (
-              <article key={item.title} className="rounded-2xl border border-white/10 bg-black/20 p-5">
-                <h3 className="text-base font-semibold text-white">{item.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-white/62">{item.limitation}</p>
+              <article
+                key={item.title}
+                className="rounded-2xl border border-white/10 bg-black/20 p-5"
+              >
+                <h3 className="text-base font-semibold text-white">
+                  {item.title}
+                </h3>
+
+                <p className="mt-3 text-sm leading-7 text-white/62">
+                  {item.limitation}
+                </p>
+
                 <div className="mt-4 rounded-2xl border border-[#6DD1FF]/16 bg-[#6DD1FF]/8 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#cce8ff]">Why NeuVault is stronger</p>
-                  <p className="mt-2 text-sm leading-7 text-white/78">{item.neuvaultAdvantage}</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#cce8ff]">
+                    NeuVault advantage
+                  </p>
+
+                  <p className="mt-2 text-sm leading-7 text-white/78">
+                    {item.neuvaultAdvantage}
+                  </p>
                 </div>
               </article>
             ))}
           </div>
         </section>
+
         {relatedGuides.length ? (
           <section className="mt-14 rounded-[1.8rem] border border-white/10 bg-white/5 p-7 backdrop-blur-sm">
             <div className="flex items-end justify-between gap-5">
               <div>
-                <h2 className="text-2xl font-semibold text-white">Helpful guides for this workflow</h2>
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
+                  Learn more
+                </p>
+
+                <h2 className="mt-3 text-2xl font-semibold text-white">
+                  Helpful guides for this workflow
+                </h2>
+
                 <p className="mt-3 max-w-2xl text-sm leading-7 text-white/68">
-                  These guides expand on closely related document tasks so you can go deeper without losing your place.
+                  These guides go deeper into the real document problems behind
+                  this workflow.
                 </p>
               </div>
-              <Link href="/guides" className="hidden text-sm font-semibold text-[#9dd9ff] hover:text-white md:inline-flex">
-                View all guides
+
+              <Link
+                href="/guides"
+                className="hidden text-sm font-semibold text-[#9dd9ff] hover:text-white md:inline-flex"
+              >
+                View all guides →
               </Link>
             </div>
 
@@ -700,11 +845,30 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
                 <Link
                   key={guide.slug}
                   href={`/guides/${guide.slug}`}
-                  className="rounded-[1.4rem] border border-white/10 bg-black/20 p-5 transition hover:border-[#6DD1FF]/28 hover:bg-white/8"
+                  className="group relative overflow-hidden rounded-[1.4rem] border border-white/10 bg-black/20 p-5 transition hover:-translate-y-1 hover:border-[#6DD1FF]/28 hover:bg-white/8"
                 >
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#9dd9ff]">{guide.primaryKeyword}</p>
-                  <h3 className="mt-3 text-lg font-semibold text-white">{guide.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-white/66">{guide.description}</p>
+                  <div
+                    className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(63,140,255,0.12),transparent_34%)] opacity-0 transition group-hover:opacity-100"
+                    aria-hidden="true"
+                  />
+
+                  <div className="relative">
+                    <p className="inline-flex rounded-full border border-[#6DD1FF]/15 bg-[#6DD1FF]/8 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#9dd9ff]">
+                      {guide.primaryKeyword}
+                    </p>
+
+                    <h3 className="mt-4 text-lg font-semibold text-white">
+                      {guide.title}
+                    </h3>
+
+                    <p className="mt-3 text-sm leading-7 text-white/66">
+                      {guide.description}
+                    </p>
+
+                    <span className="mt-5 inline-flex text-sm font-semibold text-[#8ec0ff] transition group-hover:text-white">
+                      Read guide →
+                    </span>
+                  </div>
                 </Link>
               ))}
             </div>
@@ -712,12 +876,27 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
         ) : null}
 
         <section className="mt-14 rounded-[1.8rem] border border-white/10 bg-white/5 p-7 backdrop-blur-sm">
-          <h2 className="text-2xl font-semibold text-white">Frequently asked questions</h2>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
+            Questions
+          </p>
+
+          <h2 className="mt-3 text-2xl font-semibold text-white">
+            Frequently asked questions
+          </h2>
+
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {pageFaqs.map((faq) => (
-              <article key={faq.question} className="rounded-2xl border border-white/10 bg-black/20 p-5">
-                <h3 className="text-base font-semibold text-white">{faq.question}</h3>
-                <p className="mt-3 text-sm leading-7 text-white/68">{faq.answer}</p>
+              <article
+                key={faq.question}
+                className="rounded-2xl border border-white/10 bg-black/20 p-5"
+              >
+                <h3 className="text-base font-semibold text-white">
+                  {faq.question}
+                </h3>
+
+                <p className="mt-3 text-sm leading-7 text-white/68">
+                  {faq.answer}
+                </p>
               </article>
             ))}
           </div>
@@ -726,10 +905,19 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
         <section className="mt-14 rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(11,19,34,0.94),rgba(9,15,27,0.82))] p-7">
           <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">Take the next step</p>
-              <h2 className="mt-4 text-2xl font-semibold text-white">{page.ctaTitle}</h2>
-              <p className="mt-4 max-w-3xl text-sm leading-7 text-white/70">{page.ctaDescription}</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
+                Take the next step
+              </p>
+
+              <h2 className="mt-4 text-2xl font-semibold text-white">
+                {page.ctaTitle}
+              </h2>
+
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-white/70">
+                {page.ctaDescription}
+              </p>
             </div>
+
             <div className="flex flex-wrap gap-3 lg:justify-end">
               <a
                 href={IOS_APP_STORE_URL}
@@ -739,6 +927,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
               >
                 Get NeuVault on the App Store
               </a>
+
               <a
                 href={ANDROID_PLAY_STORE_URL}
                 target="_blank"
@@ -754,14 +943,25 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
         <section className="mt-14">
           <div className="flex items-end justify-between gap-5">
             <div>
-              <h2 className="text-2xl font-semibold text-white">Related NeuVault workflows</h2>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
+                Related workflows
+              </p>
+
+              <h2 className="mt-3 text-2xl font-semibold text-white">
+                More ways NeuVault helps important records
+              </h2>
+
               <p className="mt-3 max-w-2xl text-sm leading-7 text-white/68">
-                Use these pages to compare the rest of NeuVault&apos;s document workflows without going back
-                to a generic overview page.
+                Explore nearby NeuVault workflows without going back to a
+                generic overview page.
               </p>
             </div>
-            <Link href="/" className="hidden text-sm font-semibold text-[#9dd9ff] hover:text-white md:inline-flex">
-              Back to homepage
+
+            <Link
+              href="/"
+              className="hidden text-sm font-semibold text-[#9dd9ff] hover:text-white md:inline-flex"
+            >
+              Back to homepage →
             </Link>
           </div>
 
@@ -770,11 +970,30 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
               <Link
                 key={item.slug}
                 href={`/${item.slug}`}
-                className="rounded-[1.4rem] border border-white/10 bg-white/5 p-5 transition hover:border-[#6DD1FF]/28 hover:bg-white/8"
+                className="group relative overflow-hidden rounded-[1.4rem] border border-white/10 bg-white/5 p-5 transition hover:-translate-y-1 hover:border-[#6DD1FF]/28 hover:bg-white/8"
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#9dd9ff]">{item.eyebrow}</p>
-                <h3 className="mt-3 text-lg font-semibold text-white">{item.metaTitle}</h3>
-                <p className="mt-3 text-sm leading-7 text-white/66">{item.description}</p>
+                <div
+                  className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(63,140,255,0.12),transparent_34%)] opacity-0 transition group-hover:opacity-100"
+                  aria-hidden="true"
+                />
+
+                <div className="relative">
+                  <p className="inline-flex rounded-full border border-[#6DD1FF]/15 bg-[#6DD1FF]/8 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#9dd9ff]">
+                    {item.eyebrow}
+                  </p>
+
+                  <h3 className="mt-4 text-lg font-semibold text-white">
+                    {item.metaTitle}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-7 text-white/66">
+                    {item.description}
+                  </p>
+
+                  <span className="mt-5 inline-flex text-sm font-semibold text-[#8ec0ff] transition group-hover:text-white">
+                    View workflow →
+                  </span>
+                </div>
               </Link>
             ))}
           </div>
@@ -783,5 +1002,3 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
     </main>
   );
 }
-
-

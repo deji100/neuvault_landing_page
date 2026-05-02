@@ -1,31 +1,48 @@
+// sitemap.ts
 import type { MetadataRoute } from "next";
 import { guidePages } from "@/lib/guides";
 import { SITE_URL, solutionPages } from "@/lib/seo";
 
-const staticRoutes = ["/", "/guides", "/press"];
+const staticRoutes = [
+  {
+    path: "/",
+    changeFrequency: "weekly" as const,
+    priority: 1,
+  },
+  {
+    path: "/guides",
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  },
+  {
+    path: "/press",
+    changeFrequency: "monthly" as const,
+    priority: 0.55,
+  },
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  const staticEntries = staticRoutes.map((route) => ({
-    url: `${SITE_URL}${route}`,
+  const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
+    url: `${SITE_URL}${route.path}`,
     lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: route === "/" ? 1 : route === "/press" ? 0.55 : 0.75,
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
   }));
 
-  const solutionEntries = solutionPages.map((page) => ({
+  const solutionEntries: MetadataRoute.Sitemap = solutionPages.map((page) => ({
     url: `${SITE_URL}/${page.slug}`,
     lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: 0.8,
+    changeFrequency: "monthly" as const,
+    priority: 0.85,
   }));
 
-  const guideEntries = guidePages.map((guide) => ({
+  const guideEntries: MetadataRoute.Sitemap = guidePages.map((guide) => ({
     url: `${SITE_URL}/guides/${guide.slug}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
-    priority: 0.65,
+    priority: 0.7,
   }));
 
   return [...staticEntries, ...solutionEntries, ...guideEntries];

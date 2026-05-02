@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import {
   FaBell,
-  FaGlobe,
+  FaCloud,
   FaLayerGroup,
   FaSearch,
   FaShieldAlt,
@@ -14,44 +14,44 @@ import { PiVaultBold } from "react-icons/pi";
 
 const pillars = [
   {
-    title: "One home for the documents you keep misplacing",
+    title: "Not another place to dump files",
     description:
-      "Receipts, IDs, agreements, warranties, medical files, school records, and personal notes stop living across screenshots, chats, downloads, and random folders.",
+      "Cloud drives store documents. NeuVault helps you remember what they are, why they matter, where they belong, and when you may need them again.",
     icon: <PiVaultBold className="text-pink-300" size={26} />,
     accent: "from-pink-500/18 via-white/6 to-transparent",
   },
   {
-    title: "Understanding, not just dumping",
+    title: "Context stays with the record",
     description:
-      "Summaries, tags, structure, and linked context help you understand what a document says and why it matters without rereading everything from scratch.",
+      "Summaries, tags, dates, notes, linked records, and extracted details stay close to the document so future-you does not have to reconstruct the story.",
     icon: <BsStars className="text-yellow-300" size={24} />,
     accent: "from-yellow-500/16 via-white/6 to-transparent",
   },
   {
-    title: "Reminders tied to the document itself",
+    title: "Important dates do not stay buried",
     description:
-      "NeuVault is built for renewal dates, deadlines, follow-ups, and moments that are easy to forget until the stress has already started.",
+      "Renewals, expiry dates, deadlines, follow-ups, and records that need review can come back to your attention before they become urgent.",
     icon: <FaBell className="text-sky-300" size={24} />,
     accent: "from-sky-500/16 via-white/6 to-transparent",
   },
   {
-    title: "Notes, scans, uploads, and voice in one flow",
+    title: "Documents, notes, scans, and voice belong together",
     description:
-      "The thought and the file can stay together. Typed notes, scans, uploads, and voice transcripts do not need separate apps to remain useful.",
+      "The file and the thought around it should not live in separate apps. NeuVault keeps written notes, scans, uploads, screenshots, and voice records in one private flow.",
     icon: <FaStickyNote className="text-orange-300" size={24} />,
     accent: "from-orange-500/16 via-white/6 to-transparent",
   },
   {
-    title: "Ask for help when you need it",
+    title: "Ask Nova when search is not enough",
     description:
-      "Nova can answer questions about your vault, summarize what you have, and move to web search when the question needs outside information too.",
-    icon: <FaGlobe className="text-cyan-300" size={24} />,
+      "Sometimes you do not remember the filename. Ask Nova about your vault, summarize related records, and find what you saved by meaning and context.",
+    icon: <FaSearch className="text-cyan-300" size={24} />,
     accent: "from-cyan-500/16 via-white/6 to-transparent",
   },
   {
-    title: "Privacy is part of the product",
+    title: "Private by default, recoverable by design",
     description:
-      "NeuVault is local-first by default, keeps documents on your device, and gives you encrypted export bundles so portability does not require surrendering control.",
+      "NeuVault is local-first and gives you encrypted backups you control, so your important records can move across devices without turning into forced cloud storage.",
     icon: <FaShieldAlt className="text-[#6DD1FF]" size={24} />,
     accent: "from-[#6DD1FF]/20 via-white/6 to-transparent",
   },
@@ -59,30 +59,33 @@ const pillars = [
 
 const supportPoints = [
   {
-    title: "Organize automatically or group things yourself",
-    desc: "Items can be organized automatically during intake, and you can also group them manually when you want more control.",
-    icon: <FaLayerGroup className="text-[#6ce6b3]" size={18} />,
+    title: "Built around document memory",
+    desc: "NeuVault helps preserve what the document means, not just where the file sits.",
+    icon: <BsStars className="text-yellow-300" size={18} />,
   },
   {
-    title: "Search locally",
-    desc: "Local-first search helps you find titles, tags, and summaries even when your connection is unstable.",
+    title: "Find from partial memory",
+    desc: "Search by title, tags, summaries, dates, type, or related context when the filename is forgotten.",
     icon: <FaSearch className="text-emerald-300" size={18} />,
   },
   {
-    title: "Surface what matters later",
-    desc: "Important documents do not stay buried until the worst possible time.",
-    icon: <FaBell className="text-sky-300" size={18} />,
+    title: "Connect related records",
+    desc: "Group documents, notes, scans, and voice records around the real-life issue they belong to.",
+    icon: <FaLayerGroup className="text-[#6ce6b3]" size={18} />,
   },
   {
-    title: "Keep connected context",
-    desc: "Linked documents and mixed-content groups make one issue easier to revisit as a whole.",
-    icon: <FaLayerGroup className="text-white/70" size={18} />,
+    title: "Back up without surrendering control",
+    desc: "Create encrypted backups you control and restore your vault across devices when you need to move.",
+    icon: <FaCloud className="text-sky-300" size={18} />,
   },
 ];
 
 export default function FeaturesSection() {
   return (
-    <section id="features" className="relative overflow-hidden border-t border-white/10 px-6 py-24 text-white">
+    <section
+      id="features"
+      className="relative overflow-hidden border-t border-white/10 px-6 py-24 text-white"
+    >
       <div className="pointer-events-none absolute inset-0 opacity-75">
         <div className="absolute -left-20 top-16 h-72 w-72 rounded-full bg-[#3F8CFF]/14 blur-[120px]" />
         <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-[#6ce6b3]/10 blur-[140px]" />
@@ -90,21 +93,26 @@ export default function FeaturesSection() {
 
       <div className="relative mx-auto max-w-6xl">
         <motion.div
-          className="max-w-3xl"
+          className="mx-auto max-w-3xl text-center"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55 }}
           viewport={{ once: true }}
         >
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
-            Pain first, then relief
+            Why NeuVault is different
           </p>
-          <h2 className="mt-4 text-3xl font-bold leading-tight md:text-4xl">
-            Your files should not be this hard to find.
-            <span className="block text-white/68">NeuVault turns scattered documents into a private vault you can actually use.</span>
+
+          <h2 className="mt-4 text-3xl font-bold leading-tight md:text-5xl">
+            Storage saves the file.
+            <span className="block text-white/68">
+              NeuVault helps you remember why it matters.
+            </span>
           </h2>
-          <p className="mt-5 text-base leading-8 text-white/68 md:text-lg">
-            The goal is not to create one more dumping ground for PDFs. The goal is to help you capture what matters, understand it quickly, and stop losing time to document chaos.
+
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/68 md:text-lg">
+            NeuVault is built for the records people save but struggle to find,
+            understand, connect, revisit, or recover later.
           </p>
         </motion.div>
 
@@ -118,12 +126,22 @@ export default function FeaturesSection() {
               transition={{ duration: 0.5, delay: index * 0.06 }}
               viewport={{ once: true }}
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${pillar.accent}`} aria-hidden="true" />
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${pillar.accent}`}
+                aria-hidden="true"
+              />
+
               <div className="relative flex items-start gap-4">
                 <div className="mt-1">{pillar.icon}</div>
+
                 <div>
-                  <h3 className="text-xl font-semibold text-white">{pillar.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-white/68 md:text-[15px]">{pillar.description}</p>
+                  <h3 className="text-xl font-semibold text-white">
+                    {pillar.title}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-7 text-white/68 md:text-[15px]">
+                    {pillar.description}
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -139,13 +157,19 @@ export default function FeaturesSection() {
         >
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <h3 className="text-2xl font-semibold text-white">Useful in the quiet moments.</h3>
+              <h3 className="text-2xl font-semibold text-white">
+                Built for the moment you suddenly need it.
+              </h3>
+
               <p className="mt-2 max-w-2xl text-sm leading-7 text-white/66 md:text-base">
-                NeuVault is strongest when life is busy: a renewal date is coming up, a form needs context, a document is buried, or you suddenly need something you thought you saved somewhere.
+                A receipt, form, certificate, school record, contract, ID, note,
+                or renewal can sit quietly for months — until the day it matters.
+                NeuVault keeps that record ready.
               </p>
             </div>
+
             <div className="rounded-full border border-[#6DD1FF]/18 bg-[#6DD1FF]/8 px-4 py-2 text-sm text-[#d7efff]">
-              Built for real document memory, not generic storage
+              Document memory, not generic storage
             </div>
           </div>
 
@@ -161,9 +185,15 @@ export default function FeaturesSection() {
               >
                 <div className="flex items-start gap-3">
                   <div className="mt-0.5">{point.icon}</div>
+
                   <div>
-                    <h4 className="text-sm font-semibold text-white">{point.title}</h4>
-                    <p className="mt-2 text-sm leading-6 text-white/62">{point.desc}</p>
+                    <h4 className="text-sm font-semibold text-white">
+                      {point.title}
+                    </h4>
+
+                    <p className="mt-2 text-sm leading-6 text-white/62">
+                      {point.desc}
+                    </p>
                   </div>
                 </div>
               </motion.div>

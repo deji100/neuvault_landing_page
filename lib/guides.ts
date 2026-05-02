@@ -5,6 +5,7 @@ import {
   buildMetadata,
   getSolutionPageBySlug,
   SITE_NAME,
+  SITE_URL,
 } from "@/lib/seo";
 
 export type GuideStep = {
@@ -26,51 +27,59 @@ export type GuidePage = {
   sections: GuideStep[];
   faqs: { question: string; answer: string }[];
   ctaLabel: string;
+  datePublished?: string;
+  dateModified?: string;
 };
+
+const DEFAULT_GUIDE_DATE = "2026-05-02";
 
 export const guidePages: GuidePage[] = [
   {
     slug: "how-to-scan-and-organize-documents",
     title: "How to scan and organize documents without losing them later",
-    metaTitle: "How to Scan and Organize Documents",
+    metaTitle: "How to Scan and Organize Documents Without Losing Them Later",
     description:
-      "Learn how to scan and organize documents in one workflow so paperwork stays searchable, grouped, and ready for reminders and secure backup.",
+      "Learn how to scan and organize documents so paperwork becomes searchable, grouped, remembered, and ready for reminders or private backup later.",
     intro:
-      "Scanning a document is easy. Keeping it useful later is harder. This guide shows how to move from simple capture into a system where scanned paperwork stays organized, searchable, and connected to the next action you need to take.",
+      "Scanning a document is easy. Keeping it useful later is harder. This guide shows how to move from simple capture into a system where scanned paperwork stays organized, searchable, connected, and ready when life asks for it again.",
     primaryKeyword: "scan and organize documents",
     secondaryKeywords: [
       "organize scanned documents",
       "scan and store documents",
       "document scanning and organizing software",
       "store scanned documents securely",
+      "scan documents into private vault",
     ],
     parentSolutionSlug: "scan-organization",
-    relatedGuideSlugs: ["organize-important-documents-digitally", "search-old-documents-without-folder-chaos"],
+    relatedGuideSlugs: [
+      "organize-important-documents-digitally",
+      "search-old-documents-without-folder-chaos",
+    ],
     keyTakeaways: [
-      "Capture is only step one. The real value comes from OCR, flexible grouping, and retrieval.",
-      "Scans should land in a document system, not a camera roll or random folder.",
-      "The best workflow links scans to reminders, search, and backup from the start.",
+      "Capture is only step one. The real value comes from OCR, context, grouping, and retrieval.",
+      "Scans should land in a document system, not disappear into a camera roll or random folder.",
+      "The best workflow connects scans to search, reminders, linked records, and private backup from the start.",
     ],
     sections: [
       {
         title: "Capture into one destination",
         description:
-          "Choose a single intake path for paper records so receipts, forms, letters, and IDs do not scatter across photos, downloads, and messaging apps.",
+          "Choose a single intake path for paper records so receipts, forms, letters, IDs, certificates, and agreements do not scatter across photos, downloads, chats, and messaging apps.",
       },
       {
         title: "Run OCR and keep the extracted meaning",
         description:
-          "A scan is more useful when the text is searchable. OCR-backed extraction helps you recover names, dates, and context without reopening every file later.",
+          "A scan is more useful when the text is searchable. OCR-backed extraction helps you recover names, dates, amounts, and context without reopening every file later.",
       },
       {
-        title: "Group the scan with the right document set",
+        title: "Group the scan with the right document story",
         description:
-          "Store the scan next to the rest of the issue it belongs to, such as a visa file, insurance claim, lease, or household paperwork bundle.",
+          "Store the scan next to the rest of the issue it belongs to, such as a visa file, insurance claim, lease, school application, tax folder, or household paperwork set.",
       },
       {
         title: "Add the future action while the context is fresh",
         description:
-          "If the document has a renewal date, due date, or follow-up step, attach the reminder before you leave the workflow. That is how scans stay useful instead of archived and forgotten.",
+          "If the document has a renewal date, due date, expiry date, or follow-up step, attach the reminder before you leave the workflow. That is how scans stay useful instead of becoming archived and forgotten.",
       },
     ],
     faqs: [
@@ -82,7 +91,7 @@ export const guidePages: GuidePage[] = [
       {
         question: "Should I keep scanned documents in photo folders?",
         answer:
-          "Only temporarily. Camera rolls and generic folders work for storage, but they are weak for retrieval, document context, and future reminders.",
+          "Only temporarily. Camera rolls and generic folders can store images, but they are weak for retrieval, document context, reminders, and long-term recovery.",
       },
     ],
     ctaLabel: "See NeuVault scan organization",
@@ -90,40 +99,44 @@ export const guidePages: GuidePage[] = [
   {
     slug: "organize-important-documents-digitally",
     title: "How to organize important documents digitally at home or work",
-    metaTitle: "Organize Important Documents Digitally",
+    metaTitle: "How to Organize Important Documents Digitally",
     description:
-      "A practical guide to organizing important documents digitally without relying on endless folder cleanup or memory-heavy naming systems.",
+      "A practical guide to organizing important documents digitally without relying on endless folder cleanup, perfect filenames, or memory-heavy systems.",
     intro:
-      "Digital paperwork gets messy fast because the same document problem usually spans uploads, scans, notes, dates, and follow-up tasks. This guide shows how to build a document organization system that stays usable after the first cleanup week.",
+      "Digital paperwork gets messy fast because the same document problem usually spans uploads, scans, screenshots, notes, dates, and follow-up tasks. This guide shows how to build a document memory system that stays usable after the first cleanup week.",
     primaryKeyword: "organize important documents",
     secondaryKeywords: [
       "document organization",
       "organize personal documents digitally",
       "digital paperwork organization",
       "family document organizer",
+      "private document vault",
     ],
     parentSolutionSlug: "document-organization",
-    relatedGuideSlugs: ["how-to-scan-and-organize-documents", "track-passport-visa-and-id-expiry-dates"],
+    relatedGuideSlugs: [
+      "how-to-scan-and-organize-documents",
+      "track-passport-visa-and-id-expiry-dates",
+    ],
     keyTakeaways: [
       "Organize by real-life issue or document set, not by abstract folder perfection.",
-      "Keep files, notes, and reminders in the same workflow whenever possible.",
+      "Keep files, notes, summaries, dates, and reminders in the same workflow whenever possible.",
       "A good document system reduces future searching, not just present clutter.",
     ],
     sections: [
       {
         title: "Start with categories you will actually remember",
         description:
-          "Use categories like travel, insurance, housing, school, taxes, and business admin rather than dozens of low-value subfolders that only make sense during setup.",
+          "Use categories like travel, insurance, housing, school, taxes, health, family records, and business admin rather than dozens of low-value subfolders that only make sense during setup.",
       },
       {
         title: "Keep document context attached",
         description:
-          "Notes, summaries, scans, receipts, and linked records should stay with the file they explain. That is how the system remains understandable later.",
+          "Notes, summaries, scans, receipts, linked records, and reminders should stay with the file they explain. That is how the system remains understandable months later.",
       },
       {
         title: "Separate active paperwork from archived reference",
         description:
-          "Some items need reminders and resurfacing while others are reference-only. That distinction helps you prioritize what the vault should bring back to you later.",
+          "Some items need reminders and resurfacing while others are reference-only. That distinction helps you prioritize what your vault should bring back to your attention later.",
       },
       {
         title: "Review the system through retrieval, not just storage",
@@ -135,12 +148,12 @@ export const guidePages: GuidePage[] = [
       {
         question: "How should I organize important documents digitally?",
         answer:
-          "Use broader categories, attach notes and reminders to the source document, and organize around real-life issues so the system stays retrievable later.",
+          "Use broad categories, attach notes and reminders to the source document, and organize around real-life issues so the system stays retrievable later.",
       },
       {
         question: "What kinds of documents should go into one digital vault?",
         answer:
-          "IDs, receipts, leases, insurance records, travel files, school paperwork, contracts, and other important records that benefit from search, reminders, and linked context.",
+          "IDs, receipts, leases, insurance records, travel files, school paperwork, contracts, certificates, medical files, and other important records that benefit from search, reminders, and linked context.",
       },
     ],
     ctaLabel: "See NeuVault document organization",
@@ -148,9 +161,9 @@ export const guidePages: GuidePage[] = [
   {
     slug: "track-passport-visa-and-id-expiry-dates",
     title: "How to track passport, visa, and ID expiry dates without missing them",
-    metaTitle: "Track Passport, Visa, and ID Expiry Dates",
+    metaTitle: "How to Track Passport, Visa, and ID Expiry Dates",
     description:
-      "Use a document-based reminder workflow to track passport, visa, and ID expiry dates so the alert stays attached to the paperwork you actually need.",
+      "Use a document-based reminder workflow to track passport, visa, ID, permit, and renewal dates so the alert stays attached to the paperwork you need.",
     intro:
       "Expiry dates are easy to miss because the document disappears until it suddenly matters. This guide explains how to keep renewals tied to the real paperwork so reminders are useful when they appear.",
     primaryKeyword: "track document expiry dates",
@@ -159,19 +172,23 @@ export const guidePages: GuidePage[] = [
       "visa renewal reminder",
       "ID expiry tracker",
       "document renewal reminder",
+      "document deadline reminder",
     ],
     parentSolutionSlug: "document-reminder",
-    relatedGuideSlugs: ["organize-important-documents-digitally", "back-up-important-documents-securely"],
+    relatedGuideSlugs: [
+      "organize-important-documents-digitally",
+      "back-up-important-documents-securely",
+    ],
     keyTakeaways: [
       "Expiry tracking works best when the reminder stays attached to the source document.",
-      "Renewal workflows need the file, not just the alert.",
+      "Renewal workflows need the file and supporting context, not just the alert.",
       "Recurring document checks are more reliable than one-off memory-based reminders.",
     ],
     sections: [
       {
         title: "Store the document where it can be resurfaced later",
         description:
-          "A renewal reminder is weak if the passport, visa, or ID is still buried in photos, downloads, or email threads. Start with one searchable document home.",
+          "A renewal reminder is weak if the passport, visa, ID, permit, or license is still buried in photos, downloads, or email threads. Start with one searchable document home.",
       },
       {
         title: "Record the date and the buffer window",
@@ -181,12 +198,12 @@ export const guidePages: GuidePage[] = [
       {
         title: "Attach context for the follow-up",
         description:
-          "Keep notes, required supporting files, and past application records linked to the expiring document so the reminder leads directly into action.",
+          "Keep notes, required supporting files, past applications, receipts, and appointment records linked to the expiring document so the reminder leads directly into action.",
       },
       {
         title: "Use recurring resurfacing for critical IDs",
         description:
-          "For passports, insurance, permits, and licenses, recurring reminders reduce the odds that one missed alert becomes a major problem.",
+          "For passports, insurance, permits, licenses, visas, and work documents, recurring reminders reduce the odds that one missed alert becomes a major problem.",
       },
     ],
     faqs: [
@@ -206,9 +223,9 @@ export const guidePages: GuidePage[] = [
   {
     slug: "search-old-documents-without-folder-chaos",
     title: "How to search old documents without digging through folder chaos",
-    metaTitle: "Search Old Documents Without Folder Chaos",
+    metaTitle: "How to Search Old Documents Without Folder Chaos",
     description:
-      "A practical workflow for finding old documents faster using summaries, tags, dates, and related context instead of relying only on exact filenames.",
+      "A practical workflow for finding old documents faster using summaries, tags, dates, OCR, and related context instead of relying only on exact filenames.",
     intro:
       "Searching old documents gets hard when you remember the situation but not the filename. This guide shows how to improve retrieval by storing more useful context than the file name alone.",
     primaryKeyword: "search old documents",
@@ -217,24 +234,28 @@ export const guidePages: GuidePage[] = [
       "find important documents faster",
       "searchable document vault",
       "retrieve important documents",
+      "AI document search",
     ],
     parentSolutionSlug: "document-retrieval",
-    relatedGuideSlugs: ["how-to-scan-and-organize-documents", "organize-important-documents-digitally"],
+    relatedGuideSlugs: [
+      "how-to-scan-and-organize-documents",
+      "organize-important-documents-digitally",
+    ],
     keyTakeaways: [
       "Exact-filename search is too weak for real-world document recall.",
-      "Summaries, tags, dates, and linked records improve retrieval from partial memory.",
+      "Summaries, tags, dates, OCR text, and linked records improve retrieval from partial memory.",
       "The best retrieval systems start during intake and still let you reorganize things later when you need to.",
     ],
     sections: [
       {
         title: "Stop depending on filenames alone",
         description:
-          "Old files often arrive with inconsistent names from scanners, downloads, or email exports. Summaries, categories, and tags give retrieval more paths to success.",
+          "Old files often arrive with inconsistent names from scanners, downloads, email exports, WhatsApp attachments, and cloud folders. Summaries, categories, and tags give retrieval more paths to success.",
       },
       {
         title: "Use type, date, and issue context together",
         description:
-          "You may remember that a file was a receipt from a move or a contract from a visa process, even when the exact filename is gone. Store enough context to search that way.",
+          "You may remember that a file was a receipt from a move, a certificate from school, or a contract from a client process even when the exact filename is gone. Store enough context to search that way.",
       },
       {
         title: "Keep linked records together",
@@ -251,7 +272,7 @@ export const guidePages: GuidePage[] = [
       {
         question: "How can I find old documents faster?",
         answer:
-          "Use a searchable vault that stores summaries, tags, dates, and linked context, not just filenames and folders.",
+          "Use a searchable vault that stores OCR text, summaries, tags, dates, and linked context, not just filenames and folders.",
       },
       {
         question: "What makes a document vault searchable?",
@@ -264,9 +285,9 @@ export const guidePages: GuidePage[] = [
   {
     slug: "back-up-important-documents-securely",
     title: "How to back up important documents securely without losing control",
-    metaTitle: "Back Up Important Documents Securely",
+    metaTitle: "How to Back Up Important Documents Securely",
     description:
-      "Learn how to back up important documents securely using encrypted export bundles and user-controlled storage instead of relying on one cloud provider by default.",
+      "Learn how to back up important documents securely using encrypted export bundles and user-controlled storage instead of depending on one cloud provider by default.",
     intro:
       "The safest document backup is not just a copy. It is a copy you can recover, trust, and store in a place you control. This guide explains how to build that backup habit without turning privacy into an afterthought.",
     primaryKeyword: "back up important documents",
@@ -275,9 +296,13 @@ export const guidePages: GuidePage[] = [
       "private document backup",
       "document vault backup",
       "restore important documents",
+      "encrypted document backup",
     ],
     parentSolutionSlug: "secure-document-backup",
-    relatedGuideSlugs: ["track-passport-visa-and-id-expiry-dates", "search-old-documents-without-folder-chaos"],
+    relatedGuideSlugs: [
+      "track-passport-visa-and-id-expiry-dates",
+      "search-old-documents-without-folder-chaos",
+    ],
     keyTakeaways: [
       "Document backup should be encrypted, recoverable, and under your control.",
       "Backup reminders matter because good backup habits rarely happen by accident.",
@@ -322,9 +347,9 @@ export const guidePages: GuidePage[] = [
   {
     slug: "turn-voice-notes-into-searchable-records",
     title: "How to turn voice notes into searchable records you can actually use",
-    metaTitle: "Turn Voice Notes Into Searchable Records",
+    metaTitle: "How to Turn Voice Notes Into Searchable Records",
     description:
-      "Learn how to capture voice notes quickly, transcribe them into structured text, and keep them searchable alongside your documents and notes.",
+      "Learn how to capture voice notes quickly, transcribe them into structured text, and keep them searchable alongside your documents, notes, reminders, and vault context.",
     intro:
       "Voice notes are powerful when speed matters, but they become hard to use when they stay as isolated recordings. This guide shows how to turn spoken context into records you can search, revisit, and connect to the rest of your document workflow.",
     primaryKeyword: "voice note transcription",
@@ -333,29 +358,33 @@ export const guidePages: GuidePage[] = [
       "organize voice notes",
       "voice notes and documents app",
       "voice notes for reminders",
+      "voice note to structured note",
     ],
     parentSolutionSlug: "voice-note-transcription",
-    relatedGuideSlugs: ["search-old-documents-without-folder-chaos", "organize-important-documents-digitally"],
+    relatedGuideSlugs: [
+      "search-old-documents-without-folder-chaos",
+      "organize-important-documents-digitally",
+    ],
     keyTakeaways: [
       "Voice capture is most useful when it becomes structured text you can search later.",
-      "Spoken context should live near the documents and reminders it explains.",
+      "Spoken context should live near the documents, notes, and reminders it explains.",
       "Structured transcripts are stronger than raw transcription dumps.",
     ],
     sections: [
       {
         title: "Capture the thought while it is fresh",
         description:
-          "Use voice when typing would slow you down, especially during movement, document review, or follow-up planning.",
+          "Use voice when typing would slow you down, especially during movement, document review, meetings, lectures, or follow-up planning.",
       },
       {
         title: "Transcribe into readable structure",
         description:
-          "Plain transcripts are better than audio alone, but structured notes are stronger because they remain easy to scan and understand later.",
+          "Plain transcripts are better than audio alone, but structured notes are stronger because they remain easy to scan, search, and understand later.",
       },
       {
         title: "Link the voice note to the document issue",
         description:
-          "A voice note explaining a receipt, contract, or travel file should stay with that record so the meaning is not lost when you return later.",
+          "A voice note explaining a receipt, contract, school file, or travel document should stay with that record so the meaning is not lost when you return later.",
       },
       {
         title: "Keep voice-derived notes searchable and exportable",
@@ -400,7 +429,14 @@ export function buildGuideMetadata(guide: GuidePage) {
     title: guide.metaTitle,
     description: guide.description,
     path: `/guides/${guide.slug}`,
-    keywords: [guide.primaryKeyword, ...guide.secondaryKeywords],
+    keywords: [
+      guide.primaryKeyword,
+      ...guide.secondaryKeywords,
+      "document memory",
+      "private document vault",
+      "local-first document app",
+      "NeuVault",
+    ],
   });
 }
 
@@ -414,22 +450,41 @@ export function buildGuideBreadcrumbJsonLd(guide: GuidePage) {
 
 export function buildGuideArticleJsonLd(guide: GuidePage) {
   const parentSolution = getSolutionPageBySlug(guide.parentSolutionSlug)?.page;
+  const published = guide.datePublished ?? DEFAULT_GUIDE_DATE;
+  const modified = guide.dateModified ?? DEFAULT_GUIDE_DATE;
 
   return {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": `${absoluteUrl(`/guides/${guide.slug}`)}#article`,
     headline: guide.title,
+    name: guide.metaTitle,
     description: guide.description,
-    mainEntityOfPage: absoluteUrl(`/guides/${guide.slug}`),
+    image: absoluteUrl("/opengraph-image"),
+    datePublished: published,
+    dateModified: modified,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": absoluteUrl(`/guides/${guide.slug}`),
+    },
+    url: absoluteUrl(`/guides/${guide.slug}`),
     author: {
       "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: SITE_NAME,
     },
     publisher: {
       "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: SITE_NAME,
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl("/logo.png"),
+      },
     },
     about: [guide.primaryKeyword, ...guide.secondaryKeywords],
+    keywords: [guide.primaryKeyword, ...guide.secondaryKeywords].join(", "),
+    articleSection: "Document organization",
     mentions: parentSolution
       ? [
           {

@@ -4,61 +4,120 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useEffect, useState, type MouseEvent } from "react";
 import {
-  FaFileExcel,
   FaFilePdf,
   FaFileWord,
+  FaFileExcel,
   FaLock,
-  FaRegNoteSticky,
-} from "react-icons/fa6";
+  FaSearch,
+  FaBell,
+  FaShieldAlt,
+} from "react-icons/fa";
+import { FaRegNoteSticky } from "react-icons/fa6";
 import { BsStars } from "react-icons/bs";
 import { PiNotePencilLight } from "react-icons/pi";
 import { IoSparklesSharp } from "react-icons/io5";
-import { SiDropbox, SiGoogledrive, SiIcloud } from "react-icons/si";
-import { FaBell, FaSearch, FaShieldAlt } from "react-icons/fa";
+import { SiGoogledrive, SiIcloud, SiDropbox } from "react-icons/si";
 
 const IOS_APP_STORE_URL = "https://apps.apple.com/ng/app/neuvault/id6759370392";
-const ANDROID_PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=app.neuvault";
+const ANDROID_PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=app.neuvault";
+
 type DevicePlatform = "ios" | "android" | "other";
 
 const floatingIcons = [
-  { icon: <FaFilePdf />, className: "text-red-400", top: "9%", left: "76%", delay: 0, mobile: true },
-  { icon: <FaFileWord />, className: "text-blue-300", top: "34%", left: "67%", delay: 0.25, mobile: true },
-  { icon: <FaFileExcel />, className: "text-emerald-300", top: "28%", left: "84%", delay: 0.45, mobile: false },
-  { icon: <FaRegNoteSticky />, className: "text-amber-300", top: "63%", left: "71%", delay: 0.65, mobile: false },
-  { icon: <FaLock />, className: "text-white/20", top: "72%", left: "82%", delay: 0.85, mobile: true },
-  { icon: <BsStars />, className: "text-[#6DD1FF]", top: "17%", left: "7%", delay: 1.05, mobile: true },
-  { icon: <PiNotePencilLight />, className: "text-[#6ce6b3]", top: "86%", left: "12%", delay: 1.25, mobile: true },
-  { icon: <IoSparklesSharp />, className: "text-[#3F8CFF]", top: "58%", left: "43%", delay: 1.45, mobile: true },
+  {
+    icon: <FaFilePdf />,
+    className: "text-red-400",
+    top: "12%",
+    left: "76%",
+    delay: 0,
+    mobile: true,
+  },
+  {
+    icon: <FaFileWord />,
+    className: "text-blue-300",
+    top: "34%",
+    left: "67%",
+    delay: 0.25,
+    mobile: true,
+  },
+  {
+    icon: <FaFileExcel />,
+    className: "text-emerald-300",
+    top: "25%",
+    left: "86%",
+    delay: 0.45,
+    mobile: false,
+  },
+  {
+    icon: <FaRegNoteSticky />,
+    className: "text-amber-300",
+    top: "68%",
+    left: "72%",
+    delay: 0.65,
+    mobile: false,
+  },
+  {
+    icon: <FaLock />,
+    className: "text-white/20",
+    top: "76%",
+    left: "84%",
+    delay: 0.85,
+    mobile: true,
+  },
+  {
+    icon: <BsStars />,
+    className: "text-[#6DD1FF]",
+    top: "17%",
+    left: "7%",
+    delay: 1.05,
+    mobile: true,
+  },
+  {
+    icon: <PiNotePencilLight />,
+    className: "text-[#6ce6b3]",
+    top: "82%",
+    left: "12%",
+    delay: 1.25,
+    mobile: true,
+  },
+  {
+    icon: <IoSparklesSharp />,
+    className: "text-[#3F8CFF]",
+    top: "58%",
+    left: "43%",
+    delay: 1.45,
+    mobile: true,
+  },
 ];
 
 const trustPills = [
-  "Local-first by default",
-  "Private backups you control",
-  "Your documents stay on your device",
+  "Private AI vault",
+  "Local-first by design",
+  "Encrypted backups you control",
 ];
 
-const workflowShortcuts = [
-  { href: "/scan-organization", label: "Scan and organize documents" },
-  { href: "/document-reminder", label: "Track renewal dates" },
-  { href: "/document-retrieval", label: "Find documents faster" },
-  { href: "/secure-document-backup", label: "Back up important files" },
-];
-
-const outcomeCards = [
+const painCards = [
   {
-    title: "Find what matters before the stress kicks in",
-    body: "Search, summaries, tags, and linked items help you stop digging through scattered folders.",
-    icon: <FaSearch className="text-[#6DD1FF]" size={18} />,
+    icon: <FaSearch size={17} className="text-[#6DD1FF]" />,
+    title: "Find it again",
+    body: "Search documents by what you remember, not just the file name.",
   },
   {
-    title: "Stay ahead of deadlines and renewals",
-    body: "Set reminders on documents and let NeuVault bring them back before they become urgent.",
-    icon: <FaBell className="text-[#6ce6b3]" size={18} />,
+    icon: <FaBell size={17} className="text-[#6ce6b3]" />,
+    title: "Remember what matters",
+    body: "Bring back dates, renewals, receipts, certificates, and follow-ups before they matter.",
+  },
+  {
+    icon: <FaShieldAlt size={17} className="text-[#9dd9ff]" />,
+    title: "Recover across devices",
+    body: "Back up your vault privately and restore it when you move devices.",
   },
 ];
 
 export default function Hero() {
-  const [devicePlatform, setDevicePlatform] = useState<DevicePlatform>("other");
+  const [devicePlatform, setDevicePlatform] =
+    useState<DevicePlatform>("other");
 
   useEffect(() => {
     const userAgent = navigator.userAgent || navigator.vendor || "";
@@ -86,6 +145,7 @@ export default function Hero() {
     }
 
     const featuresSection = document.getElementById("features");
+
     if (!featuresSection) {
       return;
     }
@@ -93,30 +153,33 @@ export default function Hero() {
     event.preventDefault();
 
     const navOffset = 92;
-    const top = featuresSection.getBoundingClientRect().top + window.scrollY - navOffset;
+    const top =
+      featuresSection.getBoundingClientRect().top + window.scrollY - navOffset;
+
     window.scrollTo({ top, behavior: "smooth" });
   };
 
-  const downloadUrl = devicePlatform === "android" ? ANDROID_PLAY_STORE_URL : IOS_APP_STORE_URL;
+  const downloadUrl =
+    devicePlatform === "android" ? ANDROID_PLAY_STORE_URL : IOS_APP_STORE_URL;
+
   const downloadLabel =
     devicePlatform === "android"
       ? "Download on Google Play"
       : devicePlatform === "ios"
         ? "Download on the App Store"
-        : "Explore with free 500 credits";
-  const downloadClassName =
-    "inline-flex items-center justify-center rounded-full bg-[#3F8CFF] px-6 py-3 text-base font-semibold text-white shadow-[0_18px_40px_-20px_rgba(63,140,255,0.9)] hover:bg-[#60aaff]";
+        : "Get NeuVault free";
 
   return (
     <section className="relative overflow-hidden px-6 pb-24 pt-32 text-white md:pb-28 md:pt-40">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(63,140,255,0.24),transparent_34%),linear-gradient(180deg,#07101b_0%,#091321_38%,#08111d_100%)]" />
-      <div className="section-grid absolute inset-0 opacity-[0.18]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(63,140,255,0.26),transparent_34%),linear-gradient(180deg,#07101b_0%,#091321_42%,#08111d_100%)]" />
+      <div className="section-grid absolute inset-0 opacity-[0.16]" />
 
       <motion.div
         className="absolute -left-28 top-12 h-[460px] w-[460px] rounded-full bg-[#3F8CFF]/12 blur-[120px]"
-        animate={{ scale: [1, 1.08, 1], opacity: [0.46, 0.7, 0.46] }}
+        animate={{ scale: [1, 1.08, 1], opacity: [0.45, 0.7, 0.45] }}
         transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }}
       />
+
       <motion.div
         className="absolute bottom-0 right-[-6%] h-[420px] w-[420px] rounded-full bg-[#6DD1FF]/12 blur-[120px]"
         animate={{ scale: [1, 1.06, 1], opacity: [0.35, 0.58, 0.35] }}
@@ -126,12 +189,14 @@ export default function Hero() {
       {floatingIcons.map((item, index) => (
         <motion.div
           key={`${item.top}-${item.left}`}
-          className={`absolute pointer-events-none text-3xl md:text-5xl ${item.className} ${item.mobile ? "block" : "hidden md:block"}`}
+          className={`pointer-events-none absolute text-3xl md:text-5xl ${
+            item.className
+          } ${item.mobile ? "block" : "hidden md:block"}`}
           animate={{
             y: [0, -18, 0, 16, 0],
             x: [0, index % 2 === 0 ? 8 : -8, 0],
             rotate: [0, index % 2 === 0 ? 8 : -8, 0],
-            opacity: [0.18, 0.34, 0.18],
+            opacity: [0.16, 0.32, 0.16],
           }}
           transition={{
             duration: 10,
@@ -146,7 +211,7 @@ export default function Hero() {
         </motion.div>
       ))}
 
-      <div className="relative z-10 mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
+      <div className="relative z-10 mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div>
           <motion.p
             className="mb-5 inline-flex rounded-full border border-[#6DD1FF]/25 bg-[#6DD1FF]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]"
@@ -154,16 +219,16 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
           >
-            Private mobile vault for important documents
+            Private AI vault for documents life asks for later
           </motion.p>
 
           <motion.h1
-            className="max-w-3xl text-3xl font-bold leading-[1.2] tracking-tight sm:text-[3.4rem] md:text-[3.1rem]"
+            className="max-w-4xl text-4xl font-bold leading-[1.08] tracking-tight sm:text-[4rem] md:text-[4.55rem]"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25, duration: 0.55 }}
           >
-            Scan, organize, find, and back up important documents in one private vault.
+            You saved it somewhere. Now you need it.
           </motion.h1>
 
           <motion.p
@@ -172,7 +237,9 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.38, duration: 0.55 }}
           >
-            NeuVault helps you turn scattered files, scans, notes, and voice notes into one organized, searchable system with reminder dates, private backups, and local-first control.
+            NeuVault keeps important documents, scans, screenshots, notes, and
+            voice notes organized, searchable, remembered, and recoverable —
+            privately.
           </motion.p>
 
           <motion.div
@@ -192,23 +259,6 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
-            className="mt-6 flex flex-wrap gap-3 text-sm"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.56, duration: 0.45 }}
-          >
-            {workflowShortcuts.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-full border border-white/12 bg-white/5 px-4 py-2 text-white/78 hover:bg-white/10 hover:text-white"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </motion.div>
-
-          <motion.div
             className="mt-8 flex flex-col gap-4 sm:flex-row"
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -219,15 +269,16 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleDownloadClick}
-              className={downloadClassName}
+              className="inline-flex items-center justify-center rounded-full bg-[#3F8CFF] px-6 py-3 text-base font-semibold text-white shadow-[0_18px_40px_-20px_rgba(63,140,255,0.9)] hover:bg-[#60aaff]"
             >
               {downloadLabel}
             </a>
+
             <Link
               href="#see-it-in-action"
               className="inline-flex items-center justify-center rounded-full border border-white/14 bg-white/5 px-6 py-3 text-base font-semibold text-white hover:bg-white/10"
             >
-              See NeuVault in action
+              See how it works
             </Link>
           </motion.div>
 
@@ -238,9 +289,14 @@ export default function Hero() {
             transition={{ delay: 0.72, duration: 0.45 }}
           >
             <p className="max-w-2xl">
-              For the moments when you know you saved it somewhere, but cannot afford to keep searching.
+              Built for receipts, IDs, certificates, forms, contracts, school
+              records, travel files, and notes you cannot afford to lose.
             </p>
-            <Link href="/privacy-policy" className="text-[#a8d8ff] hover:text-white">
+
+            <Link
+              href="/privacy-policy"
+              className="text-[#a8d8ff] hover:text-white"
+            >
               See how privacy works
             </Link>
           </motion.div>
@@ -251,83 +307,99 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.84, duration: 0.45 }}
           >
-            <span className="text-white/46">Encrypted backup bundles work with:</span>
-            <span className="flex items-center gap-2">
-              <SiGoogledrive className="text-yellow-300" size={18} />
-              Google Drive
+            <span className="text-white/46">
+              Available now on iPhone and Android.
             </span>
-            <span className="flex items-center gap-2">
-              <SiIcloud className="text-sky-300" size={18} />
-              iCloud
-            </span>
-            <span className="flex items-center gap-2">
-              <SiDropbox className="text-blue-300" size={18} />
-              Dropbox
-            </span>
-            <span className="flex items-center gap-2">
-              <SiDropbox className="text-blue-300" size={18} />
-              and any cloud storage of your choice
+
+            <span className="text-white/46">
+              Desktop version coming soon.
             </span>
           </motion.div>
         </div>
 
         <motion.div
-          className="glass-panel relative overflow-hidden rounded-[2rem] p-6 sm:p-7"
+          className="glass-panel relative overflow-hidden rounded-[2rem] p-5 sm:p-6"
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.55 }}
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(63,140,255,0.24),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(108,230,179,0.12),transparent_32%)]" />
+
           <div className="relative">
-            <div className="mb-7 flex items-start justify-between gap-4">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
-                  Why it feels better
-                </p>
-                <h2 className="mt-2 text-2xl font-semibold text-white">
-                  Less chaos. Less searching. More control.
-                </h2>
-              </div>
-              <div className="rounded-2xl border border-white/10 bg-white/6 p-3 text-[#6DD1FF]">
-                <FaShieldAlt size={22} />
-              </div>
+            <div className="mb-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
+                The real problem
+              </p>
+
+              <h2 className="mt-2 text-2xl font-semibold leading-snug text-white">
+                Your files are saved. Your context is not.
+              </h2>
+
+              <p className="mt-3 text-sm leading-6 text-white/60">
+                Downloads, screenshots, notes, scans, and voice records get
+                scattered. NeuVault brings the meaning back together.
+              </p>
             </div>
 
-            <div className="space-y-4">
-              {outcomeCards.map((item) => (
-                <div key={item.title} className="rounded-2xl border border-white/10 bg-black/24 p-4">
+            <div className="space-y-3">
+              {painCards.map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-2xl border border-white/10 bg-black/24 p-4"
+                >
                   <div className="flex items-start gap-3">
-                    <div className="mt-1">{item.icon}</div>
+                    <div className="mt-1 rounded-xl border border-white/10 bg-white/6 p-2">
+                      {item.icon}
+                    </div>
+
                     <div>
-                      <h3 className="text-base font-semibold text-white">{item.title}</h3>
-                      <p className="mt-1 text-sm leading-6 text-white/66">{item.body}</p>
+                      <h3 className="text-base font-semibold text-white">
+                        {item.title}
+                      </h3>
+
+                      <p className="mt-1 text-sm leading-6 text-white/62">
+                        {item.body}
+                      </p>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/44">
-                  Intake support
-                </p>
-                <p className="mt-2 text-sm leading-6 text-white/70">
-                  PDFs, photos, scans, uploads, and voice notes all end up in one place instead of five.
-                </p>
-              </div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/44">
-                  Context together
-                </p>
-                <p className="mt-2 text-sm leading-6 text-white/70">
-                  Notes, scans, files, and voice stay linked so future-you does not have to reconstruct the story.
-                </p>
-              </div>
+            <div className="mt-5 rounded-2xl border border-[#6DD1FF]/15 bg-[#6DD1FF]/8 p-4">
+              <p className="text-sm font-semibold text-white">
+                Not another cloud drive.
+              </p>
+
+              <p className="mt-1 text-sm leading-6 text-white/60">
+                NeuVault is built for document memory: what it is, why it
+                matters, where it belongs, and when you need it again.
+              </p>
             </div>
 
-            <p className="mt-6 max-w-md text-xs leading-6 text-white/48">
-              On-device by default. AI only processes content in workflows you choose.
+            <div className="mt-5 flex flex-wrap items-center gap-4 text-sm text-white/60">
+              <span className="flex items-center gap-2">
+                <SiGoogledrive className="text-yellow-300" size={17} />
+                Drive
+              </span>
+
+              <span className="flex items-center gap-2">
+                <SiIcloud className="text-sky-300" size={17} />
+                iCloud
+              </span>
+
+              <span className="flex items-center gap-2">
+                <SiDropbox className="text-blue-300" size={17} />
+                Dropbox
+              </span>
+
+              <span className="text-white/42">or any storage you trust</span>
+            </div>
+
+            <p className="mt-5 text-xs leading-6 text-white/42">
+              Encrypted backups stay under your control. AI helps with
+              organization, extraction, summaries, and Nova when you choose
+              intelligent workflows.
             </p>
           </div>
         </motion.div>

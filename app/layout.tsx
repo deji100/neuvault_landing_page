@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+
 import Navbar from "@/components/general/Navbar";
 import Footer from "@/components/general/Footer";
+import JsonLd from "@/components/seo/JsonLd";
+
 import {
-  DEFAULT_OG_IMAGE_PATH,
   DEFAULT_DESCRIPTION,
+  DEFAULT_OG_IMAGE_PATH,
   DEFAULT_TITLE,
   SITE_NAME,
   SITE_URL,
+  buildOrganizationJsonLd,
+  buildSoftwareApplicationJsonLd,
+  buildWebSiteJsonLd,
 } from "@/lib/seo";
 
 const poppins = Poppins({
@@ -22,13 +28,16 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: DEFAULT_TITLE,
-    template: "%s | NeuVault",
+    template: `%s | ${SITE_NAME}`,
   },
   description: DEFAULT_DESCRIPTION,
   applicationName: SITE_NAME,
   authors: [{ name: SITE_NAME }],
   creator: SITE_NAME,
   publisher: SITE_NAME,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     url: SITE_URL,
@@ -76,9 +85,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = [
+    buildOrganizationJsonLd(),
+    buildWebSiteJsonLd(),
+    buildSoftwareApplicationJsonLd(),
+  ];
+
   return (
     <html lang="en">
       <body className={`${poppins.variable} antialiased`}>
+        <JsonLd data={jsonLd} />
         <Navbar />
         {children}
         <Footer />

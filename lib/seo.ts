@@ -3,29 +3,42 @@ import type { Metadata } from "next";
 export const SITE_NAME = "NeuVault";
 export const SITE_URL = "https://neuvault.app";
 export const SUPPORT_EMAIL = "support@neuvault.app";
-export const IOS_APP_STORE_URL = "https://apps.apple.com/ng/app/neuvault/id6759370392";
-export const ANDROID_PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=app.neuvault";
+
+export const IOS_APP_STORE_URL =
+  "https://apps.apple.com/ng/app/neuvault/id6759370392";
+
+export const ANDROID_PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=app.neuvault";
+
 export const DEFAULT_TITLE =
-  "NeuVault | Private Document Vault to Scan, Organize, Search, Remind, and Back Up Important Documents";
+  "NeuVault | Private AI Vault for Documents, Notes, Scans, and Voice Notes";
+
 export const DEFAULT_DESCRIPTION =
-  "NeuVault is a private, local-first document vault that helps you scan and organize documents, find files faster, set reminder dates, export notes, transcribe voice notes, and back up important records securely.";
+  "NeuVault is a private, local-first AI vault for the documents life will ask you for later. Capture documents, scans, notes, screenshots, and voice notes, organize them automatically, ask Nova, review important dates, and restore your vault across devices.";
+
 export const DEFAULT_OG_IMAGE_PATH = "/opengraph-image";
 
 const BASE_KEYWORDS = [
+  "private AI document vault",
   "private document vault",
-  "document organizer app",
+  "AI document organizer",
   "document organization app",
   "scan and organize documents",
   "document reminder app",
   "document retrieval app",
   "secure document backup",
+  "encrypted document backup",
+  "local-first document app",
+  "local-first document vault",
+  "AI document assistant",
   "voice note transcription",
   "notes export",
-  "local-first document organizer",
-  "offline document organizer",
-  "encrypted document backup",
-  "document search app",
-  "store scanned documents securely",
+  "organize important documents",
+  "find documents faster",
+  "document memory app",
+  "private document assistant",
+  "organize scans and notes",
+  "cross-device document backup",
 ];
 
 export type SeoFaq = {
@@ -61,57 +74,62 @@ export const solutionPages: SolutionPage[] = [
       "digital paperwork organization",
       "organize personal documents digitally",
       "private document organizer",
+      "AI document organizer",
     ],
     metaTitle: "Document Organization App for Important Files",
-    title: "Organize important documents, scans, and notes in one private vault",
+    title: "Organize important documents, scans, notes, and voice records in one private vault",
     description:
-      "NeuVault is a document organization app for important files, scans, notes, and PDFs. Keep paperwork organized with automatic organization, manual grouping, summaries, tags, and linked context.",
+      "NeuVault is a private document organization app for important files, scans, notes, screenshots, PDFs, and voice notes. Capture records, organize them automatically, keep useful context, and find them faster when life asks.",
     eyebrow: "Document organization",
     intro:
-      "NeuVault is built for the moment when your important files are technically saved, but practically lost. Instead of another generic file dump, it gives you one private place to organize documents, related notes, scans, and voice capture in a way you can revisit later without rebuilding the story from memory.",
-    ctaTitle: "Build a document organization system you can actually trust later",
+      "NeuVault is built for the moment when your important files are technically saved, but practically lost. Instead of another generic file dump, it gives you one private place to organize documents, scans, notes, voice records, summaries, tags, reminders, and linked context.",
+    ctaTitle: "Build a document system you can trust later",
     ctaDescription:
-      "Use NeuVault when you need more than folders. Keep scans, uploads, notes, reminders, and linked records together so important paperwork stays understandable and retrievable.",
-    relatedSlugs: ["scan-organization", "document-retrieval", "secure-document-backup"],
+      "Use NeuVault when you need more than folders. Keep scans, uploads, notes, voice records, reminders, and linked documents together so important records stay understandable and retrievable.",
+    relatedSlugs: [
+      "scan-organization",
+      "document-retrieval",
+      "secure-document-backup",
+    ],
     benefits: [
       {
-        title: "Organize documents automatically or group them manually later",
+        title: "Organize documents automatically",
         description:
-          "Uploads, scans, and notes can be organized automatically during intake, and you can also group them manually when you want the vault arranged your way.",
+          "NeuVault can summarize, tag, classify, and structure documents during intake so your vault does not become another messy folder.",
       },
       {
-        title: "Keep document context attached instead of splitting it across apps",
+        title: "Keep document context attached",
         description:
-          "Documents, summaries, tags, and linked items stay together so you do not need to reconstruct the story from scattered apps.",
+          "Documents, summaries, notes, extracted details, tags, and linked records stay together so you do not need to rebuild the story from memory.",
       },
       {
-        title: "Handle real digital paperwork, not just neat demo files",
+        title: "Handle real-life paperwork",
         description:
-          "Receipts, IDs, agreements, school files, travel records, and business paperwork can live inside one system instead of screenshots, downloads, and chat attachments.",
+          "Receipts, IDs, agreements, school files, travel records, scans, business records, and screenshots can live inside one private vault.",
       },
     ],
     appProof: [
-      "The mobile app organizes intake items into smart groups and subgroups inside the vault.",
-      "NeuVault supports uploads, scans, notes, and cloud or email-style document intake flows.",
-      "Linked groups let one issue keep its surrounding context instead of becoming isolated files.",
+      "NeuVault organizes intake items into groups and subgroups inside the vault.",
+      "NeuVault supports documents, scans, notes, voice notes, and screenshots.",
+      "Linked Documents lets users group related records around real-life context.",
     ],
     keywords: [
       "document organization app",
       "organize important documents",
-      "digital paperwork organization",
-      "organize personal documents digitally",
+      "AI document organizer",
       "private document organizer",
+      "digital paperwork organization",
     ],
     faqs: [
       {
         question: "What makes NeuVault different from a normal folder app?",
         answer:
-          "NeuVault is built around document context. It keeps summaries, tags, linked items, reminders, notes, and scans connected instead of leaving you with flat folders.",
+          "NeuVault is built around document context. It keeps summaries, tags, notes, reminders, linked records, and vault search together instead of leaving you with flat folders.",
       },
       {
-        question: "Can NeuVault organize both typed notes and files?",
+        question: "Can NeuVault organize notes, voice notes, scans, and files together?",
         answer:
-          "Yes. NeuVault supports typed notes, uploads, scans, and voice-based capture so one workflow does not need multiple apps.",
+          "Yes. NeuVault supports documents, scans, notes, screenshots, and voice notes so your important records can live in one private vault.",
       },
     ],
   },
@@ -123,120 +141,130 @@ export const solutionPages: SolutionPage[] = [
       "renewal date tracker",
       "document deadline reminder",
       "track document expiry dates",
+      "document attention app",
     ],
-    metaTitle: "Document Reminder App for Expiry and Renewal Dates",
-    title: "Set reminders for important documents, renewal dates, and deadlines",
+    metaTitle: "Document Reminder App for Expiry Dates, Renewals, and Follow-ups",
+    title: "Review important document dates before they become urgent",
     description:
-      "NeuVault is a document reminder app for expiry dates, renewals, deadlines, and follow-ups. Keep reminders attached to the document so future actions are easier to trust.",
-    eyebrow: "Document reminder",
+      "NeuVault helps you review important document dates, renewals, expiry dates, deadlines, and follow-ups. Keep reminders attached to the records they belong to.",
+    eyebrow: "Attention",
     intro:
-      "A reminder only helps when it stays attached to the thing you need to revisit. NeuVault keeps reminders tied to the actual document, note, or linked set so renewal dates, expiry dates, and follow-ups are easier to trust.",
+      "A reminder only helps when it stays attached to the document you need to revisit. NeuVault keeps important dates and follow-ups tied to the source record or linked group, so future actions are easier to trust.",
     ctaTitle: "Keep deadlines attached to the document they belong to",
     ctaDescription:
-      "Track renewal windows, expiry dates, due dates, and follow-up actions without sending the real paperwork into a separate calendar or to-do app.",
-    relatedSlugs: ["scan-organization", "document-retrieval", "secure-document-backup"],
+      "Review renewal windows, expiry dates, due dates, and follow-up actions without separating the reminder from the real document context.",
+    relatedSlugs: [
+      "scan-organization",
+      "document-retrieval",
+      "secure-document-backup",
+    ],
     benefits: [
       {
-        title: "Track expiry dates and renewal windows from real document context",
+        title: "Review future dates found in documents",
         description:
-          "NeuVault scans vault context for future dates like expirations, renewals, due dates, and follow-ups so important items do not stay buried.",
+          "NeuVault can surface dates like expirations, renewals, due dates, and follow-ups so important records do not stay buried.",
       },
       {
-        title: "Resurface important documents before they become urgent",
+        title: "Bring important records back later",
         description:
-          "You can resurface documents on a cadence or as a one-time future revisit instead of hoping you remember later.",
+          "Use reminders and resurfacing to revisit documents at the right time instead of hoping you remember later.",
       },
       {
-        title: "Keep reminders tied to the source document",
+        title: "Keep reminders connected to source records",
         description:
-          "When a reminder surfaces, it points back to the related document or linked group rather than sending you into another search loop.",
+          "When a document needs attention, NeuVault points you back to the record or linked group behind it.",
       },
     ],
     appProof: [
-      "NeuVault has dedicated smart suggestions and resurfacing flows in the product.",
-      "The backend schedules both smart suggestion notifications and backup reminders.",
-      "Document-level resurfacing supports recurring cadence and one-time future reminders.",
+      "NeuVault includes Attention and resurfacing flows for important records.",
+      "Users can set document-level reminders and backup reminders.",
+      "Attention items can point back to the relevant record context.",
     ],
     keywords: [
       "document reminder app",
+      "document attention app",
       "reminders for important documents",
       "renewal date tracker",
       "track document expiry dates",
-      "deadline reminder for documents",
     ],
     faqs: [
       {
-        question: "What kinds of reminders can NeuVault handle?",
+        question: "What kinds of document reminders can NeuVault help with?",
         answer:
-          "NeuVault is designed for expiration dates, renewals, due dates, follow-ups, and other future dates that live inside documents.",
+          "NeuVault is designed for expiration dates, renewals, due dates, follow-ups, and other future dates that live inside important records.",
       },
       {
         question: "Do reminders link back to the source document?",
         answer:
-          "Yes. NeuVault reminders and resurfacing flows are attached to the relevant item or linked group so the surrounding context is still there when you need it.",
+          "Yes. NeuVault keeps reminders connected to the relevant document or linked group so the surrounding context is still there when you need it.",
       },
     ],
   },
   {
     slug: "document-retrieval",
     aliases: ["smart-document-retrival", "smart-document-retrieval"],
-    primaryKeyword: "document retrieval",
+    primaryKeyword: "document retrieval app",
     secondaryKeywords: [
-      "document retrieval app",
       "find important documents faster",
       "searchable document vault",
       "search old documents",
+      "AI document search",
+      "private document search",
     ],
-    metaTitle: "Document Retrieval App for Fast Search",
+    metaTitle: "Document Retrieval App for Fast Private Search",
     title: "Find important documents faster with a searchable private vault",
     description:
-      "NeuVault improves document retrieval with local-first search, summaries, tags, linked context, and vault-aware assistant workflows so you can find important files faster.",
-    eyebrow: "Smart document retrieval",
+      "NeuVault improves document retrieval with local-first organization, summaries, tags, linked context, and Nova, your vault-aware AI assistant.",
+    eyebrow: "Document retrieval",
     intro:
       "The hard part is rarely saving a file. The hard part is finding it again when the pressure is on. NeuVault is designed so retrieval feels fast even when you only remember part of the story, a date, or a related item.",
     ctaTitle: "Make document retrieval faster than digging through folders",
     ctaDescription:
       "Search by title, summary, type, date, tags, and related context so old scans, receipts, IDs, and agreements are easier to recover when you need them.",
-    relatedSlugs: ["document-organization", "scan-organization", "secure-document-backup"],
+    relatedSlugs: [
+      "document-organization",
+      "scan-organization",
+      "secure-document-backup",
+    ],
     benefits: [
       {
         title: "Search by meaning, not only filenames",
         description:
-          "Titles, summaries, tags, groups, and related items make retrieval easier when you do not remember the exact file name.",
+          "Titles, summaries, tags, groups, and related records make retrieval easier when you do not remember the exact file name.",
       },
       {
-        title: "Find the right document from partial memory",
+        title: "Find documents from partial memory",
         description:
-          "Search by type, date, summary, or related context when you remember the situation but not the exact filename.",
+          "Search by type, date, summary, tag, or related context when you remember the situation but not the filename.",
       },
       {
-        title: "Use vault-aware assistant support when search alone is not enough",
+        title: "Ask Nova when search is not enough",
         description:
-          "Nova can search your vault, explain documents, and help narrow down what actually matters.",
+          "Nova can help answer questions from your vault context and guide you toward the record you need.",
       },
     ],
     appProof: [
-      "The assistant is designed to search the vault, explain documents, and answer document-grounded questions.",
-      "The vault UI uses grouped organization, summaries, tags, and linked groups to improve retrieval.",
-      "NeuVault supports opening related document sets and linked groups directly from the app.",
+      "Nova is designed to answer document-grounded questions from the vault.",
+      "NeuVault uses grouped organization, summaries, tags, and linked context to improve retrieval.",
+      "Linked Documents helps users recover related records from one place.",
     ],
     keywords: [
-      "document retrieval",
       "document retrieval app",
       "find important documents faster",
+      "AI document search",
       "searchable document vault",
-      "search old documents",
+      "private document search",
     ],
     faqs: [
       {
         question: "Is NeuVault only keyword search?",
         answer:
-          "No. NeuVault combines grouped organization, summaries, tags, linked context, and vault-aware assistant help so retrieval is not limited to exact filenames.",
+          "No. NeuVault combines grouped organization, summaries, tags, linked context, and Nova assistant workflows so retrieval is not limited to exact filenames.",
       },
       {
-        question: "Can NeuVault help when I only remember part of the document context?",
+        question: "Can NeuVault help when I only remember part of the document?",
         answer:
-          "Yes. Related items, document summaries, tags, and assistant prompts make it easier to recover the right file from partial memory.",
+          "Yes. You can use summaries, tags, document types, dates, linked records, and Nova to recover documents from partial memory.",
       },
     ],
   },
@@ -248,57 +276,62 @@ export const solutionPages: SolutionPage[] = [
       "back up important documents",
       "document vault backup",
       "restore important documents",
+      "cross-device document backup",
     ],
-    metaTitle: "Secure Document Backup App",
+    metaTitle: "Secure Document Backup and Cross-Device Restore",
     title: "Back up important documents securely without giving up control",
     description:
-      "NeuVault supports secure document backup with encrypted export bundles, user-controlled storage choices, and backup reminders that help you protect important files.",
+      "NeuVault supports encrypted document backup and cross-device restore with user-controlled storage choices, so your vault can move with you across mobile and desktop.",
     eyebrow: "Secure backup",
     intro:
-      "Backup only works when it is both secure and practical. NeuVault is built so you can export encrypted vault backups, choose where they live, and keep the process under your control instead of handing the whole vault to a permanent cloud archive.",
+      "Backup only works when it is both secure and practical. NeuVault is built so you can export encrypted vault backups, choose where they live, and restore your vault across devices without handing your records to one permanent cloud archive.",
     ctaTitle: "Protect your vault with backup that stays under your control",
     ctaDescription:
-      "Export encrypted backup bundles, choose your own storage destination, and restore important documents on another device without depending on one permanent cloud provider.",
-    relatedSlugs: ["document-retrieval", "document-organization", "document-reminder"],
+      "Create encrypted backup bundles, choose your own storage destination, and restore important documents on another device when you need them.",
+    relatedSlugs: [
+      "document-retrieval",
+      "document-organization",
+      "document-reminder",
+    ],
     benefits: [
       {
-        title: "Create encrypted backup bundles for important documents",
+        title: "Create encrypted vault backups",
         description:
-          "NeuVault supports encrypted vault backup bundles designed to be stored in cloud storage or offline storage you control.",
+          "NeuVault supports encrypted backup bundles designed to be stored in cloud storage or offline storage you control.",
       },
       {
-        title: "Choose where your document backup lives",
+        title: "Choose where your backup lives",
         description:
-          "You decide whether backups live in Google Drive, iCloud, Dropbox, or another storage location you trust.",
+          "You decide whether backups live in Google Drive, iCloud, Dropbox, another cloud provider, or another location you trust.",
       },
       {
-        title: "Use backup reminders so protection does not depend on memory",
+        title: "Restore across devices",
         description:
-          "NeuVault includes backup reminder settings and scheduled prompts so protection does not depend on memory alone.",
+          "NeuVault is designed around cross-device recovery, so your vault can move between mobile and desktop workflows.",
       },
     ],
     appProof: [
-      "The backend derives a per-account backup key for encrypted vault backups.",
-      "NeuVault includes backup reminder settings, frequencies, and notification scheduling.",
-      "The app help content explicitly describes encrypted backup and recovery controlled by the user.",
+      "NeuVault supports encrypted backup and restore flows.",
+      "The backup model is user-controlled rather than forced permanent cloud storage.",
+      "NeuVault is built for mobile and desktop compatibility.",
     ],
     keywords: [
       "secure document backup",
       "private document backup",
+      "cross-device document backup",
       "back up important documents",
-      "document vault backup",
       "restore important documents",
     ],
     faqs: [
       {
         question: "Does NeuVault store my backups for me?",
         answer:
-          "NeuVault is designed around user-controlled backup. You export encrypted backups and choose where they are stored.",
+          "NeuVault is designed around user-controlled backup. You create encrypted backups and choose where they are stored.",
       },
       {
-        question: "Can NeuVault remind me to back up my vault?",
+        question: "Can I restore my vault on another device?",
         answer:
-          "Yes. NeuVault includes backup reminder settings and scheduled reminder flows in the product.",
+          "Yes. NeuVault is designed to support encrypted restore across devices, including mobile and desktop workflows.",
       },
     ],
   },
@@ -310,57 +343,62 @@ export const solutionPages: SolutionPage[] = [
       "export notes to pdf",
       "export notes to word",
       "portable notes and records",
+      "document notes app",
     ],
     metaTitle: "Notes Export to PDF, Word, or CSV",
     title: "Export notes, scans, and records without locking them into one app",
     description:
-      "NeuVault lets you create rich notes inside your vault and export notes to PDF, Word, or CSV so your records stay portable, shareable, and usable.",
+      "NeuVault lets you create rich notes inside your vault and export notes to PDF, Word, or CSV so your records stay portable, shareable, and useful.",
     eyebrow: "Notes export",
     intro:
-      "Sometimes the important thing is not just the document. It is the note you wrote about it. NeuVault lets you create notes inside the same vault and export those notes into useful formats when you need to share, archive, or process them elsewhere.",
+      "Sometimes the important thing is not just the document. It is the note you wrote about it. NeuVault lets you keep notes inside the same private vault and export them into useful formats when you need to share, archive, or process them elsewhere.",
     ctaTitle: "Keep notes portable without breaking their document context",
     ctaDescription:
       "Capture notes next to your files, then export them to the format your next workflow needs, from PDF handoffs to Word editing and CSV analysis.",
-    relatedSlugs: ["voice-note-transcription", "document-retrieval", "document-organization"],
+    relatedSlugs: [
+      "voice-note-transcription",
+      "document-retrieval",
+      "document-organization",
+    ],
     benefits: [
       {
-        title: "Keep notes next to the document context they describe",
+        title: "Keep notes next to document context",
         description:
-          "Instead of writing separate notes in another app, NeuVault keeps note capture close to the files, scans, and reminders they belong with.",
+          "Instead of writing separate notes in another app, NeuVault keeps note capture close to the files, scans, reminders, and linked records they belong with.",
       },
       {
-        title: "Export notes into formats that fit real workflows",
+        title: "Export notes into useful formats",
         description:
-          "NeuVault supports note export to PDF, Word, and CSV so a note can move into reporting, filing, or spreadsheet workflows when needed.",
+          "NeuVault supports note export to PDF, Word, and CSV so a note can move into reporting, filing, or editing workflows.",
       },
       {
-        title: "Preserve useful structure after export",
+        title: "Turn useful AI responses into notes",
         description:
-          "Formatting and structure help notes remain readable after export rather than collapsing into plain text blobs.",
+          "When Nova gives a helpful answer, that response can become part of your vault instead of disappearing inside a chat.",
       },
     ],
     appProof: [
-      "The backend exposes dedicated note conversion endpoints for PDF, CSV, and Word exports.",
-      "NeuVault note conversion flows generate structured output instead of dumping raw text.",
-      "The note editor tracks meaningful note content and supports richer note capture inside the vault.",
+      "NeuVault supports note creation inside the vault.",
+      "NeuVault supports note export workflows.",
+      "Nova responses can become notes inside the product loop.",
     ],
     keywords: [
       "notes export",
-      "export scans and notes",
       "export notes to pdf",
       "export notes to word",
       "document notes app",
+      "portable notes and records",
     ],
     faqs: [
       {
-        question: "Can NeuVault export the same note to more than one format?",
+        question: "Can NeuVault export notes to more than one format?",
         answer:
-          "Yes. NeuVault includes dedicated note export flows for PDF, Word, and CSV output.",
+          "Yes. NeuVault supports useful note export workflows including PDF, Word, and CSV.",
       },
       {
         question: "Why keep notes inside NeuVault instead of a separate notes app?",
         answer:
-          "Because the note usually needs the surrounding file, reminder, or document history. NeuVault keeps that context together.",
+          "Because notes often need surrounding document context. NeuVault keeps notes, files, reminders, and linked records together.",
       },
     ],
   },
@@ -372,57 +410,62 @@ export const solutionPages: SolutionPage[] = [
       "organize voice notes",
       "voice notes and documents app",
       "voice notes for reminders",
+      "voice note to structured note",
     ],
     metaTitle: "Voice Note Transcription App",
     title: "Turn voice notes into structured, searchable records you can keep",
     description:
-      "NeuVault records or accepts voice notes, transcribes them, and turns them into structured text that fits into the rest of your private vault.",
+      "NeuVault records or accepts voice notes, transcribes them, and turns them into structured notes that fit into the rest of your private vault.",
     eyebrow: "Voice note transcription",
     intro:
-      "Voice capture is useful because it is fast. It becomes truly useful when it turns into text you can search, revisit, and connect to other records. NeuVault is built to move voice notes into structured text that still feels like your note, not a disconnected transcript dump.",
+      "Voice capture is useful because it is fast. It becomes truly useful when it turns into text you can search, revisit, and connect to other records. NeuVault helps move voice notes into structured notes that stay useful later.",
     ctaTitle: "Capture voice notes fast and keep them useful later",
     ctaDescription:
       "Record spoken context when typing is inconvenient, then turn it into structured notes you can search, export, and connect to the rest of your vault.",
-    relatedSlugs: ["notes-export", "document-retrieval", "document-organization"],
+    relatedSlugs: [
+      "notes-export",
+      "document-retrieval",
+      "document-organization",
+    ],
     benefits: [
       {
-        title: "Capture voice notes fast when typing is inconvenient",
+        title: "Capture voice notes quickly",
         description:
           "Voice notes help you save context in the moment without opening a second workflow just to remember something later.",
       },
       {
-        title: "Transcribe voice notes into structured text",
+        title: "Transcribe voice into structured text",
         description:
-          "NeuVault transcribes voice and formats it into structured notes so the result is easier to read and use later.",
+          "NeuVault can turn voice capture into readable note content that is easier to revisit.",
       },
       {
-        title: "Keep transcribed voice notes searchable inside the vault",
+        title: "Keep voice notes searchable",
         description:
-          "Once transcribed, the note becomes part of the same private document system rather than disappearing into a separate voice app.",
+          "Once transcribed, voice notes become part of the same private vault as your documents, scans, and notes.",
       },
     ],
     appProof: [
-      "The voice recorder transcribes audio and saves the result back into the vault workflow.",
-      "The transcription service explicitly formats plain text into structured HTML notes.",
-      "Offline-aware handling keeps voice capture usable even when connectivity is unstable.",
+      "NeuVault supports voice note capture and transcription.",
+      "Voice notes are part of the same vault workflow as documents and notes.",
+      "Transcribed voice notes can become searchable records.",
     ],
     keywords: [
       "voice note transcription",
       "transcribe voice notes",
       "organize voice notes",
       "voice notes and documents app",
-      "voice notes for reminders",
+      "voice note to structured note",
     ],
     faqs: [
       {
-        question: "Does NeuVault just transcribe voice word-for-word?",
+        question: "Does NeuVault only save raw audio?",
         answer:
-          "NeuVault is designed to produce structured note output, which makes the result easier to read, scan, and keep inside your vault.",
+          "No. NeuVault is designed to transcribe voice notes into structured text so they become easier to read, search, and keep.",
       },
       {
         question: "Can voice notes live next to other documents?",
         answer:
-          "Yes. Voice capture is part of the same NeuVault system as notes, uploads, scans, and related document context.",
+          "Yes. Voice notes are part of the same NeuVault system as notes, uploads, scans, and linked document context.",
       },
     ],
   },
@@ -434,39 +477,44 @@ export const solutionPages: SolutionPage[] = [
       "scan and store documents",
       "document scanning and organizing software",
       "store scanned documents securely",
+      "scan documents into private vault",
     ],
     metaTitle: "Scan and Organize Documents App",
     title: "Scan and organize documents without losing them later",
     description:
-      "NeuVault helps you scan and organize documents, extract structure from paperwork, and store scanned files in one private vault you can search later.",
+      "NeuVault helps you scan and organize documents, extract structure from paperwork, and store scanned files in one private vault you can search, review, and back up later.",
     eyebrow: "Scan organization",
     intro:
-      "Scanning is only the first step. The real problem starts when the scan lands in a camera roll, a random folder, or a cloud drive with no context. NeuVault is built to turn scans into usable records that remain organized, searchable, and ready for retrieval later.",
+      "Scanning is only the first step. The real problem starts when the scan lands in a camera roll, random folder, or cloud drive with no context. NeuVault helps turn scans into usable records that remain organized, searchable, and ready for retrieval later.",
     ctaTitle: "Move from simple scanning to real document organization",
     ctaDescription:
-      "Capture paperwork, run OCR, group scanned files with the right records, and keep everything ready for reminders, retrieval, and secure backup.",
-    relatedSlugs: ["document-organization", "document-retrieval", "secure-document-backup"],
+      "Capture paperwork, run OCR when needed, group scanned files with the right records, and keep everything ready for reminders, retrieval, and secure backup.",
+    relatedSlugs: [
+      "document-organization",
+      "document-retrieval",
+      "secure-document-backup",
+    ],
     benefits: [
       {
         title: "Scan and organize documents in one workflow",
         description:
-          "Scanned paperwork moves into NeuVault instead of sitting in a generic photo stream or download folder.",
+          "Scanned paperwork moves into NeuVault instead of sitting forgotten in a generic photo stream or download folder.",
       },
       {
-        title: "Organize scanned documents with OCR and structure",
+        title: "Use OCR and extraction to make scans useful",
         description:
-          "NeuVault uses OCR and extraction flows to pull meaning out of scanned content so it is easier to classify and search.",
+          "NeuVault can extract meaning from scanned content so it becomes easier to classify, summarize, and search.",
       },
       {
-        title: "Store scanned paperwork where you can retrieve it later",
+        title: "Store scanned paperwork where you can retrieve it",
         description:
-          "A scanned file can be summarized, tagged, grouped, linked, and revisited later as part of a bigger story.",
+          "A scan can be summarized, tagged, grouped, linked, searched, and backed up as part of a bigger vault story.",
       },
     ],
     appProof: [
-      "The app includes a dedicated scan-document intake flow.",
-      "The backend supports OCR for images and PDFs during intake.",
-      "Scan items can be grouped, tagged, summarized, and linked like other vault records.",
+      "NeuVault includes document scanning intake flows.",
+      "Scanned items can be grouped, tagged, summarized, and linked like other vault records.",
+      "NeuVault is designed for private document storage and retrieval.",
     ],
     keywords: [
       "scan and organize documents",
@@ -479,18 +527,21 @@ export const solutionPages: SolutionPage[] = [
       {
         question: "Can NeuVault organize scans after capture?",
         answer:
-          "Yes. NeuVault is built to classify, summarize, group, and link scanned documents after intake so they remain useful later.",
+          "Yes. NeuVault is built to classify, summarize, group, link, and search scanned documents after intake so they remain useful later.",
       },
       {
         question: "Does NeuVault support OCR for scans?",
         answer:
-          "Yes. NeuVault uses OCR and extraction flows to turn scanned content into searchable vault data.",
+          "Yes. NeuVault can use OCR and extraction workflows to turn scanned content into useful vault data.",
       },
     ],
   },
 ];
 
-const solutionLookup = new Map<string, { page: SolutionPage; canonicalSlug: string }>();
+const solutionLookup = new Map<
+  string,
+  { page: SolutionPage; canonicalSlug: string }
+>();
 
 for (const page of solutionPages) {
   solutionLookup.set(page.slug, { page, canonicalSlug: page.slug });
@@ -520,6 +571,7 @@ type BuildMetadataInput = {
   path?: string;
   keywords?: string[];
   noindex?: boolean;
+  image?: string;
 };
 
 export function buildMetadata({
@@ -528,13 +580,18 @@ export function buildMetadata({
   path = "/",
   keywords = [],
   noindex = false,
+  image = DEFAULT_OG_IMAGE_PATH,
 }: BuildMetadataInput = {}): Metadata {
+  const canonicalPath = path.startsWith("/") ? path : `/${path}`;
+  const canonicalUrl = absoluteUrl(canonicalPath);
+
   return {
+    metadataBase: new URL(SITE_URL),
     title,
     description,
-    keywords: [...BASE_KEYWORDS, ...keywords],
+    keywords: Array.from(new Set([...BASE_KEYWORDS, ...keywords])),
     alternates: {
-      canonical: path,
+      canonical: canonicalPath,
     },
     robots: noindex
       ? {
@@ -558,13 +615,13 @@ export function buildMetadata({
         },
     openGraph: {
       type: "website",
-      url: absoluteUrl(path),
+      url: canonicalUrl,
       siteName: SITE_NAME,
       title,
       description,
       images: [
         {
-          url: DEFAULT_OG_IMAGE_PATH,
+          url: image,
           width: 1200,
           height: 630,
           alt: `${title} | ${SITE_NAME}`,
@@ -576,7 +633,7 @@ export function buildMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [DEFAULT_OG_IMAGE_PATH],
+      images: [image],
     },
   };
 }
@@ -585,10 +642,19 @@ export function buildOrganizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
     name: SITE_NAME,
     url: SITE_URL,
     email: SUPPORT_EMAIL,
     sameAs: [IOS_APP_STORE_URL, ANDROID_PLAY_STORE_URL],
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        email: SUPPORT_EMAIL,
+        contactType: "customer support",
+        availableLanguage: ["English"],
+      },
+    ],
   };
 }
 
@@ -596,9 +662,18 @@ export function buildWebSiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
     name: SITE_NAME,
     url: SITE_URL,
     description: DEFAULT_DESCRIPTION,
+    publisher: {
+      "@id": `${SITE_URL}/#organization`,
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${SITE_URL}/?q={search_term_string}`,
+      "query-input": "required name=search_term_string",
+    },
   };
 }
 
@@ -606,13 +681,34 @@ export function buildSoftwareApplicationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "MobileApplication",
+    "@id": `${SITE_URL}/#app`,
     name: SITE_NAME,
     url: SITE_URL,
     operatingSystem: "iOS, Android",
     applicationCategory: "ProductivityApplication",
     description: DEFAULT_DESCRIPTION,
     downloadUrl: [IOS_APP_STORE_URL, ANDROID_PLAY_STORE_URL],
-    featureList: solutionPages.map((page) => page.metaTitle),
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+    featureList: [
+      "Private local-first document vault",
+      "AI document organization",
+      "Document scanning",
+      "Voice note transcription",
+      "Notes export",
+      "Nova AI assistant",
+      "Document reminders and Attention",
+      "Encrypted cross-device backup and restore",
+      "Linked Documents",
+      ...solutionPages.map((page) => page.metaTitle),
+    ],
+    publisher: {
+      "@id": `${SITE_URL}/#organization`,
+    },
   };
 }
 
@@ -646,5 +742,29 @@ export function buildFaqJsonLd(faqs: SeoFaq[]) {
         text: faq.answer,
       },
     })),
+  };
+}
+
+export function buildWebPageJsonLd({
+  title,
+  description,
+  path,
+}: {
+  title: string;
+  description: string;
+  path: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: title,
+    description,
+    url: absoluteUrl(path),
+    isPartOf: {
+      "@id": `${SITE_URL}/#website`,
+    },
+    publisher: {
+      "@id": `${SITE_URL}/#organization`,
+    },
   };
 }

@@ -12,19 +12,26 @@ export default function GuidesPreview() {
       </div>
 
       <div className="relative mx-auto max-w-6xl">
-        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">Support guides</p>
-            <h2 className="mt-4 text-3xl font-bold leading-tight md:text-4xl">
-              Helpful guides for scanning, organizing, and tracking important documents.
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
+              Learn the system
+            </p>
+
+            <h2 className="mt-4 text-3xl font-bold leading-tight md:text-5xl">
+              Better ways to stop losing important documents.
             </h2>
-            <p className="mt-5 text-base leading-8 text-white/68 md:text-lg">
-              Explore practical guides for scanning, organization, reminders, retrieval, backup, and voice-note workflows. Each page is designed to be useful, distinct, and easy to navigate.
+
+            <p className="mt-5 max-w-2xl text-base leading-8 text-white/68 md:text-lg">
+              Practical guides for organizing scans, receipts, school records,
+              notes, voice notes, reminders, and private backups — so your
+              records are easier to find when life asks for them.
             </p>
           </div>
+
           <Link
             href="/guides"
-            className="inline-flex rounded-full border border-white/14 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
+            className="inline-flex w-fit rounded-full border border-white/14 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
           >
             View all guides
           </Link>
@@ -35,18 +42,27 @@ export default function GuidesPreview() {
             <Link
               key={guide.slug}
               href={`/guides/${guide.slug}`}
-              className="group rounded-[1.5rem] border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition hover:border-[#6DD1FF]/30 hover:bg-white/8"
+              className="group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition hover:-translate-y-1 hover:border-[#6DD1FF]/30 hover:bg-white/8 hover:shadow-[0_24px_60px_-35px_rgba(63,140,255,0.7)]"
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#9dd9ff]">
-                {guide.primaryKeyword}
-              </p>
-              <h3 className="mt-3 text-xl font-semibold text-white transition group-hover:text-[#dff2ff]">
-                {guide.title}
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-white/68">{guide.description}</p>
-              <span className="mt-5 inline-flex text-sm font-semibold text-[#8ec0ff]">
-                Read guide
-              </span>
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(63,140,255,0.14),transparent_34%)] opacity-0 transition group-hover:opacity-100" />
+
+              <div className="relative">
+                <p className="inline-flex rounded-full border border-[#6DD1FF]/15 bg-[#6DD1FF]/8 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#9dd9ff]">
+                  {guide.primaryKeyword}
+                </p>
+
+                <h3 className="mt-4 text-xl font-semibold leading-snug text-white transition group-hover:text-[#dff2ff]">
+                  {guide.title}
+                </h3>
+
+                <p className="mt-3 text-sm leading-7 text-white/68">
+                  {guide.description}
+                </p>
+
+                <span className="mt-5 inline-flex text-sm font-semibold text-[#8ec0ff] transition group-hover:text-white">
+                  Read guide →
+                </span>
+              </div>
             </Link>
           ))}
         </div>

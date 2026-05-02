@@ -1,18 +1,26 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useMemo, useRef, useState, type ChangeEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ChangeEvent,
+} from "react";
 import { motion } from "framer-motion";
 import {
-  FaBookOpen,
+  FaBell,
   FaChevronLeft,
   FaChevronRight,
-  FaFileInvoiceDollar,
-  FaHeartbeat,
-  FaIdCard,
+  FaFileAlt,
+  FaLink,
+  FaLock,
   FaMicrophone,
   FaPause,
   FaPlay,
+  FaSearch,
 } from "react-icons/fa";
 import Logo from "@/public/logo.png";
 
@@ -23,103 +31,109 @@ type DemoVideo = {
   url: string;
 };
 
-const demoHighlights = [
-  "10 short demos",
-  "Core product workflows",
-  "Best way to understand the relief fast",
+const proofPills = [
+  "Capture",
+  "Organize",
+  "Ask Nova",
+  "Remember dates",
+  "Back up privately",
 ];
 
-const scenarios = [
+const painProofCards = [
   {
-    icon: <FaFileInvoiceDollar className="text-[#3F8CFF]" size={28} />,
-    title: "Business and finance",
+    icon: <FaSearch className="text-[#6DD1FF]" size={18} />,
+    title: "You do not remember the filename",
     description:
-      "Keep invoices, receipts, and statements in one place, then ask NeuVault to summarize, find totals, or pull up what you need without the scramble.",
+      "NeuVault keeps summaries, tags, dates, and context close to the document so retrieval does not depend on perfect memory.",
   },
   {
-    icon: <FaMicrophone className="text-emerald-300" size={28} />,
-    title: "Voice, meetings, and lectures",
+    icon: <FaBell className="text-[#6ce6b3]" size={18} />,
+    title: "The document matters later",
     description:
-      "Record voice notes or upload existing audio, then convert them into transcripts that are searchable and easier to act on.",
+      "Renewals, expiry dates, follow-ups, and important records can come back to your attention before they become urgent.",
   },
   {
-    icon: <FaHeartbeat className="text-pink-400" size={28} />,
-    title: "Health and medical",
+    icon: <FaLink className="text-amber-300" size={18} />,
+    title: "One issue has many records",
     description:
-      "Store hospital documents, lab results, and prescriptions so they remain organized, searchable, and easier to revisit later.",
+      "Link related documents, notes, scans, and voice records so a trip, school file, client job, or personal record stays together.",
   },
   {
-    icon: <FaBookOpen className="text-yellow-400" size={28} />,
-    title: "School and research",
+    icon: <FaLock className="text-[#9dd9ff]" size={18} />,
+    title: "You want recovery without surrendering control",
     description:
-      "Keep course PDFs, scanned notes, and references together so you can stop losing study context across folders and note apps.",
-  },
-  {
-    icon: <FaIdCard className="text-green-400" size={28} />,
-    title: "Life documents",
-    description:
-      "IDs, visas, warranties, agreements, and personal records stay portable, encrypted, and much easier to find when they matter.",
+      "Create encrypted backups you control and restore your vault across devices when you need to move.",
   },
 ];
 
 const demoVideos: DemoVideo[] = [
   {
-    title: "Smart Upload Intake",
-    summary: "Drop in an existing file and let NeuVault organize key details for you.",
+    title: "Upload a file",
+    summary:
+      "Bring in an existing document and let NeuVault turn it into an organized vault record.",
     tag: "Upload",
     url: "https://res.cloudinary.com/dfaiohpa6/video/upload/v1775068982/Smart_Upload_Intake_wzikki.mp4",
   },
   {
-    title: "Smart Scan Intake",
-    summary: "Scan a physical document and turn it into a clean digital record.",
+    title: "Scan paper",
+    summary:
+      "Capture a physical document and keep it searchable instead of losing it in your camera roll.",
     tag: "Scan",
     url: "https://res.cloudinary.com/dfaiohpa6/video/upload/v1775068971/smart-scan-intake_wccyli.mp4",
   },
   {
-    title: "Smart Note Intake",
-    summary: "Capture a quick note and convert it into a structured vault item.",
+    title: "Save a note",
+    summary:
+      "Turn quick thoughts into structured records that can live beside related documents.",
     tag: "Notes",
     url: "https://res.cloudinary.com/dfaiohpa6/video/upload/v1775068920/Smart_Note_Intake_xamar0.mp4",
   },
   {
-    title: "Smart Voice Note Intake",
-    summary: "Turn voice into a searchable record that stays linked to the rest of your vault.",
+    title: "Record voice",
+    summary:
+      "Turn spoken context into a searchable record inside the same private vault.",
     tag: "Voice",
     url: "https://res.cloudinary.com/dfaiohpa6/video/upload/v1775068925/smart-voice-note-intake_pjddwd.mp4",
   },
   {
-    title: "Smart Suggestions",
-    summary: "Get context-aware prompts for summaries, reminders, and follow-up actions.",
-    tag: "Suggestions",
+    title: "Review what needs attention",
+    summary:
+      "Surface dates, reminders, follow-ups, and records that should not stay buried.",
+    tag: "Attention",
     url: "https://res.cloudinary.com/dfaiohpa6/video/upload/v1775068927/smart-suggestion_qlgpl4.mp4",
   },
   {
-    title: "Document Resurfacing",
-    summary: "Bring an important document back when the timing matters again.",
+    title: "Bring it back later",
+    summary:
+      "Resurface an important document when the timing matters again.",
     tag: "Resurface",
     url: "https://res.cloudinary.com/dfaiohpa6/video/upload/v1775068966/document-resurfacing_rb4zrx.mp4",
   },
   {
-    title: "Document Linking",
-    summary: "Connect related files so one issue can stay together as a usable set.",
-    tag: "Links",
+    title: "Link related records",
+    summary:
+      "Keep documents, notes, scans, and records connected around one real-life context.",
+    tag: "Linked",
     url: "https://res.cloudinary.com/dfaiohpa6/video/upload/v1775068949/document-linking_u4nkyd.mp4",
   },
   {
-    title: "Nova Assistant",
-    summary: "Ask natural questions and get answers from your vault in seconds.",
-    tag: "Assistant",
+    title: "Ask Nova",
+    summary:
+      "Ask questions across your vault instead of digging through scattered files.",
+    tag: "Nova",
     url: "https://res.cloudinary.com/dfaiohpa6/video/upload/v1775068919/nova-assistant_lcmhuq.mp4",
   },
   {
-    title: "Settings and Backup",
-    summary: "Review privacy choices, backup flow, and restore behavior in one place.",
-    tag: "Security",
+    title: "Back up privately",
+    summary:
+      "Review backup and restore settings so your vault can move with you.",
+    tag: "Backup",
     url: "https://res.cloudinary.com/dfaiohpa6/video/upload/v1775068959/setting-and-backup_w5jfuz.mp4",
   },
   {
-    title: "Offline Smart Intake",
-    summary: "Capture while offline and process safely when your connection comes back.",
+    title: "Capture offline",
+    summary:
+      "Save records while offline and process them when your connection returns.",
     tag: "Offline",
     url: "https://res.cloudinary.com/dfaiohpa6/video/upload/v1775068887/offline_smart_intake_rmhhc6.mp4",
   },
@@ -145,7 +159,12 @@ const formatTime = (seconds: number) => {
   return `${minutes}:${remainingSeconds}`;
 };
 
-function VideoPhoneOverlay({ videoIndex, videos, onClose, onSelectVideo }: VideoPhoneOverlayProps) {
+function VideoPhoneOverlay({
+  videoIndex,
+  videos,
+  onClose,
+  onSelectVideo,
+}: VideoPhoneOverlayProps) {
   const video = videoIndex !== null ? videos[videoIndex] : null;
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -174,6 +193,7 @@ function VideoPhoneOverlay({ videoIndex, videos, onClose, onSelectVideo }: Video
     const nextTime = Number(event.target.value);
 
     setCurrentTime(nextTime);
+
     if (player) {
       player.currentTime = nextTime;
     }
@@ -195,6 +215,7 @@ function VideoPhoneOverlay({ videoIndex, videos, onClose, onSelectVideo }: Video
     setDuration(0);
 
     const player = videoRef.current;
+
     if (player) {
       player.currentTime = 0;
     }
@@ -212,6 +233,7 @@ function VideoPhoneOverlay({ videoIndex, videos, onClose, onSelectVideo }: Video
 
     const autoplay = async () => {
       if (!player) return;
+
       try {
         await player.play();
         setIsPlaying(true);
@@ -242,11 +264,16 @@ function VideoPhoneOverlay({ videoIndex, videos, onClose, onSelectVideo }: Video
         onClick={onClose}
       />
 
-      <div className="relative z-10" style={{ width: frameWidth }} onClick={(event) => event.stopPropagation()}>
+      <div
+        className="relative z-10"
+        style={{ width: frameWidth }}
+        onClick={(event) => event.stopPropagation()}
+      >
         <div className="mb-2 flex items-center justify-between px-1">
           <div className="rounded-full border border-white/20 bg-black/35 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#9cc9ff] backdrop-blur-md">
             {video.tag}
           </div>
+
           <button
             type="button"
             onClick={onClose}
@@ -281,6 +308,7 @@ function VideoPhoneOverlay({ videoIndex, videos, onClose, onSelectVideo }: Video
               onPause={() => setIsPlaying(false)}
               onEnded={goToNextVideo}
             />
+
             <button
               type="button"
               onClick={togglePlayback}
@@ -302,7 +330,11 @@ function VideoPhoneOverlay({ videoIndex, videos, onClose, onSelectVideo }: Video
             >
               {isPlaying ? <FaPause size={10} /> : <FaPlay size={10} />}
             </button>
-            <span className="w-10 shrink-0 text-xs text-white/60">{formatTime(currentTime)}</span>
+
+            <span className="w-10 shrink-0 text-xs text-white/60">
+              {formatTime(currentTime)}
+            </span>
+
             <input
               type="range"
               min={0}
@@ -313,7 +345,10 @@ function VideoPhoneOverlay({ videoIndex, videos, onClose, onSelectVideo }: Video
               className="h-1 w-full cursor-pointer appearance-none rounded-full bg-white/15 accent-[#3F8CFF]"
               aria-label="Seek demo video"
             />
-            <span className="w-10 shrink-0 text-right text-xs text-white/60">{formatTime(duration)}</span>
+
+            <span className="w-10 shrink-0 text-right text-xs text-white/60">
+              {formatTime(duration)}
+            </span>
           </div>
         </div>
       </div>
@@ -325,7 +360,10 @@ export default function SeeItInAction() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [overlayIndex, setOverlayIndex] = useState<number | null>(null);
   const dragMovedRef = useRef(false);
-  const dragResetTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const dragResetTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null
+  );
+
   const totalVideos = demoVideos.length;
   const swipeThreshold = 60;
   const tapCancelThreshold = 12;
@@ -337,10 +375,13 @@ export default function SeeItInAction() {
 
   const slideOffsets = useMemo(() => {
     const half = totalVideos / 2;
+
     return demoVideos.map((_, index) => {
       let offset = index - activeIndex;
+
       if (offset > half) offset -= totalVideos;
       if (offset < -half) offset += totalVideos;
+
       return offset;
     });
   }, [activeIndex, totalVideos]);
@@ -369,7 +410,10 @@ export default function SeeItInAction() {
   }, []);
 
   return (
-    <section id="see-it-in-action" className="relative border-t border-white/10 px-6 py-24 text-white">
+    <section
+      id="see-it-in-action"
+      className="relative border-t border-white/10 px-6 py-24 text-white"
+    >
       <motion.div
         className="absolute -top-40 left-1/2 h-[780px] w-[780px] -translate-x-1/2 rounded-full bg-[#3F8CFF]/10 blur-[140px]"
         animate={{ scale: [1, 1.05, 1], opacity: [0.6, 0.8, 0.6] }}
@@ -378,35 +422,38 @@ export default function SeeItInAction() {
 
       <div className="relative mx-auto max-w-6xl">
         <motion.div
-          className="max-w-3xl"
+          className="mx-auto max-w-3xl text-center"
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55 }}
           viewport={{ once: true }}
         >
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
-            See the relief in action
+            Watch the pain disappear
           </p>
-          <h2 className="mt-4 text-3xl font-bold leading-tight md:text-4xl">
-            Watch scattered information become usable.
+
+          <h2 className="mt-4 text-3xl font-bold leading-tight md:text-5xl">
+            From scattered files to usable memory.
           </h2>
-          <p className="mt-5 max-w-2xl text-base leading-8 text-white/68 md:text-lg">
-            The fastest way to understand NeuVault is to watch the moments that usually create friction: capture, organization, reminders, assistant help, offline intake, and encrypted backup.
+
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/68 md:text-lg">
+            See how NeuVault captures the records people usually lose across
+            downloads, screenshots, notes, scans, folders, and old devices.
           </p>
         </motion.div>
 
-        <div className="mt-8 flex flex-wrap gap-3">
-          {demoHighlights.map((highlight) => (
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          {proofPills.map((pill) => (
             <span
-              key={highlight}
+              key={pill}
               className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/76"
             >
-              {highlight}
+              {pill}
             </span>
           ))}
         </div>
 
-        <div className="mt-8 flex items-center justify-between gap-4">
+        <div className="mt-10 flex items-center justify-between gap-4">
           <button
             type="button"
             onClick={() => goToSlide(activeIndex - 1)}
@@ -416,9 +463,11 @@ export default function SeeItInAction() {
             <FaChevronLeft size={12} />
             <span className="hidden sm:inline">Prev</span>
           </button>
+
           <p className="text-xs text-white/60 sm:text-sm">
             {activeIndex + 1}/{totalVideos} demos
           </p>
+
           <button
             type="button"
             onClick={() => goToSlide(activeIndex + 1)}
@@ -490,8 +539,11 @@ export default function SeeItInAction() {
                 >
                   <div className="relative aspect-[9/16] overflow-hidden rounded-[1.9rem] border border-white/15 bg-black shadow-[0_25px_60px_-25px_rgba(63,140,255,0.65)]">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(63,140,255,0.42),transparent_44%),radial-gradient(circle_at_80%_75%,rgba(16,185,129,0.26),transparent_42%),linear-gradient(180deg,#020611_0%,#050a16_100%)]" />
+
                     <div className="absolute inset-x-5 bottom-[34%] top-14 rounded-[1.5rem] border border-white/10 bg-white/5 backdrop-blur-sm" />
+
                     <div className="absolute left-1/2 top-[22%] h-1.5 w-20 -translate-x-1/2 rounded-full bg-white/20" />
+
                     <div className="pointer-events-none absolute inset-x-0 top-[40%] flex -translate-y-1/2 justify-center">
                       <Image
                         src={Logo}
@@ -501,24 +553,30 @@ export default function SeeItInAction() {
                         className="w-40 opacity-90"
                       />
                     </div>
+
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
 
                     <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur-xl">
                       <div className="inline-flex rounded-full bg-[#3F8CFF]/20 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#8ec0ff]">
                         {video.tag}
                       </div>
+
                       <h3 className="mt-2 text-base font-semibold leading-tight text-white">
                         {video.title}
                       </h3>
+
                       <p className="mt-1 text-xs leading-relaxed text-white/75">
                         {video.summary}
                       </p>
+
                       <button
                         type="button"
                         className="mt-3 inline-flex items-center gap-2 rounded-xl border border-white/20 bg-black/45 px-3 py-2 text-xs font-semibold text-white hover:bg-black/60"
                         onClick={(event) => {
                           event.stopPropagation();
+
                           if (dragMovedRef.current) return;
+
                           setOverlayIndex(index);
                         }}
                         aria-label={`Open ${video.title} in overlay`}
@@ -537,6 +595,7 @@ export default function SeeItInAction() {
         <div className="mt-6 flex items-center justify-center gap-2">
           {demoVideos.map((video, index) => {
             const isActive = index === activeIndex;
+
             return (
               <button
                 key={video.title}
@@ -544,15 +603,17 @@ export default function SeeItInAction() {
                 onClick={() => goToSlide(index)}
                 aria-label={`Go to ${video.title}`}
                 className={`h-2.5 rounded-full transition-all ${
-                  isActive ? "w-7 bg-[#3F8CFF]" : "w-2.5 bg-white/35 hover:bg-white/55"
+                  isActive
+                    ? "w-7 bg-[#3F8CFF]"
+                    : "w-2.5 bg-white/35 hover:bg-white/55"
                 }`}
               />
             );
           })}
         </div>
 
-        <div className="mt-16 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-          {scenarios.map((item, index) => (
+        <div className="mt-16 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {painProofCards.map((item, index) => (
             <motion.div
               key={item.title}
               className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm"
@@ -561,9 +622,17 @@ export default function SeeItInAction() {
               transition={{ delay: index * 0.06, duration: 0.45 }}
               viewport={{ once: true }}
             >
-              <div className="mb-3">{item.icon}</div>
-              <h3 className="text-base font-semibold text-white">{item.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-white/62">{item.description}</p>
+              <div className="mb-4 inline-flex rounded-2xl border border-white/10 bg-white/6 p-3">
+                {item.icon}
+              </div>
+
+              <h3 className="text-base font-semibold text-white">
+                {item.title}
+              </h3>
+
+              <p className="mt-2 text-sm leading-6 text-white/62">
+                {item.description}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -578,4 +647,3 @@ export default function SeeItInAction() {
     </section>
   );
 }
-
