@@ -240,7 +240,7 @@ export default function TestimonialsCarousel() {
 
           <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-white/54">
-              Available now on iPhone and Android. Desktop version coming soon.
+              Available now on iPhone, Android, and Windows. macOS coming soon.
             </p>
 
             <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#6DD1FF]/18 bg-[#6DD1FF]/8 px-4 py-2 text-sm text-[#d7efff]">

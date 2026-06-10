@@ -21,8 +21,10 @@ import { SiGoogledrive, SiIcloud, SiDropbox } from "react-icons/si";
 const IOS_APP_STORE_URL = "https://apps.apple.com/ng/app/neuvault/id6759370392";
 const ANDROID_PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=app.neuvault";
+const WINDOWS_MICROSOFT_STORE_URL =
+  "https://apps.microsoft.com/detail/9PNM0GXZPT8T?hl=en-us&gl=US&ocid=pdpshare";
 
-type DevicePlatform = "ios" | "android" | "other";
+type DevicePlatform = "ios" | "android" | "windows" | "other";
 
 const floatingIcons = [
   {
@@ -122,6 +124,7 @@ export default function Hero() {
   useEffect(() => {
     const userAgent = navigator.userAgent || navigator.vendor || "";
     const isAndroid = /android/i.test(userAgent);
+    const isWindows = /windows/i.test(userAgent);
     const isIOS =
       /iPad|iPhone|iPod/i.test(userAgent) ||
       (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
@@ -136,10 +139,19 @@ export default function Hero() {
       return;
     }
 
+    if (isWindows) {
+      setDevicePlatform("windows");
+      return;
+    }
+
     setDevicePlatform("other");
   }, []);
 
   const handleDownloadClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (devicePlatform === "windows") {
+      return;
+    }
+
     if (window.innerWidth < 700) {
       return;
     }
@@ -160,14 +172,20 @@ export default function Hero() {
   };
 
   const downloadUrl =
-    devicePlatform === "android" ? ANDROID_PLAY_STORE_URL : IOS_APP_STORE_URL;
+    devicePlatform === "android"
+      ? ANDROID_PLAY_STORE_URL
+      : devicePlatform === "windows"
+        ? WINDOWS_MICROSOFT_STORE_URL
+        : IOS_APP_STORE_URL;
 
   const downloadLabel =
     devicePlatform === "android"
       ? "Download on Google Play"
       : devicePlatform === "ios"
         ? "Download on the App Store"
-        : "Get NeuVault free";
+        : devicePlatform === "windows"
+          ? "Download for Windows"
+          : "Get NeuVault free";
 
   return (
     <section className="relative overflow-hidden px-6 pb-24 pt-32 text-white md:pb-28 md:pt-40">
@@ -308,11 +326,11 @@ export default function Hero() {
             transition={{ delay: 0.84, duration: 0.45 }}
           >
             <span className="text-white/46">
-              Available now on iPhone and Android.
+              Available now on iPhone, Android, and Windows.
             </span>
 
             <span className="text-white/46">
-              Desktop version coming soon.
+              macOS coming soon.
             </span>
           </motion.div>
         </div>

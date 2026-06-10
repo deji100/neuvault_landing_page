@@ -7,6 +7,7 @@ import {
   ANDROID_PLAY_STORE_URL,
   IOS_APP_STORE_URL,
   SUPPORT_EMAIL,
+  WINDOWS_MICROSOFT_STORE_URL,
   buildBreadcrumbJsonLd,
   buildMetadata,
   buildOrganizationJsonLd,
@@ -35,7 +36,7 @@ const productFacts = [
   "Helps users find documents from partial memory, not only exact filenames",
   "Supports reminders and Attention for dates, renewals, and follow-ups",
   "Offers encrypted backup bundles users store in locations they control",
-  "Available now on iPhone and Android, with desktop coming soon",
+  "Available now on iPhone, Android, and Windows, with macOS coming soon",
 ];
 
 const positioningPoints = [
@@ -149,6 +150,15 @@ export default function PressPage() {
                   className="rounded-full border border-white/14 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
                 >
                   Google Play
+                </a>
+
+                <a
+                  href={WINDOWS_MICROSOFT_STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-white/14 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
+                >
+                  Microsoft Store
                 </a>
 
                 <a

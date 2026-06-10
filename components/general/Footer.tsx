@@ -6,6 +6,7 @@ import { guidePages } from "@/lib/guides";
 import {
   ANDROID_PLAY_STORE_URL,
   IOS_APP_STORE_URL,
+  WINDOWS_MICROSOFT_STORE_URL,
   solutionPages,
 } from "@/lib/seo";
 
@@ -22,8 +23,8 @@ const footerPills = [
   "Private AI vault",
   "Local-first by design",
   "Encrypted backups you control",
-  "iPhone + Android",
-  "Desktop coming soon",
+  "iPhone + Android + Windows",
+  "macOS coming soon",
 ];
 
 const primaryLinks = [
@@ -113,9 +114,9 @@ export default function Footer() {
               </p>
 
               <p className="mt-3 text-sm leading-7 text-white/66">
-                NeuVault is available now on iPhone and Android. Desktop is
-                coming soon for users who want the same vault experience across
-                mobile and desktop.
+                NeuVault is available now on iPhone, Android, and Windows.
+                macOS is coming soon for users who want the same vault
+                experience across Apple desktop workflows.
               </p>
 
               <div className="mt-5 flex flex-wrap gap-3">
@@ -135,6 +136,15 @@ export default function Footer() {
                   className="rounded-full border border-white/14 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
                 >
                   Google Play
+                </a>
+
+                <a
+                  href={WINDOWS_MICROSOFT_STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-white/14 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
+                >
+                  Microsoft Store
                 </a>
               </div>
             </div>

@@ -10,6 +10,9 @@ export const IOS_APP_STORE_URL =
 export const ANDROID_PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=app.neuvault";
 
+export const WINDOWS_MICROSOFT_STORE_URL =
+  "https://apps.microsoft.com/detail/9PNM0GXZPT8T?hl=en-us&gl=US&ocid=pdpshare";
+
 export const DEFAULT_TITLE =
   "NeuVault | Private AI Vault for Documents, Notes, Scans, and Voice Notes";
 
@@ -39,6 +42,7 @@ const BASE_KEYWORDS = [
   "private document assistant",
   "organize scans and notes",
   "cross-device document backup",
+  "Windows document vault app",
 ];
 
 export type SeoFaq = {
@@ -646,7 +650,11 @@ export function buildOrganizationJsonLd() {
     name: SITE_NAME,
     url: SITE_URL,
     email: SUPPORT_EMAIL,
-    sameAs: [IOS_APP_STORE_URL, ANDROID_PLAY_STORE_URL],
+    sameAs: [
+      IOS_APP_STORE_URL,
+      ANDROID_PLAY_STORE_URL,
+      WINDOWS_MICROSOFT_STORE_URL,
+    ],
     contactPoint: [
       {
         "@type": "ContactPoint",
@@ -680,14 +688,18 @@ export function buildWebSiteJsonLd() {
 export function buildSoftwareApplicationJsonLd() {
   return {
     "@context": "https://schema.org",
-    "@type": "MobileApplication",
+    "@type": "SoftwareApplication",
     "@id": `${SITE_URL}/#app`,
     name: SITE_NAME,
     url: SITE_URL,
-    operatingSystem: "iOS, Android",
+    operatingSystem: "iOS, Android, Windows",
     applicationCategory: "ProductivityApplication",
     description: DEFAULT_DESCRIPTION,
-    downloadUrl: [IOS_APP_STORE_URL, ANDROID_PLAY_STORE_URL],
+    downloadUrl: [
+      IOS_APP_STORE_URL,
+      ANDROID_PLAY_STORE_URL,
+      WINDOWS_MICROSOFT_STORE_URL,
+    ],
     offers: {
       "@type": "Offer",
       price: "0",

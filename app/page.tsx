@@ -15,6 +15,7 @@ import {
   ANDROID_PLAY_STORE_URL,
   IOS_APP_STORE_URL,
   SITE_URL,
+  WINDOWS_MICROSOFT_STORE_URL,
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
   buildMetadata,
@@ -72,7 +73,11 @@ export default function Home() {
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
     },
-    downloadUrl: [IOS_APP_STORE_URL, ANDROID_PLAY_STORE_URL],
+    downloadUrl: [
+      IOS_APP_STORE_URL,
+      ANDROID_PLAY_STORE_URL,
+      WINDOWS_MICROSOFT_STORE_URL,
+    ],
     featureList: [
       "Private local-first document vault",
       "AI document organization",
@@ -84,7 +89,8 @@ export default function Home() {
       "Linked Documents for related records",
       "Encrypted cross-device backup and restore",
       "Mobile apps for iPhone and Android",
-      "Desktop version coming soon",
+      "Windows desktop app",
+      "macOS coming soon",
     ],
   };
 
@@ -112,9 +118,9 @@ export default function Home() {
         "Yes. NeuVault supports typed notes and voice notes alongside documents and scans, so important context can live in the same private vault.",
     },
     {
-      question: "Does NeuVault support both iPhone and Android?",
+      question: "Does NeuVault support iPhone, Android, and Windows?",
       answer:
-        "Yes. NeuVault is available on the App Store and Google Play. A desktop version is also planned so users can work with their vault across mobile and desktop.",
+        "Yes. NeuVault is available on the App Store, Google Play, and Microsoft Store for Windows. macOS is coming soon.",
     },
     {
       question: "Does NeuVault store my documents in the cloud?",

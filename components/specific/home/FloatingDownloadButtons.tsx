@@ -2,17 +2,26 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { FaApple, FaClock, FaDownload, FaGooglePlay } from "react-icons/fa";
+import {
+  FaApple,
+  FaClock,
+  FaDownload,
+  FaGooglePlay,
+  FaWindows,
+} from "react-icons/fa";
 
 const ANDROID_URL =
   process.env.NEXT_PUBLIC_ANDROID_URL?.trim() ||
   "https://play.google.com/store/apps/details?id=app.neuvault";
 const IOS_URL =
   process.env.NEXT_PUBLIC_IOS_URL?.trim() || "https://apps.apple.com/ng/app/neuvault/id6759370392";
+const WINDOWS_URL =
+  process.env.NEXT_PUBLIC_WINDOWS_URL?.trim() ||
+  "https://apps.microsoft.com/detail/9PNM0GXZPT8T?hl=en-us&gl=US&ocid=pdpshare";
 const DESKTOP_TRIGGER_OFFSET = 140;
 const MOBILE_TRIGGER_OFFSET = 120;
 
-type DevicePlatform = "ios" | "android" | "other";
+type DevicePlatform = "ios" | "android" | "windows" | "other";
 
 function DownloadCard({
   platform,
@@ -69,6 +78,7 @@ export default function FloatingDownloadButtons() {
   useEffect(() => {
     const userAgent = navigator.userAgent || navigator.vendor || "";
     const isAndroid = /android/i.test(userAgent);
+    const isWindows = /windows/i.test(userAgent);
     const isIOS =
       /iPad|iPhone|iPod/i.test(userAgent) ||
       (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
@@ -80,6 +90,11 @@ export default function FloatingDownloadButtons() {
 
     if (isIOS) {
       setDevicePlatform("ios");
+      return;
+    }
+
+    if (isWindows) {
+      setDevicePlatform("windows");
       return;
     }
 
@@ -139,6 +154,12 @@ export default function FloatingDownloadButtons() {
     );
   }
 
+  if (devicePlatform !== "android" && devicePlatform !== "ios") {
+    mobileDownloadCards.push(
+      <DownloadCard key="windows" platform="Windows" icon={<FaWindows />} url={WINDOWS_URL} />
+    );
+  }
+
   return (
     <div className="fixed bottom-5 right-5 z-5000">
       <div className="hidden min-[700px]:block">
@@ -157,6 +178,8 @@ export default function FloatingDownloadButtons() {
           <div className="mt-3 space-y-3">
             <DownloadCard platform="iOS" icon={<FaApple />} url={IOS_URL} variant="light" />
             <DownloadCard platform="Android" icon={<FaGooglePlay />} url={ANDROID_URL} />
+            <DownloadCard platform="Windows" icon={<FaWindows />} url={WINDOWS_URL} variant="light" />
+            <DownloadCard platform="macOS" icon={<FaApple />} />
           </div>
         </motion.div>
       </div>
