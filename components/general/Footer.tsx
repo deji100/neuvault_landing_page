@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { guidePages } from "@/lib/guides";
 import {
   ANDROID_PLAY_STORE_URL,
@@ -19,27 +20,11 @@ const scrollToId = (id: string) => {
   window.scrollTo({ top, behavior: "smooth" });
 };
 
-const footerPills = [
-  "Private AI vault",
-  "Local-first by design",
-  "Encrypted backups you control",
-  "iPhone + Android + Windows",
-  "macOS coming soon",
-];
-
 const primaryLinks = [
-  {
-    label: "Why NeuVault",
-    action: () => scrollToId("features"),
-  },
-  {
-    label: "How it works",
-    action: () => scrollToId("how-it-works"),
-  },
-  {
-    label: "Product demos",
-    action: () => scrollToId("see-it-in-action"),
-  },
+  { label: "Features", action: () => scrollToId("features") },
+  { label: "Screenshots", action: () => scrollToId("screenshots") },
+  { label: "YouTube videos", action: () => scrollToId("youtube-videos") },
+  { label: "How it works", action: () => scrollToId("how-it-works") },
 ];
 
 const workflowLabels: Record<string, string> = {
@@ -58,15 +43,10 @@ export default function Footer() {
   return (
     <footer
       id="site-footer"
-      className="relative overflow-hidden border-t border-white/10 bg-[#06101c] px-6 py-16 text-white"
+      className="border-t border-slate-200 bg-white px-6 py-16 text-slate-700"
     >
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[8%] top-8 h-64 w-64 rounded-full bg-[#3F8CFF]/12 blur-[120px]" />
-        <div className="absolute bottom-0 right-[10%] h-72 w-72 rounded-full bg-[#6DD1FF]/8 blur-[130px]" />
-      </div>
-
-      <div className="relative mx-auto max-w-7xl">
-        <div className="mb-12 overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur-sm md:p-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-12 rounded-[1.75rem] border border-slate-200 bg-slate-50 p-6 md:p-8">
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>
               <Link href="/" className="inline-flex items-center gap-3">
@@ -77,72 +57,50 @@ export default function Footer() {
                   height={60}
                   className="w-12 rounded-xl"
                 />
-
                 <div>
-                  <p className="text-xl font-semibold text-white">NeuVault</p>
-                  <p className="text-sm text-white/55">
+                  <p className="text-xl font-semibold text-slate-950">NeuVault</p>
+                  <p className="text-sm text-slate-500">
                     Private document memory for records life asks for later
                   </p>
                 </div>
               </Link>
 
-              <h2 className="mt-6 max-w-3xl text-2xl font-semibold leading-tight text-white md:text-3xl">
-                You saved it somewhere. NeuVault helps you find, understand,
-                remember, and recover it.
+              <h2 className="mt-6 max-w-3xl text-2xl font-semibold leading-tight text-slate-950 md:text-3xl">
+                Keep documents, scans, notes, and voice context in one private
+                vault that is easy to find, remember, and recover.
               </h2>
-
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-white/66 md:text-base">
-                Keep documents, scans, screenshots, notes, and voice notes in a
-                private vault that preserves context — not just files.
-              </p>
-
-              <div className="mt-6 flex flex-wrap gap-3">
-                {footerPills.map((pill) => (
-                  <span
-                    key={pill}
-                    className="rounded-full border border-white/10 bg-black/20 px-4 py-2 text-sm text-white/68"
-                  >
-                    {pill}
-                  </span>
-                ))}
-              </div>
             </div>
 
-            <div className="rounded-[1.5rem] border border-[#6DD1FF]/16 bg-[#6DD1FF]/8 p-5">
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#9dd9ff]">
+            <div className="rounded-[1.4rem] border border-blue-100 bg-white p-5 shadow-sm">
+              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-blue-700">
                 Download NeuVault
               </p>
-
-              <p className="mt-3 text-sm leading-7 text-white/66">
-                NeuVault is available now on iPhone, Android, and Windows.
-                macOS is coming soon for users who want the same vault
-                experience across Apple desktop workflows.
+              <p className="mt-3 text-sm leading-7 text-slate-600">
+                Available now on iPhone, Android, and Windows. macOS is coming
+                soon.
               </p>
-
               <div className="mt-5 flex flex-wrap gap-3">
                 <a
                   href={IOS_APP_STORE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full bg-[#3F8CFF] px-5 py-3 text-sm font-semibold text-white hover:bg-[#60aaff]"
+                  className="rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700"
                 >
                   App Store
                 </a>
-
                 <a
                   href={ANDROID_PLAY_STORE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border border-white/14 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
+                  className="rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 hover:border-blue-300 hover:text-blue-700"
                 >
                   Google Play
                 </a>
-
                 <a
                   href={WINDOWS_MICROSOFT_STORE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border border-white/14 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
+                  className="rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 hover:border-blue-300 hover:text-blue-700"
                 >
                   Microsoft Store
                 </a>
@@ -153,31 +111,28 @@ export default function Footer() {
 
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1fr_1fr_0.85fr_1fr]">
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-white/80">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-slate-950">
               Explore
             </h3>
-
-            <ul className="space-y-3 text-sm text-white/64">
+            <ul className="space-y-3 text-sm">
               {primaryLinks.map((item) => (
                 <li key={item.label}>
                   <button
                     type="button"
                     onClick={item.action}
-                    className="hover:text-white"
+                    className="text-slate-600 hover:text-blue-700"
                   >
                     {item.label}
                   </button>
                 </li>
               ))}
-
               <li>
-                <Link href="/guides" className="hover:text-white">
+                <Link href="/guides" className="text-slate-600 hover:text-blue-700">
                   Guides
                 </Link>
               </li>
-
               <li>
-                <Link href="/contact" className="hover:text-white">
+                <Link href="/contact" className="text-slate-600 hover:text-blue-700">
                   Contact
                 </Link>
               </li>
@@ -185,14 +140,13 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-white/80">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-slate-950">
               Document problems
             </h3>
-
-            <ul className="space-y-3 text-sm text-white/64">
+            <ul className="space-y-3 text-sm">
               {solutionPages.map((page) => (
                 <li key={page.slug}>
-                  <Link href={`/${page.slug}`} className="hover:text-white">
+                  <Link href={`/${page.slug}`} className="text-slate-600 hover:text-blue-700">
                     {workflowLabels[page.slug] ?? page.metaTitle}
                   </Link>
                 </li>
@@ -201,117 +155,76 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-white/80">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-slate-950">
               Helpful guides
             </h3>
-
-            <ul className="space-y-3 text-sm text-white/64">
+            <ul className="space-y-3 text-sm">
               {featuredGuides.map((guide) => (
                 <li key={guide.slug}>
                   <Link
                     href={`/guides/${guide.slug}`}
-                    className="hover:text-white"
+                    className="text-slate-600 hover:text-blue-700"
                   >
                     {guide.metaTitle}
                   </Link>
                 </li>
               ))}
-
               <li>
-                <Link href="/guides" className="text-[#8ec0ff] hover:text-white">
-                  View all guides →
+                <Link href="/guides" className="inline-flex items-center gap-1 font-semibold text-blue-700">
+                  View all guides
+                  <ArrowUpRight size={14} />
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-white/80">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-slate-950">
               Company
             </h3>
-
-            <ul className="space-y-3 text-sm text-white/64">
-              <li>
-                <Link href="/contact" className="hover:text-white">
-                  Contact
-                </Link>
-              </li>
-
-              <li>
-                <Link href="/press" className="hover:text-white">
-                  Press
-                </Link>
-              </li>
-
-              <li>
-                <Link href="/privacy-policy" className="hover:text-white">
-                  Privacy policy
-                </Link>
-              </li>
-
-              <li>
-                <Link href="/terms-and-conditions" className="hover:text-white">
-                  Terms of service
-                </Link>
-              </li>
-
-              <li>
-                <Link href="/account-deletion" className="hover:text-white">
-                  Account deletion
-                </Link>
-              </li>
+            <ul className="space-y-3 text-sm">
+              {[
+                ["Contact", "/contact"],
+                ["Press", "/press"],
+                ["Privacy policy", "/privacy-policy"],
+                ["Terms of service", "/terms-and-conditions"],
+                ["Account deletion", "/account-deletion"],
+              ].map(([label, href]) => (
+                <li key={href}>
+                  <Link href={href} className="text-slate-600 hover:text-blue-700">
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-white/80">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-slate-950">
               Trust note
             </h3>
-
-            <p className="text-sm leading-7 text-white/64">
+            <p className="text-sm leading-7 text-slate-600">
               NeuVault is designed around local-first storage. Your documents
               live on your device by default, and encrypted backups stay under
               your control.
             </p>
-
-            <p className="mt-4 text-xs leading-6 text-white/42">
+            <p className="mt-4 text-xs leading-6 text-slate-500">
               AI processing may temporarily handle content when you use
               intelligent workflows, but documents are not kept after
               processing.
             </p>
-
-            <div className="mt-5 hidden rounded-2xl border border-white/10 bg-white p-4 shadow-[0_18px_40px_-24px_rgba(0,0,0,0.45)] md:block">
-              <a
-                href="https://saasbrowser.com/en/saas/1019052/neuvault"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-              >
-                <Image
-                  src="https://static-files.saasbrowser.com/saas-browser-badge-13.svg"
-                  alt="Listed on SaaS Browser"
-                  width={200}
-                  height={52}
-                  unoptimized
-                  className="h-auto w-[200px]"
-                />
-              </a>
-            </div>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/50 md:flex-row md:items-center md:justify-between">
+        <div className="mt-12 flex flex-col gap-4 border-t border-slate-200 pt-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
           <p>
-            © {new Date().getFullYear()}{" "}
-            <Link href="/" className="text-white hover:underline">
+            Copyright {new Date().getFullYear()}{" "}
+            <Link href="/" className="text-slate-900 hover:underline">
               NeuVault
             </Link>
             . All rights reserved.
           </p>
-
-          <p>
-            Private by default. Built for the documents life asks for later.
-          </p>
+          <p>Private by default. Built for documents life asks for later.</p>
         </div>
       </div>
     </footer>

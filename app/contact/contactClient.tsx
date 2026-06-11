@@ -160,7 +160,7 @@ export default function ContactClient() {
   };
 
   return (
-    <main className="relative overflow-hidden bg-[#08111d] px-6 pb-24 pt-28 text-white">
+    <main className="legacy-light-page relative overflow-hidden px-6 pb-24 pt-28">
       <FloatingBlobs />
 
       <div className="pointer-events-none absolute inset-0">
@@ -288,7 +288,7 @@ export default function ContactClient() {
                       type="text"
                       name="name"
                       placeholder="Your name"
-                      className="mt-2 w-full rounded-xl border border-white/10 bg-[#08111d] px-4 py-3 text-sm text-white placeholder:text-white/32 focus:outline-none focus:ring-2 focus:ring-[#3F8CFF]/50"
+                      className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-950 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
                       value={name}
                       onChange={(event) => {
                         setName(event.target.value);
@@ -311,7 +311,7 @@ export default function ContactClient() {
                       type="email"
                       name="email"
                       placeholder="you@example.com"
-                      className="mt-2 w-full rounded-xl border border-white/10 bg-[#08111d] px-4 py-3 text-sm text-white placeholder:text-white/32 focus:outline-none focus:ring-2 focus:ring-[#3F8CFF]/50"
+                      className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-950 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
                       value={email}
                       onChange={(event) => {
                         setEmail(event.target.value);
@@ -338,7 +338,7 @@ export default function ContactClient() {
                         resetError();
                       }}
                       disabled={isBusy}
-                      className="mt-2 w-full rounded-xl border border-white/10 bg-[#08111d] px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#3F8CFF]/50"
+                      className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-950 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
                     >
                       <option>Support</option>
                       <option>Backup or restore</option>
@@ -363,7 +363,7 @@ export default function ContactClient() {
                       name="message"
                       rows={6}
                       placeholder="Tell us what happened, what you expected, and how we can help..."
-                      className="mt-2 w-full resize-none rounded-xl border border-white/10 bg-[#08111d] px-4 py-3 text-sm text-white placeholder:text-white/32 focus:outline-none focus:ring-2 focus:ring-[#3F8CFF]/50"
+                      className="mt-2 w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-950 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
                       value={message}
                       onChange={(event) => {
                         setMessage(event.target.value);

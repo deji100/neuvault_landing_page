@@ -41,7 +41,7 @@ export default function GuidesPage() {
   const websiteJsonLd = buildWebSiteJsonLd();
 
   return (
-    <main className="relative overflow-hidden bg-[#08111d] px-6 pb-24 pt-28 text-white">
+    <main className="legacy-light-page relative overflow-hidden px-6 pb-24 pt-28">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={jsonLdScript(breadcrumbJsonLd)}

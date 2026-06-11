@@ -8,8 +8,8 @@ export default function manifest(): MetadataRoute.Manifest {
       "Private mobile document vault for organization, reminders, backup, scans, notes, and voice capture.",
     start_url: "/",
     display: "standalone",
-    background_color: "#07101c",
-    theme_color: "#07101c",
+    background_color: "#f7fbff",
+    theme_color: "#ffffff",
     icons: [
       {
         src: "/android-chrome-192x192.png",

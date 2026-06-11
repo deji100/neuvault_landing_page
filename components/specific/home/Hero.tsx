@@ -1,22 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useEffect, useState, type MouseEvent } from "react";
-import {
-  FaFilePdf,
-  FaFileWord,
-  FaFileExcel,
-  FaLock,
-  FaSearch,
-  FaBell,
-  FaShieldAlt,
-} from "react-icons/fa";
-import { FaRegNoteSticky } from "react-icons/fa6";
-import { BsStars } from "react-icons/bs";
-import { PiNotePencilLight } from "react-icons/pi";
-import { IoSparklesSharp } from "react-icons/io5";
-import { SiGoogledrive, SiIcloud, SiDropbox } from "react-icons/si";
+import { FolderOpen, LockKeyhole, ShieldCheck } from "lucide-react";
+import LoginImage from "@/public/login.png";
 
 const IOS_APP_STORE_URL = "https://apps.apple.com/ng/app/neuvault/id6759370392";
 const ANDROID_PLAY_STORE_URL =
@@ -26,95 +15,11 @@ const WINDOWS_MICROSOFT_STORE_URL =
 
 type DevicePlatform = "ios" | "android" | "windows" | "other";
 
-const floatingIcons = [
-  {
-    icon: <FaFilePdf />,
-    className: "text-red-400",
-    top: "12%",
-    left: "76%",
-    delay: 0,
-    mobile: true,
-  },
-  {
-    icon: <FaFileWord />,
-    className: "text-blue-300",
-    top: "34%",
-    left: "67%",
-    delay: 0.25,
-    mobile: true,
-  },
-  {
-    icon: <FaFileExcel />,
-    className: "text-emerald-300",
-    top: "25%",
-    left: "86%",
-    delay: 0.45,
-    mobile: false,
-  },
-  {
-    icon: <FaRegNoteSticky />,
-    className: "text-amber-300",
-    top: "68%",
-    left: "72%",
-    delay: 0.65,
-    mobile: false,
-  },
-  {
-    icon: <FaLock />,
-    className: "text-white/20",
-    top: "76%",
-    left: "84%",
-    delay: 0.85,
-    mobile: true,
-  },
-  {
-    icon: <BsStars />,
-    className: "text-[#6DD1FF]",
-    top: "17%",
-    left: "7%",
-    delay: 1.05,
-    mobile: true,
-  },
-  {
-    icon: <PiNotePencilLight />,
-    className: "text-[#6ce6b3]",
-    top: "82%",
-    left: "12%",
-    delay: 1.25,
-    mobile: true,
-  },
-  {
-    icon: <IoSparklesSharp />,
-    className: "text-[#3F8CFF]",
-    top: "58%",
-    left: "43%",
-    delay: 1.45,
-    mobile: true,
-  },
-];
-
 const trustPills = [
-  "Private AI vault",
-  "Local-first by design",
-  "Encrypted backups you control",
-];
-
-const painCards = [
-  {
-    icon: <FaSearch size={17} className="text-[#6DD1FF]" />,
-    title: "Find it again",
-    body: "Search documents by what you remember, not just the file name.",
-  },
-  {
-    icon: <FaBell size={17} className="text-[#6ce6b3]" />,
-    title: "Remember what matters",
-    body: "Bring back dates, renewals, receipts, certificates, and follow-ups before they matter.",
-  },
-  {
-    icon: <FaShieldAlt size={17} className="text-[#9dd9ff]" />,
-    title: "Recover across devices",
-    body: "Back up your vault privately and restore it when you move devices.",
-  },
+  "Local-first storage",
+  "Private AI workflows",
+  "Encrypted backups",
+  "iPhone, Android, and Windows",
 ];
 
 export default function Hero() {
@@ -149,6 +54,8 @@ export default function Hero() {
 
   const handleDownloadClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (devicePlatform === "windows") {
+      event.preventDefault();
+      window.dispatchEvent(new Event("neuvault:open-downloads"));
       return;
     }
 
@@ -157,13 +64,9 @@ export default function Hero() {
     }
 
     const featuresSection = document.getElementById("features");
-
-    if (!featuresSection) {
-      return;
-    }
+    if (!featuresSection) return;
 
     event.preventDefault();
-
     const navOffset = 92;
     const top =
       featuresSection.getBoundingClientRect().top + window.scrollY - navOffset;
@@ -182,245 +85,125 @@ export default function Hero() {
     devicePlatform === "android"
       ? "Download on Google Play"
       : devicePlatform === "ios"
-        ? "Download on the App Store"
+          ? "Download on the App Store"
         : devicePlatform === "windows"
-          ? "Download for Windows"
+          ? "Enjoy 500 free one-time Credit"
           : "Get NeuVault free";
 
   return (
-    <section className="relative overflow-hidden px-6 pb-24 pt-32 text-white md:pb-28 md:pt-40">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(63,140,255,0.26),transparent_34%),linear-gradient(180deg,#07101b_0%,#091321_42%,#08111d_100%)]" />
-      <div className="section-grid absolute inset-0 opacity-[0.16]" />
+    <section className="relative overflow-hidden bg-white px-6 pb-24 pt-32 md:pb-28 md:pt-40">
+      <div className="absolute inset-x-0 top-0 h-[620px] bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.10),transparent_38%)]" />
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#f7fbff] to-transparent" />
 
-      <motion.div
-        className="absolute -left-28 top-12 h-[460px] w-[460px] rounded-full bg-[#3F8CFF]/12 blur-[120px]"
-        animate={{ scale: [1, 1.08, 1], opacity: [0.45, 0.7, 0.45] }}
-        transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      <motion.div
-        className="absolute bottom-0 right-[-6%] h-[420px] w-[420px] rounded-full bg-[#6DD1FF]/12 blur-[120px]"
-        animate={{ scale: [1, 1.06, 1], opacity: [0.35, 0.58, 0.35] }}
-        transition={{ duration: 5.6, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {floatingIcons.map((item, index) => (
+      <div className="relative z-10 mx-auto max-w-7xl">
         <motion.div
-          key={`${item.top}-${item.left}`}
-          className={`pointer-events-none absolute text-3xl md:text-5xl ${
-            item.className
-          } ${item.mobile ? "block" : "hidden md:block"}`}
-          animate={{
-            y: [0, -18, 0, 16, 0],
-            x: [0, index % 2 === 0 ? 8 : -8, 0],
-            rotate: [0, index % 2 === 0 ? 8 : -8, 0],
-            opacity: [0.16, 0.32, 0.16],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: item.delay,
-          }}
-          style={{ top: item.top, left: item.left }}
-          aria-hidden
+          className="mx-auto max-w-4xl text-center"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55 }}
         >
-          {item.icon}
-        </motion.div>
-      ))}
-
-      <div className="relative z-10 mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-        <div>
-          <motion.p
-            className="mb-5 inline-flex rounded-full border border-[#6DD1FF]/25 bg-[#6DD1FF]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 }}
-          >
+          <p className="mx-auto mb-5 inline-flex rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-blue-700">
             Private AI vault for documents life asks for later
-          </motion.p>
+          </p>
 
-          <motion.h1
-            className="max-w-4xl text-4xl font-bold leading-[1.08] tracking-tight sm:text-[4rem] md:text-[4.55rem]"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25, duration: 0.55 }}
-          >
-            You saved it somewhere. Now you need it.
-          </motion.h1>
+          <h1 className="text-4xl font-bold leading-[1.05] tracking-normal text-slate-950 sm:text-6xl md:text-7xl">
+            Meet your intelligent document memory.
+          </h1>
 
-          <motion.p
-            className="mt-6 max-w-2xl text-lg leading-8 text-white/72 md:text-xl"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.38, duration: 0.55 }}
-          >
-            NeuVault keeps important documents, scans, screenshots, notes, and
-            voice notes organized, searchable, remembered, and recoverable —
-            privately.
-          </motion.p>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
+            NeuVault helps you capture, understand, find, remember, and recover
+            the documents that usually disappear across downloads, camera roll,
+            notes, chats, and old devices.
+          </p>
 
-          <motion.div
-            className="mt-7 flex flex-wrap gap-3"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.45 }}
-          >
-            {trustPills.map((pill) => (
-              <span
-                key={pill}
-                className="rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm text-white/76 backdrop-blur-md"
-              >
-                {pill}
-              </span>
-            ))}
-          </motion.div>
-
-          <motion.div
-            className="mt-8 flex flex-col gap-4 sm:flex-row"
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.62, duration: 0.45 }}
-          >
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
               href={downloadUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleDownloadClick}
-              className="inline-flex items-center justify-center rounded-full bg-[#3F8CFF] px-6 py-3 text-base font-semibold text-white shadow-[0_18px_40px_-20px_rgba(63,140,255,0.9)] hover:bg-[#60aaff]"
+              className="inline-flex w-full items-center justify-center rounded-xl bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-[0_20px_42px_-22px_rgba(37,99,235,0.85)] hover:bg-blue-700 sm:w-auto"
             >
               {downloadLabel}
             </a>
 
             <Link
-              href="#see-it-in-action"
-              className="inline-flex items-center justify-center rounded-full border border-white/14 bg-white/5 px-6 py-3 text-base font-semibold text-white hover:bg-white/10"
+              href="#features"
+              className="inline-flex w-full items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-800 hover:border-blue-300 hover:text-blue-700 sm:w-auto"
             >
-              See how it works
+              See how it solves document chaos
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm leading-7 text-white/52"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.72, duration: 0.45 }}
-          >
-            <p className="max-w-2xl">
-              Built for receipts, IDs, certificates, forms, contracts, school
-              records, travel files, and notes you cannot afford to lose.
-            </p>
-
-            <Link
-              href="/privacy-policy"
-              className="text-[#a8d8ff] hover:text-white"
-            >
-              See how privacy works
-            </Link>
-          </motion.div>
-
-          <motion.div
-            className="mt-10 flex flex-wrap items-center gap-6 text-sm text-white/70"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.84, duration: 0.45 }}
-          >
-            <span className="text-white/46">
-              Available now on iPhone, Android, and Windows.
-            </span>
-
-            <span className="text-white/46">
-              macOS coming soon.
-            </span>
-          </motion.div>
-        </div>
-
-        <motion.div
-          className="glass-panel relative overflow-hidden rounded-[2rem] p-5 sm:p-6"
-          initial={{ opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.55 }}
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(63,140,255,0.24),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(108,230,179,0.12),transparent_32%)]" />
-
-          <div className="relative">
-            <div className="mb-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
-                The real problem
-              </p>
-
-              <h2 className="mt-2 text-2xl font-semibold leading-snug text-white">
-                Your files are saved. Your context is not.
-              </h2>
-
-              <p className="mt-3 text-sm leading-6 text-white/60">
-                Downloads, screenshots, notes, scans, and voice records get
-                scattered. NeuVault brings the meaning back together.
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              {painCards.map((item) => (
-                <div
-                  key={item.title}
-                  className="rounded-2xl border border-white/10 bg-black/24 p-4"
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 rounded-xl border border-white/10 bg-white/6 p-2">
-                      {item.icon}
-                    </div>
-
-                    <div>
-                      <h3 className="text-base font-semibold text-white">
-                        {item.title}
-                      </h3>
-
-                      <p className="mt-1 text-sm leading-6 text-white/62">
-                        {item.body}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-5 rounded-2xl border border-[#6DD1FF]/15 bg-[#6DD1FF]/8 p-4">
-              <p className="text-sm font-semibold text-white">
-                Not another cloud drive.
-              </p>
-
-              <p className="mt-1 text-sm leading-6 text-white/60">
-                NeuVault is built for document memory: what it is, why it
-                matters, where it belongs, and when you need it again.
-              </p>
-            </div>
-
-            <div className="mt-5 flex flex-wrap items-center gap-4 text-sm text-white/60">
-              <span className="flex items-center gap-2">
-                <SiGoogledrive className="text-yellow-300" size={17} />
-                Drive
+          <div className="mt-7 flex flex-wrap justify-center gap-3">
+            {trustPills.map((pill) => (
+              <span
+                key={pill}
+                className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-600 shadow-sm"
+              >
+                {pill}
               </span>
-
-              <span className="flex items-center gap-2">
-                <SiIcloud className="text-sky-300" size={17} />
-                iCloud
-              </span>
-
-              <span className="flex items-center gap-2">
-                <SiDropbox className="text-blue-300" size={17} />
-                Dropbox
-              </span>
-
-              <span className="text-white/42">or any storage you trust</span>
-            </div>
-
-            <p className="mt-5 text-xs leading-6 text-white/42">
-              Encrypted backups stay under your control. AI helps with
-              organization, extraction, summaries, and Nova when you choose
-              intelligent workflows.
-            </p>
+            ))}
           </div>
         </motion.div>
+
+        <motion.div
+          className="mx-auto mt-16 max-w-6xl overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_32px_90px_-48px_rgba(15,23,42,0.55)]"
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15, duration: 0.6 }}
+        >
+          <div className="flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-5 py-4">
+            <span className="h-3 w-3 rounded-full bg-red-300" />
+            <span className="h-3 w-3 rounded-full bg-amber-300" />
+            <span className="h-3 w-3 rounded-full bg-emerald-300" />
+            <span className="ml-3 rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-500">
+              NeuVault login
+            </span>
+          </div>
+          <Image
+            src={LoginImage}
+            alt="NeuVault login screenshot"
+            priority
+            className="h-auto w-full"
+            sizes="(min-width: 1280px) 1152px, 100vw"
+          />
+        </motion.div>
+
+        <div className="mx-auto mt-10 grid max-w-5xl gap-4 sm:grid-cols-3">
+          {[
+            {
+              icon: <FolderOpen size={19} />,
+              title: "All records together",
+              text: "Files, notes, scans, reminders, and voice context stay connected.",
+            },
+            {
+              icon: <ShieldCheck size={19} />,
+              title: "Private by design",
+              text: "Local-first storage with user-controlled encrypted backup.",
+            },
+            {
+              icon: <LockKeyhole size={19} />,
+              title: "Recoverable vault",
+              text: "Move devices without rebuilding your document system.",
+            },
+          ].map((item) => (
+            <div
+              key={item.title}
+              className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+            >
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                {item.icon}
+              </div>
+              <h2 className="text-base font-semibold text-slate-950">
+                {item.title}
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                {item.text}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

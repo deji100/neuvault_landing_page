@@ -6,7 +6,6 @@ import HowItWorks from "@/components/specific/home/HowITWorks";
 import SeeItInAction from "@/components/specific/home/Proof";
 import TestimonialsSection from "@/components/specific/home/Testimonials";
 import FloatingDownloadButtons from "@/components/specific/home/FloatingDownloadButtons";
-import FloatingBlobs from "@/components/specific/home/FloatingBlobs";
 import WorkflowLinks from "@/components/specific/home/WorkflowLinks";
 import GuidesPreview from "@/components/specific/home/GuidesPreview";
 
@@ -174,19 +173,9 @@ export default function Home() {
       <Hero />
 
       <section className="relative overflow-hidden bg-transparent">
-        <FloatingBlobs />
-
-        {/*
-          Recommended story order:
-          1. Show the pain and product proof.
-          2. Explain the NeuVault loop.
-          3. Show features.
-          4. Link SEO workflow pages.
-          5. Show guides and trust/social proof.
-        */}
+        <FeaturesSection />
         <SeeItInAction />
         <HowItWorks />
-        <FeaturesSection />
         <WorkflowLinks />
         <GuidesPreview />
         <TestimonialsSection />

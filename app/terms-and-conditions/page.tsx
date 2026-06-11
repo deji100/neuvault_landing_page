@@ -68,9 +68,9 @@ const Chip = ({
 
 export default function TermsPage() {
   return (
-    <main className="relative min-h-screen bg-[#0B0F19] text-white overflow-hidden">
+    <main className="legacy-light-page relative min-h-screen overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0B0F19] via-[#121c2b] to-[#203B6E] -z-10" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#ffffff_0%,#f7fbff_46%,#eef6ff_100%)]" />
       <motion.div
         className="absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full bg-[#3F8CFF]/10 blur-3xl -z-10"
         animate={{ scale: [1, 1.08, 1], opacity: [0.45, 0.65, 0.45] }}

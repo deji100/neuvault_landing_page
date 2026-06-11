@@ -1,71 +1,59 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
-import {
-  FaApple,
-  FaClock,
-  FaDownload,
-  FaGooglePlay,
-  FaWindows,
-} from "react-icons/fa";
+import { Apple, Clock, Download, MonitorDown, Smartphone } from "lucide-react";
 
 const ANDROID_URL =
   process.env.NEXT_PUBLIC_ANDROID_URL?.trim() ||
   "https://play.google.com/store/apps/details?id=app.neuvault";
 const IOS_URL =
-  process.env.NEXT_PUBLIC_IOS_URL?.trim() || "https://apps.apple.com/ng/app/neuvault/id6759370392";
+  process.env.NEXT_PUBLIC_IOS_URL?.trim() ||
+  "https://apps.apple.com/ng/app/neuvault/id6759370392";
 const WINDOWS_URL =
   process.env.NEXT_PUBLIC_WINDOWS_URL?.trim() ||
   "https://apps.microsoft.com/detail/9PNM0GXZPT8T?hl=en-us&gl=US&ocid=pdpshare";
 const DESKTOP_TRIGGER_OFFSET = 140;
 const MOBILE_TRIGGER_OFFSET = 120;
 
-type DevicePlatform = "ios" | "android" | "windows" | "other";
-
 function DownloadCard({
   platform,
   icon,
   url,
-  variant = "dark",
 }: {
   platform: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   url?: string;
-  variant?: "dark" | "light";
 }) {
   const isAvailable = typeof url === "string" && url.length > 0;
 
-  const baseClassName = "flex w-full items-center rounded-2xl px-4 py-3 text-sm font-semibold shadow-lg";
-  const activeClassName =
-    variant === "dark"
-      ? "justify-center gap-2 bg-[#3F8CFF] text-white hover:bg-[#60aaff]"
-      : "justify-center gap-2 bg-white text-black hover:bg-slate-200";
-  const inactiveClassName = "justify-between gap-3 cursor-not-allowed border border-white/16 bg-white/8 text-white/60";
-  const iconClassName = isAvailable
-    ? variant === "dark"
-      ? "text-white"
-      : "text-black"
-    : "text-white/70";
-
   if (!isAvailable) {
     return (
-      <div className={`${baseClassName} ${inactiveClassName}`}>
-        <span className="inline-flex min-w-0 items-center gap-2">
-          <span className={`${iconClassName} shrink-0`}>{icon}</span>
+      <div className="flex min-h-[92px] w-full cursor-not-allowed flex-col justify-between rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm font-semibold text-slate-500">
+        <span className="inline-flex items-center gap-2">
+          {icon}
           <span>{platform}</span>
         </span>
-        <span className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full border border-white/12 bg-white/6 px-2 py-1 text-[11px] opacity-80">
-          <FaClock /> Coming soon
+        <span className="inline-flex w-fit items-center gap-1 whitespace-nowrap rounded-full bg-white px-2 py-1 text-[11px]">
+          <Clock size={12} /> Soon
         </span>
       </div>
     );
   }
 
   return (
-    <a href={url} target="_blank" rel="noopener noreferrer" className={`${baseClassName} ${activeClassName}`}>
-      <span className={iconClassName}>{icon}</span>
-      {platform}
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex min-h-[92px] w-full flex-col justify-between rounded-2xl bg-blue-600 p-4 text-sm font-semibold text-white shadow-lg hover:bg-blue-700"
+    >
+      <span className="inline-flex items-center gap-2">
+        {icon}
+        {platform}
+      </span>
+      <span className="text-xs font-medium text-white/75">Download</span>
     </a>
   );
 }
@@ -73,55 +61,54 @@ function DownloadCard({
 export default function FloatingDownloadButtons() {
   const [open, setOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [devicePlatform, setDevicePlatform] = useState<DevicePlatform>("other");
+  const [forceVisible, setForceVisible] = useState(false);
 
   useEffect(() => {
-    const userAgent = navigator.userAgent || navigator.vendor || "";
-    const isAndroid = /android/i.test(userAgent);
-    const isWindows = /windows/i.test(userAgent);
-    const isIOS =
-      /iPad|iPhone|iPod/i.test(userAgent) ||
-      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const openDownloads = () => {
+      setForceVisible(true);
+      setIsVisible(true);
+      setOpen(true);
+    };
 
-    if (isAndroid) {
-      setDevicePlatform("android");
-      return;
-    }
+    window.addEventListener("neuvault:open-downloads", openDownloads);
 
-    if (isIOS) {
-      setDevicePlatform("ios");
-      return;
-    }
-
-    if (isWindows) {
-      setDevicePlatform("windows");
-      return;
-    }
-
-    setDevicePlatform("other");
+    return () => {
+      window.removeEventListener("neuvault:open-downloads", openDownloads);
+    };
   }, []);
 
   useEffect(() => {
     const updateVisibility = () => {
       const desktopTrigger = document.getElementById("features");
-      const mobileTrigger = document.getElementById("see-it-in-action");
+      const mobileTrigger = document.getElementById("screenshots");
       const footer = document.getElementById("site-footer");
       const triggerSection = window.innerWidth >= 700 ? desktopTrigger : mobileTrigger;
 
       if (!triggerSection || !footer) {
-        setIsVisible(false);
-        setOpen(false);
+        if (!forceVisible) {
+          setIsVisible(false);
+          setOpen(false);
+        }
         return;
       }
 
-      const triggerOffset = window.innerWidth >= 700 ? DESKTOP_TRIGGER_OFFSET : MOBILE_TRIGGER_OFFSET;
-      const isPastTriggerSection = triggerSection.getBoundingClientRect().top <= triggerOffset;
+      const triggerOffset = window.innerWidth >= 700
+        ? DESKTOP_TRIGGER_OFFSET
+        : MOBILE_TRIGGER_OFFSET;
+      const isPastTriggerSection =
+        triggerSection.getBoundingClientRect().top <= triggerOffset;
       const isFooterVisible = footer.getBoundingClientRect().top <= window.innerHeight;
       const shouldShow = isPastTriggerSection && !isFooterVisible;
 
       setIsVisible(shouldShow);
 
-      if (!shouldShow) {
+      if (isFooterVisible) {
+        setForceVisible(false);
+        setOpen(false);
+        return;
+      }
+
+      if (!shouldShow && !forceVisible) {
         setOpen(false);
       }
     };
@@ -134,66 +121,32 @@ export default function FloatingDownloadButtons() {
       window.removeEventListener("scroll", updateVisibility);
       window.removeEventListener("resize", updateVisibility);
     };
-  }, []);
+  }, [forceVisible]);
 
-  if (!isVisible) {
+  if (!isVisible && !forceVisible) {
     return null;
   }
 
-  const mobileDownloadCards = [];
-
-  if (devicePlatform !== "android") {
-    mobileDownloadCards.push(
-      <DownloadCard key="ios" platform="iOS" icon={<FaApple />} url={IOS_URL} variant="light" />
-    );
-  }
-
-  if (devicePlatform !== "ios") {
-    mobileDownloadCards.push(
-      <DownloadCard key="android" platform="Android" icon={<FaGooglePlay />} url={ANDROID_URL} />
-    );
-  }
-
-  if (devicePlatform !== "android" && devicePlatform !== "ios") {
-    mobileDownloadCards.push(
-      <DownloadCard key="windows" platform="Windows" icon={<FaWindows />} url={WINDOWS_URL} />
-    );
-  }
-
   return (
-    <div className="fixed bottom-5 right-5 z-5000">
-      <div className="hidden min-[700px]:block">
-        <motion.div
-          className="glass-panel w-[240px] rounded-[1.5rem] p-3"
-          initial={{ x: 40, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.45, ease: "easeOut" }}
-        >
-          <p className="px-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#9dd9ff]">
-            Download NeuVault
-          </p>
-          <p className="mt-2 px-1 text-sm leading-6 text-white/72">
-            Stop searching through document chaos. Start with 500 free credits and explore NeuVault.
-          </p>
-          <div className="mt-3 space-y-3">
-            <DownloadCard platform="iOS" icon={<FaApple />} url={IOS_URL} variant="light" />
-            <DownloadCard platform="Android" icon={<FaGooglePlay />} url={ANDROID_URL} />
-            <DownloadCard platform="Windows" icon={<FaWindows />} url={WINDOWS_URL} variant="light" />
-            <DownloadCard platform="macOS" icon={<FaApple />} />
-          </div>
-        </motion.div>
-      </div>
-
-      <div className="flex flex-col items-end gap-3 min-[700px]:hidden">
+    <div className="fixed bottom-5 right-5 z-[5000]">
+      <div className="flex flex-col items-end gap-3">
         <AnimatePresence>
           {open ? (
             <motion.div
-              className="glass-panel w-[220px] rounded-[1.4rem] p-3"
+              className="glass-panel w-[min(calc(100vw-2.5rem),340px)] rounded-[1.4rem] p-3"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 12 }}
             >
-              <div className="space-y-3">{mobileDownloadCards}</div>
+              <p className="px-1 text-xs font-semibold uppercase tracking-[0.14em] text-blue-700">
+                Enjoy 500 free one-time Credit
+              </p>
+              <div className="mt-3 grid grid-cols-2 gap-3">
+                <DownloadCard platform="iOS" icon={<Apple size={16} />} url={IOS_URL} />
+                <DownloadCard platform="Android" icon={<Smartphone size={16} />} url={ANDROID_URL} />
+                <DownloadCard platform="Windows" icon={<MonitorDown size={16} />} url={WINDOWS_URL} />
+                <DownloadCard platform="macOS" icon={<Apple size={16} />} />
+              </div>
             </motion.div>
           ) : null}
         </AnimatePresence>
@@ -201,13 +154,15 @@ export default function FloatingDownloadButtons() {
         <motion.button
           type="button"
           onClick={() => setOpen((value) => !value)}
-          className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#3F8CFF] text-white shadow-[0_22px_50px_-20px_rgba(63,140,255,0.85)] hover:bg-[#60aaff]"
+          className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-blue-600 px-5 text-sm font-semibold text-white shadow-[0_22px_50px_-20px_rgba(37,99,235,0.85)] hover:bg-blue-700"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           whileTap={{ scale: 0.92 }}
-          aria-label="Download NeuVault"
+          aria-label={open ? "Collapse NeuVault downloads" : "Expand NeuVault downloads"}
+          aria-expanded={open}
         >
-          <FaDownload />
+          <Download size={18} />
+          Download
         </motion.button>
       </div>
     </div>

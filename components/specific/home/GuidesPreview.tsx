@@ -1,39 +1,33 @@
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { guidePages } from "@/lib/guides";
 
 export default function GuidesPreview() {
   const featuredGuides = guidePages.slice(0, 3);
 
   return (
-    <section className="relative border-t border-white/10 px-6 py-24 text-white">
-      <div className="pointer-events-none absolute inset-0 opacity-70">
-        <div className="absolute left-[10%] top-8 h-56 w-56 rounded-full bg-[#3F8CFF]/10 blur-[110px]" />
-        <div className="absolute bottom-0 right-[10%] h-64 w-64 rounded-full bg-[#6DD1FF]/8 blur-[120px]" />
-      </div>
-
-      <div className="relative mx-auto max-w-6xl">
+    <section className="bg-white px-6 py-24">
+      <div className="mx-auto max-w-6xl">
         <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
-              Learn the system
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
+              Guides
             </p>
-
-            <h2 className="mt-4 text-3xl font-bold leading-tight md:text-5xl">
-              Better ways to stop losing important documents.
+            <h2 className="mt-4 text-3xl font-bold leading-tight text-slate-950 md:text-5xl">
+              Practical guidance for the records people actually lose.
             </h2>
-
-            <p className="mt-5 max-w-2xl text-base leading-8 text-white/68 md:text-lg">
-              Practical guides for organizing scans, receipts, school records,
-              notes, voice notes, reminders, and private backups — so your
-              records are easier to find when life asks for them.
+            <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600 md:text-lg">
+              Help users understand how NeuVault fits receipts, school records,
+              IDs, contracts, scans, voice notes, reminders, and private backup.
             </p>
           </div>
 
           <Link
             href="/guides"
-            className="inline-flex w-fit rounded-full border border-white/14 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
+            className="inline-flex w-fit items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 hover:border-blue-300 hover:text-blue-700"
           >
             View all guides
+            <ArrowUpRight size={15} />
           </Link>
         </div>
 
@@ -42,27 +36,21 @@ export default function GuidesPreview() {
             <Link
               key={guide.slug}
               href={`/guides/${guide.slug}`}
-              className="group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition hover:-translate-y-1 hover:border-[#6DD1FF]/30 hover:bg-white/8 hover:shadow-[0_24px_60px_-35px_rgba(63,140,255,0.7)]"
+              className="group rounded-[1.45rem] border border-slate-200 bg-slate-50 p-6 transition hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-[0_24px_70px_-52px_rgba(37,99,235,0.5)]"
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(63,140,255,0.14),transparent_34%)] opacity-0 transition group-hover:opacity-100" />
-
-              <div className="relative">
-                <p className="inline-flex rounded-full border border-[#6DD1FF]/15 bg-[#6DD1FF]/8 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#9dd9ff]">
-                  {guide.primaryKeyword}
-                </p>
-
-                <h3 className="mt-4 text-xl font-semibold leading-snug text-white transition group-hover:text-[#dff2ff]">
-                  {guide.title}
-                </h3>
-
-                <p className="mt-3 text-sm leading-7 text-white/68">
-                  {guide.description}
-                </p>
-
-                <span className="mt-5 inline-flex text-sm font-semibold text-[#8ec0ff] transition group-hover:text-white">
-                  Read guide →
-                </span>
-              </div>
+              <p className="inline-flex rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-blue-700 shadow-sm">
+                {guide.primaryKeyword}
+              </p>
+              <h3 className="mt-4 text-xl font-semibold leading-snug text-slate-950">
+                {guide.title}
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-slate-600">
+                {guide.description}
+              </p>
+              <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-blue-700">
+                Read guide
+                <ArrowUpRight size={15} />
+              </span>
             </Link>
           ))}
         </div>

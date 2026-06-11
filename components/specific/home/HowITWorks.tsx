@@ -1,405 +1,140 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
 import {
-  FaArrowRight,
-  FaBell,
-  FaCalendarCheck,
-  FaFileExcel,
-  FaFilePdf,
-  FaFileWord,
-  FaFolderOpen,
-  FaLightbulb,
-  FaMicrophone,
-  FaPlusCircle,
-  FaRegStickyNote,
-  FaSearch,
-  FaTag,
-  FaWifi,
-} from "react-icons/fa";
-import { FaArrowUp, FaLock } from "react-icons/fa6";
-import { FaLayerGroup } from "react-icons/fa";
-import { PiChatCircleDotsFill } from "react-icons/pi";
+  Archive,
+  ArrowRight,
+  Brain,
+  CheckCircle2,
+  CloudUpload,
+  ScanLine,
+  Search,
+} from "lucide-react";
 
-type Step = {
-  title: string;
-  shortTitle: string;
-  description: string;
-  icon: React.ReactNode;
-  demo: React.ReactNode;
-};
-
-const Chip = ({
-  icon,
-  label,
-  tone = "bg-white/5 border-white/10 text-white/80",
-}: {
-  icon: React.ReactNode;
-  label: string;
-  tone?: string;
-}) => (
-  <div
-    className={[
-      "inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs",
-      tone,
-    ].join(" ")}
-  >
-    <span className="opacity-90">{icon}</span>
-    <span className="leading-none">{label}</span>
-  </div>
-);
-
-const MiniCard = ({
-  title,
-  lines,
-}: {
-  title: string;
-  lines: string[];
-}) => (
-  <div className="rounded-xl border border-white/10 bg-black/25 p-4">
-    <div className="mb-2 text-xs font-semibold text-white/82">{title}</div>
-    <div className="space-y-1">
-      {lines.map((line) => (
-        <div key={line} className="text-xs text-white/60">
-          {line}
-        </div>
-      ))}
-    </div>
-  </div>
-);
-
-const Arrow = () => (
-  <div className="my-3 flex items-center justify-center text-white/28">
-    <div className="hidden items-center gap-2 sm:flex">
-      <div className="h-px w-10 bg-white/10" />
-      <FaArrowRight />
-      <div className="h-px w-10 bg-white/10" />
-    </div>
-    <div className="sm:hidden">
-      <FaArrowRight />
-    </div>
-  </div>
-);
-
-const steps: Step[] = [
+const steps = [
   {
-    title: "1. Capture what life will ask for later",
-    shortTitle: "Capture",
+    title: "Capture",
     description:
-      "Add the records people usually lose across downloads, screenshots, camera roll, notes, folders, and old devices.",
-    icon: <FaPlusCircle className="text-[#3F8CFF]" size={28} />,
-    demo: (
-      <div className="mt-4">
-        <div className="flex flex-wrap gap-2">
-          <Chip
-            icon={<FaFilePdf className="text-red-400" />}
-            label="Passport scan"
-            tone="bg-red-500/10 border-red-500/20 text-red-100"
-          />
-          <Chip
-            icon={<FaFileWord className="text-blue-400" />}
-            label="Agreement"
-            tone="bg-blue-500/10 border-blue-500/20 text-blue-100"
-          />
-          <Chip
-            icon={<FaFileExcel className="text-green-400" />}
-            label="Invoices"
-            tone="bg-green-500/10 border-green-500/20 text-green-100"
-          />
-          <Chip
-            icon={<FaRegStickyNote className="text-yellow-300" />}
-            label="Quick note"
-            tone="bg-yellow-500/10 border-yellow-500/20 text-yellow-100"
-          />
-          <Chip
-            icon={<FaMicrophone className="text-emerald-300" />}
-            label="Voice note"
-            tone="bg-emerald-500/10 border-emerald-500/20 text-emerald-100"
-          />
-        </div>
-
-        <div className="mt-3 flex items-center gap-2 text-xs text-white/45">
-          <FaWifi className="opacity-80" />
-          Capture offline and process safely when you reconnect.
-        </div>
-      </div>
-    ),
+      "Scan paper, upload documents, save notes, record voice context, or add screenshots.",
+    icon: <ScanLine size={22} />,
   },
   {
-    title: "2. Understand the record without reopening everything",
-    shortTitle: "Understand",
+    title: "Understand",
     description:
-      "NeuVault turns raw files into useful context: summaries, tags, dates, document type, and details you can scan quickly.",
-    icon: <FaLightbulb className="text-yellow-400" size={28} />,
-    demo: (
-      <div className="mt-4">
-        <MiniCard
-          title="What NeuVault remembers"
-          lines={[
-            "• 12-month lease agreement",
-            "• Rent due on the 1st of each month",
-            "• Renewal window opens on Nov 1",
-          ]}
-        />
-
-        <div className="mt-3 flex flex-wrap gap-2">
-          <Chip icon={<FaTag className="text-[#6DD1FF]" />} label="Lease" />
-          <Chip icon={<FaTag className="text-[#6DD1FF]" />} label="Renewal" />
-          <Chip
-            icon={<FaTag className="text-[#6DD1FF]" />}
-            label="Important"
-          />
-        </div>
-      </div>
-    ),
+      "NeuVault creates summaries, tags, document types, extracted details, and dates.",
+    icon: <Brain size={22} />,
   },
   {
-    title: "3. Connect the records that belong together",
-    shortTitle: "Connect",
+    title: "Connect",
     description:
-      "Real life is not one file. Link documents, notes, scans, and voice records around a trip, case, school file, client job, or personal record.",
-    icon: <FaLayerGroup className="text-[#6ce6b3]" size={28} />,
-    demo: (
-      <div className="mt-4 rounded-xl border border-white/10 bg-black/25 p-4">
-        <div className="mb-3 flex items-center gap-2 text-xs font-semibold text-white/82">
-          <FaFolderOpen className="text-white/60" />
-          Canada move
-        </div>
-
-        <div className="flex flex-wrap gap-2">
-          <Chip
-            icon={<FaFilePdf className="text-red-400" />}
-            label="Visa application"
-          />
-          <Chip
-            icon={<FaFilePdf className="text-red-400" />}
-            label="Passport scan"
-          />
-          <Chip
-            icon={<FaMicrophone className="text-emerald-300" />}
-            label="Voice checklist"
-          />
-        </div>
-
-        <div className="mt-3 text-xs text-white/45">
-          Related: proof of funds, admission letter, medical receipt
-        </div>
-      </div>
-    ),
+      "Group related records around a trip, application, client job, school file, or personal issue.",
+    icon: <Archive size={22} />,
   },
   {
-    title: "4. Find it from what you remember",
-    shortTitle: "Find",
+    title: "Find",
     description:
-      "Search by title, summary, tag, type, date, or related context when you do not remember the exact filename.",
-    icon: <FaSearch className="text-emerald-400" size={28} />,
-    demo: (
-      <div className="mt-4 rounded-xl border border-white/10 bg-black/25 p-4">
-        <div className="mb-2 text-xs text-white/55">Search</div>
-
-        <div className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs text-white/82">
-          canada proof of funds
-        </div>
-
-        <div className="mt-3 space-y-2 text-xs text-white/70">
-          <div className="flex items-center justify-between gap-3">
-            <span className="flex items-center gap-2">
-              <FaFilePdf className="text-red-400" /> Proof_of_Funds.pdf
-            </span>
-            <span className="shrink-0 text-white/35">Feb 2026</span>
-          </div>
-
-          <div className="flex items-center justify-between gap-3">
-            <span className="flex items-center gap-2">
-              <FaFilePdf className="text-red-400" /> Visa_Application.pdf
-            </span>
-            <span className="shrink-0 text-white/35">Jan 2026</span>
-          </div>
-
-          <div className="flex items-center justify-between gap-3">
-            <span className="flex items-center gap-2">
-              <FaMicrophone className="text-emerald-300" /> Canada checklist
-            </span>
-            <span className="shrink-0 text-white/35">Today</span>
-          </div>
-        </div>
-      </div>
-    ),
+      "Search by what you remember, not only by the exact file name.",
+    icon: <Search size={22} />,
   },
   {
-    title: "5. Bring it back before it matters",
-    shortTitle: "Remember",
+    title: "Recover",
     description:
-      "Use Attention and reminders so expiry dates, renewal windows, follow-ups, and important records do not stay buried.",
-    icon: <FaCalendarCheck className="text-[#6DD1FF]" size={28} />,
-    demo: (
-      <div className="mt-4">
-        <MiniCard
-          title="Needs attention"
-          lines={[
-            "• Renewal window: Nov 1",
-            "• Lease ends: Dec 1",
-            "• Payment due: 1st monthly",
-          ]}
-        />
-
-        <div className="mt-3 flex flex-wrap gap-2">
-          <Chip
-            icon={<FaBell className="text-[#3F8CFF]" />}
-            label="Create reminder"
-            tone="bg-[#3F8CFF]/10 border-[#3F8CFF]/20 text-[#d5e7ff]"
-          />
-          <Chip icon={<FaBell className="text-[#3F8CFF]" />} label="Review later" />
-        </div>
-      </div>
-    ),
-  },
-  {
-    title: "6. Recover your vault across devices",
-    shortTitle: "Recover",
-    description:
-      "Create an encrypted backup bundle you control, store it where you trust, and restore your vault on another device.",
-    icon: <FaArrowUp className="text-sky-300" size={28} />,
-    demo: (
-      <div className="mt-4 rounded-xl border border-white/10 bg-black/25 p-4">
-        <div className="flex flex-wrap gap-2">
-          <Chip
-            icon={<FaLock className="text-white/60" />}
-            label="Encrypted backup"
-          />
-          <Chip
-            icon={<FaFolderOpen className="text-white/60" />}
-            label="Drive / iCloud / Dropbox"
-          />
-        </div>
-
-        <div className="mt-3 text-xs text-white/45">
-          Your backup stays under your control and is built for restore.
-        </div>
-      </div>
-    ),
+      "Create encrypted backups you control and restore your vault across devices.",
+    icon: <CloudUpload size={22} />,
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section
-      id="how-it-works"
-      className="relative z-10 border-t border-white/10 px-6 py-24 text-white"
-    >
-      <div className="mx-auto mb-16 max-w-6xl">
+    <section id="how-it-works" className="bg-white px-6 py-24">
+      <div className="mx-auto max-w-6xl">
         <motion.div
           className="mx-auto max-w-3xl text-center"
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
-            The NeuVault loop
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
+            How NeuVault works
           </p>
-
-          <h2 className="mt-4 text-3xl font-bold leading-tight md:text-5xl">
-            Capture it once. Understand it later. Find it when life asks.
+          <h2 className="mt-4 text-3xl font-bold leading-tight text-slate-950 md:text-5xl">
+            A simple loop for documents you cannot afford to lose.
           </h2>
-
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/68 md:text-lg">
-            NeuVault is not trying to replace every cloud drive. It gives
-            important records a private memory layer: what they are, why they
-            matter, where they belong, when to revisit them, and how to recover
-            them.
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-600 md:text-lg">
+            The product is built around one repeatable workflow: capture the
+            record, preserve the meaning, find it when needed, and recover the
+            vault when devices change.
           </p>
         </motion.div>
-      </div>
 
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-8 flex flex-wrap justify-center gap-3">
-          {steps.map((step) => (
-            <span
-              key={step.shortTitle}
-              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/72"
-            >
-              {step.shortTitle}
-            </span>
-          ))}
-        </div>
-
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-4 md:grid-cols-5">
           {steps.map((step, index) => (
             <motion.div
               key={step.title}
-              className="rounded-[1.6rem] border border-white/10 bg-white/5 p-6 text-left backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-35px_rgba(63,140,255,0.6)]"
-              initial={{ opacity: 0, y: 24 }}
+              className="relative rounded-[1.4rem] border border-slate-200 bg-slate-50 p-5"
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05, duration: 0.5 }}
+              transition={{ duration: 0.45, delay: index * 0.05 }}
               viewport={{ once: true }}
             >
-              <div className="mb-4">{step.icon}</div>
-
-              <h3 className="text-lg font-semibold text-white">
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-blue-700 shadow-sm">
+                {step.icon}
+              </div>
+              <p className="text-sm font-semibold text-blue-700">
+                Step {index + 1}
+              </p>
+              <h3 className="mt-2 text-lg font-semibold text-slate-950">
                 {step.title}
               </h3>
-
-              <p className="mt-2 text-sm leading-7 text-white/66">
+              <p className="mt-2 text-sm leading-6 text-slate-600">
                 {step.description}
               </p>
 
-              {step.demo}
-
-              {index < steps.length - 1 && <Arrow />}
+              {index < steps.length - 1 ? (
+                <div className="absolute -right-3 top-1/2 z-10 hidden h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-blue-700 md:flex">
+                  <ArrowRight size={15} />
+                </div>
+              ) : null}
             </motion.div>
           ))}
         </div>
 
         <motion.div
-          className="mt-8 rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(15,20,39,0.94),rgba(10,14,28,0.82))] p-6 lg:p-7"
-          initial={{ opacity: 0, y: 24 }}
+          className="mt-12 grid gap-6 rounded-[1.75rem] border border-blue-100 bg-blue-50 p-6 md:grid-cols-[0.8fr_1.2fr] md:p-8"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-            <div>
-              <div className="mb-4">
-                <PiChatCircleDotsFill className="text-purple-300" size={30} />
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-blue-700">
+              Nova example
+            </p>
+            <h3 className="mt-3 text-2xl font-semibold leading-tight text-slate-950 md:text-3xl">
+              Ask from memory when a filename is not enough.
+            </h3>
+            <p className="mt-4 text-base leading-8 text-slate-600">
+              Nova can work across saved summaries, tags, dates, and linked
+              records so the vault answers practical questions, not just keyword
+              searches.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-blue-100 bg-white p-5 shadow-sm">
+            <div className="mb-4 flex justify-end">
+              <div className="max-w-[82%] rounded-2xl bg-blue-600 px-4 py-3 text-sm text-white">
+                What documents do I have for my renewal, and what needs attention?
               </div>
-
-              <h3 className="text-2xl font-semibold text-white">
-                Ask Nova when search is not enough
-              </h3>
-
-              <p className="mt-3 text-sm leading-7 text-white/66 md:text-base">
-                Some moments need more than a filename. Ask Nova about your
-                vault, summarize related records, create useful notes, and
-                understand what you already saved.
-              </p>
             </div>
-
-            <div className="rounded-2xl border border-white/10 bg-black/28 p-4 text-sm">
-              <div className="space-y-4">
-                <div className="flex justify-end gap-2">
-                  <span className="max-w-[82%] rounded-2xl bg-[#3F8CFF]/20 px-3 py-2 text-white/92">
-                    What do I have for my Canada move, and what still needs my
-                    attention?
-                  </span>
-                  <span className="self-center text-xs text-white/38">You</span>
-                </div>
-
-                <div className="flex justify-start gap-2">
-                  <span className="self-center text-xs text-white/38">Nova</span>
-                  <span className="max-w-[82%] rounded-2xl bg-purple-400/18 px-3 py-2 text-white/90">
-                    I found visa records, your passport scan, proof of funds,
-                    admission letter, medical receipt, and a voice checklist.
-                    The renewal and appointment dates may need review.
-                  </span>
-                </div>
-              </div>
-
-              <div className="mt-4 flex items-center gap-2 border-t border-white/10 pt-4 text-xs text-white/45">
-                <FaCalendarCheck className="opacity-80" />
-                Ask across documents, understand context, then act when needed.
-              </div>
+            <div className="max-w-[88%] rounded-2xl bg-slate-100 px-4 py-3 text-sm leading-6 text-slate-700">
+              I found your passport scan, renewal receipt, photo checklist, and
+              appointment note. The passport expiry and appointment date should
+              be reviewed this week.
+            </div>
+            <div className="mt-5 flex items-center gap-2 border-t border-slate-200 pt-4 text-sm text-slate-500">
+              <CheckCircle2 size={16} className="text-teal-600" />
+              Context, dates, and related records stay connected.
             </div>
           </div>
         </motion.div>

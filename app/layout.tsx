@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 import Navbar from "@/components/general/Navbar";
@@ -17,9 +17,9 @@ import {
   buildWebSiteJsonLd,
 } from "@/lib/seo";
 
-const poppins = Poppins({
+const inter = Inter({
   weight: ["400", "500", "600", "700"],
-  variable: "--font-poppins",
+  variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
 });
@@ -93,7 +93,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${poppins.variable} antialiased`}>
+      <body className={`${inter.variable} antialiased`}>
         <JsonLd data={jsonLd} />
         <Navbar />
         {children}

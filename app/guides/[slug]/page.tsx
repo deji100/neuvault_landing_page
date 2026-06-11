@@ -79,7 +79,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
   const faqJsonLd = buildGuideFaqJsonLd(guide);
 
   return (
-    <main className="relative overflow-hidden bg-[#08111d] px-6 pb-24 pt-28 text-white">
+    <main className="legacy-light-page relative overflow-hidden px-6 pb-24 pt-28">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={jsonLdScript(breadcrumbJsonLd)}
@@ -205,7 +205,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
         </section>
 
         {parentSolution ? (
-          <section className="mt-14 overflow-hidden rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(11,19,34,0.94),rgba(9,15,27,0.82))] p-7">
+          <section className="mt-14 overflow-hidden rounded-[1.8rem] border border-white/10 bg-white p-7 shadow-[0_24px_70px_-52px_rgba(37,99,235,0.45)]">
             <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">

@@ -11,29 +11,28 @@ export default function Card({
 }) {
   return (
     <div
-      className="rounded-2xl text-center px-6 py-8 w-full border shadow-md"
+      className="w-full rounded-2xl border border-slate-200 bg-white px-6 py-8 text-center shadow-[0_22px_70px_-52px_rgba(37,99,235,0.45)]"
       style={{
-        backgroundImage: "linear-gradient(to bottom, #1a1f4b, #000000)",
-        borderColor: "var(--border)",
+        borderColor: "var(--line)",
       }}
     >
       <h3
-        className="text-lg mb-8"
-        style={{ color: "var(--muted-foreground)", letterSpacing: "0.128px" }}
+        className="mb-8 text-lg"
+        style={{ color: "var(--muted)", letterSpacing: "0.128px" }}
       >
         {text1}
       </h3>
 
       <div
-        className="text-5xl font-bold flex justify-center items-center gap-2 mb-8"
-        style={{ color: "white" }}
+        className="mb-8 flex items-center justify-center gap-2 text-5xl font-bold"
+        style={{ color: "var(--foreground)" }}
       >
         <span>{text2}</span>
       </div>
 
       <p
         className="text-xl tracking-wide"
-        style={{ color: "var(--muted-foreground)", letterSpacing: "0.128px" }}
+        style={{ color: "var(--muted)", letterSpacing: "0.128px" }}
       >
         {text3}
       </p>

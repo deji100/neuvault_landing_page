@@ -15,16 +15,15 @@ const fadeUp: Variants = {
 
 export default function NeuVaultBanner() {
   return (
-    <section className="relative overflow-hidden bg-[#070B14] py-20 sm:py-28">
+    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#f7fbff_52%,#eef6ff_100%)] py-20 text-slate-950 sm:py-28">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(1000px_500px_at_20%_30%,rgba(59,130,246,0.28),transparent_60%),radial-gradient(800px_500px_at_80%_60%,rgba(109,209,255,0.18),transparent_55%)]" />
-        <div className="absolute inset-0 opacity-[0.15] [background-image:radial-gradient(rgba(255,255,255,0.8)_1px,transparent_1px)] [background-size:44px_44px]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#070B14]/40 to-[#070B14]" />
+        <div className="absolute inset-0 section-grid opacity-70" />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-b from-transparent to-white/80" />
       </div>
 
       <div className="relative mx-auto max-w-5xl px-6 text-center">
         <div className="relative mt-10 flex items-center justify-center sm:mt-14">
-          <div className="pointer-events-none absolute h-[380px] w-[380px] rounded-full bg-[#3B82F6]/20 blur-3xl sm:h-[420px] sm:w-[420px]" />
+          <div className="pointer-events-none absolute h-[360px] w-[360px] rounded-full border border-blue-100 bg-blue-50/70 sm:h-[420px] sm:w-[420px]" />
 
           <FloatingIcon className="-left-2 top-6 sm:left-10" icon={<FileText className="h-5 w-5" />} />
           <FloatingIcon className="-right-2 top-6 sm:right-10" icon={<StickyNote className="h-5 w-5" />} />
@@ -45,11 +44,11 @@ export default function NeuVaultBanner() {
           initial="hidden"
           animate="visible"
           custom={0}
-          className="text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:mt-6 sm:text-5xl lg:text-6xl"
+          className="text-4xl font-semibold leading-[1.05] tracking-tight text-slate-950 sm:mt-6 sm:text-5xl lg:text-6xl"
         >
           Everything important.
           <br />
-          <span className="text-white/80">Understood. Organized. Yours.</span>
+          <span className="text-slate-600">Understood. Organized. Yours.</span>
         </motion.h1>
 
         <motion.p
@@ -57,7 +56,7 @@ export default function NeuVaultBanner() {
           initial="hidden"
           animate="visible"
           custom={1}
-          className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/70 sm:mt-6 sm:text-lg"
+          className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:mt-6 sm:text-lg"
         >
           Documents, notes, voice, and scans, structured and easy to find, with privacy by design and control in your hands.
         </motion.p>
@@ -76,8 +75,8 @@ function FloatingIcon({
   return (
     <div
       className={[
-        "absolute rounded-2xl border border-white/10 bg-white/[0.05] p-3 text-[#6DD1FF]",
-        "backdrop-blur shadow-[0_20px_60px_rgba(0,0,0,0.4)]",
+        "absolute rounded-2xl border border-slate-200 bg-white p-3 text-blue-600",
+        "shadow-[0_18px_50px_-32px_rgba(37,99,235,0.6)]",
         "animate-[float_6s_ease-in-out_infinite]",
         className,
       ].join(" ")}

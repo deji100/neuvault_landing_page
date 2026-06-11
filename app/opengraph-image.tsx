@@ -17,8 +17,8 @@ export default function OpenGraphImage() {
           height: "100%",
           width: "100%",
           background:
-            "radial-gradient(circle at 20% 20%, rgba(63,140,255,0.35), transparent 30%), radial-gradient(circle at 85% 70%, rgba(109,209,255,0.18), transparent 28%), linear-gradient(180deg, #07101c 0%, #091321 100%)",
-          color: "white",
+            "radial-gradient(circle at 20% 20%, rgba(37,99,235,0.16), transparent 30%), radial-gradient(circle at 85% 70%, rgba(14,165,233,0.12), transparent 28%), linear-gradient(180deg, #ffffff 0%, #eef6ff 100%)",
+          color: "#0f172a",
           padding: "56px",
           fontFamily: "sans-serif",
         }}
@@ -29,10 +29,10 @@ export default function OpenGraphImage() {
             flexDirection: "column",
             justifyContent: "space-between",
             width: "100%",
-            border: "1px solid rgba(255,255,255,0.12)",
+            border: "1px solid rgba(148,163,184,0.32)",
             borderRadius: "32px",
             padding: "44px",
-            background: "rgba(255,255,255,0.04)",
+            background: "rgba(255,255,255,0.82)",
           }}
         >
           <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
@@ -42,7 +42,7 @@ export default function OpenGraphImage() {
                 alignItems: "center",
                 gap: "16px",
                 fontSize: 28,
-                color: "#dff2ff",
+                color: "#2563eb",
               }}
             >
               <div
@@ -58,7 +58,7 @@ export default function OpenGraphImage() {
             <div style={{ fontSize: 66, lineHeight: 1.08, fontWeight: 700, maxWidth: 860 }}>
               Private document vault for reminders, backup, notes, scans, and smart retrieval
             </div>
-            <div style={{ fontSize: 28, lineHeight: 1.4, color: "rgba(255,255,255,0.74)", maxWidth: 860 }}>
+            <div style={{ fontSize: 28, lineHeight: 1.4, color: "#475569", maxWidth: 860 }}>
               Organize documents, scans, typed notes, and voice capture in one local-first system
               you can actually find and trust later.
             </div>
@@ -74,10 +74,10 @@ export default function OpenGraphImage() {
                     alignItems: "center",
                     padding: "14px 20px",
                     borderRadius: 999,
-                    border: "1px solid rgba(255,255,255,0.14)",
-                    background: "rgba(255,255,255,0.05)",
+                    border: "1px solid rgba(148,163,184,0.32)",
+                    background: "#f8fbff",
                     fontSize: 22,
-                    color: "rgba(255,255,255,0.88)",
+                    color: "#334155",
                   }}
                 >
                   {label}

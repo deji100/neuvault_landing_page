@@ -99,7 +99,7 @@ export default function WorkflowDemoPlayer({ tag, url }: WorkflowDemoPlayerProps
 
   return (
     <>
-      <div className="rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(11,19,34,0.92),rgba(9,15,27,0.78))] p-5 shadow-[0_30px_80px_-30px_rgba(63,140,255,0.45)]">
+      <div className="rounded-[1.8rem] border border-slate-200 bg-white p-5 shadow-[0_30px_80px_-48px_rgba(37,99,235,0.45)]">
         <div className="mx-auto w-full max-w-[340px]">
           <div className="relative aspect-[9/16] overflow-hidden rounded-[1.9rem] border border-white/15 bg-black shadow-[0_25px_60px_-25px_rgba(63,140,255,0.65)]">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(63,140,255,0.42),transparent_44%),radial-gradient(circle_at_80%_75%,rgba(16,185,129,0.26),transparent_42%),linear-gradient(180deg,#020611_0%,#050a16_100%)]" />
