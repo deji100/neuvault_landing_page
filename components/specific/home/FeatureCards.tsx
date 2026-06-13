@@ -42,9 +42,9 @@ const features: Feature[] = [
     eyebrow: "Dashboard",
     title: "Know what needs attention before paperwork becomes a problem.",
     pain:
-      "The pain: important documents usually stay silent until the moment they become urgent. A receipt, ID, scanned form, renewal, or follow-up can be saved somewhere, but you still need a clear answer to: what changed, what needs review, and what should I do next?",
+      "Important documents usually stay silent until they become urgent. You saved the receipt, ID, form, or renewal notice, but still need to know what changed and what needs review.",
     solution:
-      "NeuVault solves this with a dashboard that turns the vault into a clear starting point. On desktop, you see vault item counts, attention items, recent activity, quick intake, search, Nova, Vault Queue, and Backup & Restore shortcuts. On mobile, global search, restore, backup export, and auto-intake stay available from the app shell so you can act from context instead of hunting through folders.",
+      "The dashboard gives you a clear starting point: attention items, recent activity, quick intake, search, Nova, Vault Queue, and backup controls without digging through folders.",
     desktopImage: DashboardImage,
     mobileImage: "/mobile-dashboard.jpeg",
     imageAlt: "NeuVault desktop dashboard screenshot",
@@ -55,9 +55,9 @@ const features: Feature[] = [
     eyebrow: "Vault",
     title: "Find records by context, not just perfect filenames.",
     pain:
-      "The pain: saving a file is not the same as remembering it. People often remember the person, payment, school, trip, deadline, or reason the document mattered, but not the exact filename or where it was stored.",
+      "People remember the person, payment, school, trip, deadline, or reason a document mattered. They often do not remember the exact filename.",
     solution:
-      "NeuVault turns each item into a searchable vault record with a useful title, summary, group, subgroup, tags, dates, related documents, and saved assets. On desktop, Vault search uses local indexes and opens matching records, previews, and queued items. On mobile, global vault search and restored indexes help you retrieve documents by meaning, group, or document context instead of relying on perfect filenames.",
+      "NeuVault turns files into searchable records with titles, summaries, groups, tags, dates, related documents, and saved assets, so retrieval has more paths than filename search.",
     desktopImage: VaultImage,
     mobileImage: "/mobile-vault.jpeg",
     imageAlt: "NeuVault desktop vault screenshot",
@@ -68,9 +68,9 @@ const features: Feature[] = [
     eyebrow: "Smart Document Handler",
     title: "Open a record and handle the full document story in one place.",
     pain:
-      "The pain: finding a document is only half the job. You still need to preview it, remember why it mattered, check dates, connect related files, move it to the right group, share it, or ask what it means. When those actions live in different places, the context gets broken again.",
+      "Finding a document is only half the job. You still need the preview, summary, dates, related files, location, share action, and explanation.",
     solution:
-      "NeuVault solves this with a dedicated Smart Document Handler for every record. On desktop, the preview opens from search, Vault, dashboard, linked documents, and notifications, then lets you edit the summary, review attention context, ask Nova about the document, link related records, move the item, share it, open the original asset, or delete it while vault indexes stay updated. On mobile, the same handler appears across Vault, Smart Suggestions, Home, linked groups, document routes, assistant messages, and global previews, so each saved item keeps its title, summary, tags, groups, extracted fields, assets, related documents, and Nova context together.",
+      "Each record opens into one working view where you can preview, edit context, review attention dates, ask Nova, link related records, move, share, or open the original asset.",
     desktopImage: PreviewImage,
     mobileImage: "/mobile-preview.jpeg",
     imageAlt: "NeuVault desktop smart document handler screenshot",
@@ -81,9 +81,9 @@ const features: Feature[] = [
     eyebrow: "Nova",
     title: "Ask the vault when search is too narrow.",
     pain:
-      "The pain: sometimes you do not know which document to open. You only know the question: what did this record say, which files relate to this issue, what was the latest document, or what still needs attention?",
+      "Sometimes you do not know which document to open. You only know the question you need answered.",
     solution:
-      "Nova is built around the vault, not a blank chat box. On desktop, Nova routes between attention questions, vault questions, metadata answers, deep document analysis, and normal chat, using recent documents, groups, and selected records when available. On mobile, Nova builds vault context from saved intake items and can search or narrow responses by groups and documents, so answers stay connected to what you actually saved.",
+      "Nova works from vault context, selected records, groups, recent documents, and attention items, so answers stay connected to documents you actually saved.",
     desktopImage: NovaImage,
     mobileImage: "/mobile-nova.jpeg",
     imageAlt: "NeuVault desktop Nova assistant screenshot",
@@ -94,9 +94,9 @@ const features: Feature[] = [
     eyebrow: "Smart Suggestions",
     title: "Bring dates and follow-ups back into view.",
     pain:
-      "The pain: dates are easy to miss because they are buried inside the document. An expiry date, appointment, renewal window, payment deadline, or follow-up may be visible during upload, then disappear until it is too late.",
+      "Expiry dates, appointments, renewal windows, payment deadlines, and follow-ups are easy to miss when they stay buried inside files.",
     solution:
-      "NeuVault keeps reminders tied to the source record. On desktop, attention items appear on the dashboard, can be opened with their original document, and can be marked reviewed when handled. Nova can also answer attention questions from stored reminder context. On mobile, Smart Suggestions can be generated and synced, and backup restore brings smart suggestion state back with the vault.",
+      "Attention items stay tied to the source record. You can open the original document, review the context, ask Nova, and mark the item handled.",
     desktopImage: SmartSuggestionsImage,
     mobileImage: "/mobile-smart-suggestion.jpeg",
     imageAlt: "NeuVault desktop smart suggestions screenshot",
@@ -107,9 +107,9 @@ const features: Feature[] = [
     eyebrow: "Notes",
     title: "Keep the explanation beside the record it belongs to.",
     pain:
-      "The pain: the file is only part of the memory. The reason it matters may be in a note, a voice thought, a Nova answer, a copied detail, or something you planned to remember later.",
+      "The file is only part of the memory. The reason it matters may live in a note, voice thought, Nova answer, or copied detail.",
     solution:
-      "NeuVault keeps notes in the same document system as scans and uploads. On desktop, Nova can draft notes, notes can remain searchable, and document summaries can send you back to Nova when more context is needed. On mobile, notes and note assets are included in the vault backup model, so the explanation can travel with the record instead of living in a separate app.",
+      "NeuVault keeps notes in the same system as scans and uploads, making them searchable, exportable, and recoverable with the rest of the vault.",
     desktopImage: NoteImage,
     mobileImage: "/mobile-note.jpeg",
     imageAlt: "NeuVault desktop notes screenshot",
@@ -120,9 +120,9 @@ const features: Feature[] = [
     eyebrow: "Settings, Backup, Restore",
     title: "Recover the vault without surrendering control.",
     pain:
-      "The pain: a private document system is only useful if it survives device changes. Without a controlled backup and restore path, you risk losing documents, notes, previews, links, reminders, and the organization you already built.",
+      "A private document system is only useful if it survives device changes. Without restore, you can lose the organization you already built.",
     solution:
-      "NeuVault uses local-first storage with encrypted backup and restore controls. On desktop, Settings lets you choose backup destinations, export, preview restores, restore backups, keep background reminders active, and rebuild usable vault state. On mobile, encrypted bundle export and restore include vault records, assets, note assets, links, smart suggestions, and rebuilt search/group indexes, so the vault can move without becoming forced cloud storage.",
+      "Encrypted backup and restore move vault records, assets, notes, links, reminders, and indexes without turning NeuVault into forced cloud storage.",
     desktopImage: SettingsBackupRestoreImage,
     mobileImage: "/mobile-settings.jpeg",
     imageAlt: "NeuVault desktop settings backup and restore screenshot",
@@ -237,9 +237,9 @@ export default function FeaturesSection() {
             Every screen solves a real document problem.
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-600 md:text-lg">
-            NeuVault is built around the moments that make paperwork stressful:
-            not knowing what matters, losing context, forgetting dates, and
-            rebuilding records when devices change.
+            NeuVault keeps the product story focused: capture records, preserve
+            context, remember dates, ask questions, and recover the vault when
+            devices change.
           </p>
         </motion.div>
 

@@ -139,7 +139,7 @@ export default function FloatingDownloadButtons() {
               exit={{ opacity: 0, y: 12 }}
             >
               <p className="px-1 text-xs font-semibold uppercase tracking-[0.14em] text-blue-700">
-                Enjoy 500 free one-time Credit
+                Enjoy 500 free one-time credits
               </p>
               <div className="mt-3 grid grid-cols-2 gap-3">
                 <DownloadCard platform="iOS" icon={<Apple size={16} />} url={IOS_URL} />

@@ -41,6 +41,11 @@ export default function Navbar() {
     router.push(`/#${id}`);
   };
 
+  const openDownloads = () => {
+    setMobileOpen(false);
+    window.dispatchEvent(new Event("neuvault:open-downloads"));
+  };
+
   return (
     <motion.nav
       className="fixed inset-x-0 top-0 z-[1000] border-b border-slate-200/80 bg-white/90 shadow-[0_12px_40px_-32px_rgba(15,23,42,0.45)] backdrop-blur-xl"
@@ -86,12 +91,13 @@ export default function Navbar() {
         </div>
 
         <div className="hidden justify-self-end md:block">
-          <Link
-            href="/contact"
+          <button
+            type="button"
+            onClick={openDownloads}
             className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_16px_32px_-20px_rgba(37,99,235,0.75)] hover:bg-blue-700"
           >
-            Contact
-          </Link>
+            Download
+          </button>
         </div>
 
         <button
@@ -127,13 +133,13 @@ export default function Navbar() {
               Privacy
             </Link>
 
-            <Link
-              href="/contact"
-              onClick={() => setMobileOpen(false)}
+            <button
+              type="button"
+              onClick={openDownloads}
               className="rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white"
             >
-              Contact
-            </Link>
+              Download
+            </button>
           </div>
         </div>
       )}

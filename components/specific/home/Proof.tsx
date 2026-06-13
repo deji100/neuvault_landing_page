@@ -28,12 +28,12 @@ export default function SeeItInAction() {
               YouTube walkthroughs
             </p>
             <h2 className="mt-4 text-3xl font-bold leading-tight text-slate-950 md:text-5xl">
-              Product videos belong beside the features.
+              See the workflows before you install.
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-600 md:text-lg">
-              Short walkthroughs can show the core product moments: capture,
-              organization, Nova search, reminders, linked records, and private
-              backup.
+              Short walkthroughs show how documents move from capture to
+              organization, Nova answers, reminders, linked records, and
+              private backup.
             </p>
           </div>
 
