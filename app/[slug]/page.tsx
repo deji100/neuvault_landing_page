@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 
-import WorkflowDemoPlayer from "@/components/specific/home/WorkflowDemoPlayer";
 import { LOGO_URL } from "@/lib/brand";
-import { demoVideos } from "@/lib/demo-videos";
 import { getGuidesForSolution } from "@/lib/guides";
 
 import {
@@ -34,16 +32,6 @@ type SupplementalContent = {
     neuvaultAdvantage: string;
   }[];
   extraFaqs: { question: string; answer: string }[];
-};
-
-const demoVideoTitleBySlug: Record<string, string> = {
-  "document-organization": "Smart Upload Intake",
-  "document-reminder": "Document Resurfacing",
-  "document-retrieval": "Nova Assistant",
-  "secure-document-backup": "Settings and Backup",
-  "notes-export": "Smart Note Intake",
-  "voice-note-transcription": "Smart Voice Note Intake",
-  "scan-organization": "Smart Scan Intake",
 };
 
 const supplementalContentBySlug: Record<string, SupplementalContent> = {
@@ -499,10 +487,6 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
   }
 
   const pageFaqs = [...page.faqs, ...supplemental.extraFaqs];
-  const demoVideo =
-    demoVideos.find((item) => item.title === demoVideoTitleBySlug[page.slug]) ??
-    null;
-
   const relatedPages = getSolutionPagesBySlugs(page.relatedSlugs);
   const relatedGuides = getGuidesForSolution(page.slug).slice(0, 2);
 
@@ -521,27 +505,6 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
     description: page.description,
   };
 
-  const videoJsonLd = demoVideo
-    ? {
-        "@context": "https://schema.org",
-        "@type": "VideoObject",
-        name: demoVideo.title,
-        description: demoVideo.summary,
-        uploadDate: demoVideo.uploadDate,
-        contentUrl: demoVideo.url,
-        embedUrl: demoVideo.url,
-        thumbnailUrl: LOGO_URL,
-        publisher: {
-          "@type": "Organization",
-          name: "NeuVault",
-          logo: {
-            "@type": "ImageObject",
-            url: LOGO_URL,
-          },
-        },
-      }
-    : null;
-
   return (
     <main className="legacy-light-page relative overflow-hidden px-6 pb-24 pt-28">
       <script
@@ -556,12 +519,6 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={jsonLdScript(softwareJsonLd)}
       />
-      {videoJsonLd ? (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={jsonLdScript(videoJsonLd)}
-        />
-      ) : null}
 
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-[10%] top-10 h-64 w-64 rounded-full bg-[#3F8CFF]/14 blur-[130px]" />
@@ -615,45 +572,9 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
                 Get NeuVault on Google Play
               </a>
 
-              <Link
-                href="/#see-it-in-action"
-                className="rounded-full border border-white/14 bg-white/5 px-5 py-3 font-semibold text-white hover:bg-white/10"
-              >
-                Watch product demos
-              </Link>
             </div>
           </div>
         </section>
-
-        {demoVideo ? (
-          <section className="mt-14 grid items-start gap-6 lg:grid-cols-[1.06fr_0.94fr]">
-            <WorkflowDemoPlayer tag={demoVideo.tag} url={demoVideo.url} />
-
-            <div className="self-start rounded-[1.8rem] border border-white/10 bg-white/5 p-7 backdrop-blur-sm">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
-                Matching product demo
-              </p>
-
-              <h2 className="mt-4 text-2xl font-semibold text-white">
-                {demoVideo.title}
-              </h2>
-
-              <p className="mt-4 text-sm leading-7 text-white/70">
-                {demoVideo.summary}
-              </p>
-
-              <div className="mt-6 inline-flex rounded-full border border-white/12 bg-white/8 px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white/76">
-                {demoVideo.tag}
-              </div>
-
-              <p className="mt-6 text-sm leading-7 text-white/68">
-                This demo shows how the workflow fits into the larger NeuVault
-                loop: capture important records, keep context attached, find
-                what matters, and recover your vault when needed.
-              </p>
-            </div>
-          </section>
-        ) : null}
 
         <section className="mt-14 grid gap-6 lg:grid-cols-3">
           {page.benefits.map((benefit, index) => (
