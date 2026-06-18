@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { solutionPages } from "@/lib/seo";
 
 const workflowLabels: Record<
@@ -56,7 +59,13 @@ export default function WorkflowLinks() {
   return (
     <section className="px-6 py-24 bg-[#040810]">
       <div className="mx-auto max-w-6xl">
-        <div className="mx-auto max-w-3xl text-center">
+        <motion.div 
+          className="mx-auto max-w-3xl text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5 }}
+        >
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-400">
             Feature workflows
           </p>
@@ -68,32 +77,39 @@ export default function WorkflowLinks() {
             stressful: finding files, remembering dates, keeping context, and
             restoring records when devices change.
           </p>
-        </div>
+        </motion.div>
 
         <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {solutionPages.map((page) => {
+          {solutionPages.map((page, index) => {
             const workflow = workflowLabels[page.slug];
 
             return (
-              <Link
+              <motion.div
                 key={page.slug}
-                href={`/${page.slug}`}
-                className="group rounded-xl border border-white/10 bg-[#0a101a] p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-[#111a28] hover:shadow-[0_24px_70px_-50px_rgba(255,255,255,0.05)]"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <div className="mb-5 inline-flex rounded-full border border-white/5 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-slate-300">
-                  {workflow?.label ?? page.eyebrow}
-                </div>
-                <h3 className="text-xl font-bold leading-snug text-white">
-                  {workflow?.pain ?? page.title}
-                </h3>
-                <p className="mt-4 text-sm leading-relaxed text-slate-400">
-                  {page.description.replace(/AI/g, "").replace(/Nova, your vault-aware/g, "your vault-aware").replace(/Nova/g, "assistant")}
-                </p>
-                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-slate-300 transition-colors group-hover:text-white">
-                  {workflow?.action ?? "View workflow"}
-                  <IconArrowRight />
-                </span>
-              </Link>
+                <Link
+                  href={`/${page.slug}`}
+                  className="group block h-full rounded-xl border border-white/10 bg-[#0a101a] p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-[#111a28] hover:shadow-[0_24px_70px_-50px_rgba(255,255,255,0.05)]"
+                >
+                  <div className="mb-5 inline-flex rounded-full border border-white/5 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-slate-300">
+                    {workflow?.label ?? page.eyebrow}
+                  </div>
+                  <h3 className="text-xl font-bold leading-snug text-white">
+                    {workflow?.pain ?? page.title}
+                  </h3>
+                  <p className="mt-4 text-sm leading-relaxed text-slate-400">
+                    {page.description.replace(/AI/g, "").replace(/Nova, your vault-aware/g, "your vault-aware").replace(/Nova/g, "assistant")}
+                  </p>
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-slate-300 transition-colors group-hover:text-white">
+                    {workflow?.action ?? "View workflow"}
+                    <IconArrowRight />
+                  </span>
+                </Link>
+              </motion.div>
             );
           })}
         </div>
