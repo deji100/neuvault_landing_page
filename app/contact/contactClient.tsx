@@ -46,7 +46,7 @@ const contactReasons = [
 const faqs = [
   {
     q: "How fast do you respond?",
-    a: "We typically respond within 24–48 hours. Security, billing, restore, and account-access issues are treated with higher priority.",
+    a: "We typically respond within 24-48 hours. Security, billing, restore, and account-access issues are treated with higher priority.",
   },
   {
     q: "Where are my documents stored?",
@@ -233,7 +233,7 @@ export default function ContactClient() {
                 </a>
 
                 <p className="mt-2 text-xs leading-6 text-white/48">
-                  Typical response time: 24–48 hours.
+                  Typical response time: 24-48 hours.
                 </p>
               </div>
             </div>
