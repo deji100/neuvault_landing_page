@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { FolderOpen, RefreshCw, Search, ShieldCheck } from "lucide-react";
 
 const points = [
@@ -28,7 +31,12 @@ export default function AutomaticIntake() {
     <section className="bg-white px-6 py-24">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-10 rounded-[1.75rem] border border-blue-100 bg-blue-50 p-6 md:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5 }}
+          >
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
               Automatic intake
             </p>
@@ -41,12 +49,16 @@ export default function AutomaticIntake() {
               new files into the same document memory system as scans, notes,
               screenshots, and voice context.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            {points.map((point) => (
-              <article
+            {points.map((point, index) => (
+              <motion.article
                 key={point.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="rounded-[1.35rem] border border-blue-100 bg-white p-5 shadow-sm"
               >
                 <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-600 text-white">
@@ -58,7 +70,7 @@ export default function AutomaticIntake() {
                 <p className="mt-2 text-sm leading-7 text-slate-600">
                   {point.body}
                 </p>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>

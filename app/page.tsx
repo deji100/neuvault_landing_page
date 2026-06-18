@@ -8,9 +8,6 @@ import TestimonialsSection from "@/components/specific/home/Testimonials";
 import FloatingDownloadButtons from "@/components/specific/home/FloatingDownloadButtons";
 import WorkflowLinks from "@/components/specific/home/WorkflowLinks";
 import GuidesPreview from "@/components/specific/home/GuidesPreview";
-import AutomaticIntake from "@/components/specific/home/AutomaticIntake";
-import AudienceUseCases from "@/components/specific/home/AudienceUseCases";
-import TrustExplainer from "@/components/specific/home/TrustExplainer";
 
 import { LOGO_URL } from "@/lib/brand";
 import {
@@ -191,11 +188,8 @@ export default function Home() {
       <section className="relative overflow-hidden bg-transparent">
         <FeaturesSection />
         <SeeItInAction />
-        <AutomaticIntake />
         <HowItWorks />
-        <AudienceUseCases />
         <WorkflowLinks />
-        <TrustExplainer />
         <GuidesPreview />
         <TestimonialsSection />
         <FloatingDownloadButtons />

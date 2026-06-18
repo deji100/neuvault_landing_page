@@ -375,11 +375,10 @@ export default function ContactClient() {
 
                   <button
                     type="submit"
-                    className={`inline-flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold text-white transition ${
-                      isBusy
+                    className={`inline-flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold text-white transition ${isBusy
                         ? "cursor-not-allowed bg-[#3F8CFF]/60"
                         : "bg-[#3F8CFF] hover:bg-[#60aaff]"
-                    }`}
+                      }`}
                     disabled={isBusy}
                   >
                     <FaPaperPlane size={13} />
