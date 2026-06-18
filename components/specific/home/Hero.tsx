@@ -120,9 +120,9 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55 }}
         >
-          <p className="mx-auto mb-5 inline-flex rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-blue-700">
+          {/* <p className="mx-auto mb-5 inline-flex rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-blue-700">
             Private AI vault for documents life asks for later
-          </p>
+          </p> */}
 
           <h1 className="text-4xl font-bold leading-[1.05] tracking-normal text-slate-950 sm:text-6xl md:text-7xl">
             Meet your intelligent document memory.
@@ -194,7 +194,7 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        <motion.button
+        {/* <motion.button
           type="button"
           onClick={() => setExpandedImage(true)}
           className="mx-auto mt-16 max-w-6xl w-full cursor-zoom-in overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_32px_90px_-48px_rgba(15,23,42,0.55)] transition-all hover:ring-2 hover:ring-blue-500/20"
@@ -217,7 +217,7 @@ export default function Hero() {
             className="h-auto w-full object-cover"
             sizes="(min-width: 1280px) 1152px, 100vw"
           />
-        </motion.button>
+        </motion.button> */}
 
         <AnimatePresence>
           {expandedImage && (
@@ -258,7 +258,7 @@ export default function Hero() {
           )}
         </AnimatePresence>
 
-        <div className="mx-auto mt-10 grid max-w-5xl gap-4 sm:grid-cols-3">
+        {/* <div className="mx-auto mt-10 grid max-w-5xl gap-4 sm:grid-cols-3">
           {[
             {
               icon: <FolderOpen size={19} />,
@@ -291,7 +291,7 @@ export default function Hero() {
               </p>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );

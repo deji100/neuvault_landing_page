@@ -1,4 +1,7 @@
+"use client";
+
 import { ReactNode } from "react";
+import { motion } from "framer-motion";
 
 const youtubeVideos = [
   {
@@ -36,7 +39,13 @@ export default function SeeItInAction() {
     <section id="see-it-in-action" className="relative px-6 py-24 bg-[#040810]">
       <div className="mx-auto max-w-6xl">
         <div id="youtube-videos">
-          <div className="mx-auto max-w-3xl text-center">
+          <motion.div 
+            className="mx-auto max-w-3xl text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5 }}
+          >
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-400">
               YouTube walkthroughs
             </p>
@@ -48,12 +57,16 @@ export default function SeeItInAction() {
               organization, answers, reminders, linked records, and
               private backup.
             </p>
-          </div>
+          </motion.div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {youtubeVideos.map((video) => (
-              <article
+            {youtubeVideos.map((video, index) => (
+              <motion.article
                 key={video.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="overflow-hidden rounded-xl border border-white/10 bg-[#0a101a] shadow-[0_22px_70px_-52px_rgba(255,255,255,0.05)] transition-all hover:border-white/20"
               >
                 <div className="aspect-video bg-[#040810] border-b border-white/5">
@@ -86,7 +99,7 @@ export default function SeeItInAction() {
                     {video.summary}
                   </p>
                 </div>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>

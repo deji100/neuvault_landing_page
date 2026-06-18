@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { Brain, Database, LockKeyhole, ShieldCheck } from "lucide-react";
 
 const trustItems = [
@@ -28,7 +31,12 @@ export default function TrustExplainer() {
     <section className="bg-slate-950 px-6 py-24 text-white">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5 }}
+          >
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-300">
               AI and privacy
             </p>
@@ -42,12 +50,16 @@ export default function TrustExplainer() {
               document search. Your backups are encrypted and controlled by
               you.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid gap-4 md:grid-cols-2">
-            {trustItems.map((item) => (
-              <article
+            {trustItems.map((item, index) => (
+              <motion.article
                 key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="rounded-[1.35rem] border border-white/10 bg-white/[0.06] p-5"
               >
                 <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-500 text-white">
@@ -57,7 +69,7 @@ export default function TrustExplainer() {
                 <p className="mt-2 text-sm leading-7 text-slate-300">
                   {item.body}
                 </p>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>
