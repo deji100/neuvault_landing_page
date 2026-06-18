@@ -191,11 +191,8 @@ export default function Home() {
       <section className="relative overflow-hidden bg-transparent">
         <FeaturesSection />
         <SeeItInAction />
-        <AutomaticIntake />
         <HowItWorks />
-        <AudienceUseCases />
         <WorkflowLinks />
-        <TrustExplainer />
         <GuidesPreview />
         <TestimonialsSection />
         <FloatingDownloadButtons />
