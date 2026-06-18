@@ -117,6 +117,22 @@ const features: Feature[] = [
   },
 ];
 
+function FadeImage({ className, ...props }: React.ComponentProps<typeof Image>) {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <Image
+      {...props}
+      className={`${className || ""} transition-all duration-700 ease-out ${
+        loaded ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-[1.02]"
+      }`}
+      onLoad={(e) => {
+        setLoaded(true);
+        if (props.onLoad) props.onLoad(e);
+      }}
+    />
+  );
+}
+
 function DesktopScreenshot({
   image,
   alt,
@@ -137,7 +153,7 @@ function DesktopScreenshot({
         transition={{ duration: 0.3 }}
         className="w-full cursor-zoom-in overflow-hidden rounded-[1.65rem] border border-white/10 bg-[#08111d] shadow-[0_0_40px_rgba(59,130,246,0.15)] ring-1 ring-white/5 transition-all hover:ring-white/20"
       >
-        <Image
+        <FadeImage
           src={image}
           alt={alt}
           className="h-auto w-full object-cover"
@@ -163,7 +179,7 @@ function DesktopScreenshot({
               className="relative max-h-full max-w-7xl overflow-hidden rounded-xl bg-[#08111d] shadow-2xl ring-1 ring-white/20"
               onClick={(e) => e.stopPropagation()}
             >
-              <Image
+              <FadeImage
                 src={image}
                 alt={alt}
                 className="h-auto max-h-[85vh] w-auto object-contain"
@@ -206,7 +222,7 @@ function MobileScreenshot({
         className="group flex h-full w-full cursor-zoom-in items-center justify-center rounded-[1.65rem] border border-white/10 bg-gradient-to-b from-[#0f172a] to-[#08111d] p-6 shadow-[0_0_40px_rgba(59,130,246,0.15)] ring-1 ring-white/5 transition-all hover:ring-white/20"
       >
         <div className="w-full max-w-[320px] overflow-hidden rounded-[2rem] border border-white/20 bg-black shadow-2xl transition-transform group-hover:scale-[1.02]">
-          <Image
+          <FadeImage
             src={image}
             alt={alt}
             width={936}
@@ -235,7 +251,7 @@ function MobileScreenshot({
               className="relative max-h-full max-w-md overflow-hidden rounded-[2.5rem] border-4 border-slate-800 bg-black shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <Image
+              <FadeImage
                 src={image}
                 alt={alt}
                 width={936}

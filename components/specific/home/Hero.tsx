@@ -22,6 +22,22 @@ const trustPills = [
   "iPhone, Android, and Windows",
 ];
 
+function FadeImage({ className, ...props }: React.ComponentProps<typeof Image>) {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <Image
+      {...props}
+      className={`${className || ""} transition-all duration-700 ease-out ${
+        loaded ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-[1.02]"
+      }`}
+      onLoad={(e) => {
+        setLoaded(true);
+        if (props.onLoad) props.onLoad(e);
+      }}
+    />
+  );
+}
+
 export default function Hero() {
   const [devicePlatform, setDevicePlatform] =
     useState<DevicePlatform>("other");
@@ -120,7 +136,7 @@ export default function Hero() {
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <div className="relative flex w-full flex-col sm:w-auto">
-              <div className="flex w-full items-center shadow-[0_20px_42px_-22px_rgba(37,99,235,0.85)]">
+              <div className="flex w-full items-stretch shadow-[0_20px_42px_-22px_rgba(37,99,235,0.85)]">
                 <a
                   href={downloadUrl}
                   target="_blank"
@@ -194,7 +210,7 @@ export default function Hero() {
               NeuVault login
             </span>
           </div>
-          <Image
+          <FadeImage
             src={LoginImage}
             alt="NeuVault login screenshot"
             priority
@@ -224,7 +240,7 @@ export default function Hero() {
                   <span className="h-3 w-3 rounded-full bg-amber-300" />
                   <span className="h-3 w-3 rounded-full bg-emerald-300" />
                 </div>
-                <Image
+                <FadeImage
                   src={LoginImage}
                   alt="NeuVault login screenshot"
                   className="h-auto max-h-[85vh] w-auto object-contain"
