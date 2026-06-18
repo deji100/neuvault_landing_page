@@ -1,16 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Bell,
-  Briefcase,
-  FileSearch,
-  GraduationCap,
-  HeartPulse,
-  Quote,
-  ShieldCheck,
-  Wifi,
-} from "lucide-react";
 
 const feedback = [
   {
@@ -18,63 +8,36 @@ const feedback = [
     role: "Small business owner",
     pain: "Receipts and invoices",
     text: "Invoices and receipts used to be chaos. Now I know where things are, and I can find them fast without throwing everything into a generic cloud folder.",
-    icon: <Briefcase size={17} />,
   },
   {
     name: "Sarah J.",
     role: "Graduate student",
     pain: "School PDFs and scans",
     text: "I scan handouts and upload PDFs, and NeuVault groups them in a way that actually makes sense later.",
-    icon: <GraduationCap size={17} />,
   },
   {
     name: "Michael T.",
     role: "Healthcare worker",
     pain: "Private recovery",
     text: "The encrypted backup and restore flow matters because changing phones is usually where trust falls apart.",
-    icon: <HeartPulse size={17} />,
   },
   {
     name: "Chris T.",
     role: "Working professional",
     pain: "Forgotten dates",
     text: "Setting reminders on actual documents is the part that stands out. It makes paperwork feel less reactive.",
-    icon: <Bell size={17} />,
   },
   {
     name: "Nneka A.",
     role: "Busy parent",
     pain: "Offline capture",
     text: "I added documents while offline and NeuVault processed them later without me managing the whole thing.",
-    icon: <Wifi size={17} />,
   },
   {
     name: "Daniel O.",
     role: "Freelancer",
-    pain: "Saved files with no context",
+    pain: "Context",
     text: "The summaries are clear and practical. It feels less like storing files and more like using what I saved.",
-    icon: <FileSearch size={17} />,
-  },
-];
-
-const proofPoints = [
-  {
-    title: "Less panic searching",
-    description:
-      "NeuVault is built for the moment when you know you saved something, but cannot remember where.",
-    icon: <FileSearch size={20} />,
-  },
-  {
-    title: "More document memory",
-    description:
-      "Summaries, tags, dates, notes, and linked records preserve the meaning around a file.",
-    icon: <Quote size={20} />,
-  },
-  {
-    title: "Private recovery",
-    description:
-      "Encrypted backups stay under your control so moving devices does not mean losing your vault.",
-    icon: <ShieldCheck size={20} />,
   },
 ];
 
@@ -86,9 +49,15 @@ const getInitials = (name: string) =>
     .slice(0, 2)
     .toUpperCase();
 
+const IconQuote = () => (
+  <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" className="opacity-20">
+    <path d="M8 15c0 2.5-2 4.5-4.5 4.5S0 17.5 0 15c0-2.48 2-4.5 4.5-4.5h.5c-.27-2.61-1.42-4.83-3-6.5l1.5-1.5c2.3 2.12 4 4.88 4.5 8v4.5zm12 0c0 2.5-2 4.5-4.5 4.5S11 17.5 11 15c0-2.48 2-4.5 4.5-4.5h.5c-.27-2.61-1.42-4.83-3-6.5l1.5-1.5c2.3 2.12 4 4.88 4.5 8v4.5z" fill="currentColor" stroke="none"/>
+  </svg>
+);
+
 export default function TestimonialsCarousel() {
   return (
-    <section id="testimonials" className="px-6 py-24">
+    <section id="testimonials" className="px-6 py-24 bg-[#040810]">
       <div className="mx-auto max-w-6xl">
         <motion.div
           className="mx-auto max-w-3xl text-center"
@@ -97,71 +66,48 @@ export default function TestimonialsCarousel() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-400">
             Early signals
           </p>
-          <h2 className="mt-4 text-3xl font-bold leading-tight text-slate-950 md:text-5xl">
+          <h2 className="mt-4 text-3xl font-bold leading-tight text-white md:text-5xl">
             People want relief when documents matter.
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-600 md:text-lg">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-400 md:text-lg">
             The strongest product story is less searching, less forgetting,
             clearer context, and more confidence when important records are
             needed again.
           </p>
         </motion.div>
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
-          {proofPoints.map((point, index) => (
-            <motion.div
-              key={point.title}
-              className="rounded-[1.45rem] border border-slate-200 bg-white p-6 shadow-sm"
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.06, duration: 0.45 }}
-              viewport={{ once: true }}
-            >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
-                {point.icon}
-              </div>
-              <h3 className="text-lg font-semibold text-slate-950">
-                {point.title}
-              </h3>
-              <p className="mt-2 text-sm leading-7 text-slate-600">
-                {point.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {feedback.map((item, index) => (
             <motion.article
               key={item.name}
-              className="rounded-[1.45rem] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-[0_24px_70px_-52px_rgba(37,99,235,0.5)]"
+              className="group relative flex flex-col justify-between rounded-xl border border-white/10 bg-[#0a101a] p-8 shadow-sm transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-[#111a28]"
               initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05, duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <div className="mb-5 flex items-start justify-between gap-4">
-                <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
-                  {item.icon}
-                  {item.pain}
+              <div>
+                <div className="mb-6 flex items-start justify-between gap-4">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/5 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-300">
+                    {item.pain}
+                  </div>
+                  <IconQuote />
                 </div>
-                <Quote className="mt-1 text-slate-300" size={22} />
+                <p className="text-sm leading-relaxed text-slate-300">
+                  &ldquo;{item.text}&rdquo;
+                </p>
               </div>
 
-              <p className="text-base leading-8 text-slate-700">
-                &ldquo;{item.text}&rdquo;
-              </p>
-
-              <div className="mt-8 flex items-center gap-3 border-t border-slate-200 pt-4">
-                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-950 text-sm font-semibold text-white">
+              <div className="mt-8 flex items-center gap-4 pt-6 border-t border-white/5">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-xs font-bold tracking-wider text-white">
                   {getInitials(item.name)}
                 </div>
                 <div>
-                  <p className="font-semibold text-slate-950">{item.name}</p>
-                  <p className="text-sm text-slate-500">{item.role}</p>
+                  <p className="font-semibold text-white text-sm">{item.name}</p>
+                  <p className="text-xs text-slate-500 mt-0.5">{item.role}</p>
                 </div>
               </div>
             </motion.article>

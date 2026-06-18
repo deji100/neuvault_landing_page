@@ -238,7 +238,7 @@ export default function TermsPage() {
             </Bullet>
             <Bullet>
               You are responsible for reviewing and verifying outputs before
-              relying on them - especially for legal, medical, financial, or
+              relying on them—especially for legal, medical, financial, or
               compliance decisions.
             </Bullet>
           </ul>
@@ -464,7 +464,7 @@ export default function TermsPage() {
         </Section>
 
         <div className="pt-6 border-t border-white/10 text-sm text-gray-500">
-          NeuVault - Privacy first. Ownership always.
+          NeuVault — Privacy first. Ownership always.
         </div>
       </div>
     </main>

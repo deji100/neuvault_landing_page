@@ -236,8 +236,8 @@ export default function PrivacyPolicyPage() {
               icon={<FaFileAlt />}
             >
               <p className="text-gray-300">
-                Your vault content - including PDFs, Word/Excel files, scans,
-                document images, notes, and audio recordings - is stored locally
+                Your vault content — including PDFs, Word/Excel files, scans,
+                document images, notes, and audio recordings — is stored locally
                 on your device.
               </p>
 
@@ -592,7 +592,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Footer note */}
             <div className="pt-6 border-t border-white/10 text-sm text-gray-500">
-              NeuVault - Your data. Your device. Your control.
+              NeuVault — Your data. Your device. Your control.
             </div>
           </div>
         </div>

@@ -1,9 +1,20 @@
 "use client";
 
 import Image, { type StaticImageData } from "next/image";
+import type { ReactNode } from "react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import {
+  Bell,
+  FileText,
+  Gauge,
+  Monitor,
+  NotebookPen,
+  ShieldCheck,
+  Smartphone,
+  Sparkles,
+  Vault,
+} from "lucide-react";
 import DashboardImage from "@/public/dashboard.png";
 import VaultImage from "@/public/vault.png";
 import PreviewImage from "@/public/preview.png";
@@ -14,224 +25,288 @@ import SettingsBackupRestoreImage from "@/public/settings-backup-restore.png";
 
 type Platform = "desktop" | "mobile";
 
-// Custom Icons replacing Lucide for Tech-Noir aesthetic
-const IconGrid = () => <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>;
-const IconSearch = () => <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>;
-const IconLayers = () => <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>;
-const IconSparkle = () => <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M12 2v20M17 7l-10 10M22 12H2M20 12l-1.5-1.5M4 12L5.5 13.5M12 4l1.5 1.5M12 20l-1.5-1.5"/></svg>;
-const IconBell = () => <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>;
-const IconPen = () => <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>;
-const IconShield = () => <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M12 2l9 4v6c0 6-4 10-9 12-5-2-9-6-9-12V6z"/></svg>;
-const IconMonitor = () => <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M8 21h8M12 17v4"/></svg>;
-const IconPhone = () => <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>;
-
-function DeviceScreenshot({
-  desktopImage,
-  mobileImage,
-  alt,
-  platform,
-}: {
+type Feature = {
+  eyebrow: string;
+  title: string;
+  pain: string;
+  solution: string;
   desktopImage: StaticImageData;
   mobileImage: string;
+  imageAlt: string;
+  mobileImageAlt: string;
+  icon: ReactNode;
+};
+
+const features: Feature[] = [
+  {
+    eyebrow: "Dashboard",
+    title: "Know what needs attention before paperwork becomes a problem.",
+    pain: "Important documents usually stay silent until they become urgent. You saved the receipt, ID, form, or renewal notice, but still need to know what changed and what needs review.",
+    solution: "The dashboard gives you a clear starting point: attention items, recent activity, quick intake, search, Nova, Vault Queue, and backup controls without digging through folders.",
+    desktopImage: DashboardImage,
+    mobileImage: "/mobile-dashboard.jpeg",
+    imageAlt: "NeuVault desktop dashboard screenshot",
+    mobileImageAlt: "NeuVault mobile dashboard screenshot",
+    icon: <Gauge size={22} />,
+  },
+  {
+    eyebrow: "Vault",
+    title: "Find records by context, not just perfect filenames.",
+    pain: "People remember the person, payment, school, trip, deadline, or reason a document mattered. They often do not remember the exact filename.",
+    solution: "NeuVault turns files into searchable records with titles, summaries, groups, tags, dates, related documents, and saved assets, so retrieval has more paths than filename search.",
+    desktopImage: VaultImage,
+    mobileImage: "/mobile-vault.jpeg",
+    imageAlt: "NeuVault desktop vault screenshot",
+    mobileImageAlt: "NeuVault mobile vault screenshot",
+    icon: <Vault size={22} />,
+  },
+  {
+    eyebrow: "Smart Document Handler",
+    title: "Open a record and handle the full document story in one place.",
+    pain: "Finding a document is only half the job. You still need the preview, summary, dates, related files, location, share action, and explanation.",
+    solution: "Each record opens into one working view where you can preview, edit context, review attention dates, ask Nova, link related records, move, share, or open the original asset.",
+    desktopImage: PreviewImage,
+    mobileImage: "/mobile-preview.jpeg",
+    imageAlt: "NeuVault desktop smart document handler screenshot",
+    mobileImageAlt: "NeuVault mobile smart document handler screenshot",
+    icon: <FileText size={22} />,
+  },
+  {
+    eyebrow: "Nova",
+    title: "Ask the vault when search is too narrow.",
+    pain: "Sometimes you do not know which document to open. You only know the question you need answered.",
+    solution: "Nova works from vault context, selected records, groups, recent documents, and attention items, so answers stay connected to documents you actually saved.",
+    desktopImage: NovaImage,
+    mobileImage: "/mobile-nova.jpeg",
+    imageAlt: "NeuVault desktop Nova assistant screenshot",
+    mobileImageAlt: "NeuVault mobile Nova assistant screenshot",
+    icon: <Sparkles size={22} />,
+  },
+  {
+    eyebrow: "Smart Suggestions",
+    title: "Bring dates and follow-ups back into view.",
+    pain: "Expiry dates, appointments, renewal windows, payment deadlines, and follow-ups are easy to miss when they stay buried inside files.",
+    solution: "Attention items stay tied to the source record. You can open the original document, review the context, ask Nova, and mark the item handled.",
+    desktopImage: SmartSuggestionsImage,
+    mobileImage: "/mobile-smart-suggestion.jpeg",
+    imageAlt: "NeuVault desktop smart suggestions screenshot",
+    mobileImageAlt: "NeuVault mobile smart suggestions screenshot",
+    icon: <Bell size={22} />,
+  },
+  {
+    eyebrow: "Notes",
+    title: "Keep the explanation beside the record it belongs to.",
+    pain: "The file is only part of the memory. The reason it matters may live in a note, voice thought, Nova answer, or copied detail.",
+    solution: "NeuVault keeps notes in the same system as scans and uploads, making them searchable, exportable, and recoverable with the rest of the vault.",
+    desktopImage: NoteImage,
+    mobileImage: "/mobile-note.jpeg",
+    imageAlt: "NeuVault desktop notes screenshot",
+    mobileImageAlt: "NeuVault mobile notes screenshot",
+    icon: <NotebookPen size={22} />,
+  },
+  {
+    eyebrow: "Settings, Backup, Restore",
+    title: "Recover the vault without surrendering control.",
+    pain: "A private document system is only useful if it survives device changes. Without restore, you can lose the organization you already built.",
+    solution: "Encrypted backup and restore move vault records, assets, notes, links, reminders, and indexes without turning NeuVault into forced cloud storage.",
+    desktopImage: SettingsBackupRestoreImage,
+    mobileImage: "/mobile-settings.jpeg",
+    imageAlt: "NeuVault desktop settings backup and restore screenshot",
+    mobileImageAlt: "NeuVault mobile settings backup and restore screenshot",
+    icon: <ShieldCheck size={22} />,
+  },
+];
+
+function DesktopScreenshot({
+  image,
+  alt,
+}: {
+  image: StaticImageData;
   alt: string;
-  platform: Platform;
 }) {
   return (
-    <AnimatePresence mode="wait">
-      {platform === "desktop" ? (
-        <motion.div
-          key="desktop"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          className="relative h-full w-full overflow-hidden rounded-md border border-white/10 bg-[#0a101a]"
-        >
-          <Image
-            src={desktopImage}
-            alt={alt}
-            className="h-full w-full object-cover object-top opacity-90 transition-opacity hover:opacity-100"
-            unoptimized
-          />
-        </motion.div>
-      ) : (
-        <motion.div
-          key="mobile"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          className="flex h-full w-full items-center justify-center rounded-md border border-white/10 bg-[#040810] p-4"
-        >
-          <div className="w-full max-w-[220px] overflow-hidden rounded-xl border border-white/20">
-            <Image
-              src={mobileImage}
-              alt={alt}
-              width={936}
-              height={2048}
-              className="h-auto w-full object-cover"
-              unoptimized
-            />
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.3 }}
+      className="overflow-hidden rounded-[1.65rem] border border-white/10 bg-[#08111d] shadow-[0_0_40px_rgba(59,130,246,0.15)] ring-1 ring-white/5"
+    >
+      <Image
+        src={image}
+        alt={alt}
+        className="h-auto w-full object-cover"
+        quality={100}
+        unoptimized
+        sizes="(min-width: 1180px) 1120px, 100vw"
+      />
+    </motion.div>
   );
 }
 
-function PlatformToggle({
-  platform,
-  setPlatform,
+function MobileScreenshot({
+  image,
+  alt,
 }: {
-  platform: Platform;
-  setPlatform: (p: Platform) => void;
+  image: string;
+  alt: string;
 }) {
   return (
-    <div className="flex w-fit rounded-full border border-white/10 bg-[#0a101a] p-1">
-      <button
-        onClick={() => setPlatform("desktop")}
-        className={`flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold transition-colors ${
-          platform === "desktop" ? "bg-white text-black" : "text-slate-400 hover:text-white"
-        }`}
-      >
-        <IconMonitor /> Desktop
-      </button>
-      <button
-        onClick={() => setPlatform("mobile")}
-        className={`flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold transition-colors ${
-          platform === "mobile" ? "bg-white text-black" : "text-slate-400 hover:text-white"
-        }`}
-      >
-        <IconPhone /> Mobile
-      </button>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.3 }}
+      className="flex h-full w-full items-center justify-center rounded-[1.65rem] border border-white/10 bg-gradient-to-b from-[#0f172a] to-[#08111d] p-6 shadow-[0_0_40px_rgba(59,130,246,0.15)] ring-1 ring-white/5"
+    >
+      <div className="w-full max-w-[320px] overflow-hidden rounded-[2rem] border border-white/20 bg-black shadow-2xl">
+        <Image
+          src={image}
+          alt={alt}
+          width={936}
+          height={2048}
+          className="h-auto w-full object-cover"
+          quality={100}
+          unoptimized
+          sizes="320px"
+        />
+      </div>
+    </motion.div>
+  );
+}
+
+function PlatformTabs({
+  activePlatform,
+  setActivePlatform,
+}: {
+  activePlatform: Platform;
+  setActivePlatform: (platform: Platform) => void;
+}) {
+  const tabs: Array<{ value: Platform; label: string; icon: ReactNode }> = [
+    { value: "desktop", label: "Desktop App", icon: <Monitor size={16} /> },
+    { value: "mobile", label: "Mobile App", icon: <Smartphone size={16} /> },
+  ];
+
+  return (
+    <div className="flex w-fit rounded-full border border-white/10 bg-[#0f172a] p-1 shadow-inner">
+      {tabs.map((tab) => {
+        const active = activePlatform === tab.value;
+        return (
+          <button
+            key={tab.value}
+            type="button"
+            onClick={() => setActivePlatform(tab.value)}
+            className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${active
+                ? "bg-blue-600 text-white shadow-md shadow-blue-900/50"
+                : "text-slate-400 hover:text-white"
+              }`}
+          >
+            {tab.icon}
+            {tab.label}
+          </button>
+        );
+      })}
     </div>
   );
 }
 
 export default function FeaturesSection() {
-  const [platform, setPlatform] = useState<Platform>("desktop");
+  const [activePlatform, setActivePlatform] = useState<Platform>("desktop");
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const activeFeature = features[activeIndex];
 
   return (
-    <section id="features" className="relative px-6 py-24 bg-[#040810]">
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-16 flex flex-col items-center justify-between gap-6 md:flex-row md:items-end border-b border-white/10 pb-8">
-          <div className="max-w-xl">
-            <h2 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
-              Radical clarity for your records.
+    <section id="features" className="relative px-6 py-24">
+      <div className="mx-auto max-w-7xl">
+        <motion.div
+          className="mb-12 flex flex-col items-center justify-between gap-6 md:flex-row md:items-end"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <div className="max-w-2xl">
+            <h2 className="text-3xl font-bold leading-tight text-white md:text-5xl">
+              Every screen solves a real document problem.
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-slate-400">
-              Strip away the chaos of scattered files. NeuVault consolidates your documents, notes, and context into structured, recoverable memory.
+            <p className="mt-4 text-base leading-relaxed text-slate-400">
+              NeuVault keeps the product story focused: capture records, preserve
+              context, remember dates, ask questions, and recover the vault when
+              devices change.
             </p>
           </div>
-          <PlatformToggle platform={platform} setPlatform={setPlatform} />
-        </div>
+          <PlatformTabs
+            activePlatform={activePlatform}
+            setActivePlatform={setActivePlatform}
+          />
+        </motion.div>
 
-        {/* Layout Family 1: Bento Grid (Dashboard, Vault, Handler) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <div className="md:col-span-2 rounded-xl border border-white/10 bg-[#0a101a] p-6 flex flex-col gap-6">
-            <div>
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded bg-white/5 text-white">
-                <IconGrid />
-              </div>
-              <h3 className="text-xl font-bold text-white">Spot issues instantly.</h3>
-              <p className="mt-2 text-sm text-slate-400 max-w-md">
-                Review attention items, recent activity, and backups from one dashboard. Stop digging through nested folders to find what needs your focus today.
-              </p>
-            </div>
-            <div className="flex-1 min-h-[300px]">
-              <DeviceScreenshot platform={platform} desktopImage={DashboardImage} mobileImage="/mobile-dashboard.jpeg" alt="Dashboard" />
-            </div>
+        <div className="grid gap-8 lg:grid-cols-[320px_1fr] xl:grid-cols-[380px_1fr]">
+          {/* Tabs Menu */}
+          <div className="flex flex-row overflow-x-auto lg:flex-col gap-3 pb-6 lg:pb-0 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {features.map((feature, index) => {
+              const isActive = index === activeIndex;
+              return (
+                <button
+                  key={feature.eyebrow}
+                  onClick={() => setActiveIndex(index)}
+                  className={`group flex items-center gap-4 rounded-xl border p-4 text-left transition-all duration-200 shrink-0 snap-center min-w-[260px] lg:min-w-0 lg:w-full ${isActive
+                      ? "border-blue-500/50 bg-blue-500/10 shadow-[inset_0_0_20px_rgba(59,130,246,0.1)] ring-1 ring-blue-500/20"
+                      : "border-white/5 bg-[#111a28] lg:border-transparent lg:bg-transparent hover:bg-white/5"
+                    }`}
+                >
+                  <div
+                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-colors ${isActive ? "bg-blue-600 text-white" : "bg-slate-800 text-slate-400 group-hover:text-white"
+                      }`}
+                  >
+                    {feature.icon}
+                  </div>
+                  <div>
+                    <div className={`font-semibold transition-colors ${isActive ? "text-white" : "text-slate-300"}`}>
+                      {feature.eyebrow}
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
           </div>
-          <div className="flex flex-col gap-4">
-            <div className="flex-1 rounded-xl border border-white/10 bg-[#0a101a] p-6 flex flex-col">
-              <div className="mb-3 flex h-8 w-8 items-center justify-center rounded bg-white/5 text-white">
-                <IconSearch />
-              </div>
-              <h3 className="text-lg font-bold text-white">Contextual search.</h3>
-              <p className="mt-2 text-xs text-slate-400 mb-4">
-                Find records by dates, tags, or related documents, not just exact filenames.
-              </p>
-              <div className="flex-1 min-h-[180px]">
-                <DeviceScreenshot platform={platform} desktopImage={VaultImage} mobileImage="/mobile-vault.jpeg" alt="Vault Search" />
-              </div>
-            </div>
-            <div className="flex-1 rounded-xl border border-white/10 bg-[#0a101a] p-6 flex flex-col">
-              <div className="mb-3 flex h-8 w-8 items-center justify-center rounded bg-white/5 text-white">
-                <IconLayers />
-              </div>
-              <h3 className="text-lg font-bold text-white">Unified handler.</h3>
-              <p className="mt-2 text-xs text-slate-400 mb-4">
-                Preview, edit context, and link records from a single working view.
-              </p>
-              <div className="flex-1 min-h-[180px]">
-                <DeviceScreenshot platform={platform} desktopImage={PreviewImage} mobileImage="/mobile-preview.jpeg" alt="Document Handler" />
-              </div>
-            </div>
-          </div>
-        </div>
 
-        {/* Layout Family 2: Asymmetrical Split (Assistant & Suggestions) */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-4">
-          <div className="lg:col-span-2 rounded-xl border border-white/10 bg-gradient-to-br from-[#0a101a] to-[#040810] p-6">
-            <div className="mb-3 flex h-10 w-10 items-center justify-center rounded bg-white/5 text-white">
-              <IconSparkle />
-            </div>
-            <h3 className="text-xl font-bold text-white mb-2">Ask your vault directly.</h3>
-            <p className="text-sm text-slate-400 mb-6">
-              When search is too narrow, ask direct questions. Get answers connected directly to the exact documents you saved.
-            </p>
-            <div className="h-[280px]">
-              <DeviceScreenshot platform={platform} desktopImage={NovaImage} mobileImage="/mobile-nova.jpeg" alt="Assistant" />
-            </div>
-          </div>
-          <div className="lg:col-span-3 rounded-xl border border-white/10 bg-[#0a101a] flex flex-col md:flex-row overflow-hidden">
-            <div className="p-8 md:w-1/2 flex flex-col justify-center">
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded bg-white/5 text-white">
-                <IconBell />
+          {/* Active Feature Display */}
+          <div className="relative flex flex-col gap-8 rounded-3xl border border-white/10 bg-[#111a28] p-6 lg:p-10 shadow-2xl">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+              <div className="max-w-2xl">
+                <h3 className="text-2xl font-bold text-white md:text-3xl">
+                  {activeFeature.title}
+                </h3>
+
+                <div className="mt-6 flex flex-col gap-4">
+                  <p className="text-[15px] leading-relaxed text-slate-400">
+                    {activeFeature.pain}
+                  </p>
+                  <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4 ring-1 ring-inset ring-white/5 shadow-inner">
+                    <p className="text-[15px] leading-relaxed text-slate-200">
+                      <span className="font-semibold text-white mr-2">The Fix.</span>
+                      {activeFeature.solution}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Never miss a deadline.</h3>
-              <p className="text-sm text-slate-400">
-                Expirations, renewals, and follow-ups stay attached to their source document, bringing urgent dates back into view.
-              </p>
             </div>
-            <div className="md:w-1/2 min-h-[250px] p-4 bg-[#040810]">
-              <DeviceScreenshot platform={platform} desktopImage={SmartSuggestionsImage} mobileImage="/mobile-smart-suggestion.jpeg" alt="Smart Suggestions" />
+
+            <div className="mt-4 flex-1">
+              <AnimatePresence mode="wait">
+                <div key={`${activePlatform}-${activeIndex}`} className="h-full">
+                  {activePlatform === "desktop" ? (
+                    <DesktopScreenshot image={activeFeature.desktopImage} alt={activeFeature.imageAlt} />
+                  ) : (
+                    <MobileScreenshot image={activeFeature.mobileImage} alt={activeFeature.mobileImageAlt} />
+                  )}
+                </div>
+              </AnimatePresence>
             </div>
           </div>
         </div>
-
-        {/* Layout Family 3: Side-by-Side Cards (Notes & Recovery) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="rounded-xl border border-white/10 bg-[#0a101a] p-6 flex flex-col">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="flex h-8 w-8 items-center justify-center rounded bg-white/5 text-white">
-                <IconPen />
-              </div>
-              <h3 className="text-lg font-bold text-white">Context beside the record.</h3>
-            </div>
-            <p className="text-sm text-slate-400 mb-6">
-              Add typed or voice notes directly to scans so the explanation of why it matters never gets lost.
-            </p>
-            <div className="flex-1 min-h-[240px]">
-              <DeviceScreenshot platform={platform} desktopImage={NoteImage} mobileImage="/mobile-note.jpeg" alt="Notes" />
-            </div>
-          </div>
-          <div className="rounded-xl border border-white/10 bg-[#0a101a] p-6 flex flex-col">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="flex h-8 w-8 items-center justify-center rounded bg-white/5 text-white">
-                <IconShield />
-              </div>
-              <h3 className="text-lg font-bold text-white">Total recoverability.</h3>
-            </div>
-            <p className="text-sm text-slate-400 mb-6">
-              Move between devices seamlessly with encrypted backups. Retain complete control with no forced cloud storage.
-            </p>
-            <div className="flex-1 min-h-[240px]">
-              <DeviceScreenshot platform={platform} desktopImage={SettingsBackupRestoreImage} mobileImage="/mobile-settings.jpeg" alt="Backup" />
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
   );

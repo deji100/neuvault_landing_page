@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { solutionPages } from "@/lib/seo";
 
 const workflowLabels: Record<
@@ -32,7 +31,7 @@ const workflowLabels: Record<
   },
   "notes-export": {
     label: "Notes",
-    pain: "Thoughts, AI answers, and document notes disappear from the record.",
+    pain: "Thoughts, answers, and document notes disappear from the record.",
     action: "Keep notes useful",
   },
   "voice-note-transcription": {
@@ -47,18 +46,24 @@ const workflowLabels: Record<
   },
 };
 
+const IconArrowRight = () => (
+  <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+    <path d="M5 12h14M12 5l7 7-7 7" />
+  </svg>
+);
+
 export default function WorkflowLinks() {
   return (
-    <section className="px-6 py-24">
+    <section className="px-6 py-24 bg-[#040810]">
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-400">
             Feature workflows
           </p>
-          <h2 className="mt-4 text-3xl font-bold leading-tight text-slate-950 md:text-5xl">
+          <h2 className="mt-4 text-3xl font-bold leading-tight text-white md:text-5xl">
             Every feature maps to a real document problem.
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-600 md:text-lg">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-400 md:text-lg">
             NeuVault is organized around the moments that make document storage
             stressful: finding files, remembering dates, keeping context, and
             restoring records when devices change.
@@ -73,20 +78,20 @@ export default function WorkflowLinks() {
               <Link
                 key={page.slug}
                 href={`/${page.slug}`}
-                className="group rounded-[1.45rem] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-[0_24px_70px_-50px_rgba(37,99,235,0.55)]"
+                className="group rounded-xl border border-white/10 bg-[#0a101a] p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-[#111a28] hover:shadow-[0_24px_70px_-50px_rgba(255,255,255,0.05)]"
               >
-                <div className="mb-5 inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-blue-700">
+                <div className="mb-5 inline-flex rounded-full border border-white/5 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-slate-300">
                   {workflow?.label ?? page.eyebrow}
                 </div>
-                <h3 className="text-xl font-semibold leading-snug text-slate-950">
+                <h3 className="text-xl font-bold leading-snug text-white">
                   {workflow?.pain ?? page.title}
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">
-                  {page.description}
+                <p className="mt-4 text-sm leading-relaxed text-slate-400">
+                  {page.description.replace(/AI/g, "").replace(/Nova, your vault-aware/g, "your vault-aware").replace(/Nova/g, "assistant")}
                 </p>
-                <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-blue-700">
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-slate-300 transition-colors group-hover:text-white">
                   {workflow?.action ?? "View workflow"}
-                  <ArrowUpRight size={15} />
+                  <IconArrowRight />
                 </span>
               </Link>
             );

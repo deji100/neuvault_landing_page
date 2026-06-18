@@ -29,15 +29,15 @@ import {
 
 export const metadata: Metadata = buildMetadata({
   title:
-    "NeuVault | Private Vault for Documents, Notes, Scans, and Voice Notes",
+    "NeuVault | Private AI Vault for Documents, Notes, Scans, and Voice Notes",
   description:
-    "NeuVault is a private, local-first vault for the documents life will ask you for later. Capture documents, scans, notes, screenshots, and voice notes, organize them automatically, watch important folders, ask questions, review dates, and restore your vault across iPhone, Android, and Windows.",
+    "NeuVault is a private, local-first AI vault for the documents life will ask you for later. Capture documents, scans, notes, screenshots, and voice notes, organize them automatically, watch important folders, ask Nova, review dates, and restore your vault across iPhone, Android, and Windows.",
   path: "/",
   keywords: [
-    "private document vault",
+    "private AI document vault",
     "private document vault app",
     "local-first document app",
-    "document organizer",
+    "AI document organizer",
     "document memory app",
     "scan and organize documents app",
     "document reminder app",
@@ -48,7 +48,7 @@ export const metadata: Metadata = buildMetadata({
     "cross-device document restore",
     "automatic folder monitoring",
     "Windows document vault app",
-    "document assistant",
+    "Nova document assistant",
     "documents life will ask you for later",
   ],
 });
@@ -84,12 +84,12 @@ export default function Home() {
     ],
     featureList: [
       "Private local-first document vault",
-      "Document organization",
+      "AI document organization",
       "Document scanning",
       "Automatic folder watching on desktop",
       "Voice note transcription",
       "Notes and note export",
-      "Document assistant",
+      "Nova AI document assistant",
       "Attention for important dates and follow-ups",
       "Linked Documents for related records",
       "Encrypted cross-device backup and restore",
@@ -105,7 +105,7 @@ export default function Home() {
     {
       question: "What kind of app is NeuVault?",
       answer:
-        "NeuVault is a private, local-first vault for important documents, scans, notes, screenshots, and voice notes. It helps you organize records automatically, understand what they mean, ask questions, review important dates, and restore your vault across devices.",
+        "NeuVault is a private, local-first AI vault for important documents, scans, notes, screenshots, and voice notes. It helps you organize records automatically, understand what they mean, ask Nova questions, review important dates, and restore your vault across devices.",
     },
     {
       question: "How is NeuVault different from cloud storage?",
@@ -140,7 +140,7 @@ export default function Home() {
     {
       question: "Why do app stores mention user content?",
       answer:
-        "NeuVault may process content when you use OCR, summaries, transcription, the assistant, or related workflows. The vault is designed around local-first storage, and NeuVault does not permanently store your vault documents as a cloud drive.",
+        "NeuVault may process content when you use OCR, AI summaries, transcription, Nova, or related workflows. The vault is designed around local-first storage, and NeuVault does not permanently store your vault documents as a cloud drive.",
     },
   ]);
 
