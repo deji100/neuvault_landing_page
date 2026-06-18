@@ -26,6 +26,7 @@ export default function Hero() {
   const [devicePlatform, setDevicePlatform] =
     useState<DevicePlatform>("other");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [expandedImage, setExpandedImage] = useState(false);
 
   useEffect(() => {
     const userAgent = navigator.userAgent || navigator.vendor || "";
@@ -177,8 +178,10 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        <motion.div
-          className="mx-auto mt-16 max-w-6xl overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_32px_90px_-48px_rgba(15,23,42,0.55)]"
+        <motion.button
+          type="button"
+          onClick={() => setExpandedImage(true)}
+          className="mx-auto mt-16 max-w-6xl w-full cursor-zoom-in overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_32px_90px_-48px_rgba(15,23,42,0.55)] transition-all hover:ring-2 hover:ring-blue-500/20"
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 0.6 }}
@@ -195,10 +198,49 @@ export default function Hero() {
             src={LoginImage}
             alt="NeuVault login screenshot"
             priority
-            className="h-auto w-full"
+            className="h-auto w-full object-cover"
             sizes="(min-width: 1280px) 1152px, 100vw"
           />
-        </motion.div>
+        </motion.button>
+
+        <AnimatePresence>
+          {expandedImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setExpandedImage(false)}
+              className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 md:p-12 cursor-zoom-out backdrop-blur-sm"
+            >
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                className="relative max-h-full max-w-7xl overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-white/20"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-5 py-4">
+                  <span className="h-3 w-3 rounded-full bg-red-300" />
+                  <span className="h-3 w-3 rounded-full bg-amber-300" />
+                  <span className="h-3 w-3 rounded-full bg-emerald-300" />
+                </div>
+                <Image
+                  src={LoginImage}
+                  alt="NeuVault login screenshot"
+                  className="h-auto max-h-[85vh] w-auto object-contain"
+                  unoptimized
+                />
+                <button
+                  type="button"
+                  className="absolute top-3 right-4 rounded-full bg-slate-200 p-2 text-slate-600 transition-colors hover:bg-slate-300 hover:text-slate-900"
+                  onClick={() => setExpandedImage(false)}
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <div className="mx-auto mt-10 grid max-w-5xl gap-4 sm:grid-cols-3">
           {[

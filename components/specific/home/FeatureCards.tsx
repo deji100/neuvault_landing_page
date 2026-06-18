@@ -124,23 +124,64 @@ function DesktopScreenshot({
   image: StaticImageData;
   alt: string;
 }) {
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.3 }}
-      className="overflow-hidden rounded-[1.65rem] border border-white/10 bg-[#08111d] shadow-[0_0_40px_rgba(59,130,246,0.15)] ring-1 ring-white/5"
-    >
-      <Image
-        src={image}
-        alt={alt}
-        className="h-auto w-full object-cover"
-        quality={100}
-        unoptimized
-        sizes="(min-width: 1180px) 1120px, 100vw"
-      />
-    </motion.div>
+    <>
+      <motion.button
+        type="button"
+        onClick={() => setExpanded(true)}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        transition={{ duration: 0.3 }}
+        className="w-full cursor-zoom-in overflow-hidden rounded-[1.65rem] border border-white/10 bg-[#08111d] shadow-[0_0_40px_rgba(59,130,246,0.15)] ring-1 ring-white/5 transition-all hover:ring-white/20"
+      >
+        <Image
+          src={image}
+          alt={alt}
+          className="h-auto w-full object-cover"
+          quality={100}
+          unoptimized
+          sizes="(min-width: 1180px) 1120px, 100vw"
+        />
+      </motion.button>
+
+      <AnimatePresence>
+        {expanded && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setExpanded(false)}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 md:p-12 cursor-zoom-out backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="relative max-h-full max-w-7xl overflow-hidden rounded-xl bg-[#08111d] shadow-2xl ring-1 ring-white/20"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={image}
+                alt={alt}
+                className="h-auto max-h-[85vh] w-auto object-contain"
+                quality={100}
+                unoptimized
+              />
+              <button
+                type="button"
+                className="absolute top-4 right-4 rounded-full bg-black/50 p-2 text-white/70 transition-colors hover:bg-black/80 hover:text-white"
+                onClick={() => setExpanded(false)}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
@@ -151,27 +192,70 @@ function MobileScreenshot({
   image: string;
   alt: string;
 }) {
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.3 }}
-      className="flex h-full w-full items-center justify-center rounded-[1.65rem] border border-white/10 bg-gradient-to-b from-[#0f172a] to-[#08111d] p-6 shadow-[0_0_40px_rgba(59,130,246,0.15)] ring-1 ring-white/5"
-    >
-      <div className="w-full max-w-[320px] overflow-hidden rounded-[2rem] border border-white/20 bg-black shadow-2xl">
-        <Image
-          src={image}
-          alt={alt}
-          width={936}
-          height={2048}
-          className="h-auto w-full object-cover"
-          quality={100}
-          unoptimized
-          sizes="320px"
-        />
-      </div>
-    </motion.div>
+    <>
+      <motion.button
+        type="button"
+        onClick={() => setExpanded(true)}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        transition={{ duration: 0.3 }}
+        className="group flex h-full w-full cursor-zoom-in items-center justify-center rounded-[1.65rem] border border-white/10 bg-gradient-to-b from-[#0f172a] to-[#08111d] p-6 shadow-[0_0_40px_rgba(59,130,246,0.15)] ring-1 ring-white/5 transition-all hover:ring-white/20"
+      >
+        <div className="w-full max-w-[320px] overflow-hidden rounded-[2rem] border border-white/20 bg-black shadow-2xl transition-transform group-hover:scale-[1.02]">
+          <Image
+            src={image}
+            alt={alt}
+            width={936}
+            height={2048}
+            className="h-auto w-full object-cover"
+            quality={100}
+            unoptimized
+            sizes="320px"
+          />
+        </div>
+      </motion.button>
+
+      <AnimatePresence>
+        {expanded && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setExpanded(false)}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 md:p-8 cursor-zoom-out backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="relative max-h-full max-w-md overflow-hidden rounded-[2.5rem] border-4 border-slate-800 bg-black shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={image}
+                alt={alt}
+                width={936}
+                height={2048}
+                className="h-auto max-h-[85vh] w-auto object-contain"
+                quality={100}
+                unoptimized
+              />
+              <button
+                type="button"
+                className="absolute top-4 right-4 z-10 rounded-full bg-black/50 p-2 text-white/70 transition-colors hover:bg-black/80 hover:text-white"
+                onClick={() => setExpanded(false)}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
