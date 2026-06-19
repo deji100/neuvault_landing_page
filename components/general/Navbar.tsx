@@ -56,18 +56,18 @@ export default function Navbar() {
       <div className="mx-auto grid h-[74px] max-w-7xl grid-cols-[1fr_auto] items-center gap-4 px-4 sm:px-6 md:grid-cols-[1fr_auto_1fr] lg:px-8">
         <Link
           href="/"
-          className="flex w-fit items-center"
+          className="flex w-fit items-center gap-2"
           onClick={() => setMobileOpen(false)}
         >
           <Image
             src={Logo}
             alt="NeuVault logo"
-            width={220}
-            height={60}
-            className="h-16 w-auto"
+            width={40}
+            height={40}
+            className="h-10 w-10 rounded-xl"
             priority
           />
-          <span className="font-black">NeuVault</span>
+          <span className="text-lg font-black tracking-normal text-slate-950">NeuVault</span>
         </Link>
 
         <div className="hidden items-center justify-center gap-1 rounded-full border border-slate-200 bg-slate-50/85 p-1 shadow-sm md:flex">

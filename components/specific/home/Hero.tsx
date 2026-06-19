@@ -17,7 +17,7 @@ type DevicePlatform = "ios" | "android" | "windows" | "other";
 
 const trustPills = [
   "Local-first storage",
-  "Private AI workflows",
+  "Private document search",
   "Encrypted backups",
   "iPhone, Android, and Windows",
 ];
@@ -125,13 +125,14 @@ export default function Hero() {
           </p> */}
 
           <h1 className="text-4xl font-bold leading-[1.05] tracking-normal text-slate-950 sm:text-6xl md:text-7xl">
-            Meet your intelligent document memory.
+            Stop letting document chaos slow you down.
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
-            NeuVault helps you capture, understand, find, remember, and recover
-            the documents that usually disappear across downloads, camera roll,
-            notes, chats, and old devices.
+            NeuVault helps you organize the documents, notes, scans, receipts,
+            screenshots, and voice memos scattered across your life, so you can
+            find important information faster, link related files together, and
+            get reminded before deadlines, renewals, and expiry dates pass.
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -178,7 +179,7 @@ export default function Hero() {
               href="#features"
               className="inline-flex w-full items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-800 hover:border-blue-300 hover:text-blue-700 sm:w-auto"
             >
-              See how it solves document chaos
+              See the pain it solves
             </Link>
           </div>
 

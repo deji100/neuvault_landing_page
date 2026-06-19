@@ -14,20 +14,25 @@ export const WINDOWS_MICROSOFT_STORE_URL =
   "https://apps.microsoft.com/detail/9PNM0GXZPT8T?hl=en-us&gl=US&ocid=pdpshare";
 
 export const DEFAULT_TITLE =
-  "NeuVault | Private AI Vault for Documents, Notes, Scans, and Voice Notes";
+  "NeuVault | Private AI Document Vault for PDFs, Scans, Notes, and Receipts";
 
 export const DEFAULT_DESCRIPTION =
-  "NeuVault is a private, local-first AI vault for the documents life will ask you for later. Capture documents, scans, notes, screenshots, and voice notes, organize them automatically, ask Nova, review important dates, and restore your vault across devices.";
+  "NeuVault helps you organize documents, notes, scans, receipts, screenshots, and voice memos scattered across your life so you can find information faster, link related files, and get reminded before deadlines, renewals, and expiry dates pass.";
 
 export const DEFAULT_OG_IMAGE_PATH = "/opengraph-image";
 
 const BASE_KEYWORDS = [
   "private AI document vault",
+  "private AI document search",
+  "AI PDF summarizer",
   "private document vault",
   "AI document organizer",
+  "AI file organizer",
   "document organization app",
+  "search PDFs with AI",
   "scan and organize documents",
   "document reminder app",
+  "find deadlines in documents",
   "document retrieval app",
   "secure document backup",
   "encrypted document backup",

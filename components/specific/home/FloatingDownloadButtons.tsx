@@ -19,13 +19,20 @@ const MOBILE_TRIGGER_OFFSET = 120;
 
 type OS = "macOS" | "iOS" | "Windows" | "Android" | "Unknown";
 
+type BrowserWindow = Window & {
+  MSStream?: unknown;
+  opera?: string;
+};
+
 function getDetectedOS(): OS {
   if (typeof window === "undefined") return "Unknown";
-  const userAgent = window.navigator.userAgent || window.navigator.vendor || (window as any).opera;
+  const browserWindow = window as BrowserWindow;
+  const userAgent =
+    window.navigator.userAgent || window.navigator.vendor || browserWindow.opera || "";
 
   if (/windows phone/i.test(userAgent)) return "Windows";
   if (/android/i.test(userAgent)) return "Android";
-  if (/iPad|iPhone|iPod/.test(userAgent) && !(window as any).MSStream) return "iOS";
+  if (/iPad|iPhone|iPod/.test(userAgent) && !browserWindow.MSStream) return "iOS";
   if (/Macintosh|Mac OS X/.test(userAgent)) return "macOS";
   if (/Win32|Win64|Windows|WinCE/.test(userAgent)) return "Windows";
 

@@ -27,9 +27,11 @@ type Platform = "desktop" | "mobile";
 
 type Feature = {
   eyebrow: string;
+  tabHint: string;
   title: string;
   pain: string;
   solution: string;
+  outcome: string;
   desktopImage: StaticImageData;
   mobileImage: string;
   imageAlt: string;
@@ -40,9 +42,11 @@ type Feature = {
 const features: Feature[] = [
   {
     eyebrow: "Dashboard",
+    tabHint: "What needs attention",
     title: "Know what needs attention before paperwork becomes a problem.",
     pain: "Important documents usually stay silent until they become urgent. You saved the receipt, ID, form, or renewal notice, but still need to know what changed and what needs review.",
     solution: "The dashboard gives you a clear starting point: attention items, recent activity, quick intake, search, Nova, Vault Queue, and backup controls without digging through folders.",
+    outcome: "Start with what matters today.",
     desktopImage: DashboardImage,
     mobileImage: "/mobile-dashboard.jpeg",
     imageAlt: "NeuVault desktop dashboard screenshot",
@@ -51,9 +55,11 @@ const features: Feature[] = [
   },
   {
     eyebrow: "Vault",
+    tabHint: "Find saved records",
     title: "Find records by context, not just perfect filenames.",
     pain: "People remember the person, payment, school, trip, deadline, or reason a document mattered. They often do not remember the exact filename.",
     solution: "NeuVault turns files into searchable records with titles, summaries, groups, tags, dates, related documents, and saved assets, so retrieval has more paths than filename search.",
+    outcome: "Find records from partial memory.",
     desktopImage: VaultImage,
     mobileImage: "/mobile-vault.jpeg",
     imageAlt: "NeuVault desktop vault screenshot",
@@ -61,10 +67,12 @@ const features: Feature[] = [
     icon: <Vault size={22} />,
   },
   {
-    eyebrow: "Smart Document Handler",
-    title: "Open a record and handle the full document story in one place.",
+    eyebrow: "Document Overview",
+    tabHint: "Preview and understand",
+    title: "Open a document and see the important context in one place.",
     pain: "Finding a document is only half the job. You still need the preview, summary, dates, related files, location, share action, and explanation.",
     solution: "Each record opens into one working view where you can preview, edit context, review attention dates, ask Nova, link related records, move, share, or open the original asset.",
+    outcome: "Handle the whole document story.",
     desktopImage: PreviewImage,
     mobileImage: "/mobile-preview.jpeg",
     imageAlt: "NeuVault desktop smart document handler screenshot",
@@ -73,9 +81,11 @@ const features: Feature[] = [
   },
   {
     eyebrow: "Nova",
+    tabHint: "Ask your vault",
     title: "Ask the vault when search is too narrow.",
     pain: "Sometimes you do not know which document to open. You only know the question you need answered.",
     solution: "Nova works from vault context, selected records, groups, recent documents, and attention items, so answers stay connected to documents you actually saved.",
+    outcome: "Ask the question you remember.",
     desktopImage: NovaImage,
     mobileImage: "/mobile-nova.jpeg",
     imageAlt: "NeuVault desktop Nova assistant screenshot",
@@ -83,10 +93,12 @@ const features: Feature[] = [
     icon: <Sparkles size={22} />,
   },
   {
-    eyebrow: "Smart Suggestions",
+    eyebrow: "Smart Reminders",
+    tabHint: "Dates and follow-ups",
     title: "Bring dates and follow-ups back into view.",
     pain: "Expiry dates, appointments, renewal windows, payment deadlines, and follow-ups are easy to miss when they stay buried inside files.",
     solution: "Attention items stay tied to the source record. You can open the original document, review the context, ask Nova, and mark the item handled.",
+    outcome: "See dates before they become stress.",
     desktopImage: SmartSuggestionsImage,
     mobileImage: "/mobile-smart-suggestion.jpeg",
     imageAlt: "NeuVault desktop smart suggestions screenshot",
@@ -95,9 +107,11 @@ const features: Feature[] = [
   },
   {
     eyebrow: "Notes",
+    tabHint: "Keep extra context",
     title: "Keep the explanation beside the record it belongs to.",
     pain: "The file is only part of the memory. The reason it matters may live in a note, voice thought, Nova answer, or copied detail.",
     solution: "NeuVault keeps notes in the same system as scans and uploads, making them searchable, exportable, and recoverable with the rest of the vault.",
+    outcome: "Keep context beside the file.",
     desktopImage: NoteImage,
     mobileImage: "/mobile-note.jpeg",
     imageAlt: "NeuVault desktop notes screenshot",
@@ -105,10 +119,12 @@ const features: Feature[] = [
     icon: <NotebookPen size={22} />,
   },
   {
-    eyebrow: "Settings, Backup, Restore",
+    eyebrow: "Backup & Restore",
+    tabHint: "Move devices safely",
     title: "Recover the vault without surrendering control.",
     pain: "A private document system is only useful if it survives device changes. Without restore, you can lose the organization you already built.",
     solution: "Encrypted backup and restore move vault records, assets, notes, links, reminders, and indexes without turning NeuVault into forced cloud storage.",
+    outcome: "Move devices without rebuilding memory.",
     desktopImage: SettingsBackupRestoreImage,
     mobileImage: "/mobile-settings.jpeg",
     imageAlt: "NeuVault desktop settings backup and restore screenshot",
@@ -310,100 +326,213 @@ function PlatformTabs({
   );
 }
 
+const featureStories: Record<
+  string,
+  {
+    before: string;
+    after: string;
+    description: string;
+  }
+> = {
+  Dashboard: {
+    before: "Important items sit quietly until they become urgent.",
+    after: "NeuVault opens with what needs attention now.",
+    description:
+      "A calm starting point for recent records, attention items, quick capture, search, and backup status.",
+  },
+  Vault: {
+    before: "You remember the situation, not the file name.",
+    after: "Search by context, tags, dates, groups, and summaries.",
+    description:
+      "Your documents become searchable records, so retrieval does not depend on perfect folders or filenames.",
+  },
+  "Document Overview": {
+    before: "Opening a file still leaves you rebuilding the story.",
+    after: "Preview, summary, dates, notes, and related files stay together.",
+    description:
+      "Each record becomes a working view for understanding, sharing, linking, and acting on the document.",
+  },
+  Nova: {
+    before: "Sometimes you only know the question, not the document.",
+    after: "Ask the vault and get answers tied to saved records.",
+    description:
+      "Nova helps you move from memory to the right document without digging through every file yourself.",
+  },
+  "Smart Reminders": {
+    before: "Renewals, expiry dates, and follow-ups hide inside PDFs.",
+    after: "NeuVault brings important dates back into view.",
+    description:
+      "Attention items stay connected to the source record, so reminders still have context when they surface.",
+  },
+  Notes: {
+    before: "The reason a document matters lives somewhere else.",
+    after: "Notes stay beside the records they explain.",
+    description:
+      "Keep extra context searchable and recoverable with the rest of the vault, instead of scattered across apps.",
+  },
+  "Backup & Restore": {
+    before: "A useful vault can disappear with one device change.",
+    after: "Encrypted backup and restore keeps the system portable.",
+    description:
+      "Move your vault without rebuilding your document memory from scratch.",
+  },
+};
+
 export default function FeaturesSection() {
   const [activePlatform, setActivePlatform] = useState<Platform>("desktop");
   const [activeIndex, setActiveIndex] = useState(0);
 
   const activeFeature = features[activeIndex];
+  const activeStory = featureStories[activeFeature.eyebrow];
 
   return (
-    <section id="features" className="relative px-6 py-24">
+    <section id="features" className="relative bg-[#06101a] px-6 py-24">
       <div className="mx-auto max-w-7xl">
         <motion.div
-          className="mb-12 flex flex-col items-center justify-between gap-6 md:flex-row md:items-end"
+          className="mx-auto max-w-3xl text-center"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="max-w-2xl">
-            <h2 className="text-3xl font-bold leading-tight text-white md:text-5xl">
-              Every screen solves a real document problem.
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-400">
-              NeuVault keeps the product story focused: capture records, preserve
-              context, remember dates, ask questions, and recover the vault when
-              devices change.
-            </p>
-          </div>
-          <PlatformTabs
-            activePlatform={activePlatform}
-            setActivePlatform={setActivePlatform}
-          />
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-teal-200">
+            See the product
+          </p>
+          <h2 className="mt-4 text-3xl font-bold leading-tight text-white md:text-5xl">
+            From scattered files to answers you can use.
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-300 md:text-lg">
+            NeuVault turns documents, scans, notes, and voice memos into a
+            private vault you can search, understand, remember, and restore.
+          </p>
         </motion.div>
 
-        <div className="grid gap-8 lg:grid-cols-[320px_1fr] xl:grid-cols-[380px_1fr]">
-          {/* Tabs Menu */}
-          <div className="flex flex-row overflow-x-auto lg:flex-col gap-3 pb-6 lg:pb-0 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="mt-10 rounded-[1.75rem] border border-white/10 bg-white/[0.035] p-4 md:p-5">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+              <p className="text-sm font-semibold text-white">
+                Choose a workflow to preview
+              </p>
+              <p className="mt-1 text-sm text-slate-400">
+                Tap any option below to see how NeuVault handles that moment.
+              </p>
+            </div>
+            <PlatformTabs
+              activePlatform={activePlatform}
+              setActivePlatform={setActivePlatform}
+            />
+          </div>
+
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {features.map((feature, index) => {
               const isActive = index === activeIndex;
               return (
                 <button
                   key={feature.eyebrow}
+                  type="button"
                   onClick={() => setActiveIndex(index)}
-                  className={`group flex items-center gap-4 rounded-xl border p-4 text-left transition-all duration-200 shrink-0 snap-center min-w-[260px] lg:min-w-0 lg:w-full ${isActive
-                      ? "border-blue-500/50 bg-blue-500/10 shadow-[inset_0_0_20px_rgba(59,130,246,0.1)] ring-1 ring-blue-500/20"
-                      : "border-white/5 bg-[#111a28] lg:border-transparent lg:bg-transparent hover:bg-white/5"
-                    }`}
+                  aria-pressed={isActive}
+                  className={`group rounded-2xl border p-4 text-left transition-all ${
+                    isActive
+                      ? "border-blue-300 bg-blue-500 text-white shadow-[0_18px_42px_-26px_rgba(59,130,246,0.95)]"
+                      : "border-white/10 bg-[#0b1623] text-slate-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-[#101d2c]"
+                  }`}
                 >
-                  <div
-                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-colors ${isActive ? "bg-blue-600 text-white" : "bg-slate-800 text-slate-400 group-hover:text-white"
+                  <span className="flex items-center justify-between gap-3">
+                    <span
+                      className={`flex h-10 w-10 items-center justify-center rounded-xl ${
+                        isActive
+                          ? "bg-white/18 text-white"
+                          : "bg-white/5 text-slate-400 group-hover:text-white"
                       }`}
+                    >
+                      {feature.icon}
+                    </span>
+                    <span
+                      className={`rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] ${
+                        isActive
+                          ? "bg-white/18 text-white"
+                          : "bg-white/5 text-slate-500 group-hover:text-slate-300"
+                      }`}
+                    >
+                      {isActive ? "Selected" : "Preview"}
+                    </span>
+                  </span>
+                  <span className="mt-4 block text-base font-semibold leading-5">
+                    {feature.eyebrow}
+                  </span>
+                  <span
+                    className={`mt-1 block text-sm leading-5 ${
+                      isActive ? "text-blue-50" : "text-slate-500"
+                    }`}
                   >
-                    {feature.icon}
-                  </div>
-                  <div>
-                    <div className={`font-semibold transition-colors ${isActive ? "text-white" : "text-slate-300"}`}>
-                      {feature.eyebrow}
-                    </div>
-                  </div>
+                    {feature.tabHint}
+                  </span>
                 </button>
               );
             })}
           </div>
+        </div>
 
-          {/* Active Feature Display */}
-          <div className="relative flex flex-col gap-8 rounded-3xl border border-white/10 bg-[#111a28] p-6 lg:p-10 shadow-2xl">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-              <div className="max-w-2xl">
-                <h3 className="text-2xl font-bold text-white md:text-3xl">
-                  {activeFeature.title}
-                </h3>
-
-                <div className="mt-6 flex flex-col gap-4">
-                  <p className="text-[15px] leading-relaxed text-slate-400">
-                    {activeFeature.pain}
-                  </p>
-                  <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4 ring-1 ring-inset ring-white/5 shadow-inner">
-                    <p className="text-[15px] leading-relaxed text-slate-200">
-                      <span className="font-semibold text-white mr-2">The Fix.</span>
-                      {activeFeature.solution}
-                    </p>
-                  </div>
-                </div>
-              </div>
+        <div className="mt-12 overflow-hidden rounded-[2rem] border border-white/10 bg-[#0b1623] shadow-2xl">
+          <div className="grid gap-0 lg:grid-cols-[1.25fr_0.75fr]">
+            <div className="bg-[#07111d] p-4 md:p-6 lg:p-8">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`${activePlatform}-${activeIndex}`}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.24 }}
+                >
+                  {activePlatform === "desktop" ? (
+                    <DesktopScreenshot
+                      image={activeFeature.desktopImage}
+                      alt={activeFeature.imageAlt}
+                    />
+                  ) : (
+                    <MobileScreenshot
+                      image={activeFeature.mobileImage}
+                      alt={activeFeature.mobileImageAlt}
+                    />
+                  )}
+                </motion.div>
+              </AnimatePresence>
             </div>
 
-            <div className="mt-4 flex-1">
-              <AnimatePresence mode="wait">
-                <div key={`${activePlatform}-${activeIndex}`} className="h-full">
-                  {activePlatform === "desktop" ? (
-                    <DesktopScreenshot image={activeFeature.desktopImage} alt={activeFeature.imageAlt} />
-                  ) : (
-                    <MobileScreenshot image={activeFeature.mobileImage} alt={activeFeature.mobileImageAlt} />
-                  )}
+            <div className="flex flex-col justify-center border-t border-white/10 p-7 md:p-10 lg:border-l lg:border-t-0">
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500 text-white">
+                {activeFeature.icon}
+              </div>
+
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-200">
+                {activeFeature.eyebrow}
+              </p>
+              <h3 className="mt-3 text-2xl font-bold leading-tight text-white md:text-4xl">
+                {activeFeature.outcome}
+              </h3>
+              <p className="mt-4 text-base leading-8 text-slate-300">
+                {activeStory.description}
+              </p>
+
+              <div className="mt-8 space-y-3">
+                <div className="rounded-2xl border border-rose-300/20 bg-rose-300/10 p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-100">
+                    Before
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-slate-200">
+                    {activeStory.before}
+                  </p>
                 </div>
-              </AnimatePresence>
+                <div className="rounded-2xl border border-teal-300/20 bg-teal-300/10 p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-teal-100">
+                    With NeuVault
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-slate-100">
+                    {activeStory.after}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

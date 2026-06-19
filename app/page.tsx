@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import Hero from "@/components/specific/home/Hero";
+import PainRecognition from "@/components/specific/home/PainRecognition";
 import FeaturesSection from "@/components/specific/home/FeatureCards";
 import HowItWorks from "@/components/specific/home/HowITWorks";
 import SeeItInAction from "@/components/specific/home/Proof";
@@ -26,18 +27,23 @@ import {
 
 export const metadata: Metadata = buildMetadata({
   title:
-    "NeuVault | Private AI Vault for Documents, Notes, Scans, and Voice Notes",
+    "NeuVault | Private AI Document Vault for PDFs, Scans, Notes, and Receipts",
   description:
-    "NeuVault is a private, local-first AI vault for the documents life will ask you for later. Capture documents, scans, notes, screenshots, and voice notes, organize them automatically, watch important folders, ask Nova, review dates, and restore your vault across iPhone, Android, and Windows.",
+    "NeuVault helps you organize documents, notes, scans, receipts, screenshots, and voice memos scattered across your life so you can find information faster, link related files, and get reminded before deadlines, renewals, and expiry dates pass.",
   path: "/",
   keywords: [
     "private AI document vault",
+    "private AI document search",
+    "AI PDF summarizer",
     "private document vault app",
     "local-first document app",
     "AI document organizer",
+    "AI file organizer",
     "document memory app",
     "scan and organize documents app",
     "document reminder app",
+    "find deadlines in documents",
+    "search PDFs with AI",
     "document retrieval app",
     "secure document backup app",
     "voice note transcription app",
@@ -184,6 +190,7 @@ export default function Home() {
       />
 
       <Hero />
+      <PainRecognition />
 
       <section className="relative overflow-hidden bg-transparent">
         <FeaturesSection />
