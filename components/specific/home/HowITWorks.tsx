@@ -46,7 +46,7 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="bg-white px-6 py-24">
+    <section id="how-it-works" className="bg-white px-5 py-16 sm:px-6 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-6xl">
         <motion.div
           className="mx-auto max-w-3xl text-center"
@@ -68,7 +68,7 @@ export default function HowItWorks() {
           </p>
         </motion.div>
 
-        <div className="mt-14 grid gap-4 md:grid-cols-5">
+        <div className="mt-8 grid gap-4 md:mt-12 md:grid-cols-5 lg:mt-14">
           {steps.map((step, index) => (
             <motion.div
               key={step.title}
@@ -101,7 +101,7 @@ export default function HowItWorks() {
         </div>
 
         <motion.div
-          className="mt-12 grid gap-6 rounded-[1.75rem] border border-blue-100 bg-blue-50 p-6 md:grid-cols-[0.8fr_1.2fr] md:p-8"
+          className="mt-8 grid gap-6 rounded-[1.5rem] border border-blue-100 bg-blue-50 p-5 md:mt-12 md:grid-cols-[0.8fr_1.2fr] md:rounded-[1.75rem] md:p-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}

@@ -49,17 +49,19 @@ export default function Footer() {
         <div className="mb-12 rounded-[1.75rem] border border-slate-200 bg-slate-50 p-6 md:p-8">
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>
-              <Link href="/" className="inline-flex items-center gap-3">
-                <Image
-                  src="/logo2.png"
-                  alt="NeuVault logo"
-                  width={60}
-                  height={60}
-                  className="w-12 rounded-xl"
-                />
+              <Link href="/" className="inline-flex items-center gap-4">
+                <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-blue-100 bg-white shadow-[0_16px_36px_-24px_rgba(37,99,235,0.7)] ring-1 ring-blue-50">
+                  <Image
+                    src="/logo.png"
+                    alt="NeuVault logo"
+                    width={44}
+                    height={44}
+                    className="h-11 w-11 object-contain"
+                  />
+                </span>
                 <div>
-                  <p className="text-xl font-semibold text-slate-950">NeuVault</p>
-                  <p className="text-sm text-slate-500">
+                  <p className="text-2xl font-black tracking-normal text-slate-950">NeuVault</p>
+                  <p className="mt-1 text-sm font-medium text-slate-600">
                     Private document memory for records life asks for later
                   </p>
                 </div>

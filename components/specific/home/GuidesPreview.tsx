@@ -9,7 +9,7 @@ export default function GuidesPreview() {
   const featuredGuides = guidePages.slice(0, 3);
 
   return (
-    <section className="bg-white px-6 py-24">
+    <section className="bg-white px-5 py-16 sm:px-6 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <motion.div 
@@ -40,7 +40,7 @@ export default function GuidesPreview() {
           </Link>
         </div>
 
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
+        <div className="mt-8 grid gap-4 md:mt-12 md:grid-cols-3 md:gap-5">
           {featuredGuides.map((guide, index) => (
             <motion.div
               key={guide.slug}

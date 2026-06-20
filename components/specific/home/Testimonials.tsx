@@ -1,6 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const feedback = [
   {
@@ -16,28 +18,16 @@ const feedback = [
     text: "I scan handouts and upload PDFs, and NeuVault groups them in a way that actually makes sense later.",
   },
   {
-    name: "Michael T.",
-    role: "Healthcare worker",
-    pain: "Private recovery",
-    text: "The encrypted backup and restore flow matters because changing phones is usually where trust falls apart.",
-  },
-  {
     name: "Chris T.",
     role: "Working professional",
     pain: "Forgotten dates",
     text: "Setting reminders on actual documents is the part that stands out. It makes paperwork feel less reactive.",
   },
   {
-    name: "Nneka A.",
-    role: "Busy parent",
-    pain: "Offline capture",
-    text: "I added documents while offline and NeuVault processed them later without me managing the whole thing.",
-  },
-  {
-    name: "Daniel O.",
-    role: "Freelancer",
-    pain: "Context",
-    text: "The summaries are clear and practical. It feels less like storing files and more like using what I saved.",
+    name: "Michael T.",
+    role: "Private recovery",
+    pain: "Backup and restore",
+    text: "The encrypted backup and restore flow matters because changing devices is usually where trust falls apart.",
   },
 ];
 
@@ -49,16 +39,28 @@ const getInitials = (name: string) =>
     .slice(0, 2)
     .toUpperCase();
 
-const IconQuote = () => (
-  <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" className="opacity-20">
-    <path d="M8 15c0 2.5-2 4.5-4.5 4.5S0 17.5 0 15c0-2.48 2-4.5 4.5-4.5h.5c-.27-2.61-1.42-4.83-3-6.5l1.5-1.5c2.3 2.12 4 4.88 4.5 8v4.5zm12 0c0 2.5-2 4.5-4.5 4.5S11 17.5 11 15c0-2.48 2-4.5 4.5-4.5h.5c-.27-2.61-1.42-4.83-3-6.5l1.5-1.5c2.3 2.12 4 4.88 4.5 8v4.5z" fill="currentColor" stroke="none"/>
-  </svg>
-);
-
 export default function TestimonialsCarousel() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const active = feedback[activeIndex];
+
+  const goTo = (index: number) => {
+    setActiveIndex((index + feedback.length) % feedback.length);
+  };
+
+  useEffect(() => {
+    if (isPaused) return;
+
+    const timer = window.setInterval(() => {
+      setActiveIndex((index) => (index + 1) % feedback.length);
+    }, 5200);
+
+    return () => window.clearInterval(timer);
+  }, [isPaused]);
+
   return (
-    <section id="testimonials" className="px-6 py-24 bg-[#040810]">
-      <div className="mx-auto max-w-6xl">
+    <section id="testimonials" className="bg-[#040810] px-5 py-16 sm:px-6 sm:py-20 lg:py-24">
+      <div className="mx-auto max-w-5xl">
         <motion.div
           className="mx-auto max-w-3xl text-center"
           initial={{ opacity: 0, y: 18 }}
@@ -73,45 +75,86 @@ export default function TestimonialsCarousel() {
             People want relief when documents matter.
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-400 md:text-lg">
-            The strongest product story is less searching, less forgetting,
-            clearer context, and more confidence when important records are
-            needed again.
+            Less searching, fewer missed dates, clearer context, and more
+            confidence when important records are needed again.
           </p>
         </motion.div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {feedback.map((item, index) => (
+        <div
+          className="relative mx-auto mt-8 overflow-hidden rounded-[1.6rem] border border-white/10 bg-[#0a101a] p-5 shadow-[0_24px_80px_-56px_rgba(255,255,255,0.25)] sm:mt-12 sm:p-8 md:rounded-[2rem]"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onFocus={() => setIsPaused(true)}
+          onBlur={() => setIsPaused(false)}
+        >
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-300/50 to-transparent" />
+
+          <AnimatePresence mode="wait">
             <motion.article
-              key={item.name}
-              className="group relative flex flex-col justify-between rounded-xl border border-white/10 bg-[#0a101a] p-8 shadow-sm transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-[#111a28]"
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05, duration: 0.5 }}
-              viewport={{ once: true }}
+              key={active.name}
+              initial={{ opacity: 0, x: 24 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -24 }}
+              transition={{ duration: 0.28 }}
+              className="grid gap-6 md:grid-cols-[0.8fr_1.2fr] md:items-center"
             >
-              <div>
-                <div className="mb-6 flex items-start justify-between gap-4">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-white/5 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-300">
-                    {item.pain}
+              <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.04] p-5">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-500 text-sm font-bold tracking-wider text-white">
+                    {getInitials(active.name)}
                   </div>
-                  <IconQuote />
+                  <div>
+                    <p className="font-semibold text-white">{active.name}</p>
+                    <p className="mt-1 text-sm text-slate-500">{active.role}</p>
+                  </div>
                 </div>
-                <p className="text-sm leading-relaxed text-slate-300">
-                  &ldquo;{item.text}&rdquo;
-                </p>
+                <div className="mt-5 inline-flex rounded-full border border-white/10 bg-black/20 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-slate-300">
+                  {active.pain}
+                </div>
               </div>
 
-              <div className="mt-8 flex items-center gap-4 pt-6 border-t border-white/5">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-xs font-bold tracking-wider text-white">
-                  {getInitials(item.name)}
-                </div>
-                <div>
-                  <p className="font-semibold text-white text-sm">{item.name}</p>
-                  <p className="text-xs text-slate-500 mt-0.5">{item.role}</p>
-                </div>
-              </div>
+              <blockquote className="text-xl font-semibold leading-9 text-white md:text-2xl md:leading-10">
+                &ldquo;{active.text}&rdquo;
+              </blockquote>
             </motion.article>
-          ))}
+          </AnimatePresence>
+
+          <div className="mt-7 flex flex-col gap-4 border-t border-white/10 pt-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center justify-center gap-2 sm:justify-start">
+              {feedback.map((item, index) => (
+                <button
+                  key={item.name}
+                  type="button"
+                  onClick={() => goTo(index)}
+                  className={`h-2.5 rounded-full transition-all ${
+                    activeIndex === index
+                      ? "w-8 bg-blue-400"
+                      : "w-2.5 bg-white/25 hover:bg-white/45"
+                  }`}
+                  aria-label={`Show testimonial from ${item.name}`}
+                />
+              ))}
+            </div>
+
+            <div className="flex items-center justify-center gap-2">
+              <button
+                type="button"
+                onClick={() => goTo(activeIndex - 1)}
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white hover:bg-white/10"
+                aria-label="Previous testimonial"
+              >
+                <ChevronLeft size={18} />
+              </button>
+              <button
+                type="button"
+                onClick={() => goTo(activeIndex + 1)}
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white hover:bg-white/10"
+                aria-label="Next testimonial"
+              >
+                <ChevronRight size={18} />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

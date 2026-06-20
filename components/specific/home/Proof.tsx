@@ -36,7 +36,7 @@ const IconPlay = () => (
 
 export default function SeeItInAction() {
   return (
-    <section id="see-it-in-action" className="relative px-6 py-24 bg-[#040810]">
+    <section id="see-it-in-action" className="relative bg-[#040810] px-5 py-16 sm:px-6 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-6xl">
         <div id="youtube-videos">
           <motion.div 
@@ -59,7 +59,7 @@ export default function SeeItInAction() {
             </p>
           </motion.div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-8 grid gap-5 md:mt-12 md:grid-cols-3 md:gap-6">
             {youtubeVideos.map((video, index) => (
               <motion.article
                 key={video.title}

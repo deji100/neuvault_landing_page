@@ -7,8 +7,6 @@ import HowItWorks from "@/components/specific/home/HowITWorks";
 import SeeItInAction from "@/components/specific/home/Proof";
 import TestimonialsSection from "@/components/specific/home/Testimonials";
 import FloatingDownloadButtons from "@/components/specific/home/FloatingDownloadButtons";
-import WorkflowLinks from "@/components/specific/home/WorkflowLinks";
-import GuidesPreview from "@/components/specific/home/GuidesPreview";
 
 import { LOGO_URL } from "@/lib/brand";
 import {
@@ -29,7 +27,7 @@ export const metadata: Metadata = buildMetadata({
   title:
     "NeuVault | Private AI Document Vault for PDFs, Scans, Notes, and Receipts",
   description:
-    "NeuVault helps you organize documents, notes, scans, receipts, screenshots, and voice memos scattered across your life so you can find information faster, link related files, and get reminded before deadlines, renewals, and expiry dates pass.",
+    "NeuVault brings your scattered documents, notes, scans, receipts, screenshots, and voice memos into one private AI vault — so you can find what matters, connect related files, and never miss important dates.",
   path: "/",
   keywords: [
     "private AI document vault",
@@ -196,8 +194,6 @@ export default function Home() {
         <FeaturesSection />
         <SeeItInAction />
         <HowItWorks />
-        <WorkflowLinks />
-        <GuidesPreview />
         <TestimonialsSection />
         <FloatingDownloadButtons />
       </section>

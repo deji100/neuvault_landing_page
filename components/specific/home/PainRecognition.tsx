@@ -32,7 +32,7 @@ const pains = [
 
 export default function PainRecognition() {
   return (
-    <section className="bg-[#f7fbff] px-6 py-24">
+    <section className="bg-[#f7fbff] px-5 py-16 sm:px-6 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-6xl">
         <motion.div
           className="mx-auto max-w-3xl text-center"
@@ -54,7 +54,7 @@ export default function PainRecognition() {
           </p>
         </motion.div>
 
-        <div className="mt-12 grid gap-5 md:grid-cols-2">
+        <div className="mt-8 grid gap-4 md:mt-12 md:grid-cols-2 md:gap-5">
           {pains.map((pain, index) => (
             <motion.article
               key={pain.title}

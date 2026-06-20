@@ -2,10 +2,12 @@
 
 import Image, { type StaticImageData } from "next/image";
 import type { ReactNode } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Bell,
+  ChevronLeft,
+  ChevronRight,
   FileText,
   Gauge,
   Monitor,
@@ -14,6 +16,7 @@ import {
   Smartphone,
   Sparkles,
   Vault,
+  X,
 } from "lucide-react";
 import DashboardImage from "@/public/dashboard.png";
 import VaultImage from "@/public/vault.png";
@@ -152,142 +155,208 @@ function FadeImage({ className, ...props }: React.ComponentProps<typeof Image>) 
 function DesktopScreenshot({
   image,
   alt,
+  onOpen,
 }: {
   image: StaticImageData;
   alt: string;
+  onOpen: () => void;
 }) {
-  const [expanded, setExpanded] = useState(false);
-
   return (
-    <>
-      <motion.button
-        type="button"
-        onClick={() => setExpanded(true)}
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.95 }}
-        transition={{ duration: 0.3 }}
-        className="w-full cursor-zoom-in overflow-hidden rounded-[1.65rem] border border-white/10 bg-[#08111d] shadow-[0_0_40px_rgba(59,130,246,0.15)] ring-1 ring-white/5 transition-all hover:ring-white/20"
-      >
-        <FadeImage
-          src={image}
-          alt={alt}
-          className="h-auto w-full object-cover"
-          quality={100}
-          unoptimized
-          sizes="(min-width: 1180px) 1120px, 100vw"
-        />
-      </motion.button>
-
-      <AnimatePresence>
-        {expanded && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setExpanded(false)}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 md:p-12 cursor-zoom-out backdrop-blur-sm"
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              className="relative max-h-full max-w-7xl overflow-hidden rounded-xl bg-[#08111d] shadow-2xl ring-1 ring-white/20"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <FadeImage
-                src={image}
-                alt={alt}
-                className="h-auto max-h-[85vh] w-auto object-contain"
-                quality={100}
-                unoptimized
-              />
-              <button
-                type="button"
-                className="absolute top-4 right-4 rounded-full bg-black/50 p-2 text-white/70 transition-colors hover:bg-black/80 hover:text-white"
-                onClick={() => setExpanded(false)}
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+    <motion.button
+      type="button"
+      onClick={onOpen}
+      initial={{ opacity: 0, scale: 0.96 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.96 }}
+      transition={{ duration: 0.3 }}
+      className="group w-full cursor-zoom-in overflow-hidden rounded-[1.35rem] border border-white/10 bg-[#08111d] shadow-[0_0_40px_rgba(59,130,246,0.15)] ring-1 ring-white/5 transition-all hover:-translate-y-0.5 hover:ring-white/20"
+      aria-label="Open screenshot carousel"
+    >
+      <FadeImage
+        src={image}
+        alt={alt}
+        className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.015]"
+        quality={100}
+        unoptimized
+        sizes="(min-width: 1180px) 1120px, 100vw"
+      />
+    </motion.button>
   );
 }
 
 function MobileScreenshot({
   image,
   alt,
+  onOpen,
 }: {
   image: string;
   alt: string;
+  onOpen: () => void;
 }) {
-  const [expanded, setExpanded] = useState(false);
+  return (
+    <motion.button
+      type="button"
+      onClick={onOpen}
+      initial={{ opacity: 0, scale: 0.96 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.96 }}
+      transition={{ duration: 0.3 }}
+      className="group flex h-full w-full cursor-zoom-in items-center justify-center rounded-[1.35rem] border border-white/10 bg-gradient-to-b from-[#0f172a] to-[#08111d] p-5 shadow-[0_0_40px_rgba(59,130,246,0.15)] ring-1 ring-white/5 transition-all hover:-translate-y-0.5 hover:ring-white/20 sm:p-6"
+      aria-label="Open screenshot carousel"
+    >
+      <div className="w-full max-w-[300px] overflow-hidden rounded-[1.8rem] border border-white/20 bg-black shadow-2xl transition-transform group-hover:scale-[1.02] sm:max-w-[320px]">
+        <FadeImage
+          src={image}
+          alt={alt}
+          width={936}
+          height={2048}
+          className="h-auto w-full object-cover"
+          quality={100}
+          unoptimized
+          sizes="320px"
+        />
+      </div>
+    </motion.button>
+  );
+}
+
+function ScreenshotLightbox({
+  platform,
+  index,
+  onClose,
+  onChange,
+}: {
+  platform: Platform;
+  index: number;
+  onClose: () => void;
+  onChange: (index: number) => void;
+}) {
+  const feature = features[index];
+  const total = features.length;
+  const goTo = (nextIndex: number) => {
+    onChange((nextIndex + total) % total);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+      if (event.key === "ArrowLeft") onChange((index - 1 + total) % total);
+      if (event.key === "ArrowRight") onChange((index + 1) % total);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [index, onChange, onClose, total]);
 
   return (
-    <>
-      <motion.button
-        type="button"
-        onClick={() => setExpanded(true)}
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.95 }}
-        transition={{ duration: 0.3 }}
-        className="group flex h-full w-full cursor-zoom-in items-center justify-center rounded-[1.65rem] border border-white/10 bg-gradient-to-b from-[#0f172a] to-[#08111d] p-6 shadow-[0_0_40px_rgba(59,130,246,0.15)] ring-1 ring-white/5 transition-all hover:ring-white/20"
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[2000] flex items-center justify-center bg-slate-950/92 px-3 py-5 backdrop-blur-md sm:px-5 sm:py-8"
+      onClick={onClose}
+    >
+      <div
+        className="relative flex h-full max-h-[calc(100vh-2.5rem)] w-full max-w-7xl flex-col overflow-hidden rounded-[1.4rem] border border-white/12 bg-[#07111d] shadow-2xl sm:max-h-[calc(100vh-4rem)] sm:rounded-[1.8rem]"
+        onClick={(event) => event.stopPropagation()}
       >
-        <div className="w-full max-w-[320px] overflow-hidden rounded-[2rem] border border-white/20 bg-black shadow-2xl transition-transform group-hover:scale-[1.02]">
-          <FadeImage
-            src={image}
-            alt={alt}
-            width={936}
-            height={2048}
-            className="h-auto w-full object-cover"
-            quality={100}
-            unoptimized
-            sizes="320px"
-          />
-        </div>
-      </motion.button>
-
-      <AnimatePresence>
-        {expanded && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setExpanded(false)}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 md:p-8 cursor-zoom-out backdrop-blur-sm"
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              className="relative max-h-full max-w-md overflow-hidden rounded-[2.5rem] border-4 border-slate-800 bg-black shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
+        <div className="flex items-center justify-between gap-3 border-b border-white/10 bg-white/[0.03] px-4 py-3 sm:px-5">
+          <div className="min-w-0">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-blue-200">
+              {platform === "desktop" ? "Desktop" : "Mobile"} preview
+            </p>
+            <h3 className="truncate text-base font-semibold text-white sm:text-lg">
+              {feature.eyebrow}
+            </h3>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="hidden rounded-full border border-white/10 px-3 py-1 text-xs font-semibold text-slate-300 sm:inline-flex">
+              {index + 1} / {total}
+            </span>
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/8 text-white transition hover:bg-white/14"
+              aria-label="Close screenshot carousel"
             >
-              <FadeImage
-                src={image}
-                alt={alt}
-                width={936}
-                height={2048}
-                className="h-auto max-h-[85vh] w-auto object-contain"
-                quality={100}
-                unoptimized
-              />
-              <button
-                type="button"
-                className="absolute top-4 right-4 z-10 rounded-full bg-black/50 p-2 text-white/70 transition-colors hover:bg-black/80 hover:text-white"
-                onClick={() => setExpanded(false)}
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-              </button>
+              <X size={18} />
+            </button>
+          </div>
+        </div>
+
+        <div className="relative flex min-h-0 flex-1 items-center justify-center px-3 py-4 sm:px-5 sm:py-6">
+          <button
+            type="button"
+            onClick={() => goTo(index - 1)}
+            className="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/12 bg-black/45 text-white shadow-lg backdrop-blur transition hover:bg-black/70 sm:left-5 sm:h-12 sm:w-12"
+            aria-label="Previous screenshot"
+          >
+            <ChevronLeft size={22} />
+          </button>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`${platform}-${index}`}
+              initial={{ opacity: 0, x: 18 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -18 }}
+              transition={{ duration: 0.22 }}
+              className="flex h-full w-full items-center justify-center"
+            >
+              {platform === "desktop" ? (
+                <div className="max-h-full w-full max-w-6xl overflow-hidden rounded-xl border border-white/10 bg-[#08111d] shadow-2xl">
+                  <FadeImage
+                    src={feature.desktopImage}
+                    alt={feature.imageAlt}
+                    className="mx-auto h-auto max-h-[calc(100vh-12rem)] w-auto object-contain"
+                    quality={100}
+                    unoptimized
+                    sizes="100vw"
+                  />
+                </div>
+              ) : (
+                <div className="max-h-full overflow-hidden rounded-[2rem] border-4 border-slate-800 bg-black shadow-2xl">
+                  <FadeImage
+                    src={feature.mobileImage}
+                    alt={feature.mobileImageAlt}
+                    width={936}
+                    height={2048}
+                    className="h-auto max-h-[calc(100vh-12rem)] w-auto object-contain"
+                    quality={100}
+                    unoptimized
+                  />
+                </div>
+              )}
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+          </AnimatePresence>
+
+          <button
+            type="button"
+            onClick={() => goTo(index + 1)}
+            className="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/12 bg-black/45 text-white shadow-lg backdrop-blur transition hover:bg-black/70 sm:right-5 sm:h-12 sm:w-12"
+            aria-label="Next screenshot"
+          >
+            <ChevronRight size={22} />
+          </button>
+        </div>
+
+        <div className="flex items-center justify-center gap-2 border-t border-white/10 bg-white/[0.03] px-4 py-3">
+          {features.map((item, itemIndex) => (
+            <button
+              key={item.eyebrow}
+              type="button"
+              onClick={() => goTo(itemIndex)}
+              className={`h-2.5 rounded-full transition-all ${
+                itemIndex === index
+                  ? "w-8 bg-blue-400"
+                  : "w-2.5 bg-white/24 hover:bg-white/45"
+              }`}
+              aria-label={`Show ${item.eyebrow} screenshot`}
+            />
+          ))}
+        </div>
+      </div>
+    </motion.div>
   );
 }
 
@@ -322,6 +391,71 @@ function PlatformTabs({
           </button>
         );
       })}
+    </div>
+  );
+}
+
+function MobileFeaturePager({
+  activeIndex,
+  onChange,
+}: {
+  activeIndex: number;
+  onChange: (index: number) => void;
+}) {
+  const activeFeature = features[activeIndex];
+  const goTo = (index: number) => {
+    onChange((index + features.length) % features.length);
+  };
+
+  return (
+    <div className="mb-4 rounded-[1.25rem] border border-white/10 bg-white/[0.04] p-3 md:hidden">
+      <div className="flex items-center justify-between gap-3">
+        <button
+          type="button"
+          onClick={() => goTo(activeIndex - 1)}
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-black/25 text-white hover:bg-black/40"
+          aria-label="Previous product screen"
+        >
+          <ChevronLeft size={20} />
+        </button>
+
+        <div className="flex min-w-0 flex-1 items-center justify-center gap-3 text-center">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-blue-500 text-white">
+            {activeFeature.icon}
+          </span>
+          <div className="min-w-0 text-left">
+            <p className="truncate text-sm font-semibold text-white">
+              {activeFeature.eyebrow}
+            </p>
+            <p className="truncate text-xs text-slate-400">
+              {activeFeature.tabHint}
+            </p>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => goTo(activeIndex + 1)}
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-black/25 text-white hover:bg-black/40"
+          aria-label="Next product screen"
+        >
+          <ChevronRight size={20} />
+        </button>
+      </div>
+
+      <div className="mt-3 flex justify-center gap-1.5">
+        {features.map((feature, index) => (
+          <button
+            key={feature.eyebrow}
+            type="button"
+            onClick={() => goTo(index)}
+            className={`h-2 rounded-full transition-all ${
+              index === activeIndex ? "w-6 bg-blue-400" : "w-2 bg-white/24"
+            }`}
+            aria-label={`Show ${feature.eyebrow}`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
@@ -381,12 +515,14 @@ const featureStories: Record<
 export default function FeaturesSection() {
   const [activePlatform, setActivePlatform] = useState<Platform>("desktop");
   const [activeIndex, setActiveIndex] = useState(0);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [lightboxPlatform, setLightboxPlatform] = useState<Platform>("desktop");
 
   const activeFeature = features[activeIndex];
   const activeStory = featureStories[activeFeature.eyebrow];
 
   return (
-    <section id="features" className="relative bg-[#06101a] px-6 py-24">
+    <section id="features" className="relative bg-[#06101a] px-5 py-16 sm:px-6 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl">
         <motion.div
           className="mx-auto max-w-3xl text-center"
@@ -407,14 +543,17 @@ export default function FeaturesSection() {
           </p>
         </motion.div>
 
-        <div className="mt-10 rounded-[1.75rem] border border-white/10 bg-white/[0.035] p-4 md:p-5">
+        <div className="mt-8 rounded-[1.75rem] border border-white/10 bg-white/[0.035] p-4 md:mt-10 md:p-5">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
               <p className="text-sm font-semibold text-white">
                 Choose a workflow to preview
               </p>
-              <p className="mt-1 text-sm text-slate-400">
+              <p className="mt-1 hidden text-sm text-slate-400 md:block">
                 Tap any option below to see how NeuVault handles that moment.
+              </p>
+              <p className="mt-1 text-sm text-slate-400 md:hidden">
+                Use the arrows on the preview below to move through screens.
               </p>
             </div>
             <PlatformTabs
@@ -423,7 +562,7 @@ export default function FeaturesSection() {
             />
           </div>
 
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-5 hidden gap-3 md:grid md:grid-cols-2 lg:grid-cols-4">
             {features.map((feature, index) => {
               const isActive = index === activeIndex;
               return (
@@ -474,9 +613,13 @@ export default function FeaturesSection() {
           </div>
         </div>
 
-        <div className="mt-12 overflow-hidden rounded-[2rem] border border-white/10 bg-[#0b1623] shadow-2xl">
+        <div className="mt-8 overflow-hidden rounded-[1.6rem] border border-white/10 bg-[#0b1623] shadow-2xl md:mt-12 md:rounded-[2rem]">
           <div className="grid gap-0 lg:grid-cols-[1.25fr_0.75fr]">
             <div className="bg-[#07111d] p-4 md:p-6 lg:p-8">
+              <MobileFeaturePager
+                activeIndex={activeIndex}
+                onChange={setActiveIndex}
+              />
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`${activePlatform}-${activeIndex}`}
@@ -489,18 +632,26 @@ export default function FeaturesSection() {
                     <DesktopScreenshot
                       image={activeFeature.desktopImage}
                       alt={activeFeature.imageAlt}
+                      onOpen={() => {
+                        setLightboxPlatform("desktop");
+                        setLightboxIndex(activeIndex);
+                      }}
                     />
                   ) : (
                     <MobileScreenshot
                       image={activeFeature.mobileImage}
                       alt={activeFeature.mobileImageAlt}
+                      onOpen={() => {
+                        setLightboxPlatform("mobile");
+                        setLightboxIndex(activeIndex);
+                      }}
                     />
                   )}
                 </motion.div>
               </AnimatePresence>
             </div>
 
-            <div className="flex flex-col justify-center border-t border-white/10 p-7 md:p-10 lg:border-l lg:border-t-0">
+            <div className="flex flex-col justify-center border-t border-white/10 p-5 sm:p-7 md:p-10 lg:border-l lg:border-t-0">
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500 text-white">
                 {activeFeature.icon}
               </div>
@@ -515,7 +666,7 @@ export default function FeaturesSection() {
                 {activeStory.description}
               </p>
 
-              <div className="mt-8 space-y-3">
+              <div className="mt-6 space-y-3 md:mt-8">
                 <div className="rounded-2xl border border-rose-300/20 bg-rose-300/10 p-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-100">
                     Before
@@ -536,6 +687,20 @@ export default function FeaturesSection() {
             </div>
           </div>
         </div>
+
+        <AnimatePresence>
+          {lightboxIndex !== null ? (
+            <ScreenshotLightbox
+              platform={lightboxPlatform}
+              index={lightboxIndex}
+              onClose={() => setLightboxIndex(null)}
+              onChange={(nextIndex) => {
+                setLightboxIndex(nextIndex);
+                setActiveIndex(nextIndex);
+              }}
+            />
+          ) : null}
+        </AnimatePresence>
       </div>
     </section>
   );

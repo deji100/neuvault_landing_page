@@ -109,7 +109,7 @@ export default function Hero() {
           : "Get NeuVault free";
 
   return (
-    <section className="relative overflow-hidden bg-white px-6 pb-24 pt-32 md:pb-28 md:pt-40">
+    <section className="relative overflow-hidden bg-white px-5 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-32 md:pb-24 md:pt-36 lg:pt-40">
       <div className="absolute inset-x-0 top-0 h-[620px] bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.10),transparent_38%)]" />
       <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#f7fbff] to-transparent" />
 
@@ -129,10 +129,10 @@ export default function Hero() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
-            NeuVault helps you organize the documents, notes, scans, receipts,
-            screenshots, and voice memos scattered across your life, so you can
-            find important information faster, link related files together, and
-            get reminded before deadlines, renewals, and expiry dates pass.
+            NeuVault brings your scattered documents, notes, scans, receipts,
+            screenshots, and voice memos into one private AI vault — so you can
+            find what matters, connect related files, and never miss important
+            dates.
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -198,7 +198,7 @@ export default function Hero() {
         {/* <motion.button
           type="button"
           onClick={() => setExpandedImage(true)}
-          className="mx-auto mt-16 max-w-6xl w-full cursor-zoom-in overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_32px_90px_-48px_rgba(15,23,42,0.55)] transition-all hover:ring-2 hover:ring-blue-500/20"
+          className="mx-auto mt-10 max-w-6xl w-full cursor-zoom-in overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_32px_90px_-48px_rgba(15,23,42,0.55)] transition-all hover:ring-2 hover:ring-blue-500/20 md:mt-14 lg:mt-16"
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 0.6 }}
