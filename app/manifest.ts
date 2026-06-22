@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "NeuVault",
     short_name: "NeuVault",
     description:
-      "Private mobile document vault for organization, reminders, backup, scans, notes, and voice capture.",
+      "Scan, organize, retrieve, and get expiry reminders for important documents in a private AI vault with encrypted backup.",
     start_url: "/",
     display: "standalone",
     background_color: "#f7fbff",

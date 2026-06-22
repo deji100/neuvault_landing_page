@@ -24,12 +24,22 @@ import {
 } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title:
-    "NeuVault | Private AI Document Vault for PDFs, Scans, Notes, and Receipts",
+  title: "NeuVault — Scan, Organize & Find Important Documents",
   description:
-    "NeuVault brings your scattered documents, notes, scans, receipts, screenshots, and voice memos into one private AI vault — so you can find what matters, connect related files, and never miss important dates.",
+    "Scan, organize, retrieve, and get expiry reminders for important documents. NeuVault turns scanned documents, notes, voice memos, and files into a private AI vault with smart search and encrypted backup.",
   path: "/",
   keywords: [
+    "scan and organize documents",
+    "document expiry reminder app",
+    "organize scanned documents",
+    "digital personal document vault",
+    "document storage app",
+    "document retrieval software",
+    "important documents app",
+    "scan and store documents",
+    "passport expiry reminder",
+    "visa expiry tracker",
+    "secure document storage",
     "private AI document vault",
     "private AI document search",
     "AI PDF summarizer",

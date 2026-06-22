@@ -38,9 +38,9 @@ export const metadata: Metadata = {
   },
   description: DEFAULT_DESCRIPTION,
   applicationName: SITE_NAME,
-  authors: [{ name: SITE_NAME }],
-  creator: SITE_NAME,
-  publisher: SITE_NAME,
+  authors: [{ name: "NeuVault Technologies Limited" }],
+  creator: "NeuVault Technologies Limited",
+  publisher: "NeuVault Technologies Limited",
   alternates: {
     canonical: "/",
   },
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
         url: DEFAULT_OG_IMAGE_PATH,
         width: 1200,
         height: 630,
-        alt: `${DEFAULT_TITLE} | ${SITE_NAME}`,
+        alt: "NeuVault private AI document vault",
       },
     ],
     locale: "en_US",
@@ -78,6 +78,10 @@ export const metadata: Metadata = {
     },
   },
   manifest: "/manifest.webmanifest",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
   formatDetection: {
     email: false,
     address: false,

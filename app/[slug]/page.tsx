@@ -35,6 +35,32 @@ type SupplementalContent = {
 };
 
 const supplementalContentBySlug: Record<string, SupplementalContent> = {
+  "digital-personal-document-vault": {
+    useCases: [
+      { title: "Personal identity records", description: "Keep IDs, certificates, and official records private, organized, and ready when life asks for them." },
+      { title: "Household paperwork", description: "Store receipts, warranties, contracts, and statements with the context that makes them useful later." },
+      { title: "Notes and supporting context", description: "Keep notes and voice memos beside the documents they explain." },
+    ],
+    comparisons: [
+      { title: "Compared with cloud folders", limitation: "Generic drives depend on filenames, manual folders, and exact memory.", neuvaultAdvantage: "NeuVault adds summaries, tags, linked records, reminders, and vault-aware search." },
+      { title: "Compared with scattered device storage", limitation: "Records across downloads, photos, email, and notes are hard to retrieve and protect consistently.", neuvaultAdvantage: "NeuVault gives mixed records one private system with encrypted backup and restore." },
+      { title: "Compared with scanner apps", limitation: "A scanner captures paper but often leaves the file without useful context.", neuvaultAdvantage: "NeuVault carries scans into organization, retrieval, reminders, and backup." },
+    ],
+    extraFaqs: [],
+  },
+  "passport-visa-expiry-reminder": {
+    useCases: [
+      { title: "Trip planning", description: "Review passport and visa validity before booking or departure makes an overlooked date expensive." },
+      { title: "Identity renewals", description: "Keep renewal dates connected to the correct visa, permit, passport, or ID record." },
+      { title: "Family travel documents", description: "Organize multiple identity records and their dates without relying on disconnected calendar entries." },
+    ],
+    comparisons: [
+      { title: "Compared with calendar reminders", limitation: "A calendar alert may show a date without the scan or supporting records needed next.", neuvaultAdvantage: "NeuVault keeps the reminder attached to the source travel document." },
+      { title: "Compared with spreadsheets", limitation: "Manual trackers separate deadlines from the documents they describe.", neuvaultAdvantage: "NeuVault keeps dates, records, and retrieval in one workflow." },
+      { title: "Compared with manual checks", limitation: "Repeatedly opening scans to inspect expiry dates is slow and easy to postpone.", neuvaultAdvantage: "NeuVault brings important dates back through Attention and reminder flows." },
+    ],
+    extraFaqs: [],
+  },
   "document-organization": {
     useCases: [
       {
@@ -90,7 +116,7 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
     ],
   },
 
-  "document-reminder": {
+  "document-expiry-reminder-app": {
     useCases: [
       {
         title: "Renewals and expirations",
@@ -145,7 +171,7 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
     ],
   },
 
-  "document-retrieval": {
+  "document-storage-retrieval": {
     useCases: [
       {
         title: "Pressure moments when time is short",
@@ -365,7 +391,7 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
     ],
   },
 
-  "scan-organization": {
+  "scan-and-organize-documents": {
     useCases: [
       {
         title: "Paper-to-vault intake",

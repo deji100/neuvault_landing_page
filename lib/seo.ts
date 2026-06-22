@@ -14,14 +14,26 @@ export const WINDOWS_MICROSOFT_STORE_URL =
   "https://apps.microsoft.com/detail/9PNM0GXZPT8T?hl=en-us&gl=US&ocid=pdpshare";
 
 export const DEFAULT_TITLE =
-  "NeuVault | Private AI Document Vault for PDFs, Scans, Notes, and Receipts";
+  "NeuVault — Scan, Organize & Find Important Documents";
 
 export const DEFAULT_DESCRIPTION =
-  "NeuVault helps you organize documents, notes, scans, receipts, screenshots, and voice memos scattered across your life so you can find information faster, link related files, and get reminded before deadlines, renewals, and expiry dates pass.";
+  "Scan, organize, retrieve, and get expiry reminders for important documents. NeuVault turns scanned documents, notes, voice memos, and files into a private AI vault with smart search and encrypted backup.";
 
 export const DEFAULT_OG_IMAGE_PATH = "/opengraph-image";
 
 const BASE_KEYWORDS = [
+  "scan and organize documents",
+  "document expiry reminder app",
+  "document reminder software",
+  "organize scanned documents",
+  "digital personal document vault",
+  "document storage app",
+  "document retrieval software",
+  "important documents app",
+  "scan and store documents",
+  "passport expiry reminder",
+  "visa expiry tracker",
+  "secure document storage",
   "private AI document vault",
   "private AI document search",
   "AI PDF summarizer",
@@ -96,8 +108,8 @@ export const solutionPages: SolutionPage[] = [
     ctaDescription:
       "Use NeuVault when you need more than folders. Keep scans, uploads, notes, voice records, reminders, and linked documents together so important records stay understandable and retrievable.",
     relatedSlugs: [
-      "scan-organization",
-      "document-retrieval",
+      "scan-and-organize-documents",
+      "document-storage-retrieval",
       "secure-document-backup",
     ],
     benefits: [
@@ -143,8 +155,9 @@ export const solutionPages: SolutionPage[] = [
     ],
   },
   {
-    slug: "document-reminder",
-    primaryKeyword: "document reminder app",
+    slug: "document-expiry-reminder-app",
+    aliases: ["document-reminder"],
+    primaryKeyword: "document expiry reminder app",
     secondaryKeywords: [
       "reminders for important documents",
       "renewal date tracker",
@@ -152,10 +165,10 @@ export const solutionPages: SolutionPage[] = [
       "track document expiry dates",
       "document attention app",
     ],
-    metaTitle: "Document Reminder App for Expiry Dates, Renewals, and Follow-ups",
-    title: "Review important document dates before they become urgent",
+    metaTitle: "Document Expiry Reminder App",
+    title: "Get reminders before important documents expire.",
     description:
-      "NeuVault helps you review important document dates, renewals, expiry dates, deadlines, and follow-ups. Keep reminders attached to the records they belong to.",
+      "Get reminders before passports, IDs, licenses, contracts, visas, renewals, and important document dates expire. Track document deadlines with NeuVault.",
     eyebrow: "Attention",
     intro:
       "A reminder only helps when it stays attached to the document you need to revisit. NeuVault keeps important dates and follow-ups tied to the source record or linked group, so future actions are easier to trust.",
@@ -163,8 +176,8 @@ export const solutionPages: SolutionPage[] = [
     ctaDescription:
       "Review renewal windows, expiry dates, due dates, and follow-up actions without separating the reminder from the real document context.",
     relatedSlugs: [
-      "scan-organization",
-      "document-retrieval",
+      "scan-and-organize-documents",
+      "document-storage-retrieval",
       "secure-document-backup",
     ],
     benefits: [
@@ -210,9 +223,13 @@ export const solutionPages: SolutionPage[] = [
     ],
   },
   {
-    slug: "document-retrieval",
-    aliases: ["smart-document-retrival", "smart-document-retrieval"],
-    primaryKeyword: "document retrieval app",
+    slug: "document-storage-retrieval",
+    aliases: [
+      "document-retrieval",
+      "smart-document-retrival",
+      "smart-document-retrieval",
+    ],
+    primaryKeyword: "document storage retrieval",
     secondaryKeywords: [
       "find important documents faster",
       "searchable document vault",
@@ -220,10 +237,10 @@ export const solutionPages: SolutionPage[] = [
       "AI document search",
       "private document search",
     ],
-    metaTitle: "Document Retrieval App for Fast Private Search",
-    title: "Find important documents faster with a searchable private vault",
+    metaTitle: "Document Storage and Retrieval",
+    title: "Store and retrieve documents faster.",
     description:
-      "NeuVault improves document retrieval with local-first organization, summaries, tags, linked context, and Nova, your vault-aware AI assistant.",
+      "Store documents and retrieve them faster with smart search, tags, summaries, extracted dates, and partial-memory search in NeuVault.",
     eyebrow: "Document retrieval",
     intro:
       "The hard part is rarely saving a file. The hard part is finding it again when the pressure is on. NeuVault is designed so retrieval feels fast even when you only remember part of the story, a date, or a related item.",
@@ -232,7 +249,7 @@ export const solutionPages: SolutionPage[] = [
       "Search by title, summary, type, date, tags, and related context so old scans, receipts, IDs, and agreements are easier to recover when you need them.",
     relatedSlugs: [
       "document-organization",
-      "scan-organization",
+      "scan-and-organize-documents",
       "secure-document-backup",
     ],
     benefits: [
@@ -298,9 +315,9 @@ export const solutionPages: SolutionPage[] = [
     ctaDescription:
       "Create encrypted backup bundles, choose your own storage destination, and restore important documents on another device when you need them.",
     relatedSlugs: [
-      "document-retrieval",
+      "document-storage-retrieval",
       "document-organization",
-      "document-reminder",
+      "document-expiry-reminder-app",
     ],
     benefits: [
       {
@@ -366,7 +383,7 @@ export const solutionPages: SolutionPage[] = [
       "Capture notes next to your files, then export them to the format your next workflow needs, from PDF handoffs to Word editing and CSV analysis.",
     relatedSlugs: [
       "voice-note-transcription",
-      "document-retrieval",
+      "document-storage-retrieval",
       "document-organization",
     ],
     benefits: [
@@ -433,7 +450,7 @@ export const solutionPages: SolutionPage[] = [
       "Record spoken context when typing is inconvenient, then turn it into structured notes you can search, export, and connect to the rest of your vault.",
     relatedSlugs: [
       "notes-export",
-      "document-retrieval",
+      "document-storage-retrieval",
       "document-organization",
     ],
     benefits: [
@@ -479,7 +496,8 @@ export const solutionPages: SolutionPage[] = [
     ],
   },
   {
-    slug: "scan-organization",
+    slug: "scan-and-organize-documents",
+    aliases: ["scan-organization"],
     primaryKeyword: "scan and organize documents",
     secondaryKeywords: [
       "organize scanned documents",
@@ -488,10 +506,10 @@ export const solutionPages: SolutionPage[] = [
       "store scanned documents securely",
       "scan documents into private vault",
     ],
-    metaTitle: "Scan and Organize Documents App",
-    title: "Scan and organize documents without losing them later",
+    metaTitle: "Scan and Organize Documents",
+    title: "Scan and organize documents in one private vault.",
     description:
-      "NeuVault helps you scan and organize documents, extract structure from paperwork, and store scanned files in one private vault you can search, review, and back up later.",
+      "Scan paper documents, organize scanned files, add tags, find records quickly, and keep important documents in a private AI-powered vault with NeuVault.",
     eyebrow: "Scan organization",
     intro:
       "Scanning is only the first step. The real problem starts when the scan lands in a camera roll, random folder, or cloud drive with no context. NeuVault helps turn scans into usable records that remain organized, searchable, and ready for retrieval later.",
@@ -500,7 +518,7 @@ export const solutionPages: SolutionPage[] = [
       "Capture paperwork, run OCR when needed, group scanned files with the right records, and keep everything ready for reminders, retrieval, and secure backup.",
     relatedSlugs: [
       "document-organization",
-      "document-retrieval",
+      "document-storage-retrieval",
       "secure-document-backup",
     ],
     benefits: [
@@ -543,6 +561,54 @@ export const solutionPages: SolutionPage[] = [
         answer:
           "Yes. NeuVault can use OCR and extraction workflows to turn scanned content into useful vault data.",
       },
+    ],
+  },
+  {
+    slug: "digital-personal-document-vault",
+    primaryKeyword: "digital personal document vault",
+    secondaryKeywords: ["important documents app", "document storage apps", "secure document storage", "document backup"],
+    metaTitle: "Digital Personal Document Vault",
+    title: "A private digital vault for your important documents.",
+    description: "Store IDs, certificates, receipts, contracts, scans, notes, and voice memos in a private AI-powered document vault with smart search and encrypted backup.",
+    eyebrow: "Personal document vault",
+    intro: "Keep the records life asks for later in one private, local-first vault. NeuVault brings documents and their context together so they stay searchable, understandable, and recoverable across devices.",
+    ctaTitle: "Give important records one private home",
+    ctaDescription: "Store documents, scans, notes, and voice memos in a vault built for retrieval, reminders, and encrypted backup.",
+    relatedSlugs: ["scan-and-organize-documents", "document-storage-retrieval", "secure-document-backup"],
+    benefits: [
+      { title: "Store important records together", description: "Keep IDs, certificates, receipts, contracts, scans, notes, and voice memos in one document-aware vault." },
+      { title: "Find records with smart search", description: "Use titles, summaries, tags, dates, linked documents, and Nova when you do not remember an exact filename." },
+      { title: "Back up your vault securely", description: "Create encrypted backups under your control and restore your organized vault on another supported device." },
+    ],
+    appProof: ["Local-first storage for private documents.", "One searchable vault for documents, scans, notes, and voice notes.", "Encrypted backup and restore under your control."],
+    keywords: ["digital personal document vault", "important documents app", "secure document storage", "document backup"],
+    faqs: [
+      { question: "What can I keep in a personal document vault?", answer: "NeuVault supports IDs, certificates, receipts, contracts, scans, PDFs, notes, screenshots, and voice notes in the same private vault." },
+      { question: "Is the NeuVault document vault private?", answer: "NeuVault is designed around local-first storage and user-controlled encrypted backups rather than permanent cloud-drive storage." },
+    ],
+  },
+  {
+    slug: "passport-visa-expiry-reminder",
+    primaryKeyword: "passport expiry reminder",
+    secondaryKeywords: ["visa expiry tracker", "passport issue date and expiry date", "visa expiration date", "document expiration date"],
+    metaTitle: "Passport and Visa Expiry Reminder",
+    title: "Track passport, visa, and ID expiry dates.",
+    description: "Save passport, visa, and ID documents, track expiry dates, and get reminders before important travel or identity documents expire.",
+    eyebrow: "Travel document reminders",
+    intro: "Passports, visas, and identity documents are easy to forget until a trip or application makes the date urgent. NeuVault keeps each reminder connected to the document and its surrounding context.",
+    ctaTitle: "See travel document dates before they become urgent",
+    ctaDescription: "Save passports, visas, and IDs, then keep expiry and renewal reminders attached to the records they belong to.",
+    relatedSlugs: ["document-expiry-reminder-app", "digital-personal-document-vault", "document-storage-retrieval"],
+    benefits: [
+      { title: "Track passport and visa expiry dates", description: "Keep important identity and travel-document dates visible instead of buried inside scans or folders." },
+      { title: "Keep reminders with the document", description: "Open the source passport, visa, or ID record directly when an expiry or renewal needs attention." },
+      { title: "Find travel records quickly", description: "Use summaries, tags, dates, and linked records to retrieve the right travel document under time pressure." },
+    ],
+    appProof: ["Expiry, renewal, and follow-up reminders.", "Attention items connected to source records.", "Searchable scanned identity and travel documents."],
+    keywords: ["passport expiry reminder", "visa expiry tracker", "passport expiration date", "travel document reminder"],
+    faqs: [
+      { question: "Can NeuVault remind me before a passport expires?", answer: "Yes. NeuVault is designed to surface expiry and renewal dates while keeping the reminder attached to the saved passport record." },
+      { question: "Can I track visas and IDs too?", answer: "Yes. You can keep visas, IDs, and other time-sensitive documents in the same vault and review their important dates." },
     ],
   },
 ];

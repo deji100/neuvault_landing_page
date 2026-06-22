@@ -125,14 +125,13 @@ export default function Hero() {
           </p> */}
 
           <h1 className="text-4xl font-bold leading-[1.05] tracking-normal text-slate-950 sm:text-6xl md:text-7xl">
-            Stop letting document chaos slow you down.
+            Scan, organize, and find important documents when you need them.
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
-            NeuVault brings your scattered documents, notes, scans, receipts,
-            screenshots, and voice memos into one private AI vault — so you can
-            find what matters, connect related files, and never miss important
-            dates.
+            NeuVault turns scanned documents, notes, voice memos, and important
+            files into a private AI vault with smart search, expiry reminders,
+            and encrypted backup.
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
