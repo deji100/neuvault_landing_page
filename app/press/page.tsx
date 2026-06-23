@@ -206,7 +206,10 @@ export default function PressPage() {
                     className="rounded-2xl border border-white/10 bg-white/5 p-4"
                   >
                     {fact === "available-platforms" ? (
-                      <PlatformIconRow className="text-white/72" />
+                      <PlatformIconRow
+                        className="text-slate-700"
+                        iconTone="brand"
+                      />
                     ) : (
                       fact
                     )}
@@ -360,16 +363,16 @@ export default function PressPage() {
             </p>
           </article>
 
-          <article className="rounded-[1.8rem] border border-white/10 bg-white p-7 shadow-[0_24px_70px_-52px_rgba(37,99,235,0.45)]">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
+          <article className="rounded-[1.8rem] border border-blue-100 bg-white p-7 shadow-[0_24px_70px_-52px_rgba(37,99,235,0.45)]">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-500">
               Contact
             </p>
 
-            <h2 className="mt-4 text-2xl font-semibold text-white">
+            <h2 className="mt-4 text-2xl font-semibold text-slate-950">
               Press, listing, and correction requests
             </h2>
 
-            <p className="mt-4 text-sm leading-7 text-white/70">
+            <p className="mt-4 text-sm leading-7 text-slate-600">
               For product listings, directory updates, media questions,
               corrections, or partnership requests, contact NeuVault through
               the support email.
@@ -382,12 +385,12 @@ export default function PressPage() {
               {SUPPORT_EMAIL}
             </a>
 
-            <div className="mt-6 rounded-2xl border border-[#6DD1FF]/16 bg-[#6DD1FF]/8 p-5">
-              <p className="text-sm font-semibold text-white">
+            <div className="mt-6 rounded-2xl border border-blue-100 bg-blue-50 p-5">
+              <p className="text-sm font-semibold text-slate-950">
                 Privacy-safe wording
               </p>
 
-              <p className="mt-2 text-sm leading-7 text-white/66">
+              <p className="mt-2 text-sm leading-7 text-slate-600">
                 Recommended wording: NeuVault is local-first by design.
                 Documents live on the user’s device by default. AI processing
                 may temporarily handle content when intelligent workflows are

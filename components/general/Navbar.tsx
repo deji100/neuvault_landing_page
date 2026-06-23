@@ -10,7 +10,6 @@ import Logo from "@/public/logo.png";
 
 const navItems = [
   { label: "Features", id: "features" },
-  { label: "Screenshots", id: "screenshots" },
   { label: "Videos", id: "youtube-videos" },
   { label: "How it works", id: "how-it-works" },
   { label: "Stories", id: "testimonials" },

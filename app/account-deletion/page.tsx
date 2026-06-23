@@ -17,7 +17,7 @@ export const metadata: Metadata = buildMetadata({
 export default function AccountDeletionPage() {
   return (
     <main className="legacy-light-page relative min-h-screen overflow-hidden">
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#ffffff_0%,#f7fbff_46%,#eef6ff_100%)]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.12),transparent_46%)]" />
 
       <div className="max-w-4xl mx-auto px-6 pt-28 pb-20">
         <div className="flex items-center justify-between gap-4">

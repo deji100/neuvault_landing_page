@@ -70,7 +70,7 @@ export default function TermsPage() {
   return (
     <main className="legacy-light-page relative min-h-screen overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#ffffff_0%,#f7fbff_46%,#eef6ff_100%)]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.12),transparent_46%)]" />
       <motion.div
         className="absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full bg-[#3F8CFF]/10 blur-3xl -z-10"
         animate={{ scale: [1, 1.08, 1], opacity: [0.45, 0.65, 0.45] }}

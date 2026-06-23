@@ -679,16 +679,16 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
             </div>
           </div>
 
-          <div className="rounded-[1.8rem] border border-white/10 bg-white p-7 shadow-[0_24px_70px_-52px_rgba(37,99,235,0.45)]">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
+          <div className="rounded-[1.8rem] border border-blue-100 bg-white p-7 shadow-[0_24px_70px_-52px_rgba(37,99,235,0.45)]">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-500">
               Why it matters
             </p>
 
-            <h2 className="mt-3 text-2xl font-semibold text-white">
+            <h2 className="mt-3 text-2xl font-semibold text-slate-950">
               Useful records need more than storage.
             </h2>
 
-            <p className="mt-4 text-sm leading-7 text-white/70">
+            <p className="mt-4 text-sm leading-7 text-slate-600">
               NeuVault is strongest when a record is not just saved, but
               retrievable, understandable, connected, remembered, and
               recoverable. That is why the product combines intake, summaries,
@@ -696,8 +696,8 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
               solving only one narrow part of the workflow.
             </p>
 
-            <div className="mt-6 rounded-2xl border border-[#6DD1FF]/16 bg-[#6DD1FF]/8 p-5">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#cce8ff]">
+            <div className="mt-6 rounded-2xl border border-blue-100 bg-blue-50 p-5">
+              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-blue-700">
                 Also useful with
               </p>
 
@@ -706,7 +706,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
                   <Link
                     key={item.slug}
                     href={`/${item.slug}`}
-                    className="rounded-full border border-white/10 bg-white/8 px-3 py-2 text-xs font-semibold text-white/80 hover:bg-white/12"
+                    className="rounded-full border border-blue-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:border-blue-300 hover:text-blue-700"
                   >
                     {item.metaTitle}
                   </Link>
@@ -849,18 +849,18 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
           </div>
         </section>
 
-        <section className="mt-14 rounded-[1.8rem] border border-white/10 bg-white p-7 shadow-[0_24px_70px_-52px_rgba(37,99,235,0.45)]">
+        <section className="mt-14 rounded-[1.8rem] border border-blue-100 bg-white p-7 shadow-[0_24px_70px_-52px_rgba(37,99,235,0.45)]">
           <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-500">
                 Take the next step
               </p>
 
-              <h2 className="mt-4 text-2xl font-semibold text-white">
+              <h2 className="mt-4 text-2xl font-semibold text-slate-950">
                 {page.ctaTitle}
               </h2>
 
-              <p className="mt-4 max-w-3xl text-sm leading-7 text-white/70">
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600">
                 {page.ctaDescription}
               </p>
             </div>
@@ -879,7 +879,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
                 href={ANDROID_PLAY_STORE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-white/14 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
+                className="rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 hover:border-blue-300 hover:text-blue-700"
               >
                 Get NeuVault on Google Play
               </a>

@@ -169,13 +169,13 @@ function DesktopScreenshot({
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.96 }}
       transition={{ duration: 0.3 }}
-      className="group w-full cursor-zoom-in overflow-hidden rounded-[1.35rem] border border-white/10 bg-[#08111d] shadow-[0_0_40px_rgba(59,130,246,0.15)] ring-1 ring-white/5 transition-all hover:-translate-y-0.5 hover:ring-white/20"
+      className="group h-full min-h-[360px] w-full cursor-zoom-in overflow-hidden rounded-[1.35rem] border border-white/10 bg-[#08111d] shadow-[0_0_40px_rgba(59,130,246,0.15)] ring-1 ring-white/5 transition-all hover:-translate-y-0.5 hover:ring-white/20 md:min-h-[500px]"
       aria-label="Open screenshot carousel"
     >
       <FadeImage
         src={image}
         alt={alt}
-        className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.015]"
+        className="h-full w-full object-cover object-left-top transition-transform duration-500 group-hover:scale-[1.015]"
         quality={100}
         unoptimized
         sizes="(min-width: 1180px) 1120px, 100vw"
@@ -615,7 +615,7 @@ export default function FeaturesSection() {
 
         <div className="mt-8 overflow-hidden rounded-[1.6rem] border border-white/10 bg-[#0b1623] shadow-2xl md:mt-12 md:rounded-[2rem]">
           <div className="grid gap-0 lg:grid-cols-[1.25fr_0.75fr]">
-            <div className="bg-[#07111d] p-4 md:p-6 lg:p-8">
+            <div className="flex h-full flex-col bg-[#07111d] p-4 md:p-6 lg:p-8">
               <MobileFeaturePager
                 activeIndex={activeIndex}
                 onChange={setActiveIndex}
@@ -627,6 +627,7 @@ export default function FeaturesSection() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.24 }}
+                  className="flex-1"
                 >
                   {activePlatform === "desktop" ? (
                     <DesktopScreenshot

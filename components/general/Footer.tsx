@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { ArrowUpRight, Smartphone } from "lucide-react";
 import { FaAndroid, FaApple, FaWindows } from "react-icons/fa";
 import { guidePages } from "@/lib/guides";
@@ -23,10 +25,9 @@ const scrollToId = (id: string) => {
 };
 
 const primaryLinks = [
-  { label: "Features", action: () => scrollToId("features") },
-  { label: "Screenshots", action: () => scrollToId("screenshots") },
-  { label: "YouTube videos", action: () => scrollToId("youtube-videos") },
-  { label: "How it works", action: () => scrollToId("how-it-works") },
+  { label: "Features", id: "features" },
+  { label: "YouTube videos", id: "youtube-videos" },
+  { label: "How it works", id: "how-it-works" },
 ];
 
 const workflowLabels: Record<string, string> = {
@@ -65,6 +66,28 @@ const downloadLinks = [
 
 export default function Footer() {
   const featuredGuides = guidePages.slice(0, 3);
+  const pathname = usePathname();
+  const router = useRouter();
+  const [pendingSectionId, setPendingSectionId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (pathname !== "/" || !pendingSectionId) return;
+
+    requestAnimationFrame(() => {
+      scrollToId(pendingSectionId);
+      setPendingSectionId(null);
+    });
+  }, [pathname, pendingSectionId]);
+
+  const navigateToSection = (id: string) => {
+    if (pathname === "/") {
+      scrollToId(id);
+      return;
+    }
+
+    setPendingSectionId(id);
+    router.push("/");
+  };
 
   return (
     <footer
@@ -135,7 +158,7 @@ export default function Footer() {
                 <li key={item.label}>
                   <button
                     type="button"
-                    onClick={item.action}
+                    onClick={() => navigateToSection(item.id)}
                     className="text-slate-600 hover:text-blue-700"
                   >
                     {item.label}

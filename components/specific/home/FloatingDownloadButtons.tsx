@@ -109,7 +109,7 @@ export default function FloatingDownloadButtons() {
   useEffect(() => {
     const updateVisibility = () => {
       const desktopTrigger = document.getElementById("features");
-      const mobileTrigger = document.getElementById("screenshots");
+      const mobileTrigger = document.getElementById("features");
       const footer = document.getElementById("site-footer");
       const triggerSection = window.innerWidth >= 700 ? desktopTrigger : mobileTrigger;
 

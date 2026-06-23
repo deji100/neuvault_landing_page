@@ -67,6 +67,26 @@ select:focus-visible {
 }
 
 @layer utilities {
+  .legacy-light-page {
+    background:
+      radial-gradient(circle at 14% 6%, rgba(59, 130, 246, 0.16), transparent 30rem),
+      radial-gradient(circle at 86% 18%, rgba(109, 209, 255, 0.11), transparent 32rem),
+      linear-gradient(180deg, #06101a 0%, #040810 44%, #06101a 100%);
+    color: #ffffff;
+  }
+
+  .legacy-light-page::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(to bottom, black, transparent 72%);
+  }
+
   .animate-scroll {
     animation: scroll 30s linear infinite;
   }

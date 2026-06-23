@@ -10,18 +10,22 @@ const platformIcons = [
   {
     label: "iPhone",
     icon: Smartphone,
+    colorClassName: "text-blue-500",
   },
   {
     label: "Android",
     icon: FaAndroid,
+    colorClassName: "text-emerald-400",
   },
   {
     label: "Windows",
     icon: FaWindows,
+    colorClassName: "text-sky-400",
   },
   {
     label: "macOS",
     icon: FaApple,
+    colorClassName: "text-slate-900",
   },
 ];
 
@@ -29,12 +33,14 @@ type PlatformIconRowProps = {
   links?: PlatformIconLink[];
   className?: string;
   iconClassName?: string;
+  iconTone?: "inherit" | "brand";
 };
 
 export default function PlatformIconRow({
   links = [],
   className = "",
   iconClassName = "",
+  iconTone = "inherit",
 }: PlatformIconRowProps) {
   const linkMap = new Map(links.map((link) => [link.label, link.href]));
 
@@ -43,11 +49,15 @@ export default function PlatformIconRow({
       className={`flex flex-wrap items-center gap-2 ${className}`}
       aria-label="Available platforms"
     >
-      {platformIcons.map(({ label, icon: Icon }) => {
+      {platformIcons.map(({ label, icon: Icon, colorClassName }) => {
         const href = linkMap.get(label);
+        const toneClassName = iconTone === "brand" ? colorClassName : "";
         const content = (
           <>
-            <Icon aria-hidden="true" className={`h-5 w-5 ${iconClassName}`} />
+            <Icon
+              aria-hidden="true"
+              className={`h-5 w-5 ${toneClassName} ${iconClassName}`}
+            />
             <span className="sr-only">{label}</span>
           </>
         );
@@ -61,7 +71,7 @@ export default function PlatformIconRow({
               rel="noopener noreferrer"
               aria-label={label}
               title={label}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-current/15 bg-white/80 text-current transition hover:-translate-y-0.5 hover:border-current/30 hover:bg-white"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-current/15 bg-white/90 text-current shadow-sm transition hover:-translate-y-0.5 hover:border-current/30 hover:bg-white"
             >
               {content}
             </a>
@@ -73,7 +83,7 @@ export default function PlatformIconRow({
             key={label}
             aria-label={label}
             title={label}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-current/15 bg-white/80 text-current"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-current/15 bg-white/90 text-current shadow-sm"
           >
             {content}
           </span>

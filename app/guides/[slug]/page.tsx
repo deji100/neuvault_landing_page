@@ -205,24 +205,24 @@ export default async function GuidePage({ params }: GuidePageProps) {
         </section>
 
         {parentSolution ? (
-          <section className="mt-14 overflow-hidden rounded-[1.8rem] border border-white/10 bg-white p-7 shadow-[0_24px_70px_-52px_rgba(37,99,235,0.45)]">
+          <section className="mt-14 overflow-hidden rounded-[1.8rem] border border-blue-100 bg-white p-7 shadow-[0_24px_70px_-52px_rgba(37,99,235,0.45)]">
             <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-500">
                   Turn this into a system
                 </p>
 
-                <h2 className="mt-4 text-2xl font-semibold leading-tight text-white md:text-3xl">
+                <h2 className="mt-4 text-2xl font-semibold leading-tight text-slate-950 md:text-3xl">
                   {parentSolution.title}
                 </h2>
 
-                <p className="mt-4 max-w-3xl text-sm leading-7 text-white/70">
+                <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600">
                   {parentSolution.description}
                 </p>
               </div>
 
-              <div className="rounded-[1.4rem] border border-white/10 bg-black/22 p-5">
-                <p className="text-sm font-semibold text-white">
+              <div className="rounded-[1.4rem] border border-slate-200 bg-slate-50 p-5">
+                <p className="text-sm font-semibold text-slate-800">
                   NeuVault helps important records become:
                 </p>
 
@@ -237,7 +237,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
                   ].map((item) => (
                     <div
                       key={item}
-                      className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/68"
+                      className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-600"
                     >
                       {item}
                     </div>
@@ -246,7 +246,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
               </div>
             </div>
 
-            <div className="mt-7 flex flex-wrap gap-3 border-t border-white/10 pt-6">
+            <div className="mt-7 flex flex-wrap gap-3 border-t border-slate-200 pt-6">
               <Link
                 href={`/${parentSolution.slug}`}
                 className="rounded-full bg-[#3F8CFF] px-5 py-3 text-sm font-semibold text-white hover:bg-[#60aaff]"
@@ -258,7 +258,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
                 href={IOS_APP_STORE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-white/14 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
+                className="rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 hover:border-blue-300 hover:text-blue-700"
               >
                 Get NeuVault on the App Store
               </a>
@@ -267,7 +267,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
                 href={ANDROID_PLAY_STORE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-white/14 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
+                className="rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 hover:border-blue-300 hover:text-blue-700"
               >
                 Get NeuVault on Google Play
               </a>
