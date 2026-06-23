@@ -4,22 +4,48 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState, type MouseEvent } from "react";
-import { FolderOpen, LockKeyhole, ShieldCheck } from "lucide-react";
+import { Smartphone } from "lucide-react";
+import PlatformIconRow from "@/components/general/PlatformIconRow";
+import { FaAndroid, FaApple, FaWindows } from "react-icons/fa";
 import LoginImage from "@/public/login.png";
 
 const IOS_APP_STORE_URL = "https://apps.apple.com/ng/app/neuvault/id6759370392";
+const MACOS_APP_STORE_URL =
+  "https://apps.apple.com/ng/app/neuvault/id6759370392?platform=mac";
 const ANDROID_PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=app.neuvault";
 const WINDOWS_MICROSOFT_STORE_URL =
   "https://apps.microsoft.com/detail/9PNM0GXZPT8T?hl=en-us&gl=US&ocid=pdpshare";
 
-type DevicePlatform = "ios" | "android" | "windows" | "other";
+type DevicePlatform = "ios" | "android" | "windows" | "macos" | "other";
 
 const trustPills = [
   "Local-first storage",
   "Private document search",
   "Encrypted backups",
-  "iPhone, Android, and Windows",
+];
+
+const platformMenuLinks = [
+  {
+    label: "App Store (iOS)",
+    href: IOS_APP_STORE_URL,
+    icon: Smartphone,
+  },
+  {
+    label: "App Store (macOS)",
+    href: MACOS_APP_STORE_URL,
+    icon: FaApple,
+  },
+  {
+    label: "Google Play",
+    href: ANDROID_PLAY_STORE_URL,
+    icon: FaAndroid,
+  },
+  {
+    label: "Windows Store",
+    href: WINDOWS_MICROSOFT_STORE_URL,
+    icon: FaWindows,
+  },
 ];
 
 function FadeImage({ className, ...props }: React.ComponentProps<typeof Image>) {
@@ -48,6 +74,7 @@ export default function Hero() {
     const userAgent = navigator.userAgent || navigator.vendor || "";
     const isAndroid = /android/i.test(userAgent);
     const isWindows = /windows/i.test(userAgent);
+    const isMacOS = /Macintosh|Mac OS X/i.test(userAgent);
     const isIOS =
       /iPad|iPhone|iPod/i.test(userAgent) ||
       (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
@@ -64,6 +91,11 @@ export default function Hero() {
 
     if (isWindows) {
       setDevicePlatform("windows");
+      return;
+    }
+
+    if (isMacOS) {
+      setDevicePlatform("macos");
       return;
     }
 
@@ -97,6 +129,8 @@ export default function Hero() {
       ? ANDROID_PLAY_STORE_URL
       : devicePlatform === "windows"
         ? WINDOWS_MICROSOFT_STORE_URL
+        : devicePlatform === "macos"
+          ? MACOS_APP_STORE_URL
         : IOS_APP_STORE_URL;
 
   const downloadLabel =
@@ -106,6 +140,8 @@ export default function Hero() {
         ? "Download on the App Store"
         : devicePlatform === "windows"
           ? "Enjoy 500 free one-time Credit"
+          : devicePlatform === "macos"
+            ? "Download for macOS"
           : "Get NeuVault free";
 
   return (
@@ -164,11 +200,20 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute left-0 top-full z-50 mt-2 w-full min-w-[220px] flex-col rounded-xl border border-slate-200 bg-white p-2 shadow-xl"
+                    className="absolute left-0 top-full z-50 mt-2 w-full min-w-[260px] rounded-xl border border-slate-200 bg-white p-2 shadow-xl"
                   >
-                    <a href={IOS_APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="flex items-center rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">App Store (iOS)</a>
-                    <a href={ANDROID_PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" className="flex items-center rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">Google Play</a>
-                    <a href={WINDOWS_MICROSOFT_STORE_URL} target="_blank" rel="noopener noreferrer" className="flex items-center rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">Windows Store</a>
+                    {platformMenuLinks.map(({ label, href, icon: Icon }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="grid grid-cols-[1.5rem_minmax(12rem,1fr)] items-center justify-center gap-3 rounded-lg px-5 py-3 text-left text-sm font-medium text-slate-700 hover:bg-slate-50"
+                      >
+                        <Icon aria-hidden="true" className="h-5 w-5 justify-self-center text-slate-600" />
+                        <span>{label}</span>
+                      </a>
+                    ))}
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -182,15 +227,27 @@ export default function Hero() {
             </Link>
           </div>
 
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
-            {trustPills.map((pill) => (
-              <span
-                key={pill}
-                className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-600 shadow-sm"
-              >
-                {pill}
-              </span>
-            ))}
+          <div className="mt-7">
+            <div className="flex flex-wrap justify-center gap-3">
+              {trustPills.map((pill) => (
+                <span
+                  key={pill}
+                  className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-600 shadow-sm"
+                >
+                  {pill}
+                </span>
+              ))}
+            </div>
+
+            <PlatformIconRow
+              className="mt-6 justify-center text-slate-600"
+              links={[
+                { label: "iPhone", href: IOS_APP_STORE_URL },
+                { label: "Android", href: ANDROID_PLAY_STORE_URL },
+                { label: "Windows", href: WINDOWS_MICROSOFT_STORE_URL },
+                { label: "macOS", href: MACOS_APP_STORE_URL },
+              ]}
+            />
           </div>
         </motion.div>
 

@@ -11,6 +11,9 @@ const ANDROID_URL =
 const IOS_URL =
   process.env.NEXT_PUBLIC_IOS_URL?.trim() ||
   "https://apps.apple.com/ng/app/neuvault/id6759370392";
+const MACOS_URL =
+  process.env.NEXT_PUBLIC_MACOS_URL?.trim() ||
+  "https://apps.apple.com/ng/app/neuvault/id6759370392?platform=mac";
 const WINDOWS_URL =
   process.env.NEXT_PUBLIC_WINDOWS_URL?.trim() ||
   "https://apps.microsoft.com/detail/9PNM0GXZPT8T?hl=en-us&gl=US&ocid=pdpshare";
@@ -178,7 +181,7 @@ export default function FloatingDownloadButtons() {
                 <DownloadCard platform="iOS" icon={<Apple size={16} />} url={IOS_URL} />
                 <DownloadCard platform="Android" icon={<Smartphone size={16} />} url={ANDROID_URL} />
                 <DownloadCard platform="Windows" icon={<MonitorDown size={16} />} url={WINDOWS_URL} />
-                <DownloadCard platform="macOS" icon={<Apple size={16} />} />
+                <DownloadCard platform="macOS" icon={<Apple size={16} />} url={MACOS_URL} />
               </div>
             </motion.div>
           )}

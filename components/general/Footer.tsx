@@ -2,11 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Smartphone } from "lucide-react";
+import { FaAndroid, FaApple, FaWindows } from "react-icons/fa";
 import { guidePages } from "@/lib/guides";
 import {
   ANDROID_PLAY_STORE_URL,
   IOS_APP_STORE_URL,
+  MACOS_APP_STORE_URL,
   WINDOWS_MICROSOFT_STORE_URL,
   solutionPages,
 } from "@/lib/seo";
@@ -36,6 +38,30 @@ const workflowLabels: Record<string, string> = {
   "voice-note-transcription": "Turn voice notes searchable",
   "scan-organization": "Scan and organize documents",
 };
+
+const downloadLinks = [
+  {
+    label: "App Store",
+    href: IOS_APP_STORE_URL,
+    icon: Smartphone,
+    primary: true,
+  },
+  {
+    label: "Google Play",
+    href: ANDROID_PLAY_STORE_URL,
+    icon: FaAndroid,
+  },
+  {
+    label: "Mac App Store",
+    href: MACOS_APP_STORE_URL,
+    icon: FaApple,
+  },
+  {
+    label: "Microsoft Store",
+    href: WINDOWS_MICROSOFT_STORE_URL,
+    icon: FaWindows,
+  },
+];
 
 export default function Footer() {
   const featuredGuides = guidePages.slice(0, 3);
@@ -73,39 +99,27 @@ export default function Footer() {
               </h2>
             </div>
 
-            <div className="rounded-[1.4rem] border border-blue-100 bg-white p-5 shadow-sm">
+            <div className="rounded-[1.4rem] border border-blue-100 bg-white p-5 text-center shadow-sm">
               <p className="text-sm font-semibold uppercase tracking-[0.14em] text-blue-700">
                 Download NeuVault
               </p>
-              <p className="mt-3 text-sm leading-7 text-slate-600">
-                Available now on iPhone, Android, and Windows. macOS is coming
-                soon.
-              </p>
-              <div className="mt-5 flex flex-wrap gap-3">
-                <a
-                  href={IOS_APP_STORE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700"
-                >
-                  App Store
-                </a>
-                <a
-                  href={ANDROID_PLAY_STORE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 hover:border-blue-300 hover:text-blue-700"
-                >
-                  Google Play
-                </a>
-                <a
-                  href={WINDOWS_MICROSOFT_STORE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 hover:border-blue-300 hover:text-blue-700"
-                >
-                  Microsoft Store
-                </a>
+              <div className="mt-6 flex flex-wrap justify-center gap-3">
+                {downloadLinks.map(({ label, href, icon: Icon, primary }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition ${
+                      primary
+                        ? "bg-blue-600 text-white hover:bg-blue-700"
+                        : "border border-slate-300 bg-white text-slate-800 hover:border-blue-300 hover:text-blue-700"
+                    }`}
+                  >
+                    <Icon aria-hidden="true" className="h-5 w-5" />
+                    {label}
+                  </a>
+                ))}
               </div>
             </div>
           </div>

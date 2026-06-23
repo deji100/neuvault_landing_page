@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+import PlatformIconRow from "@/components/general/PlatformIconRow";
 import { LOGO_URL } from "@/lib/brand";
 import {
   ANDROID_PLAY_STORE_URL,
   IOS_APP_STORE_URL,
+  MACOS_APP_STORE_URL,
   SUPPORT_EMAIL,
   WINDOWS_MICROSOFT_STORE_URL,
   buildBreadcrumbJsonLd,
@@ -36,7 +38,7 @@ const productFacts = [
   "Helps users find documents from partial memory, not only exact filenames",
   "Supports reminders and Attention for dates, renewals, and follow-ups",
   "Offers encrypted backup bundles users store in locations they control",
-  "Available now on iPhone, Android, and Windows, with macOS coming soon",
+  "available-platforms",
 ];
 
 const positioningPoints = [
@@ -153,6 +155,15 @@ export default function PressPage() {
                 </a>
 
                 <a
+                  href={MACOS_APP_STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-white/14 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
+                >
+                  Mac App Store
+                </a>
+
+                <a
                   href={WINDOWS_MICROSOFT_STORE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -194,7 +205,11 @@ export default function PressPage() {
                     key={fact}
                     className="rounded-2xl border border-white/10 bg-white/5 p-4"
                   >
-                    {fact}
+                    {fact === "available-platforms" ? (
+                      <PlatformIconRow className="text-white/72" />
+                    ) : (
+                      fact
+                    )}
                   </div>
                 ))}
               </div>

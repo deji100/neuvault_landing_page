@@ -7,6 +7,9 @@ export const SUPPORT_EMAIL = "support@neuvault.app";
 export const IOS_APP_STORE_URL =
   "https://apps.apple.com/ng/app/neuvault/id6759370392";
 
+export const MACOS_APP_STORE_URL =
+  "https://apps.apple.com/ng/app/neuvault/id6759370392?platform=mac";
+
 export const ANDROID_PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=app.neuvault";
 
@@ -723,6 +726,7 @@ export function buildOrganizationJsonLd() {
     email: SUPPORT_EMAIL,
     sameAs: [
       IOS_APP_STORE_URL,
+      MACOS_APP_STORE_URL,
       ANDROID_PLAY_STORE_URL,
       WINDOWS_MICROSOFT_STORE_URL,
     ],
@@ -763,11 +767,12 @@ export function buildSoftwareApplicationJsonLd() {
     "@id": `${SITE_URL}/#app`,
     name: SITE_NAME,
     url: SITE_URL,
-    operatingSystem: "iOS, Android, Windows",
+    operatingSystem: "iOS, Android, Windows, macOS",
     applicationCategory: "ProductivityApplication",
     description: DEFAULT_DESCRIPTION,
     downloadUrl: [
       IOS_APP_STORE_URL,
+      MACOS_APP_STORE_URL,
       ANDROID_PLAY_STORE_URL,
       WINDOWS_MICROSOFT_STORE_URL,
     ],
