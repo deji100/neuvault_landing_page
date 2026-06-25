@@ -7,6 +7,7 @@ import HowItWorks from "@/components/specific/home/HowITWorks";
 import SeeItInAction from "@/components/specific/home/Proof";
 import TestimonialsSection from "@/components/specific/home/Testimonials";
 import FloatingDownloadButtons from "@/components/specific/home/FloatingDownloadButtons";
+import PricingPlans from "@/components/specific/pricing/PricingPlans";
 
 import { LOGO_URL } from "@/lib/brand";
 import {
@@ -207,6 +208,7 @@ export default function Home() {
         <SeeItInAction />
         <HowItWorks />
         <TestimonialsSection />
+        <PricingPlans />
         <FloatingDownloadButtons />
       </section>
     </main>

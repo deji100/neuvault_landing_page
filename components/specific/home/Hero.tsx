@@ -139,7 +139,7 @@ export default function Hero() {
       : devicePlatform === "ios"
         ? "Download on the App Store"
         : devicePlatform === "windows"
-          ? "Enjoy 500 free one-time Credit"
+          ? "500 credits for 14 days"
           : devicePlatform === "macos"
             ? "Download for macOS"
           : "Get NeuVault free";

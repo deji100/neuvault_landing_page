@@ -82,6 +82,13 @@ export default function Navbar() {
           ))}
 
           <Link
+            href="/pricing"
+            className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 hover:bg-white hover:text-slate-950 hover:shadow-sm"
+          >
+            Pricing
+          </Link>
+
+          <Link
             href="/privacy-policy"
             className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 hover:bg-white hover:text-slate-950 hover:shadow-sm"
           >
@@ -123,6 +130,14 @@ export default function Navbar() {
                 {item.label}
               </button>
             ))}
+
+            <Link
+              href="/pricing"
+              onClick={() => setMobileOpen(false)}
+              className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700"
+            >
+              Pricing
+            </Link>
 
             <Link
               href="/privacy-policy"
