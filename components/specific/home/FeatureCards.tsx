@@ -11,6 +11,7 @@ import {
   FileText,
   Gauge,
   Monitor,
+  Network,
   NotebookPen,
   ShieldCheck,
   Smartphone,
@@ -25,6 +26,7 @@ import NovaImage from "@/public/nova.png";
 import SmartSuggestionsImage from "@/public/smart-suggestions.png";
 import NoteImage from "@/public/note.png";
 import SettingsBackupRestoreImage from "@/public/settings-backup-restore.png";
+import LinkedDocumentMapImage from "@/public/link-map.png";
 
 type Platform = "desktop" | "mobile";
 
@@ -36,10 +38,11 @@ type Feature = {
   solution: string;
   outcome: string;
   desktopImage: StaticImageData;
-  mobileImage: string;
+  mobileImage?: string;
   imageAlt: string;
-  mobileImageAlt: string;
+  mobileImageAlt?: string;
   icon: ReactNode;
+  desktopOnly?: boolean;
 };
 
 const features: Feature[] = [
@@ -68,6 +71,18 @@ const features: Feature[] = [
     imageAlt: "NeuVault desktop vault screenshot",
     mobileImageAlt: "NeuVault mobile vault screenshot",
     icon: <Vault size={22} />,
+  },
+  {
+    eyebrow: "Linked Document Map",
+    tabHint: "See connected records",
+    title: "See how related documents, notes, and ideas connect.",
+    pain: "Related records can still feel fragmented when their relationships live only in separate lists or in your memory.",
+    solution: "The desktop Linked Document Map turns a document group into a visual workspace where you can arrange records and notes, create connections, and understand the bigger picture.",
+    outcome: "See the relationships, not just the files.",
+    desktopImage: LinkedDocumentMapImage,
+    imageAlt: "NeuVault desktop Linked Document Map screenshot",
+    icon: <Network size={22} />,
+    desktopOnly: true,
   },
   {
     eyebrow: "Document Overview",
@@ -231,8 +246,11 @@ function ScreenshotLightbox({
   onClose: () => void;
   onChange: (index: number) => void;
 }) {
-  const feature = features[index];
-  const total = features.length;
+  const platformFeatures = platform === "desktop"
+    ? features
+    : features.filter((feature) => !feature.desktopOnly);
+  const feature = platformFeatures[index];
+  const total = platformFeatures.length;
   const goTo = (nextIndex: number) => {
     onChange((nextIndex + total) % total);
   };
@@ -317,8 +335,8 @@ function ScreenshotLightbox({
               ) : (
                 <div className="max-h-full overflow-hidden rounded-[2rem] border-4 border-slate-800 bg-black shadow-2xl">
                   <FadeImage
-                    src={feature.mobileImage}
-                    alt={feature.mobileImageAlt}
+                    src={feature.mobileImage!}
+                    alt={feature.mobileImageAlt!}
                     width={936}
                     height={2048}
                     className="h-auto max-h-[calc(100vh-12rem)] w-auto object-contain"
@@ -341,7 +359,7 @@ function ScreenshotLightbox({
         </div>
 
         <div className="flex items-center justify-center gap-2 border-t border-white/10 bg-white/[0.03] px-4 py-3">
-          {features.map((item, itemIndex) => (
+          {platformFeatures.map((item, itemIndex) => (
             <button
               key={item.eyebrow}
               type="button"
@@ -396,15 +414,17 @@ function PlatformTabs({
 }
 
 function MobileFeaturePager({
+  items,
   activeIndex,
   onChange,
 }: {
+  items: Feature[];
   activeIndex: number;
   onChange: (index: number) => void;
 }) {
-  const activeFeature = features[activeIndex];
+  const activeFeature = items[activeIndex];
   const goTo = (index: number) => {
-    onChange((index + features.length) % features.length);
+    onChange((index + items.length) % items.length);
   };
 
   return (
@@ -444,7 +464,7 @@ function MobileFeaturePager({
       </div>
 
       <div className="mt-3 flex justify-center gap-1.5">
-        {features.map((feature, index) => (
+        {items.map((feature, index) => (
           <button
             key={feature.eyebrow}
             type="button"
@@ -479,6 +499,12 @@ const featureStories: Record<
     after: "Search by context, tags, dates, groups, and summaries.",
     description:
       "Your documents become searchable records, so retrieval does not depend on perfect folders or filenames.",
+  },
+  "Linked Document Map": {
+    before: "Related documents and notes still feel like separate items.",
+    after: "A visual map makes their relationships clear.",
+    description:
+      "Arrange connected records and notes in a desktop workspace that helps you understand projects, cases, research, and document groups at a glance.",
   },
   "Document Overview": {
     before: "Opening a file still leaves you rebuilding the story.",
@@ -518,8 +544,21 @@ export default function FeaturesSection() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [lightboxPlatform, setLightboxPlatform] = useState<Platform>("desktop");
 
-  const activeFeature = features[activeIndex];
+  const visibleFeatures = activePlatform === "desktop"
+    ? features
+    : features.filter((feature) => !feature.desktopOnly);
+  const activeFeature = visibleFeatures[activeIndex];
   const activeStory = featureStories[activeFeature.eyebrow];
+
+  const changePlatform = (platform: Platform) => {
+    const currentEyebrow = activeFeature.eyebrow;
+    const nextFeatures = platform === "desktop"
+      ? features
+      : features.filter((feature) => !feature.desktopOnly);
+    const nextIndex = nextFeatures.findIndex((feature) => feature.eyebrow === currentEyebrow);
+    setActivePlatform(platform);
+    setActiveIndex(nextIndex >= 0 ? nextIndex : 0);
+  };
 
   return (
     <section id="features" className="relative bg-[#06101a] px-5 py-16 sm:px-6 sm:py-20 lg:py-24">
@@ -558,12 +597,12 @@ export default function FeaturesSection() {
             </div>
             <PlatformTabs
               activePlatform={activePlatform}
-              setActivePlatform={setActivePlatform}
+              setActivePlatform={changePlatform}
             />
           </div>
 
           <div className="mt-5 hidden gap-3 md:grid md:grid-cols-2 lg:grid-cols-4">
-            {features.map((feature, index) => {
+            {visibleFeatures.map((feature, index) => {
               const isActive = index === activeIndex;
               return (
                 <button
@@ -617,6 +656,7 @@ export default function FeaturesSection() {
           <div className="grid gap-0 lg:grid-cols-[1.25fr_0.75fr]">
             <div className="flex h-full flex-col bg-[#07111d] p-4 md:p-6 lg:p-8">
               <MobileFeaturePager
+                items={visibleFeatures}
                 activeIndex={activeIndex}
                 onChange={setActiveIndex}
               />
@@ -640,8 +680,8 @@ export default function FeaturesSection() {
                     />
                   ) : (
                     <MobileScreenshot
-                      image={activeFeature.mobileImage}
-                      alt={activeFeature.mobileImageAlt}
+                      image={activeFeature.mobileImage!}
+                      alt={activeFeature.mobileImageAlt!}
                       onOpen={() => {
                         setLightboxPlatform("mobile");
                         setLightboxIndex(activeIndex);

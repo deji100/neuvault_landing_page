@@ -5,7 +5,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "Privacy Policy",
   description:
-    "Read the NeuVault privacy policy for the local-first mobile document vault, including data handling, backup, reminders, notes, scans, and assistant workflows.",
+    "Read the NeuVault privacy policy, including local-first document handling, Gmail and Google user data, AI processing, backup, and account deletion.",
   path: "/privacy-policy",
   noindex: true,
   keywords: ["neuvault privacy policy", "document vault privacy policy", "local-first privacy policy"],

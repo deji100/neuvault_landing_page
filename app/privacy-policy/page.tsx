@@ -13,9 +13,10 @@ import {
   FaFileAlt,
   FaWifi,
   FaTrash,
+  FaEnvelope,
 } from "react-icons/fa";
 
-const EFFECTIVE_DATE = "February 11, 2026"; // update anytime
+const EFFECTIVE_DATE = "July 14, 2026";
 const PRIVACY_EMAIL = "support@neuvault.app";
 
 const Section = ({
@@ -107,8 +108,8 @@ export default function PrivacyPolicyPage() {
           <p className="text-gray-300 mt-5 max-w-3xl">
             NeuVault is built on a privacy-first, local-first philosophy. This
             policy explains what we collect, what we do not collect, and how AI,
-            offline queues, encrypted exports, and App Store privacy disclosures
-            work.
+            connected email accounts, offline queues, encrypted exports, and
+            platform privacy disclosures work.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3 sm:items-center text-sm text-gray-400">
@@ -149,6 +150,7 @@ export default function PrivacyPolicyPage() {
                   ["principles", "Core principles"],
                   ["collect", "What we collect"],
                   ["documents", "Your documents & local storage"],
+                  ["email-integrations", "Email integrations & Google user data"],
                   ["ai", "AI & data processing"],
                   ["suggestions", "Smart Suggestions & Resurfacing"],
                   ["offline", "Offline queue & processing"],
@@ -252,7 +254,126 @@ export default function PrivacyPolicyPage() {
               </p>
             </Section>
 
-            <Section id="ai" title="4. AI & data processing" icon={<FaRobot />}>
+            <Section
+              id="email-integrations"
+              title="4. Email integrations & Google user data"
+              icon={<FaEnvelope />}
+            >
+              <p className="text-gray-300">
+                NeuVault Desktop lets you optionally connect supported email
+                accounts to find and import document attachments. Connecting an
+                email account is optional and requires your affirmative consent.
+              </p>
+
+              <h3 className="text-lg font-semibold text-white mt-4">
+                Gmail data NeuVault accesses
+              </h3>
+              <p className="text-gray-300">
+                If you connect Gmail, NeuVault requests the read-only{" "}
+                <code className="text-white">gmail.readonly</code> permission,
+                together with basic Google account identity information needed
+                to identify the connected account. Depending on how you use the
+                feature, NeuVault may access:
+              </p>
+              <ul className="space-y-2 mt-2">
+                <Bullet>Your connected Google account identifier, name, and email address.</Bullet>
+                <Bullet>
+                  Gmail message identifiers, sender, subject, received date,
+                  labels, and attachment filenames, types, and sizes.
+                </Bullet>
+                <Bullet>
+                  The Gmail message structure needed to locate attachments and
+                  the content of attachments you choose to import or that match
+                  Automatic import rules you enable.
+                </Bullet>
+              </ul>
+              <p className="text-gray-300">
+                NeuVault does not request permission to send, edit, move, or
+                delete Gmail messages. Email bodies are not imported as
+                standalone vault documents.
+              </p>
+
+              <h3 className="text-lg font-semibold text-white mt-4">
+                How email data is used
+              </h3>
+              <ul className="space-y-2 mt-2">
+                <Bullet>Search for messages containing supported document attachments.</Bullet>
+                <Bullet>
+                  Display attachment details so you can decide what to import.
+                </Bullet>
+                <Bullet>
+                  Import selected attachments, or matching attachments received
+                  within a start-and-end date range you choose when you enable
+                  Automatic import.
+                </Bullet>
+                <Bullet>
+                  Process imported documents for user-facing NeuVault features,
+                  such as searchable records, summaries, tags, reminders, and
+                  related-document suggestions.
+                </Bullet>
+              </ul>
+
+              <h3 className="text-lg font-semibold text-white mt-4">
+                Storage, sharing, and security
+              </h3>
+              <ul className="space-y-2 mt-2">
+                <Bullet>
+                  OAuth access and refresh tokens are stored locally on your
+                  device using operating-system-provided secure storage where
+                  available.
+                </Bullet>
+                <Bullet>
+                  Email attachment metadata and imported documents are stored in
+                  your local NeuVault data. Temporary attachment copies are used
+                  only to complete import and processing.
+                </Bullet>
+                <Bullet>
+                  Imported attachment content may be securely transmitted to
+                  purpose-limited service providers only as necessary to provide
+                  the NeuVault processing features you request.
+                </Bullet>
+                <Bullet>
+                  Google user data is not sold, used for advertising, used to
+                  determine creditworthiness, or used to train or improve a
+                  generalized AI or machine-learning model.
+                </Bullet>
+                <Bullet>
+                  NeuVault personnel do not read Google user data except with
+                  your explicit consent for specific support, when necessary for
+                  security, or when required by law.
+                </Bullet>
+              </ul>
+
+              <h3 className="text-lg font-semibold text-white mt-4">
+                Disconnecting Gmail and deleting imported data
+              </h3>
+              <p className="text-gray-300">
+                You can disconnect Gmail from Email Documents &gt; Accounts &amp;
+                rules. NeuVault will attempt to revoke Google access and removes
+                the locally stored Gmail authorization for that account.
+                Documents already imported into your vault remain under your
+                control until you delete them from NeuVault. You can also revoke
+                NeuVault from your Google Account permissions.
+              </p>
+
+              <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-5">
+                <p className="text-sm text-gray-200">
+                  NeuVault&apos;s use and transfer of information received from
+                  Google APIs adheres to the{" "}
+                  <a
+                    href="https://developers.google.com/terms/api-services-user-data-policy"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[#6DD1FF] hover:underline"
+                  >
+                    Google API Services User Data Policy
+                  </a>
+                  , including the Limited Use requirements.
+                </p>
+              </div>
+            </Section>
+
+            <Section id="ai" title="5. AI & data processing" icon={<FaRobot />}>
               <p className="text-gray-300">
                 NeuVault includes AI-powered features such as Smart Intake
                 (automatic summaries, tagging, grouping), Smart Suggestions, Nova
@@ -329,7 +450,7 @@ export default function PrivacyPolicyPage() {
 
             <Section
               id="suggestions"
-              title="5. Smart Suggestions & Resurfacing"
+              title="6. Smart Suggestions & Resurfacing"
               icon={<FaBell />}
             >
               <ul className="space-y-2">
@@ -350,7 +471,7 @@ export default function PrivacyPolicyPage() {
               </ul>
             </Section>
 
-            <Section id="offline" title="6. Offline queue & processing" icon={<FaWifi />}>
+            <Section id="offline" title="7. Offline queue & processing" icon={<FaWifi />}>
               <p className="text-gray-300">
                 NeuVault supports offline-first capture. If you add content while
                 offline (uploads, scans, images, notes, voice recordings, or
@@ -370,7 +491,7 @@ export default function PrivacyPolicyPage() {
               </ul>
             </Section>
 
-            <Section id="backup" title="7. Encrypted export & backup" icon={<FaCloud />}>
+            <Section id="backup" title="8. Encrypted export & backup" icon={<FaCloud />}>
               <p className="text-gray-300">
                 NeuVault supports optional encrypted export/backup to a cloud
                 provider of your choice (e.g., Google Drive, iCloud, Dropbox, or
@@ -405,7 +526,7 @@ export default function PrivacyPolicyPage() {
               </div>
             </Section>
 
-            <Section id="analytics" title="8. Analytics & diagnostics" icon={<FaBug />}>
+            <Section id="analytics" title="9. Analytics & diagnostics" icon={<FaBug />}>
               <p className="text-gray-300">
                 We may collect limited, non-content diagnostics (e.g., crash
                 reports, performance metrics, and error logs) to improve
@@ -420,7 +541,7 @@ export default function PrivacyPolicyPage() {
 
             <Section
               id="admin-access"
-              title="9. Administrative access & support operations"
+              title="10. Administrative access & support operations"
               icon={<FaUserShield />}
             >
               <p className="text-gray-300">
@@ -452,12 +573,12 @@ export default function PrivacyPolicyPage() {
 
             <Section
               id="appstore"
-              title="10. App Store privacy summary (iOS)"
+              title="11. Platform privacy summary"
               icon={<FaShieldAlt />}
             >
               <p className="text-gray-300">
-                This section summarizes NeuVault{"'"}s data handling in App Store
-                privacy terms.
+                This section summarizes NeuVault{"'"}s data handling across its
+                mobile and desktop applications.
               </p>
               <ul className="space-y-2">
                 <Bullet>
@@ -474,9 +595,9 @@ export default function PrivacyPolicyPage() {
                 </Bullet>
                 <Bullet>
                   <strong className="text-white">User content:</strong> documents,
-                  notes, images, and audio you submit are processed only to deliver
-                  requested features (for example intake, search, summaries, and
-                  transcription).
+                  notes, images, audio, and email attachments you submit are
+                  processed only to deliver requested features (for example
+                  intake, search, summaries, and transcription).
                 </Bullet>
                 <Bullet>
                   <strong className="text-white">Third-party content rights:</strong>{" "}
@@ -486,7 +607,7 @@ export default function PrivacyPolicyPage() {
               </ul>
             </Section>
 
-            <Section id="retention" title="11. Data retention" icon={<FaLock />}>
+            <Section id="retention" title="12. Data retention" icon={<FaLock />}>
               <ul className="space-y-2">
                 <Bullet>Account data is retained while your account remains active.</Bullet>
                 <Bullet>
@@ -500,10 +621,15 @@ export default function PrivacyPolicyPage() {
                   Deleting your account does not automatically delete local vault
                   content unless you remove the app or delete local data in-app.
                 </Bullet>
+                <Bullet>
+                  Disconnecting Gmail revokes or removes NeuVault&apos;s stored
+                  authorization, but does not automatically delete documents you
+                  already imported into your local vault.
+                </Bullet>
               </ul>
             </Section>
 
-            <Section id="account-deletion" title="12. Account deletion" icon={<FaTrash />}>
+            <Section id="account-deletion" title="13. Account deletion" icon={<FaTrash />}>
               <p className="text-gray-300">
                 You can request account deletion directly in the app (Settings &gt; Delete
                 Account) or by using our public account deletion page:
@@ -525,7 +651,7 @@ export default function PrivacyPolicyPage() {
               </ul>
             </Section>
 
-            <Section id="rights" title="13. Your rights" icon={<FaUserShield />}>
+            <Section id="rights" title="14. Your rights" icon={<FaUserShield />}>
               <p className="text-gray-300">
                 Depending on your jurisdiction, you may have rights to access,
                 correct, or delete your account data, and to withdraw consent
@@ -540,14 +666,14 @@ export default function PrivacyPolicyPage() {
               </p>
             </Section>
 
-            <Section id="children" title="14. Children’s privacy" icon={<FaShieldAlt />}>
+            <Section id="children" title="15. Children’s privacy" icon={<FaShieldAlt />}>
               <p className="text-gray-300">
                 NeuVault is not intended for children under 13, and we do not
                 knowingly collect personal data from children.
               </p>
             </Section>
 
-            <Section id="security" title="15. Security" icon={<FaLock />}>
+            <Section id="security" title="16. Security" icon={<FaLock />}>
               <p className="text-gray-300">
                 We use industry-standard security practices to protect account
                 data and provide encrypted exports, including secure transport
@@ -559,7 +685,7 @@ export default function PrivacyPolicyPage() {
               </p>
             </Section>
 
-            <Section id="changes" title="16. Changes to this policy" icon={<FaFileAlt />}>
+            <Section id="changes" title="17. Changes to this policy" icon={<FaFileAlt />}>
               <p className="text-gray-300">
                 We may update this policy to reflect product changes or legal
                 requirements. When we do, we will update the effective date and
@@ -567,7 +693,7 @@ export default function PrivacyPolicyPage() {
               </p>
             </Section>
 
-            <Section id="contact" title="17. Contact" icon={<FaUserShield />}>
+            <Section id="contact" title="18. Contact" icon={<FaUserShield />}>
               <p className="text-gray-300">
                 For privacy questions or requests, contact:
               </p>
