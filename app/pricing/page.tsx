@@ -137,7 +137,7 @@ export default function PricingPage() {
           <div className="mt-6 flex flex-col gap-3 text-sm text-gray-400 sm:flex-row sm:items-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
               <CreditCard className="h-3.5 w-3.5 text-white/60" />
-              Explorer includes 500 credits for 14 days
+              Explorer includes 500 free credits available for 14 days
             </span>
             <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
               <ShieldCheck className="h-3.5 w-3.5 text-white/60" />

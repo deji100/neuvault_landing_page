@@ -16,10 +16,10 @@ export const pricingPlans: PricingPlan[] = [
     name: "Explorer",
     price: "Free",
     allowance: "500",
-    cadence: "credits for 14 days",
+    cadence: "free credits for 14 days",
     audience: "For trying NeuVault with a small vault.",
     summary:
-      "Start with scans, uploads, notes, local organization, and a 14-day credit window to understand how NeuVault fits your paperwork.",
+      "Start with 500 free credits for 14 days. NeuVault remains usable afterward, and you can add credits whenever you choose to use AI-powered features.",
     features: [
       "Private local-first vault on your device",
       "Scan or upload important documents",
@@ -64,8 +64,8 @@ export const pricingPlans: PricingPlan[] = [
     id: "premium",
     name: "Premium",
     price: "$20 / month",
-    allowance: "8,000",
-    cadence: "credits / month",
+    allowance: "96,000",
+    cadence: "annual credit pool",
     audience: "For heavier vaults and richer AI workflows.",
     summary:
       "Built for larger personal or work vaults with frequent scans, more voice context, deeper Nova usage, and ongoing Attention reviews.",
@@ -84,10 +84,10 @@ export const pricingPlans: PricingPlan[] = [
     cadence: "credits / month",
     audience: "For people building NeuVault into a long-term system.",
     summary:
-      "The Premium monthly capacity with an annual billing rhythm for users who want one dependable document memory system.",
+      "A 96,000-credit annual pool for users who want one dependable document intelligence workspace.",
     highlight: "Best long-term fit",
     features: [
-      "Same Premium monthly credit allowance",
+      "96,000 credits available as an annual pool",
       "Annual plan for long-term vault building",
       "Good fit for family, school, property, or business records",
       "Designed for ongoing backup, retrieval, and Attention workflows",

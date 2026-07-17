@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 
 import Hero from "@/components/specific/home/Hero";
-import PainRecognition from "@/components/specific/home/PainRecognition";
-import FeaturesSection from "@/components/specific/home/FeatureCards";
+import ProductStory from "@/components/specific/home/ProductStory";
 import HowItWorks from "@/components/specific/home/HowITWorks";
-import SeeItInAction from "@/components/specific/home/Proof";
-import TestimonialsSection from "@/components/specific/home/Testimonials";
 import FloatingDownloadButtons from "@/components/specific/home/FloatingDownloadButtons";
 import PricingPlans from "@/components/specific/pricing/PricingPlans";
 
@@ -26,9 +23,9 @@ import {
 } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "NeuVault — Scan, Organize & Find Important Documents",
+  title: "NeuVault — Private Document Intelligence for iPhone, Android, Mac and Windows",
   description:
-    "Scan, organize, retrieve, and get expiry reminders for important documents. NeuVault turns scanned documents, notes, voice memos, and files into a private AI vault with smart search and encrypted backup.",
+    "NeuVault automatically organizes documents from uploads, scans, selected folders and email attachments. Connect files, track reminders, transcribe voice notes and work with your documents privately across mobile and desktop.",
   path: "/",
   keywords: [
     "scan and organize documents",
@@ -119,7 +116,7 @@ export default function Home() {
     {
       question: "What kind of app is NeuVault?",
       answer:
-        "NeuVault is a private, local-first AI vault for important documents, scans, notes, screenshots, and voice notes. It helps you organize records automatically, understand what they mean, ask Nova questions, review important dates, and restore your vault across devices.",
+        "NeuVault is a private, cross-platform document intelligence workspace. It brings documents in, organizes and connects them, tracks important dates, and helps you turn information into useful work.",
     },
     {
       question: "How is NeuVault different from cloud storage?",
@@ -127,9 +124,9 @@ export default function Home() {
         "Cloud storage mainly stores files. NeuVault is built around document memory: it helps you capture records, organize them, keep useful context, review dates, ask questions, and back up your vault under your control.",
     },
     {
-      question: "Can NeuVault help me scan and organize documents?",
+      question: "Can NeuVault import email attachments?",
       answer:
-        "Yes. NeuVault supports document scanning, OCR-backed extraction, automatic organization, summaries, tags, manual grouping, and searchable retrieval so scanned paperwork does not get lost after capture.",
+        "On desktop, NeuVault supports Google and Microsoft email attachment import. Choose a historical date range and whether NeuVault should continue monitoring newly received attachments. Yahoo support is coming soon.",
     },
     {
       question: "Can NeuVault watch folders for new files?",
@@ -137,9 +134,9 @@ export default function Home() {
         "On desktop, NeuVault can help monitor selected folders so new files can enter the vault workflow without repeated manual uploads.",
     },
     {
-      question: "Does NeuVault support notes and voice notes?",
+      question: "Can NeuVault transcribe meetings?",
       answer:
-        "Yes. NeuVault supports typed notes and voice notes alongside documents and scans, so important context can live in the same private vault.",
+        "Yes. NeuVault can transcribe live voice recordings and imported audio into structured, editable text that can remain connected to related documents.",
     },
     {
       question: "Does NeuVault support iPhone, Android, Windows, and macOS?",
@@ -149,12 +146,22 @@ export default function Home() {
     {
       question: "Does NeuVault store my documents in the cloud?",
       answer:
-        "NeuVault is designed around local-first storage and user-controlled backup. Documents are stored on your device, and encrypted backups can be created under your control.",
+        "NeuVault is designed around local-first storage. Original documents remain on your device by default unless you choose a supported backup or integration workflow. Encrypted backups remain under your control.",
     },
     {
-      question: "Why do app stores mention user content?",
+      question: "Can I use NeuVault without AI?",
       answer:
-        "NeuVault may process content when you use OCR, AI summaries, transcription, Nova, or related workflows. The vault is designed around local-first storage, and NeuVault does not permanently store your vault documents as a cloud drive.",
+        "Yes. Storage and non-AI vault functionality remain available after credits are exhausted. Credits are used only when you choose a supported AI or OCR action.",
+    },
+    {
+      question: "Can I link and compare related documents?",
+      answer:
+        "Yes. NeuVault supports direct links, linked-document groups, notes connected to documents, and side-by-side comparison inside the spatial Map workspace.",
+    },
+    {
+      question: "Can NeuVault convert documents and responses?",
+      answer:
+        "NeuVault can convert supported documents, notes, extracted information, and Nova responses into practical formats including PDF, Word, CSV, and editable notes where applicable.",
     },
   ]);
 
@@ -201,16 +208,10 @@ export default function Home() {
       />
 
       <Hero />
-      <PainRecognition />
-
-      <section className="relative overflow-hidden bg-transparent">
-        <FeaturesSection />
-        <SeeItInAction />
-        <HowItWorks />
-        <TestimonialsSection />
-        <PricingPlans />
-        <FloatingDownloadButtons />
-      </section>
+      <ProductStory />
+      <HowItWorks />
+      <PricingPlans />
+      <FloatingDownloadButtons />
     </main>
   );
 }

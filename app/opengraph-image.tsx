@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "NeuVault private document vault";
+export const alt = "NeuVault private document intelligence workspace";
 export const size = {
   width: 1200,
   height: 630,
@@ -56,16 +56,15 @@ export default function OpenGraphImage() {
               NeuVault
             </div>
             <div style={{ fontSize: 66, lineHeight: 1.08, fontWeight: 700, maxWidth: 860 }}>
-              Private document vault for reminders, backup, notes, scans, and smart retrieval
+              Bring document chaos into one private, intelligent workspace
             </div>
             <div style={{ fontSize: 28, lineHeight: 1.4, color: "#475569", maxWidth: 860 }}>
-              Organize documents, scans, typed notes, and voice capture in one local-first system
-              you can actually find and trust later.
+              Automatically bring in, understand, connect and act on documents across desktop and mobile.
             </div>
           </div>
 
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-            {["Document organization", "Smart reminders", "Encrypted backup", "Voice to text"].map(
+            {["Automatic intake", "Connected records", "Attention", "Local-first"].map(
               (label) => (
                 <div
                   key={label}

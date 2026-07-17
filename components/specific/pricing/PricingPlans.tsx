@@ -31,9 +31,9 @@ export default function PricingPlans({ variant = "home" }: PricingPlansProps) {
 
             <div>
               <p className="max-w-2xl text-base leading-8 text-slate-600 md:text-lg">
-                Start with 500 credits for 14 days, then choose a monthly
-                capacity when NeuVault becomes part of your document routine.
-                Subscriptions are started and managed from the mobile app.
+                Free to store documents. Credits only when you choose to use AI.
+                Explorer includes 500 free credits available for 14 days, and
+                NeuVault remains usable after the trial ends.
               </p>
               <div className="mt-5 flex flex-wrap gap-x-5 gap-y-3 text-sm font-semibold text-slate-700">
                 {[

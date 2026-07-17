@@ -9,10 +9,9 @@ import { useState } from "react";
 import Logo from "@/public/logo.png";
 
 const navItems = [
-  { label: "Features", id: "features" },
-  { label: "Videos", id: "youtube-videos" },
+  { label: "Product", id: "intake" },
   { label: "How it works", id: "how-it-works" },
-  { label: "Stories", id: "testimonials" },
+  { label: "Privacy", id: "privacy" },
 ];
 
 const scrollToId = (id: string) => {
@@ -89,10 +88,10 @@ export default function Navbar() {
           </Link>
 
           <Link
-            href="/privacy-policy"
+            href="/business"
             className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 hover:bg-white hover:text-slate-950 hover:shadow-sm"
           >
-            Privacy
+            Business
           </Link>
         </div>
 
@@ -140,11 +139,11 @@ export default function Navbar() {
             </Link>
 
             <Link
-              href="/privacy-policy"
+              href="/business"
               onClick={() => setMobileOpen(false)}
               className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700"
             >
-              Privacy
+              Business
             </Link>
 
             <button

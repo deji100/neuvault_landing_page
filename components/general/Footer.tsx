@@ -25,9 +25,9 @@ const scrollToId = (id: string) => {
 };
 
 const primaryLinks = [
-  { label: "Features", id: "features" },
-  { label: "YouTube videos", id: "youtube-videos" },
+  { label: "Product", id: "intake" },
   { label: "How it works", id: "how-it-works" },
+  { label: "Privacy", id: "privacy" },
 ];
 
 const workflowLabels: Record<string, string> = {
@@ -111,14 +111,14 @@ export default function Footer() {
                 <div>
                   <p className="text-2xl font-black tracking-normal text-slate-950">NeuVault</p>
                   <p className="mt-1 text-sm font-medium text-slate-600">
-                    Private document memory for records life asks for later
+                    Private, cross-platform document intelligence
                   </p>
                 </div>
               </Link>
 
               <h2 className="mt-6 max-w-3xl text-2xl font-semibold leading-tight text-slate-950 md:text-3xl">
-                Keep documents, scans, notes, and voice context in one private
-                vault that is easy to find, remember, and recover.
+                Bring scattered documents into one private workspace that
+                understands, connects and tracks what matters.
               </h2>
             </div>
 
@@ -168,6 +168,11 @@ export default function Footer() {
               <li>
                 <Link href="/pricing" className="text-slate-600 hover:text-blue-700">
                   Pricing
+                </Link>
+              </li>
+              <li>
+                <Link href="/business" className="text-slate-600 hover:text-blue-700">
+                  Business
                 </Link>
               </li>
               <li>

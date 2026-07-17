@@ -17,10 +17,10 @@ export const WINDOWS_MICROSOFT_STORE_URL =
   "https://apps.microsoft.com/detail/9PNM0GXZPT8T?hl=en-us&gl=US&ocid=pdpshare";
 
 export const DEFAULT_TITLE =
-  "NeuVault — Scan, Organize & Find Important Documents";
+  "NeuVault — Private Document Intelligence for iPhone, Android, Mac and Windows";
 
 export const DEFAULT_DESCRIPTION =
-  "Scan, organize, retrieve, and get expiry reminders for important documents. NeuVault turns scanned documents, notes, voice memos, and files into a private AI vault with smart search and encrypted backup.";
+  "NeuVault automatically organizes documents from uploads, scans, selected folders and email attachments. Connect files, track reminders, transcribe voice notes and work privately across mobile and desktop.";
 
 export const DEFAULT_OG_IMAGE_PATH = "/opengraph-image";
 

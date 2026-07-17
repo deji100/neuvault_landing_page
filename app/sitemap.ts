@@ -20,6 +20,11 @@ const staticRoutes = [
     priority: 0.82,
   },
   {
+    path: "/business",
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  },
+  {
     path: "/press",
     changeFrequency: "monthly" as const,
     priority: 0.55,

@@ -6,41 +6,41 @@ import {
   ArrowRight,
   Brain,
   CheckCircle2,
-  CloudUpload,
+  ShieldCheck,
   ScanLine,
   Search,
 } from "lucide-react";
 
 const steps = [
   {
-    title: "Capture",
+    title: "Bring documents in",
     description:
-      "Scan paper, upload documents, save notes, record voice context, or add screenshots.",
+      "Upload, scan, connect email, monitor folders, write notes or record voice.",
     icon: <ScanLine size={22} />,
   },
   {
-    title: "Understand",
+    title: "Let NeuVault understand",
     description:
-      "NeuVault creates summaries, tags, document types, extracted details, and dates.",
+      "Generate summaries, tags, classifications, extracted information and dates.",
     icon: <Brain size={22} />,
   },
   {
-    title: "Connect",
+    title: "Connect related information",
     description:
-      "Group related records around a trip, application, client job, school file, or personal issue.",
+      "Link documents, notes and records or review suggested relationships.",
     icon: <Archive size={22} />,
   },
   {
-    title: "Find",
+    title: "Work and act",
     description:
-      "Search by what you remember, not only by the exact file name.",
+      "Ask Nova, compare documents, create notes, convert content and track reminders.",
     icon: <Search size={22} />,
   },
   {
-    title: "Recover",
+    title: "Stay in control",
     description:
-      "Create encrypted backups you control and restore your vault across devices.",
-    icon: <CloudUpload size={22} />,
+      "Keep documents local-first and use encrypted backup options you control.",
+    icon: <ShieldCheck size={22} />,
   },
 ];
 
@@ -59,12 +59,12 @@ export default function HowItWorks() {
             How NeuVault works
           </p>
           <h2 className="mt-4 text-3xl font-bold leading-tight text-slate-950 md:text-5xl">
-            A simple loop for documents you cannot afford to lose.
+            From scattered files to connected, useful work.
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-600 md:text-lg">
-            The product is built around one repeatable workflow: capture the
-            record, preserve the meaning, find it when needed, and recover the
-            vault when devices change.
+            NeuVault brings information in, understands it, connects the
+            context and helps you act—while keeping the original documents
+            under your control.
           </p>
         </motion.div>
 

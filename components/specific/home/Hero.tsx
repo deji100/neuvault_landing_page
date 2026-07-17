@@ -1,354 +1,113 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState, type MouseEvent } from "react";
-import { Smartphone } from "lucide-react";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  ArrowDown,
+  BellRing,
+  FileCheck2,
+  FileText,
+  FolderInput,
+  Mail,
+  Mic2,
+  Network,
+  ScanLine,
+  ShieldCheck,
+} from "lucide-react";
 import PlatformIconRow from "@/components/general/PlatformIconRow";
-import { FaAndroid, FaApple, FaWindows } from "react-icons/fa";
-import LoginImage from "@/public/login.png";
+import {
+  ANDROID_PLAY_STORE_URL,
+  IOS_APP_STORE_URL,
+  MACOS_APP_STORE_URL,
+  WINDOWS_MICROSOFT_STORE_URL,
+} from "@/lib/seo";
 
-const IOS_APP_STORE_URL = "https://apps.apple.com/ng/app/neuvault/id6759370392";
-const MACOS_APP_STORE_URL =
-  "https://apps.apple.com/ng/app/neuvault/id6759370392?platform=mac";
-const ANDROID_PLAY_STORE_URL =
-  "https://play.google.com/store/apps/details?id=app.neuvault";
-const WINDOWS_MICROSOFT_STORE_URL =
-  "https://apps.microsoft.com/detail/9PNM0GXZPT8T?hl=en-us&gl=US&ocid=pdpshare";
-
-type DevicePlatform = "ios" | "android" | "windows" | "macos" | "other";
-
-const trustPills = [
-  "Local-first storage",
-  "Private document search",
-  "Encrypted backups",
+const sources = [
+  { label: "Email attachment", icon: Mail },
+  { label: "Watched folder", icon: FolderInput },
+  { label: "Scanned document", icon: ScanLine },
+  { label: "Voice recording", icon: Mic2 },
 ];
 
-const platformMenuLinks = [
-  {
-    label: "App Store (iOS)",
-    href: IOS_APP_STORE_URL,
-    icon: Smartphone,
-  },
-  {
-    label: "App Store (macOS)",
-    href: MACOS_APP_STORE_URL,
-    icon: FaApple,
-  },
-  {
-    label: "Google Play",
-    href: ANDROID_PLAY_STORE_URL,
-    icon: FaAndroid,
-  },
-  {
-    label: "Windows Store",
-    href: WINDOWS_MICROSOFT_STORE_URL,
-    icon: FaWindows,
-  },
+const proof = [
+  { label: "Automatic folder and email intake", icon: FolderInput },
+  { label: "Connected document intelligence", icon: Network },
+  { label: "Private, local-first storage", icon: ShieldCheck },
 ];
 
-function FadeImage({ className, ...props }: React.ComponentProps<typeof Image>) {
-  const [loaded, setLoaded] = useState(false);
-  return (
-    <Image
-      {...props}
-      className={`${className || ""} transition-all duration-700 ease-out ${
-        loaded ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-[1.02]"
-      }`}
-      onLoad={(e) => {
-        setLoaded(true);
-        if (props.onLoad) props.onLoad(e);
-      }}
-    />
-  );
-}
+const platforms = [
+  { label: "iPhone", href: IOS_APP_STORE_URL },
+  { label: "Android", href: ANDROID_PLAY_STORE_URL },
+  { label: "Windows", href: WINDOWS_MICROSOFT_STORE_URL },
+  { label: "macOS", href: MACOS_APP_STORE_URL },
+];
 
 export default function Hero() {
-  const [devicePlatform, setDevicePlatform] =
-    useState<DevicePlatform>("other");
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [expandedImage, setExpandedImage] = useState(false);
-
-  useEffect(() => {
-    const userAgent = navigator.userAgent || navigator.vendor || "";
-    const isAndroid = /android/i.test(userAgent);
-    const isWindows = /windows/i.test(userAgent);
-    const isMacOS = /Macintosh|Mac OS X/i.test(userAgent);
-    const isIOS =
-      /iPad|iPhone|iPod/i.test(userAgent) ||
-      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-
-    if (isAndroid) {
-      setDevicePlatform("android");
-      return;
-    }
-
-    if (isIOS) {
-      setDevicePlatform("ios");
-      return;
-    }
-
-    if (isWindows) {
-      setDevicePlatform("windows");
-      return;
-    }
-
-    if (isMacOS) {
-      setDevicePlatform("macos");
-      return;
-    }
-
-    setDevicePlatform("other");
-  }, []);
-
-  const handleDownloadClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    if (devicePlatform === "windows") {
-      event.preventDefault();
-      window.dispatchEvent(new Event("neuvault:open-downloads"));
-      return;
-    }
-
-    if (window.innerWidth < 700) {
-      return;
-    }
-
-    const featuresSection = document.getElementById("features");
-    if (!featuresSection) return;
-
-    event.preventDefault();
-    const navOffset = 92;
-    const top =
-      featuresSection.getBoundingClientRect().top + window.scrollY - navOffset;
-
-    window.scrollTo({ top, behavior: "smooth" });
-  };
-
-  const downloadUrl =
-    devicePlatform === "android"
-      ? ANDROID_PLAY_STORE_URL
-      : devicePlatform === "windows"
-        ? WINDOWS_MICROSOFT_STORE_URL
-        : devicePlatform === "macos"
-          ? MACOS_APP_STORE_URL
-        : IOS_APP_STORE_URL;
-
-  const downloadLabel =
-    devicePlatform === "android"
-      ? "Download on Google Play"
-      : devicePlatform === "ios"
-        ? "Download on the App Store"
-        : devicePlatform === "windows"
-          ? "500 credits for 14 days"
-          : devicePlatform === "macos"
-            ? "Download for macOS"
-          : "Get NeuVault free";
+  const [downloadsOpen, setDownloadsOpen] = useState(false);
 
   return (
-    <section className="relative overflow-hidden bg-white px-5 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-32 md:pb-24 md:pt-36 lg:pt-40">
-      <div className="absolute inset-x-0 top-0 h-[620px] bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.10),transparent_38%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#f7fbff] to-transparent" />
-
-      <div className="relative z-10 mx-auto max-w-7xl">
-        <motion.div
-          className="mx-auto max-w-4xl text-center"
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55 }}
-        >
-          {/* <p className="mx-auto mb-5 inline-flex rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-blue-700">
-            Private AI vault for documents life asks for later
-          </p> */}
-
-          <h1 className="text-4xl font-bold leading-[1.05] tracking-normal text-slate-950 sm:text-6xl md:text-7xl">
-            Scan, organize, and find important documents when you need them.
-          </h1>
-
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
-            NeuVault turns scanned documents, notes, voice memos, and important
-            files into a private AI vault with smart search, expiry reminders,
-            and encrypted backup.
+    <section className="relative overflow-hidden bg-[#07111f] px-5 pb-20 pt-32 text-white sm:px-6 md:pb-28 md:pt-40">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_5%,rgba(59,130,246,.2),transparent_32rem),radial-gradient(circle_at_85%_65%,rgba(15,159,154,.12),transparent_28rem)]" />
+      <div className="relative mx-auto grid w-full min-w-0 max-w-7xl gap-14 lg:grid-cols-[minmax(0,1.02fr)_minmax(0,.98fr)] lg:items-center">
+        <motion.div className="min-w-0" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .55 }}>
+          <p className="inline-flex rounded-full border border-blue-300/20 bg-blue-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[.16em] text-blue-200">
+            Private document intelligence
           </p>
-
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <div className="relative flex w-full flex-col sm:w-auto">
-              <div className="flex w-full items-stretch shadow-[0_20px_42px_-22px_rgba(37,99,235,0.85)]">
-                <a
-                  href={downloadUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={handleDownloadClick}
-                  className="inline-flex flex-1 items-center justify-center rounded-l-xl bg-blue-600 px-6 py-3 text-base font-semibold text-white hover:bg-blue-700 sm:w-auto border-r border-blue-700/50"
-                >
-                  {downloadLabel}
-                </a>
-                <button
-                  type="button"
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="inline-flex items-center justify-center rounded-r-xl bg-blue-600 px-3 py-3 text-white hover:bg-blue-700"
-                  aria-label="More platforms"
-                >
-                  <svg className={`h-5 w-5 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
-                  </svg>
-                </button>
-              </div>
+          <h1 className="mt-6 max-w-4xl break-words text-4xl font-bold leading-[1.04] tracking-[-.035em] sm:text-6xl lg:text-7xl">
+            Bring your document chaos into one private, intelligent workspace.
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
+            NeuVault brings in documents from selected folders, email attachments, scans and uploads. It organizes and connects them, helps you find what matters and tracks what needs attention—across iPhone, Android, Windows and macOS.
+          </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="relative">
+              <button onClick={() => setDownloadsOpen((value) => !value)} className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blue-500 px-6 py-3.5 font-semibold text-white shadow-[0_20px_45px_-20px_rgba(59,130,246,.8)] hover:bg-blue-400 sm:w-auto" aria-expanded={downloadsOpen}>
+                Download NeuVault <ArrowDown size={17} />
+              </button>
               <AnimatePresence>
-                {isDropdownOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.15 }}
-                    className="absolute left-0 top-full z-50 mt-2 w-full min-w-[260px] rounded-xl border border-slate-200 bg-white p-2 shadow-xl"
-                  >
-                    {platformMenuLinks.map(({ label, href, icon: Icon }) => (
-                      <a
-                        key={label}
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="grid grid-cols-[1.5rem_minmax(12rem,1fr)] items-center justify-center gap-3 rounded-lg px-5 py-3 text-left text-sm font-medium text-slate-700 hover:bg-slate-50"
-                      >
-                        <Icon aria-hidden="true" className="h-5 w-5 justify-self-center text-slate-600" />
-                        <span>{label}</span>
-                      </a>
-                    ))}
+                {downloadsOpen && (
+                  <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }} className="absolute left-0 top-full z-30 mt-2 w-full min-w-64 rounded-xl border border-white/10 bg-[#101b2b] p-2 shadow-2xl">
+                    {platforms.map((platform) => <a key={platform.label} href={platform.href} target="_blank" rel="noreferrer" className="block rounded-lg px-4 py-3 text-sm text-slate-200 hover:bg-white/10">{platform.label}</a>)}
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
-
-            <Link
-              href="#features"
-              className="inline-flex w-full items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-800 hover:border-blue-300 hover:text-blue-700 sm:w-auto"
-            >
-              See the pain it solves
-            </Link>
+            <Link href="#how-it-works" className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 font-semibold text-white hover:bg-white/10">See how it works</Link>
           </div>
-
-          <div className="mt-7">
-            <div className="flex flex-wrap justify-center gap-3">
-              {trustPills.map((pill) => (
-                <span
-                  key={pill}
-                  className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-600 shadow-sm"
-                >
-                  {pill}
-                </span>
-              ))}
-            </div>
-
-            <PlatformIconRow
-              className="mt-6 justify-center text-slate-600"
-              links={[
-                { label: "iPhone", href: IOS_APP_STORE_URL },
-                { label: "Android", href: ANDROID_PLAY_STORE_URL },
-                { label: "Windows", href: WINDOWS_MICROSOFT_STORE_URL },
-                { label: "macOS", href: MACOS_APP_STORE_URL },
-              ]}
-            />
+          <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            {proof.map(({ label, icon: Icon }) => (
+              <div key={label} className="flex items-center gap-2 text-sm leading-5 text-slate-300"><Icon className="h-4 w-4 shrink-0 text-blue-300" />{label}</div>
+            ))}
           </div>
+          <PlatformIconRow className="mt-7 text-slate-400" links={platforms} />
         </motion.div>
 
-        {/* <motion.button
-          type="button"
-          onClick={() => setExpandedImage(true)}
-          className="mx-auto mt-10 max-w-6xl w-full cursor-zoom-in overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_32px_90px_-48px_rgba(15,23,42,0.55)] transition-all hover:ring-2 hover:ring-blue-500/20 md:mt-14 lg:mt-16"
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, duration: 0.6 }}
-        >
-          <div className="flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-5 py-4">
-            <span className="h-3 w-3 rounded-full bg-red-300" />
-            <span className="h-3 w-3 rounded-full bg-amber-300" />
-            <span className="h-3 w-3 rounded-full bg-emerald-300" />
-            <span className="ml-3 rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-500">
-              NeuVault login
-            </span>
-          </div>
-          <FadeImage
-            src={LoginImage}
-            alt="NeuVault login screenshot"
-            priority
-            className="h-auto w-full object-cover"
-            sizes="(min-width: 1280px) 1152px, 100vw"
-          />
-        </motion.button> */}
-
-        <AnimatePresence>
-          {expandedImage && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setExpandedImage(false)}
-              className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 md:p-12 cursor-zoom-out backdrop-blur-sm"
-            >
-              <motion.div
-                initial={{ scale: 0.95, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.95, opacity: 0 }}
-                className="relative max-h-full max-w-7xl overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-white/20"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-5 py-4">
-                  <span className="h-3 w-3 rounded-full bg-red-300" />
-                  <span className="h-3 w-3 rounded-full bg-amber-300" />
-                  <span className="h-3 w-3 rounded-full bg-emerald-300" />
-                </div>
-                <FadeImage
-                  src={LoginImage}
-                  alt="NeuVault login screenshot"
-                  className="h-auto max-h-[85vh] w-auto object-contain"
-                  unoptimized
-                />
-                <button
-                  type="button"
-                  className="absolute top-3 right-4 rounded-full bg-slate-200 p-2 text-slate-600 transition-colors hover:bg-slate-300 hover:text-slate-900"
-                  onClick={() => setExpandedImage(false)}
-                >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-                </button>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* <div className="mx-auto mt-10 grid max-w-5xl gap-4 sm:grid-cols-3">
-          {[
-            {
-              icon: <FolderOpen size={19} />,
-              title: "All records together",
-              text: "Files, notes, scans, reminders, and voice context stay connected.",
-            },
-            {
-              icon: <ShieldCheck size={19} />,
-              title: "Private by design",
-              text: "Local-first storage with user-controlled encrypted backup.",
-            },
-            {
-              icon: <LockKeyhole size={19} />,
-              title: "Recoverable vault",
-              text: "Move devices without rebuilding your document system.",
-            },
-          ].map((item) => (
-            <div
-              key={item.title}
-              className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
-            >
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-                {item.icon}
-              </div>
-              <h2 className="text-base font-semibold text-slate-950">
-                {item.title}
-              </h2>
-              <p className="mt-2 text-sm leading-6 text-slate-600">
-                {item.text}
-              </p>
+        <motion.div className="relative min-w-0" initial={{ opacity: 0, scale: .97 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: .12, duration: .6 }}>
+          <div className="min-w-0 rounded-[2rem] border border-white/10 bg-white/[.055] p-4 shadow-[0_40px_100px_-45px_rgba(0,0,0,.9)] backdrop-blur md:p-6">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[.15em] text-slate-400">From scattered to usable</p>
+            <div className="grid min-w-0 gap-3 sm:grid-cols-2">
+              {sources.map(({ label, icon: Icon }) => <div key={label} className="flex items-center gap-3 rounded-xl border border-white/10 bg-[#0c1726] p-3 text-sm text-slate-200"><Icon className="h-5 w-5 text-blue-300" />{label}</div>)}
             </div>
-          ))}
-        </div> */}
+            <div className="my-4 flex items-center gap-3 text-xs uppercase tracking-[.14em] text-slate-500"><span className="h-px flex-1 bg-white/10" />NeuVault understands<span className="h-px flex-1 bg-white/10" /></div>
+            <div className="rounded-2xl border border-blue-400/20 bg-blue-400/10 p-5">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex gap-3"><div className="rounded-xl bg-blue-500 p-2.5"><FileText size={21} /></div><div><p className="font-semibold">Supplier agreement</p><p className="mt-1 text-xs text-slate-400">Organized moments ago</p></div></div>
+                <span className="rounded-full bg-emerald-400/10 px-2.5 py-1 text-xs text-emerald-300">Connected</span>
+              </div>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                <div className="rounded-xl bg-[#08131f]/70 p-3"><p className="text-xs text-slate-500">Summary</p><p className="mt-1 text-sm text-slate-200">12-month supplier term with a 30-day renewal notice.</p></div>
+                <div className="rounded-xl bg-[#08131f]/70 p-3"><p className="text-xs text-slate-500">Important date</p><p className="mt-1 flex items-center gap-2 text-sm text-slate-200"><BellRing size={14} className="text-amber-300" />Renewal due 14 Sep</p></div>
+              </div>
+              <div className="mt-3 flex flex-wrap gap-2 text-xs text-slate-300"><span className="rounded-full bg-white/5 px-3 py-1.5">#supplier</span><span className="rounded-full bg-white/5 px-3 py-1.5">Related: 3 files</span><span className="rounded-full bg-white/5 px-3 py-1.5">Attention</span></div>
+            </div>
+            <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs font-medium text-slate-300">
+              <div className="rounded-lg border border-white/10 p-2"><FileCheck2 className="mx-auto mb-1 h-4 w-4 text-teal-300" />Organized</div>
+              <div className="rounded-lg border border-white/10 p-2"><Network className="mx-auto mb-1 h-4 w-4 text-teal-300" />Connected</div>
+              <div className="rounded-lg border border-white/10 p-2"><BellRing className="mx-auto mb-1 h-4 w-4 text-teal-300" />Actionable</div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

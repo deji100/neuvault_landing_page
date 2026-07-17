@@ -156,6 +156,7 @@ function FadeImage({ className, ...props }: React.ComponentProps<typeof Image>) 
   return (
     <Image
       {...props}
+      alt={props.alt ?? ""}
       className={`${className || ""} transition-all duration-700 ease-out ${
         loaded ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-[1.02]"
       }`}
