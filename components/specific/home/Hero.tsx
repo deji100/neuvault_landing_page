@@ -62,7 +62,7 @@ export default function Hero() {
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <div className="relative">
-              <button onClick={() => setDownloadsOpen((value) => !value)} className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blue-500 px-6 py-3.5 font-semibold text-white shadow-[0_20px_45px_-20px_rgba(59,130,246,.8)] hover:bg-blue-400 sm:w-auto" aria-expanded={downloadsOpen}>
+              <button onClick={() => { setDownloadsOpen((value) => !value); window.dispatchEvent(new CustomEvent("neuvault:analytics", { detail: { name: "hero_download_clicked" } })); }} className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blue-500 px-6 py-3.5 font-semibold text-white shadow-[0_20px_45px_-20px_rgba(59,130,246,.8)] hover:bg-blue-400 sm:w-auto" aria-expanded={downloadsOpen}>
                 Download NeuVault <ArrowDown size={17} />
               </button>
               <AnimatePresence>
@@ -73,7 +73,7 @@ export default function Hero() {
                 )}
               </AnimatePresence>
             </div>
-            <Link href="#how-it-works" className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 font-semibold text-white hover:bg-white/10">See how it works</Link>
+            <Link href="#how-it-works" onClick={() => window.dispatchEvent(new CustomEvent("neuvault:analytics", { detail: { name: "see_how_it_works_clicked" } }))} className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 font-semibold text-white hover:bg-white/10">See how it works</Link>
           </div>
           <div className="mt-8 grid gap-3 sm:grid-cols-3">
             {proof.map(({ label, icon: Icon }) => (

@@ -25,7 +25,7 @@ const scrollToId = (id: string) => {
 };
 
 const primaryLinks = [
-  { label: "Product", id: "intake" },
+  { label: "Product", href: "/product" },
   { label: "How it works", id: "how-it-works" },
   { label: "Privacy", id: "privacy" },
 ];
@@ -154,17 +154,7 @@ export default function Footer() {
               Explore
             </h3>
             <ul className="space-y-3 text-sm">
-              {primaryLinks.map((item) => (
-                <li key={item.label}>
-                  <button
-                    type="button"
-                    onClick={() => navigateToSection(item.id)}
-                    className="text-slate-600 hover:text-blue-700"
-                  >
-                    {item.label}
-                  </button>
-                </li>
-              ))}
+              {primaryLinks.map((item) => <li key={item.label}>{item.href ? <Link href={item.href} className="text-slate-600 hover:text-blue-700">{item.label}</Link> : <button type="button" onClick={() => navigateToSection(item.id!)} className="text-slate-600 hover:text-blue-700">{item.label}</button>}</li>)}
               <li>
                 <Link href="/pricing" className="text-slate-600 hover:text-blue-700">
                   Pricing

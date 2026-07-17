@@ -108,8 +108,8 @@ export default function FloatingDownloadButtons() {
 
   useEffect(() => {
     const updateVisibility = () => {
-      const desktopTrigger = document.getElementById("features");
-      const mobileTrigger = document.getElementById("features");
+      const desktopTrigger = document.getElementById("how-it-works");
+      const mobileTrigger = document.getElementById("how-it-works");
       const footer = document.getElementById("site-footer");
       const triggerSection = window.innerWidth >= 700 ? desktopTrigger : mobileTrigger;
 
@@ -156,7 +156,7 @@ export default function FloatingDownloadButtons() {
   const primaryDownloadText = os === "Unknown" ? "Download App" : `Download for ${os}`;
 
   return (
-    <div className="fixed bottom-5 right-5 z-[5000]">
+    <div className="fixed bottom-5 right-5 z-[5000] hidden sm:block">
       <div className="flex flex-col items-end gap-3">
         <AnimatePresence>
           {open && (

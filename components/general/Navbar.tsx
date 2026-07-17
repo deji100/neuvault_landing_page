@@ -9,7 +9,7 @@ import { useState } from "react";
 import Logo from "@/public/logo.png";
 
 const navItems = [
-  { label: "Product", id: "intake" },
+  { label: "Product", href: "/product" },
   { label: "How it works", id: "how-it-works" },
   { label: "Privacy", id: "privacy" },
 ];
@@ -41,6 +41,13 @@ export default function Navbar() {
 
   const openDownloads = () => {
     setMobileOpen(false);
+    if (window.innerWidth < 640) {
+      const finalCta = document.getElementById("final-cta");
+      if (finalCta) {
+        finalCta.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+    }
     window.dispatchEvent(new Event("neuvault:open-downloads"));
   };
 
@@ -69,16 +76,7 @@ export default function Navbar() {
         </Link>
 
         <div className="hidden items-center justify-center gap-1 rounded-full border border-slate-200 bg-slate-50/85 p-1 shadow-sm md:flex">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => navigateToSection(item.id)}
-              className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 hover:bg-white hover:text-slate-950 hover:shadow-sm"
-            >
-              {item.label}
-            </button>
-          ))}
+          {navItems.map((item) => item.href ? <Link key={item.label} href={item.href} className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 hover:bg-white hover:text-slate-950 hover:shadow-sm">{item.label}</Link> : <button key={item.id} type="button" onClick={() => navigateToSection(item.id!)} className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 hover:bg-white hover:text-slate-950 hover:shadow-sm">{item.label}</button>)}
 
           <Link
             href="/pricing"
@@ -119,16 +117,7 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="border-t border-slate-200 bg-white px-4 py-5 shadow-lg md:hidden">
           <div className="mx-auto flex max-w-7xl flex-col gap-2">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => navigateToSection(item.id)}
-                className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-left text-sm font-medium text-slate-700"
-              >
-                {item.label}
-              </button>
-            ))}
+            {navItems.map((item) => item.href ? <Link key={item.label} href={item.href} onClick={() => setMobileOpen(false)} className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700">{item.label}</Link> : <button key={item.id} type="button" onClick={() => navigateToSection(item.id!)} className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-left text-sm font-medium text-slate-700">{item.label}</button>)}
 
             <Link
               href="/pricing"

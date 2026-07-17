@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 
 import Hero from "@/components/specific/home/Hero";
 import ProductStory from "@/components/specific/home/ProductStory";
-import HowItWorks from "@/components/specific/home/HowITWorks";
 import FloatingDownloadButtons from "@/components/specific/home/FloatingDownloadButtons";
-import PricingPlans from "@/components/specific/pricing/PricingPlans";
 
 import { LOGO_URL } from "@/lib/brand";
 import {
@@ -209,8 +207,6 @@ export default function Home() {
 
       <Hero />
       <ProductStory />
-      <HowItWorks />
-      <PricingPlans />
       <FloatingDownloadButtons />
     </main>
   );

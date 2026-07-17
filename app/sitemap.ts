@@ -25,6 +25,26 @@ const staticRoutes = [
     priority: 0.7,
   },
   {
+    path: "/product",
+    changeFrequency: "monthly" as const,
+    priority: 0.9,
+  },
+  {
+    path: "/product/automatic-intake",
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  },
+  {
+    path: "/product/map",
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  },
+  {
+    path: "/product/nova",
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  },
+  {
     path: "/press",
     changeFrequency: "monthly" as const,
     priority: 0.55,
