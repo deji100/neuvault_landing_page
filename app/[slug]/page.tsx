@@ -473,7 +473,7 @@ export async function generateMetadata({
 
   return buildMetadata({
     title: resolved.page.metaTitle,
-    description: resolved.page.description,
+    description: resolved.page.metaDescription ?? resolved.page.description,
     path: `/${resolved.canonicalSlug}`,
     keywords: [
       resolved.page.primaryKeyword,
