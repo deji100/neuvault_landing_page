@@ -133,10 +133,6 @@ select:focus-visible {
   color: #0071e3;
 }
 
-.home-site-logo-mark {
-  background: linear-gradient(145deg, #007aff, #0071e3) !important;
-}
-
 .home-site-footer {
   border-color: #d2d2d7 !important;
   background: #f5f5f7 !important;
