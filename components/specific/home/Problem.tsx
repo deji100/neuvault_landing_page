@@ -70,6 +70,7 @@ export default function Problem() {
   return (
     <div className={`${styles.problem} ${serif.variable}`}>
       <div className={styles.head}>
+        <p className={styles.kicker}>The problem</p>
         <h2>You saved it for later. Later never came.</h2>
         <p>
           Screenshots in your camera roll. Invoices in WhatsApp chats. Contracts buried in email. Forty

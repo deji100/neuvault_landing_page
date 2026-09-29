@@ -4,23 +4,23 @@ export const SITE_NAME = "NeuVault";
 export const SITE_URL = "https://neuvault.app";
 export const SUPPORT_EMAIL = "support@neuvault.app";
 
+// Store links carry no country or language, so each visitor lands in their own storefront.
 export const IOS_APP_STORE_URL =
-  "https://apps.apple.com/ng/app/neuvault/id6759370392";
+  "https://apps.apple.com/app/neuvault/id6759370392";
 
 export const MACOS_APP_STORE_URL =
-  "https://apps.apple.com/ng/app/neuvault/id6759370392?platform=mac";
+  "https://apps.apple.com/app/neuvault/id6759370392?platform=mac";
 
 export const ANDROID_PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=app.neuvault";
 
 export const WINDOWS_MICROSOFT_STORE_URL =
-  "https://apps.microsoft.com/detail/9PNM0GXZPT8T?hl=en-us&gl=US&ocid=pdpshare";
+  "https://apps.microsoft.com/detail/9PNM0GXZPT8T";
 
-export const DEFAULT_TITLE =
-  "NeuVault — Private Document Intelligence for iPhone, Android, Mac and Windows";
+export const DEFAULT_TITLE = "NeuVault — One Private App for Notes, Scans and Documents";
 
 export const DEFAULT_DESCRIPTION =
-  "NeuVault automatically organizes documents from uploads, scans, selected folders and email attachments. Connect files, track reminders, transcribe voice notes and work privately across mobile and desktop.";
+  "Notes, screenshots, scans, recordings and links in one private app that sorts them and reminds you before dates pass. iPhone, Android, Mac and Windows.";
 
 export const DEFAULT_OG_IMAGE_PATH = "/opengraph-image";
 
@@ -243,7 +243,7 @@ export const solutionPages: SolutionPage[] = [
     metaTitle: "Document Storage and Retrieval",
     title: "Store and retrieve documents faster.",
     description:
-      "Store documents and retrieve them faster with smart search, tags, summaries, extracted dates, and partial-memory search in NeuVault.",
+      "Store documents and retrieve them faster with search across titles, summaries, tags and notes, plus Nova for when you only remember the situation.",
     eyebrow: "Document retrieval",
     intro:
       "The hard part is rarely saving a file. The hard part is finding it again when the pressure is on. NeuVault is designed so retrieval feels fast even when you only remember part of the story, a date, or a related item.",
@@ -751,11 +751,6 @@ export function buildWebSiteJsonLd() {
     description: DEFAULT_DESCRIPTION,
     publisher: {
       "@id": `${SITE_URL}/#organization`,
-    },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${SITE_URL}/?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
     },
   };
 }

@@ -5,8 +5,8 @@ import { buildMetadata } from "@/lib/seo";
 import styles from "./BusinessPage.module.css";
 
 export const metadata: Metadata = buildMetadata({
-  title: "NeuVault Business — Private Document Intelligence for Organizations",
-  description: "Explore organization-controlled storage, private deployment and connected document workflows with NeuVault Business.",
+  title: "Business — Private Document Intelligence for Teams",
+  description: "Run NeuVault on storage your organization controls, with private deployment and connected document workflows for your team. Talk to us about NeuVault Business.",
   path: "/business",
 });
 

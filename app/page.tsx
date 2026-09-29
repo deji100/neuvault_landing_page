@@ -11,7 +11,6 @@ import {
   SITE_URL,
   WINDOWS_MICROSOFT_STORE_URL,
   buildBreadcrumbJsonLd,
-  buildFaqJsonLd,
   buildMetadata,
   buildOrganizationJsonLd,
   buildSoftwareApplicationJsonLd,
@@ -19,10 +18,8 @@ import {
   solutionPages,
 } from "@/lib/seo";
 
+// The home page states the site-wide title and description; lib/seo.ts holds them.
 export const metadata: Metadata = buildMetadata({
-  title: "NeuVault — Your Notes, and Everything Behind Them",
-  description:
-    "Write it, say it, or drop it in. NeuVault keeps your notes, recordings and files together in one private workspace — and tells you when a date is coming. iPhone, Android, Mac and Windows, local-first, with encrypted backups only you can open.",
   path: "/",
   keywords: [
     "scan and organize documents",
@@ -112,69 +109,6 @@ export default function Home() {
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([{ name: "Home", path: "/" }]);
 
-  const faqJsonLd = buildFaqJsonLd([
-    {
-      question: "What kind of app is NeuVault?",
-      answer:
-        "NeuVault is a private workspace for your notes and the files behind them. Write or record a note, bring in files, scans and links, connect what belongs together — and let it surface the dates it finds in your own material, before they pass.",
-    },
-    {
-      question: "How is NeuVault different from cloud storage?",
-      answer:
-        "Cloud storage mainly stores files. NeuVault is built around what you meant to do with them: notes and recordings alongside the files, connections between related things, reminders from the dates in your own material, and encrypted backups under your control.",
-    },
-    {
-      question: "Can NeuVault import email attachments?",
-      answer:
-        "Yes. Connect a Microsoft 365 mailbox with read-only access, choose a historical date range and file-type rules, and decide whether NeuVault keeps watching for new attachments. Every attachment is scanned for dangerous content before it enters the vault. Gmail and Yahoo support are built and awaiting provider review.",
-    },
-    {
-      question: "Can NeuVault watch folders for new files?",
-      answer:
-        "On desktop, NeuVault can help monitor selected folders so new files can enter the vault workflow without repeated manual uploads.",
-    },
-    {
-      question: "Can NeuVault transcribe meetings?",
-      answer:
-        "Yes. NeuVault can transcribe live voice recordings and imported audio into structured, editable text that can remain connected to related documents.",
-    },
-    {
-      question: "Does NeuVault support iPhone, Android, Windows, and macOS?",
-      answer:
-        "Yes. NeuVault is available for iPhone and macOS on the App Store, for Android on Google Play, and for Windows on the Microsoft Store.",
-    },
-    {
-      question: "Does NeuVault store my documents in the cloud?",
-      answer:
-        "NeuVault is designed around local-first storage. Original documents remain on your device by default unless you choose a supported backup or integration workflow. Encrypted backups remain under your control.",
-    },
-    {
-      question: "What happens when my credits run out?",
-      answer:
-        "Capture still works. The item saves to your Inbox and organizes itself automatically once credits or your connection return. Searching, viewing, exporting and encrypted backup never cost credits, so the vault keeps working either way.",
-    },
-    {
-      question: "Can NeuVault read dates out of my documents?",
-      answer:
-        "Yes. NeuVault extracts renewal, expiry and deadline dates from document content and sorts them into Overdue, Due today, Due soon, Upcoming and Monitor. Any document or map can also be set to resurface weekly, monthly or yearly.",
-    },
-    {
-      question: "Can I use NeuVault without AI?",
-      answer:
-        "Yes. Storage and non-AI vault functionality remain available after credits are exhausted. Credits are used only when you choose a supported AI or OCR action.",
-    },
-    {
-      question: "Can I link and compare related documents?",
-      answer:
-        "Yes. NeuVault supports direct links, linked-document groups, notes connected to documents, and side-by-side comparison inside the spatial Map workspace.",
-    },
-    {
-      question: "Can NeuVault convert documents and responses?",
-      answer:
-        "NeuVault can convert supported documents, notes, extracted information, and Nova responses into practical formats including PDF, Word, CSV, and editable notes where applicable.",
-    },
-  ]);
-
   // uploadDate is required for a valid VideoObject, so a video without one is left out.
   const videoJsonLd = youtubeVideos
     .filter((video) => video.id && video.uploadDate)
@@ -221,10 +155,6 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={jsonLdScript(breadcrumbJsonLd)}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={jsonLdScript(faqJsonLd)}
       />
       {videoJsonLd.map((video) => (
         <script

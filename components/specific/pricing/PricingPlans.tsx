@@ -126,7 +126,7 @@ export default function PricingPlans({ variant = "home" }: PricingPlansProps) {
                   View full pricing
                 </Link>
                 <Link
-                  href="/#site-footer"
+                  href="/#download"
                   className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-800 hover:border-blue-200 hover:text-blue-700"
                 >
                   Download app
@@ -254,7 +254,7 @@ export default function PricingPlans({ variant = "home" }: PricingPlansProps) {
 
                 <div className={styles.actions}>
                   <Link
-                    href="/#site-footer"
+                    href="/#download"
                     className={styles.primary}
                   >
                     Download NeuVault

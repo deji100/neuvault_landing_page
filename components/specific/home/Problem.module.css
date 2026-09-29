@@ -1,6 +1,7 @@
 /* Inherits the Apple-system tokens (--ink, --soft, --surface, --line, --teal…) from LandingPage .page. */
 .problem{display:grid;gap:44px}
 .head{max-width:46rem}
+.head .kicker{margin:0 0 12px;color:var(--teal);font-size:.78rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
 .head h2{font-family:var(--font-bricolage),system-ui,sans-serif;font-weight:700;font-size:clamp(2rem,4.6vw,3.2rem);letter-spacing:-.03em;line-height:1.08}
 .head p{margin-top:18px;max-width:40rem;color:var(--soft);font-size:1.12rem;line-height:1.6}
 

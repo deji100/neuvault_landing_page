@@ -56,7 +56,7 @@ export const guidePages: GuidePage[] = [
       "search-old-documents-without-folder-chaos",
     ],
     keyTakeaways: [
-      "Capture is only step one. The real value comes from OCR, context, grouping, and retrieval.",
+      "Capture is only step one. The value comes from what gets read out of the scan: a summary, tags, key details and dates, and the group it lands in.",
       "Scans should land in a document system, not disappear into a camera roll or random folder.",
       "The best workflow connects scans to search, reminders, linked records, and private backup from the start.",
     ],
@@ -64,29 +64,29 @@ export const guidePages: GuidePage[] = [
       {
         title: "Capture into one destination",
         description:
-          "Choose a single intake path for paper records so receipts, forms, letters, IDs, certificates, and agreements do not scatter across photos, downloads, chats, and messaging apps.",
+          "Choose a single intake path for paper records so receipts, forms, letters, IDs, certificates, and agreements do not scatter across photos, downloads, chats, and messaging apps. In NeuVault, tap Open scanner on your phone to capture many pages per document and several documents in one batch, or use Add files or scans on desktop for scans you already have.",
       },
       {
         title: "Run OCR and keep the extracted meaning",
         description:
-          "A scan is more useful when the text is searchable. OCR-backed extraction helps you recover names, dates, amounts, and context without reopening every file later.",
+          "A scan is more useful when its meaning is written down. NeuVault reads the text in each scan, pulls out names, dates, amounts and other key details, and adds a summary and tags, so you can find and understand the record without reopening the file.",
       },
       {
         title: "Group the scan with the right document story",
         description:
-          "Store the scan next to the rest of the issue it belongs to, such as a visa file, insurance claim, lease, school application, tax folder, or household paperwork set.",
+          "Store the scan next to the rest of the issue it belongs to, such as a visa file, insurance claim, lease, school application, tax folder, or household paperwork set. NeuVault files each scan into a group and subgroup for you; you can move it, rename or create groups, and use Link Documents to keep related records together.",
       },
       {
         title: "Add the future action while the context is fresh",
         description:
-          "If the document has a renewal date, due date, expiry date, or follow-up step, attach the reminder before you leave the workflow. That is how scans stay useful instead of becoming archived and forgotten.",
+          "If the document has a renewal date, due date, expiry date, or follow-up step, make sure a reminder is attached before you move on. NeuVault turns dates it finds into reminders automatically, and you can add your own. That is how scans stay useful instead of being forgotten.",
       },
     ],
     faqs: [
       {
         question: "What is the best way to organize scanned documents?",
         answer:
-          "The best way is to scan into one document system, run OCR, group each file with related records, and attach any reminder or follow-up before the context fades.",
+          "Scan into one document system that reads the text and pulls out the key details, keep each file in the right group with its related records, and attach any reminder or follow-up before the context fades.",
       },
       {
         question: "Should I keep scanned documents in photo folders?",
@@ -126,17 +126,17 @@ export const guidePages: GuidePage[] = [
       {
         title: "Start with categories you will actually remember",
         description:
-          "Use categories like travel, insurance, housing, school, taxes, health, family records, and business admin rather than dozens of low-value subfolders that only make sense during setup.",
+          "Use broad categories like travel, insurance, housing, school, taxes, health, family records, and business admin rather than dozens of low-value subfolders that only make sense during setup. NeuVault starts you with groups like these and files new items into them, so you only rename or add groups when you need to.",
       },
       {
         title: "Keep document context attached",
         description:
-          "Notes, summaries, scans, receipts, linked records, and reminders should stay with the file they explain. That is how the system remains understandable months later.",
+          "Notes, summaries, scans, receipts, linked records, and reminders should stay with the file they explain. In NeuVault, each file keeps its summary, tags and reminders, and Related documents shows what belongs with it. That is how the system remains understandable months later.",
       },
       {
-        title: "Separate active paperwork from archived reference",
+        title: "Give active paperwork a reminder, and let reference stay quiet",
         description:
-          "Some items need reminders and resurfacing while others are reference-only. That distinction helps you prioritize what your vault should bring back to your attention later.",
+          "Some items need reminders and resurfacing while others are reference-only. Set a reminder or resurfacing on the active ones and pin what you open often, so your vault brings back what needs you and leaves the rest in place.",
       },
       {
         title: "Review the system through retrieval, not just storage",
@@ -191,9 +191,9 @@ export const guidePages: GuidePage[] = [
           "A renewal reminder is weak if the passport, visa, ID, permit, or license is still buried in photos, downloads, or email threads. Start with one searchable document home.",
       },
       {
-        title: "Record the date and the buffer window",
+        title: "Record the date and plan for the lead time",
         description:
-          "Many documents need attention before the final expiry date. Track the renewal window as well as the expiration itself so you are not working at the last minute.",
+          "Many documents need attention well before the final expiry date. NeuVault reads the expiry date from the document and reminds you a month before, two weeks before and on the day. If a renewal takes longer than that, add your own earlier reminder so you are not working at the last minute.",
       },
       {
         title: "Attach context for the follow-up",
@@ -203,14 +203,14 @@ export const guidePages: GuidePage[] = [
       {
         title: "Use recurring resurfacing for critical IDs",
         description:
-          "For passports, insurance, permits, licenses, visas, and work documents, recurring reminders reduce the odds that one missed alert becomes a major problem.",
+          "For passports, insurance, permits, licenses, visas, and work documents, recurring reminders reduce the odds that one missed alert becomes a major problem. In NeuVault, set Resurfacing to Recurring and choose weekly, monthly or yearly.",
       },
     ],
     faqs: [
       {
         question: "What is the best way to track passport expiry dates?",
         answer:
-          "Store the passport in one document system, attach the expiry and renewal window, and keep any related notes or supporting records with it so the reminder is actionable.",
+          "Store the passport in one document system, make sure its expiry date has a reminder, add an earlier one if the renewal takes time, and keep related notes or supporting records with it so the reminder is actionable.",
       },
       {
         question: "Why not just use a calendar reminder?",
@@ -243,7 +243,7 @@ export const guidePages: GuidePage[] = [
     ],
     keyTakeaways: [
       "Exact-filename search is too weak for real-world document recall.",
-      "Summaries, tags, dates, OCR text, and linked records improve retrieval from partial memory.",
+      "Summaries, tags, document types, dates, and linked records improve retrieval from partial memory.",
       "The best retrieval systems start during intake and still let you reorganize things later when you need to.",
     ],
     sections: [
@@ -255,7 +255,7 @@ export const guidePages: GuidePage[] = [
       {
         title: "Use type, date, and issue context together",
         description:
-          "You may remember that a file was a receipt from a move, a certificate from school, or a contract from a client process even when the exact filename is gone. Store enough context to search that way.",
+          "You may remember that a file was a receipt from a move, a certificate from school, or a contract from a client process even when the exact filename is gone. Store enough context to search that way. In NeuVault, search matches titles, summaries, notes, groups and tags on any device, the desktop Vault can filter by document type and date, and you can ask Nova when you only remember the situation.",
       },
       {
         title: "Keep linked records together",
@@ -272,12 +272,12 @@ export const guidePages: GuidePage[] = [
       {
         question: "How can I find old documents faster?",
         answer:
-          "Use a searchable vault that stores OCR text, summaries, tags, dates, and linked context, not just filenames and folders.",
+          "Use a searchable vault that stores summaries, tags, dates, and linked context for every file, not just filenames and folders.",
       },
       {
         question: "What makes a document vault searchable?",
         answer:
-          "Searchable vaults combine OCR, tags, summaries, type and date filters, and related-item linking so retrieval does not depend on exact words alone.",
+          "Searchable vaults combine text recognition that pulls out key details, summaries and tags, type and date filters, and related-item linking so retrieval does not depend on the exact filename.",
       },
     ],
     ctaLabel: "See NeuVault document retrieval",
@@ -317,17 +317,17 @@ export const guidePages: GuidePage[] = [
       {
         title: "Encrypt before the backup leaves your device",
         description:
-          "For sensitive records, encryption should happen before storage so your cloud destination acts as a storage layer, not a trust requirement.",
+          "For sensitive records, encryption should happen before storage so your cloud destination acts as a storage layer, not a trust requirement. NeuVault seals each backup on your device with AES-256-GCM and a Recovery Key only you hold. Keep that key somewhere safe: without it, the backup cannot be opened.",
       },
       {
         title: "Use storage you control",
         description:
-          "Store backups in the provider or location that fits your privacy needs, whether that is iCloud, Google Drive, Dropbox, or offline storage you manage yourself.",
+          "Store backups in the provider or location that fits your privacy needs. On desktop, NeuVault saves to any folder you choose, including synced Google Drive, OneDrive, Dropbox or iCloud Drive folders. On iPhone you can save anywhere in the Files app, and on Android to Files or Google Drive. An external drive you manage yourself works too.",
       },
       {
         title: "Set reminders and test restore paths",
         description:
-          "A backup you never refresh or cannot restore is weak protection. Schedule reminders and confirm the restore path before a device failure forces the issue.",
+          "A backup you never refresh or cannot restore is weak protection. NeuVault can remind you weekly, every two weeks, monthly, every two months or yearly, and shows you what a backup contains before it restores it, on the same device or a new one.",
       },
     ],
     faqs: [
@@ -374,22 +374,22 @@ export const guidePages: GuidePage[] = [
       {
         title: "Capture the thought while it is fresh",
         description:
-          "Use voice when typing would slow you down, especially during movement, document review, meetings, lectures, or follow-up planning.",
+          "Use voice when typing would slow you down, especially during movement, document review, meetings, lectures, or follow-up planning. In Note & Voice, choose Voice note for one speaker or Meeting for several, then record or import audio you already have.",
       },
       {
         title: "Transcribe into readable structure",
         description:
-          "Plain transcripts are better than audio alone, but structured notes are stronger because they remain easy to scan, search, and understand later.",
+          "Plain transcripts are better than audio alone, but structured notes are stronger because they remain easy to scan, search, and understand later. NeuVault writes the result into the note itself: an overview, key points, action items and the full transcript, with each speaker named in a meeting.",
       },
       {
         title: "Link the voice note to the document issue",
         description:
-          "A voice note explaining a receipt, contract, school file, or travel document should stay with that record so the meaning is not lost when you return later.",
+          "A voice note explaining a receipt, contract, school file, or travel document should stay with that record so the meaning is not lost when you return later. Use Connect files to link the note to the documents it explains.",
       },
       {
         title: "Keep voice-derived notes searchable and exportable",
         description:
-          "Once the spoken note becomes structured text, it should participate in search, reminders, and export workflows like the rest of your vault.",
+          "Once the spoken note becomes structured text, it should participate in search, reminders, and export workflows like the rest of your vault. In NeuVault it is searchable, can carry reminders like any document, and converts to PDF or Word.",
       },
     ],
     faqs: [

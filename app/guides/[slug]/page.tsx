@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight, CalendarDays, Check, ChevronRight, Clock, ListChecks, Sparkles } from "lucide-react";
 import { notFound } from "next/navigation";
 
 import {
@@ -17,6 +18,8 @@ import {
   IOS_APP_STORE_URL,
   getSolutionPageBySlug,
 } from "@/lib/seo";
+import { guideIcon, readingMinutes } from "@/components/specific/guides/guideIcons";
+import styles from "@/components/specific/guides/Guides.module.css";
 
 type GuidePageProps = {
   params: Promise<{
@@ -63,6 +66,8 @@ function jsonLdScript(data: Record<string, unknown>) {
   };
 }
 
+const qualities = ["Organized", "Searchable", "Remembered", "Connected", "Backed up", "Recoverable"];
+
 export default async function GuidePage({ params }: GuidePageProps) {
   const { slug } = await params;
   const guide = getGuidePageBySlug(slug);
@@ -78,287 +83,186 @@ export default async function GuidePage({ params }: GuidePageProps) {
   const articleJsonLd = buildGuideArticleJsonLd(guide);
   const faqJsonLd = buildGuideFaqJsonLd(guide);
 
+  const { icon: Icon, tone } = guideIcon(guide.slug);
+  const minutes = readingMinutes([
+    guide.intro,
+    ...guide.keyTakeaways,
+    ...guide.sections.flatMap((section) => [section.title, section.description]),
+    ...guide.faqs.flatMap((faq) => [faq.question, faq.answer]),
+  ]);
+  // The visible date is the one the Article structured data states.
+  const updated = new Date(`${String(articleJsonLd.dateModified)}T00:00:00Z`).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+
   return (
-    <main className="legacy-light-page relative overflow-hidden px-6 pb-24 pt-28">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={jsonLdScript(breadcrumbJsonLd)}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={jsonLdScript(articleJsonLd)}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={jsonLdScript(faqJsonLd)}
-      />
+    <main className={`${styles.page} ${styles.article}`} style={{ "--tone": tone } as React.CSSProperties}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(breadcrumbJsonLd)} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(articleJsonLd)} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(faqJsonLd)} />
+      <div className={styles.glow} aria-hidden="true" />
 
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[10%] top-10 h-64 w-64 rounded-full bg-[#3F8CFF]/14 blur-[130px]" />
-        <div className="absolute bottom-0 right-[8%] h-72 w-72 rounded-full bg-[#6DD1FF]/10 blur-[140px]" />
-      </div>
-
-      <div className="relative mx-auto max-w-5xl">
-        <nav className="text-sm text-white/55" aria-label="Breadcrumb">
-          <Link href="/" className="hover:text-white">
-            Home
-          </Link>
-          <span className="px-2 text-white/30">/</span>
-          <Link href="/guides" className="hover:text-white">
-            Guides
-          </Link>
-          <span className="px-2 text-white/30">/</span>
-          <span>{guide.metaTitle}</span>
+      <div className={styles.wrap}>
+        <nav className={styles.crumbs} aria-label="Breadcrumb">
+          <Link href="/">Home</Link>
+          <ChevronRight size={14} aria-hidden="true" />
+          <Link href="/guides">Guides</Link>
+          <ChevronRight size={14} aria-hidden="true" />
+          <span aria-current="page">{guide.metaTitle}</span>
         </nav>
 
-        <article className="relative mt-8 overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-sm md:p-10">
-          <div
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(63,140,255,0.18),transparent_34%)]"
-            aria-hidden="true"
-          />
-
-          <div className="relative">
-            <p className="inline-flex rounded-full border border-[#6DD1FF]/15 bg-[#6DD1FF]/8 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#9dd9ff]">
-              {guide.primaryKeyword}
-            </p>
-
-            <h1 className="mt-5 text-4xl font-bold leading-tight md:text-6xl">
-              {guide.title}
-            </h1>
-
-            <p className="mt-6 max-w-3xl text-base leading-8 text-white/72 md:text-lg">
-              {guide.intro}
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-3 text-sm text-white/74">
-              {guide.secondaryKeywords.map((keyword) => (
-                <span
-                  key={keyword}
-                  className="rounded-full border border-white/12 bg-white/6 px-3 py-2"
-                >
-                  {keyword}
-                </span>
-              ))}
-            </div>
-          </div>
-        </article>
-
-        <section className="mt-14 rounded-[1.8rem] border border-white/10 bg-white/5 p-7 backdrop-blur-sm">
-          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
-                Quick takeaways
-              </p>
-
-              <h2 className="mt-3 text-2xl font-semibold text-white">
-                What to remember before you start
-              </h2>
-            </div>
-
-            <span className="w-fit rounded-full border border-white/10 bg-black/20 px-4 py-2 text-sm text-white/58">
-              Built around real document chaos
+        <header className={styles.hero}>
+          <span className={styles.heroIcon}>
+            <Icon size={25} strokeWidth={2} aria-hidden="true" />
+          </span>
+          <p className={styles.kicker} style={{ color: tone }}>
+            {guide.primaryKeyword}
+          </p>
+          <h1>{guide.title}</h1>
+          <p className={styles.lede}>{guide.intro}</p>
+          <div className={styles.meta}>
+            <span className={styles.pill}>
+              <Clock size={14} aria-hidden="true" /> {minutes} min read
+            </span>
+            <span className={styles.pill}>
+              <ListChecks size={14} aria-hidden="true" /> {guide.sections.length} steps
+            </span>
+            <span className={styles.pill}>
+              <CalendarDays size={14} aria-hidden="true" /> Updated {updated}
             </span>
           </div>
+        </header>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {guide.keyTakeaways.map((takeaway, index) => (
-              <article
-                key={takeaway}
-                className="rounded-2xl border border-white/10 bg-black/20 p-5 text-sm leading-7 text-white/72"
-              >
-                <span className="mb-4 inline-flex h-8 w-8 items-center justify-center rounded-full border border-[#6DD1FF]/20 bg-[#6DD1FF]/10 text-sm font-semibold text-[#9dd9ff]">
-                  {index + 1}
-                </span>
+        <div className={styles.body}>
+          <aside className={styles.aside}>
+            <details className={styles.toc} open>
+              <summary>In this guide</summary>
+              <nav aria-label="In this guide">
+                {guide.sections.map((section, index) => (
+                  <a key={section.title} href={`#step-${index + 1}`}>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    {section.title}
+                  </a>
+                ))}
+                <a href="#questions">
+                  <span>?</span>
+                  Questions
+                </a>
+              </nav>
+            </details>
+          </aside>
 
-                <p>{takeaway}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-14 space-y-5">
-          {guide.sections.map((section, index) => (
-            <article
-              key={section.title}
-              className="group relative overflow-hidden rounded-[1.6rem] border border-white/10 bg-white/5 p-7 backdrop-blur-sm transition hover:border-[#6DD1FF]/25 hover:bg-white/8"
-            >
-              <div
-                className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(63,140,255,0.12),transparent_34%)] opacity-0 transition group-hover:opacity-100"
-                aria-hidden="true"
-              />
-
-              <div className="relative">
-                <p className="inline-flex rounded-full border border-white/10 bg-black/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#9dd9ff]">
-                  Step {index + 1}
-                </p>
-
-                <h2 className="mt-4 text-2xl font-semibold leading-snug text-white">
-                  {section.title}
-                </h2>
-
-                <p className="mt-4 text-sm leading-8 text-white/72 md:text-base">
-                  {section.description}
-                </p>
-              </div>
-            </article>
-          ))}
-        </section>
-
-        {parentSolution ? (
-          <section className="mt-14 overflow-hidden rounded-[1.8rem] border border-blue-100 bg-white p-7 shadow-[0_24px_70px_-52px_rgba(37,99,235,0.45)]">
-            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-500">
-                  Turn this into a system
-                </p>
-
-                <h2 className="mt-4 text-2xl font-semibold leading-tight text-slate-950 md:text-3xl">
-                  {parentSolution.title}
-                </h2>
-
-                <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600">
-                  {parentSolution.description}
-                </p>
-              </div>
-
-              <div className="rounded-[1.4rem] border border-slate-200 bg-slate-50 p-5">
-                <p className="text-sm font-semibold text-slate-800">
-                  NeuVault helps important records become:
-                </p>
-
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  {[
-                    "Organized",
-                    "Searchable",
-                    "Remembered",
-                    "Connected",
-                    "Backed up",
-                    "Recoverable",
-                  ].map((item) => (
-                    <div
-                      key={item}
-                      className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-600"
-                    >
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-7 flex flex-wrap gap-3 border-t border-slate-200 pt-6">
-              <Link
-                href={`/${parentSolution.slug}`}
-                className="rounded-full bg-[#3F8CFF] px-5 py-3 text-sm font-semibold text-white hover:bg-[#60aaff]"
-              >
-                {guide.ctaLabel}
-              </Link>
-
-              <a
-                href={IOS_APP_STORE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 hover:border-blue-300 hover:text-blue-700"
-              >
-                Get NeuVault on the App Store
-              </a>
-
-              <a
-                href={ANDROID_PLAY_STORE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 hover:border-blue-300 hover:text-blue-700"
-              >
-                Get NeuVault on Google Play
-              </a>
-            </div>
-          </section>
-        ) : null}
-
-        <section className="mt-14 rounded-[1.8rem] border border-white/10 bg-white/5 p-7 backdrop-blur-sm">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
-            Questions
-          </p>
-
-          <h2 className="mt-3 text-2xl font-semibold text-white">
-            Frequently asked questions
-          </h2>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {guide.faqs.map((faq) => (
-              <article
-                key={faq.question}
-                className="rounded-2xl border border-white/10 bg-black/20 p-5"
-              >
-                <h3 className="text-base font-semibold text-white">
-                  {faq.question}
-                </h3>
-
-                <p className="mt-3 text-sm leading-7 text-white/68">
-                  {faq.answer}
-                </p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-14">
-          <div className="flex items-end justify-between gap-5">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9dd9ff]">
-                Keep learning
-              </p>
-
-              <h2 className="mt-3 text-2xl font-semibold text-white">
-                Related guides
+          <div className={styles.content}>
+            <section className={styles.takeaways} aria-labelledby="takeaways">
+              <h2 id="takeaways">
+                <Sparkles size={18} aria-hidden="true" /> What to remember before you start
               </h2>
+              <ol>
+                {guide.keyTakeaways.map((takeaway) => (
+                  <li key={takeaway}>{takeaway}</li>
+                ))}
+              </ol>
+            </section>
 
-              <p className="mt-3 max-w-2xl text-sm leading-7 text-white/68">
-                Explore related document tasks without losing the thread.
-              </p>
-            </div>
-
-            <Link
-              href="/guides"
-              className="hidden text-sm font-semibold text-[#9dd9ff] hover:text-white md:inline-flex"
-            >
-              View all guides →
-            </Link>
-          </div>
-
-          <div className="mt-6 grid gap-5 md:grid-cols-2">
-            {relatedGuides.map((item) => (
-              <Link
-                key={item.slug}
-                href={`/guides/${item.slug}`}
-                className="group relative overflow-hidden rounded-[1.4rem] border border-white/10 bg-white/5 p-5 transition hover:-translate-y-1 hover:border-[#6DD1FF]/28 hover:bg-white/8"
-              >
-                <div
-                  className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(63,140,255,0.12),transparent_34%)] opacity-0 transition group-hover:opacity-100"
-                  aria-hidden="true"
-                />
-
-                <div className="relative">
-                  <p className="inline-flex rounded-full border border-[#6DD1FF]/15 bg-[#6DD1FF]/8 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#9dd9ff]">
-                    {item.primaryKeyword}
-                  </p>
-
-                  <h3 className="mt-4 text-lg font-semibold text-white">
-                    {item.title}
-                  </h3>
-
-                  <p className="mt-3 text-sm leading-7 text-white/66">
-                    {item.description}
-                  </p>
-
-                  <span className="mt-5 inline-flex text-sm font-semibold text-[#8ec0ff] transition group-hover:text-white">
-                    Read next →
+            <ol className={styles.steps}>
+              {guide.sections.map((section, index) => (
+                <li key={section.title} id={`step-${index + 1}`} className={styles.step}>
+                  <span className={styles.stepNumber} aria-hidden="true">
+                    {index + 1}
                   </span>
+                  <h2>{section.title}</h2>
+                  <p>{section.description}</p>
+                </li>
+              ))}
+            </ol>
+
+            {parentSolution ? (
+              <section className={styles.cta}>
+                <div>
+                  <p className={styles.kicker}>Turn this into a system</p>
+                  <h2>{parentSolution.title}</h2>
+                  <p>{parentSolution.description}</p>
                 </div>
-              </Link>
-            ))}
+                <ul className={styles.qualities} aria-label="NeuVault helps important records become">
+                  {qualities.map((item) => (
+                    <li key={item}>
+                      <Check size={13} strokeWidth={2.6} aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className={styles.ctaActions}>
+                  <Link href={`/${parentSolution.slug}`} className={styles.ctaPrimary}>
+                    {guide.ctaLabel} <ArrowRight size={15} aria-hidden="true" />
+                  </Link>
+                  <a href={IOS_APP_STORE_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaSecondary}>
+                    App Store
+                  </a>
+                  <a href={ANDROID_PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaSecondary}>
+                    Google Play
+                  </a>
+                </div>
+              </section>
+            ) : null}
+
+            <section id="questions" aria-labelledby="questions-title">
+              <div className={styles.sectionHead}>
+                <h2 id="questions-title">Frequently asked questions</h2>
+              </div>
+              <div className={styles.faqList}>
+                {guide.faqs.map((faq) => (
+                  <details key={faq.question} className={styles.faqItem}>
+                    <summary>{faq.question}</summary>
+                    <p>{faq.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
+
+            {relatedGuides.length > 0 ? (
+              <section aria-labelledby="related-title">
+                <div className={styles.sectionHead}>
+                  <h2 id="related-title">Related guides</h2>
+                  <Link href="/guides">
+                    All guides <ArrowRight size={14} aria-hidden="true" />
+                  </Link>
+                </div>
+                <ul className={styles.related}>
+                  {relatedGuides.map((item) => {
+                    const related = guideIcon(item.slug);
+                    const RelatedIcon = related.icon;
+                    return (
+                      <li key={item.slug}>
+                        <Link href={`/guides/${item.slug}`} className={styles.card} style={{ "--tone": related.tone } as React.CSSProperties}>
+                          <span className={styles.cardIcon}>
+                            <RelatedIcon size={18} strokeWidth={2} aria-hidden="true" />
+                          </span>
+                          <span className={styles.cardLabel}>{item.primaryKeyword}</span>
+                          <h2>{item.title}</h2>
+                          <span className={styles.cardFoot}>
+                            <span />
+                            <span>
+                              Read next <ArrowRight size={14} aria-hidden="true" />
+                            </span>
+                          </span>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </section>
+            ) : null}
+
+            <ul className={styles.keywords} aria-label="Topics in this guide">
+              {guide.secondaryKeywords.map((keyword) => (
+                <li key={keyword}>{keyword}</li>
+              ))}
+            </ul>
           </div>
-        </section>
+        </div>
       </div>
     </main>
   );

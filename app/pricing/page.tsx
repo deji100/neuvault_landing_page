@@ -14,9 +14,9 @@ import {
 import styles from "./PricingPage.module.css";
 
 export const metadata: Metadata = buildMetadata({
-  title: "NeuVault Pricing and Subscription Plans",
+  title: "Pricing and Plans",
   description:
-    "Compare NeuVault subscription plans and AI credit allowances for document organization, Nova assistant, Attention, notes, voice context, and encrypted backup workflows.",
+    "Start free with 500 credits. Paid plans from $4.99 a month add 2,000 to 8,000 AI credits monthly, and storage never uses credits. Compare every NeuVault plan.",
   path: "/pricing",
   keywords: [
     "NeuVault pricing",
@@ -127,7 +127,7 @@ export default function PricingPage() {
         </div>
 
         <p className={styles.eyebrow}>NeuVault Pricing</p>
-        <h1>Plans for every document routine.</h1>
+        <h1>Plans for every notes and documents routine.</h1>
 
         <p className={styles.intro}>
           Compare NeuVault credit allowances for Nova, summaries,

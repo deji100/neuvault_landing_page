@@ -133,171 +133,13 @@ select:focus-visible {
   color: #0071e3;
 }
 
-.site-nav {
-  border-color: #d2d2d7;
-  background: rgba(245, 245, 247, 0.9);
-  color: #1d1d1f;
-}
-
-.site-nav-links {
-  color: #6e6e73;
-}
-
-.site-nav-product-label {
-  margin-left: 2px;
-  border-left: 1px solid #d2d2d7;
-  padding-left: 11px;
-  color: #6e6e73;
-  font-size: 0.82rem;
-  font-weight: 600;
-}
-
-.site-nav-links a:hover,
-.site-nav-links button:hover {
-  color: #1d1d1f;
-}
-
-.site-nav-download {
-  background: #007aff;
-  box-shadow: 0 14px 28px -18px rgba(0, 122, 255, 0.72);
-}
-
-.site-nav-download:hover {
-  background: #0071e3;
-}
-
-.site-nav-menu {
-  border-color: #d2d2d7;
-  background: #ffffff;
-  color: #1d1d1f;
-}
-
-.site-mobile-panel {
-  border-color: #d2d2d7;
-  background: #f5f5f7;
-  color: #1d1d1f;
-}
-
-.site-mobile-panel a:not(.site-nav-download),
-.site-mobile-panel button:not(.site-nav-download) {
-  background: #ffffff;
-  color: #3a3a3c;
-}
-
-html[data-theme="dark"] .site-nav {
-  border-color: #38383a;
-  background: rgba(28, 28, 30, 0.9);
-  color: #f5f5f7;
-}
-
-html[data-theme="dark"] .site-nav-links {
-  color: #b5b5ba;
-}
-
-html[data-theme="dark"] .site-nav-product-label {
-  border-color: #48484a;
-  color: #98989d;
-}
-
-html[data-theme="dark"] .site-nav-links a:hover,
-html[data-theme="dark"] .site-nav-links button:hover {
-  color: #ffffff;
-}
-
-html[data-theme="dark"] .site-nav .theme-mode-toggle {
-  color: #0a84ff;
-}
-
-html[data-theme="dark"] .site-nav .theme-mode-toggle:hover {
-  background: #2c2c2e;
-}
-
-html[data-theme="dark"] .site-nav-menu {
-  border-color: #48484a;
-  background: transparent;
-  color: #0a84ff;
-}
-
-html[data-theme="dark"] .site-mobile-panel {
-  border-color: #38383a;
-  background: #1c1c1e;
-  color: #f5f5f7;
-}
-
-html[data-theme="dark"] .site-mobile-panel a:not(.site-nav-download),
-html[data-theme="dark"] .site-mobile-panel button:not(.site-nav-download) {
-  background: #2c2c2e;
-  color: #d1d1d6;
-}
-
 .home-site-logo-mark {
   background: linear-gradient(145deg, #007aff, #0071e3) !important;
 }
 
-.home-site-nav {
-  border-color: #d2d2d7 !important;
-  background: rgba(245, 245, 247, 0.9) !important;
-  color: #1d1d1f !important;
-}
-
-.home-site-nav a[href="#download"] {
-  background: #007aff !important;
-  color: #ffffff !important;
-}
-
-.home-site-nav a[href="#download"]:hover {
-  background: #0071e3 !important;
-}
-
-.home-site-mobile-panel,
 .home-site-footer {
   border-color: #d2d2d7 !important;
   background: #f5f5f7 !important;
-}
-
-html[data-theme="dark"] .home-site-nav {
-  border-color: #38383a !important;
-  background: rgba(28, 28, 30, 0.9) !important;
-  color: #f5f5f7 !important;
-}
-
-html[data-theme="dark"] .home-site-nav > div > div {
-  color: #b5b5ba !important;
-}
-
-html[data-theme="dark"] .home-site-nav a:hover {
-  color: #ffffff !important;
-}
-
-html[data-theme="dark"] .home-site-nav .theme-mode-toggle,
-html[data-theme="dark"] .home-site-nav button[aria-label="Toggle navigation"] {
-  border-color: #48484a !important;
-  background: transparent !important;
-  color: #0a84ff !important;
-}
-
-html[data-theme="dark"] .home-site-nav .theme-mode-toggle:hover,
-html[data-theme="dark"] .home-site-nav button[aria-label="Toggle navigation"]:hover {
-  background: #2c2c2e !important;
-}
-
-html[data-theme="dark"] .home-site-nav a[href="#download"] {
-  background: #0a84ff !important;
-  color: #ffffff !important;
-}
-
-html[data-theme="dark"] .home-site-mobile-panel {
-  border-color: #38383a !important;
-  background: #1c1c1e !important;
-}
-
-html[data-theme="dark"] .home-site-mobile-panel a {
-  color: #c7c7cc !important;
-}
-
-html[data-theme="dark"] .home-site-mobile-panel a:hover {
-  background: rgba(255, 255, 255, 0.07) !important;
-  color: #ffffff !important;
 }
 
 html[data-theme="dark"] .home-site-footer {
@@ -310,7 +152,8 @@ html[data-theme="dark"] .home-site-footer a {
   color: #b7b7bc;
 }
 
-html[data-theme="dark"] .home-site-footer a:first-child {
+/* The brand name only; the link group's first link keeps the muted colour. */
+html[data-theme="dark"] .home-site-footer > div > a:first-child {
   color: #f5f5f7 !important;
 }
 

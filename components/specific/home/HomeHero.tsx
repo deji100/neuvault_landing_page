@@ -94,7 +94,7 @@ export default function HomeHero() {
         <div className={styles.text}>
           <h1>
             Five apps to keep your life in order.{" "}
-            <span className={styles.accent}>NeuVault makes it one.</span>
+            <span className={styles.accent}>NeuVault makes it one, and does the organizing.</span>
           </h1>
 
           <p className={styles.lede}>
@@ -155,7 +155,7 @@ export default function HomeHero() {
             <div className={styles.phone}>
               <div className={styles.screen}>
                 <Image
-                  src="/mobile-images/attention-m.png"
+                  src="/mobile-images/vault-m.png"
                   alt=""
                   width={1320}
                   height={2868}
