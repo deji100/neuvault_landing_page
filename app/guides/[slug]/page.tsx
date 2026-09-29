@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CalendarDays, Check, ChevronRight, Clock, ListChecks, Sparkles } from "lucide-react";
+import { ArrowRight, CalendarDays, Check, ChevronRight, Clock, ListChecks, Smartphone, Sparkles } from "lucide-react";
 import { notFound } from "next/navigation";
 
 import {
@@ -18,7 +18,7 @@ import {
   IOS_APP_STORE_URL,
   getSolutionPageBySlug,
 } from "@/lib/seo";
-import { guideIcon, readingMinutes } from "@/components/specific/guides/guideIcons";
+import { guideIcon, guideReadingMinutes } from "@/components/specific/guides/guideIcons";
 import styles from "@/components/specific/guides/Guides.module.css";
 
 type GuidePageProps = {
@@ -84,12 +84,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
   const faqJsonLd = buildGuideFaqJsonLd(guide);
 
   const { icon: Icon, tone } = guideIcon(guide.slug);
-  const minutes = readingMinutes([
-    guide.intro,
-    ...guide.keyTakeaways,
-    ...guide.sections.flatMap((section) => [section.title, section.description]),
-    ...guide.faqs.flatMap((faq) => [faq.question, faq.answer]),
-  ]);
+  const minutes = guideReadingMinutes(guide);
   // The visible date is the one the Article structured data states.
   const updated = new Date(`${String(articleJsonLd.dateModified)}T00:00:00Z`).toLocaleDateString("en-US", {
     year: "numeric",
@@ -147,6 +142,12 @@ export default async function GuidePage({ params }: GuidePageProps) {
                     {section.title}
                   </a>
                 ))}
+                {guide.checklist?.length ? (
+                  <a href="#checklist-title">
+                    <span>✓</span>
+                    Checklist
+                  </a>
+                ) : null}
                 <a href="#questions">
                   <span>?</span>
                   Questions
@@ -175,9 +176,42 @@ export default async function GuidePage({ params }: GuidePageProps) {
                   </span>
                   <h2>{section.title}</h2>
                   <p>{section.description}</p>
+                  {section.details?.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                  {section.inApp?.length ? (
+                    <div className={styles.inApp}>
+                      <p className={styles.inAppLabel}>
+                        <Smartphone size={14} aria-hidden="true" /> In NeuVault
+                      </p>
+                      <ul>
+                        {section.inApp.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
                 </li>
               ))}
             </ol>
+
+            {guide.checklist?.length ? (
+              <section className={styles.checklist} aria-labelledby="checklist-title">
+                <h2 id="checklist-title">
+                  <ListChecks size={18} aria-hidden="true" /> Your checklist
+                </h2>
+                <ul>
+                  {guide.checklist.map((item) => (
+                    <li key={item}>
+                      <span aria-hidden="true">
+                        <Check size={13} strokeWidth={2.8} />
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ) : null}
 
             {parentSolution ? (
               <section className={styles.cta}>

@@ -8,7 +8,7 @@ import {
   buildWebSiteJsonLd,
 } from "@/lib/seo";
 import { guidePages } from "@/lib/guides";
-import { guideIcon, readingMinutes } from "@/components/specific/guides/guideIcons";
+import { guideIcon, guideReadingMinutes } from "@/components/specific/guides/guideIcons";
 import styles from "@/components/specific/guides/Guides.module.css";
 
 export const metadata: Metadata = buildMetadata({
@@ -82,12 +82,7 @@ export default function GuidesPage() {
         <ul className={styles.grid}>
           {guidePages.map((guide) => {
             const { icon: Icon, tone } = guideIcon(guide.slug);
-            const minutes = readingMinutes([
-              guide.intro,
-              ...guide.keyTakeaways,
-              ...guide.sections.flatMap((section) => [section.title, section.description]),
-              ...guide.faqs.flatMap((faq) => [faq.question, faq.answer]),
-            ]);
+            const minutes = guideReadingMinutes(guide);
             return (
               <li key={guide.slug}>
                 <Link href={`/guides/${guide.slug}`} className={styles.card} style={{ "--tone": tone } as React.CSSProperties}>

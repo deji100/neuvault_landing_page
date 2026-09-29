@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import type { GuidePage } from "@/lib/guides";
 import { CalendarClock, FileScan, FolderTree, Mic, Search, ShieldCheck, BookOpen } from "lucide-react";
 
 /** One icon and tint per guide, so a guide looks the same on the index and on its own page. */
@@ -19,4 +20,20 @@ export function guideIcon(slug: string) {
 export function readingMinutes(parts: string[]) {
   const words = parts.join(" ").split(/\s+/).filter(Boolean).length;
   return Math.max(1, Math.round(words / 220));
+}
+
+/** Every piece of text a reader works through in a guide. */
+export function guideReadingMinutes(guide: GuidePage) {
+  return readingMinutes([
+    guide.intro,
+    ...guide.keyTakeaways,
+    ...guide.sections.flatMap((section) => [
+      section.title,
+      section.description,
+      ...(section.details ?? []),
+      ...(section.inApp ?? []),
+    ]),
+    ...(guide.checklist ?? []),
+    ...guide.faqs.flatMap((faq) => [faq.question, faq.answer]),
+  ]);
 }
