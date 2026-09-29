@@ -51,7 +51,7 @@ const faqs = [
   },
   {
     q: "Does NeuVault store my documents on its servers?",
-    a: "NeuVault is designed so your documents are not persisted on NeuVault servers. AI processing may temporarily handle content when you use intelligent workflows, but documents are not kept after processing.",
+    a: "No. Your vault lives on your device. When a feature needs our servers, such as reading a scan or transcribing a recording, the file and its result are deleted as soon as your device receives them, and within an hour at most. We keep reminder details so we can notify you about your dates.",
   },
   {
     q: "Does NeuVault train AI models on my documents?",
