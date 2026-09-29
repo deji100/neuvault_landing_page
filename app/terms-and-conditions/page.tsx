@@ -9,6 +9,7 @@ import {
   CreditCard,
   FileText,
   Gavel,
+  KeyRound,
   Lock,
   Mail,
   RefreshCw,
@@ -16,32 +17,31 @@ import {
   Trash2,
   TriangleAlert,
   UserCheck,
-  Wifi,
+  Users,
 } from "lucide-react";
 
 import { Bullets, Callout, LegalPage, MetaPill, Section, type TocItem } from "@/components/specific/legal/Legal";
 
-const EFFECTIVE_DATE = "February 11, 2026"; // update when needed
+const EFFECTIVE_DATE = "September 29, 2026";
 const SUPPORT_EMAIL = "support@neuvault.app";
 
 const toc: TocItem[] = [
-  { id: "acceptance", label: "Acceptance of Terms" },
-  { id: "eligibility", label: "Eligibility" },
-  { id: "accounts", label: "Accounts & security" },
-  { id: "your-data", label: "Your data & ownership" },
-  { id: "ai", label: "AI features & limitations" },
-  { id: "suggestions", label: "Smart Suggestions & reminders" },
-  { id: "export", label: "Encrypted export & restore" },
-  { id: "payments", label: "Plans, billing, and credits" },
+  { id: "acceptance", label: "Agreeing to these Terms" },
+  { id: "eligibility", label: "Who can use NeuVault" },
+  { id: "accounts", label: "Your account" },
+  { id: "your-content", label: "Your content" },
+  { id: "ai", label: "AI features" },
+  { id: "reminders", label: "Reminders" },
+  { id: "backup", label: "Backups & your Recovery Key" },
+  { id: "payments", label: "Plans, billing & credits" },
   { id: "acceptable-use", label: "Acceptable use" },
-  { id: "third-parties", label: "Third-party services" },
-  { id: "availability", label: "Availability & changes" },
-  { id: "termination", label: "Termination" },
-  { id: "account-deletion", label: "Account deletion" },
-  { id: "liability", label: "Disclaimers & limitation of liability" },
-  { id: "law", label: "Governing law" },
-  { id: "changes", label: "Changes to these Terms" },
-  { id: "contact", label: "Contact" },
+  { id: "third-parties", label: "Connected services" },
+  { id: "availability", label: "Changes to the service" },
+  { id: "termination", label: "Ending your use" },
+  { id: "account-deletion", label: "Deleting your account" },
+  { id: "liability", label: "Disclaimers & liability" },
+  { id: "law", label: "Governing law & disputes" },
+  { id: "changes", label: "Changes & contact" },
 ];
 
 export default function TermsPage() {
@@ -50,9 +50,9 @@ export default function TermsPage() {
       title="Terms & Conditions"
       lede={
         <>
-          These Terms govern your access to and use of NeuVault (“NeuVault”,
-          “we”, “our”, “us”). By using the app, you agree to these Terms and
-          our Privacy Policy.
+          These Terms are the agreement between you and NeuVault Technologies Limited (“NeuVault”, “we”, “us”)
+          for using the NeuVault apps and website. Please read them together with our{" "}
+          <Link href="/privacy-policy">Privacy Policy</Link>.
         </>
       }
       meta={
@@ -61,338 +61,253 @@ export default function TermsPage() {
           <MetaPill icon={Mail} href={`mailto:${SUPPORT_EMAIL}`}>
             {SUPPORT_EMAIL}
           </MetaPill>
-          <MetaPill icon={Shield}>Privacy-first • Local-first</MetaPill>
+          <MetaPill icon={Shield}>Your content stays yours</MetaPill>
         </>
       }
       highlights={[
-        { icon: Lock, label: "You own your vault content" },
-        { icon: Bot, label: "AI outputs may be inaccurate" },
-        { icon: Wifi, label: "Offline actions may queue" },
-        { icon: Cloud, label: "Encrypted export before backup" },
+        { icon: Lock, label: "You own everything you put in your vault" },
+        { icon: Bot, label: "Check AI results before relying on them" },
+        { icon: KeyRound, label: "Keep your Recovery Key safe" },
+        { icon: CreditCard, label: "Subscriptions are managed in your app store" },
       ]}
       toc={toc}
-      footnote="NeuVault — Privacy first. Ownership always."
+      footnote="NeuVault — Your data. Your device. Your control."
     >
-      <Section id="acceptance" title="1. Acceptance of Terms" icon={FileText}>
+      <Section id="acceptance" title="1. Agreeing to these Terms" icon={FileText}>
         <p>
-          By downloading, accessing, or using NeuVault (the “App”), you agree
-          to be bound by these Terms and our Privacy Policy.
-        </p>
-        <p>If you do not agree, do not use NeuVault.</p>
-      </Section>
-
-      <Section id="eligibility" title="2. Eligibility" icon={UserCheck}>
-        <Bullets>
-          <li>You must be at least 13 years old to use NeuVault.</li>
-          <li>
-            If you are under 18, you confirm a parent/guardian has consented.
-          </li>
-        </Bullets>
-      </Section>
-
-      <Section id="accounts" title="3. Accounts & security" icon={Lock}>
-        <Bullets>
-          <li>
-            You are responsible for maintaining the confidentiality of your
-            account and access to your device.
-          </li>
-          <li>
-            You agree not to access or attempt to access other users’ accounts
-            or vaults.
-          </li>
-          <li>
-            If you believe your account has been compromised, contact{" "}
-            <a
-              href={`mailto:${SUPPORT_EMAIL}`}
-
-            >
-              {SUPPORT_EMAIL}
-            </a>
-            .
-          </li>
-        </Bullets>
-      </Section>
-
-      <Section id="your-data" title="4. Your data & ownership" icon={Shield}>
-        <p>
-          You retain full ownership of the documents, files, notes, audio, and
-          other content you store in NeuVault (“Your Content”).
-        </p>
-        <Bullets>
-          <li>
-            Your vault content is stored locally on your device by default.
-          </li>
-          <li>
-            NeuVault does not claim ownership over Your Content.
-          </li>
-          <li>
-            You are responsible for keeping your device secure and maintaining
-            your own backups.
-          </li>
-        </Bullets>
-
-        <Callout>
-          <p>
-            <strong>Backup responsibility:</strong> NeuVault provides tools for encrypted export,
-            but NeuVault is not a guaranteed backup service. You are
-            responsible for storing your exported backups safely.
-          </p>
-        </Callout>
-      </Section>
-
-      <Section id="ai" title="5. AI features & limitations" icon={Bot}>
-        <p>
-          NeuVault may offer AI-powered features such as Smart Intake
-          (summaries/tags/grouping), voice transcription, Smart Suggestions,
-          and the Nova Assistant.
-        </p>
-
-        <h3>
-          Smart Intake (automatic processing)
-        </h3>
-        <Bullets>
-          <li>
-            Smart Intake may automatically process content you add to generate
-            summaries, tags, and organization metadata.
-          </li>
-          <li>
-            If you are offline, intake items may be queued and processed when
-            you regain internet access.
-          </li>
-        </Bullets>
-
-        <h3>
-          AI output disclaimer
-        </h3>
-        <Bullets>
-          <li>
-            AI-generated summaries, tags, suggestions, transcripts, and answers
-            are provided for informational purposes and may be inaccurate,
-            incomplete, or outdated.
-          </li>
-          <li>
-            You are responsible for reviewing and verifying outputs before
-            relying on them—especially for legal, medical, financial, or
-            compliance decisions.
-          </li>
-        </Bullets>
-
-        <h3>
-          No guaranteed results
-        </h3>
-        <p>
-          We do not guarantee that AI features will identify every deadline,
-          renewal, event date, or relevant detail.
+          By downloading, opening or using NeuVault, you agree to these Terms. If you do not agree, please do not
+          use NeuVault.
         </p>
       </Section>
 
-      <Section id="suggestions" title="6. Smart Suggestions & reminders" icon={Bell}>
+      <Section id="eligibility" title="2. Who can use NeuVault" icon={UserCheck}>
         <Bullets>
+          <li>You must be at least 13 years old.</li>
+          <li>If you are under 18, a parent or guardian must agree to these Terms for you.</li>
+          <li>You must be allowed to use NeuVault under the laws that apply to you.</li>
+        </Bullets>
+      </Section>
+
+      <Section id="accounts" title="3. Your account" icon={Lock}>
+        <Bullets>
+          <li>You sign in with your email address and a one-time code. Keep access to that email account secure.</li>
+          <li>You are responsible for activity on your account and for keeping your devices secure.</li>
+          <li>Do not access, or try to access, anyone else&apos;s account or vault.</li>
           <li>
-            Smart Suggestions runs only when you initiate it (where available).
-          </li>
-          <li>
-            Deadline/renewal insights may be shown only during Smart
-            Suggestions runs.
-          </li>
-          <li>
-            Reminders and resurfacing notifications trigger only if you set
-            them on a document or group.
-          </li>
-          <li>
-            Notifications may not be delivered due to OS settings, device
-            restrictions, network issues, or user configuration. You are
-            responsible for keeping critical reminders elsewhere if needed.
+            If you think your account has been compromised, contact{" "}
+            <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a> straight away.
           </li>
         </Bullets>
       </Section>
 
-      <Section id="export" title="7. Encrypted export & restore" icon={Cloud}>
+      <Section id="your-content" title="4. Your content" icon={Shield}>
         <p>
-          NeuVault may allow you to export an encrypted backup bundle to a
-          storage provider you choose (e.g., Google Drive, iCloud, Dropbox, or
-          other storage).
+          You own the documents, files, notes, recordings and other content you add to NeuVault (“Your Content”).
+          We claim no ownership of it.
         </p>
         <Bullets>
+          <li>Your vault is stored on your device.</li>
           <li>
-            Export bundles are encrypted before leaving your device.
+            You give us permission to process Your Content only as needed to provide the features you use, as
+            described in the Privacy Policy. This permission ends when the processing is done.
           </li>
           <li>
-            You are responsible for safeguarding access to your exported files
-            and your cloud account(s).
+            You are responsible for having the right to add Your Content, including other people&apos;s
+            information, messages or files, for example in chat imports or shared files.
           </li>
           <li>
-            If you lose access to your account/device and do not have an
-            exported backup, NeuVault may not be able to recover Your Content.
+            If you record other people, such as in a meeting or call, you are responsible for telling them and
+            getting their consent where the law requires it.
           </li>
         </Bullets>
       </Section>
 
-      <Section id="payments" title="8. Plans, billing, and credits" icon={CreditCard}>
+      <Section id="ai" title="5. AI features" icon={Bot}>
         <p>
-          NeuVault may offer subscriptions, usage-based credits, or both.
-          Availability and pricing may vary by platform.
+          NeuVault uses AI to organize documents, write summaries and tags, find dates, transcribe recordings and
+          answer questions in Nova. Content you add is processed automatically when you add it.
         </p>
-
         <Bullets>
           <li>
-            Purchases made on iOS are processed through Apple In-App Purchase
-            (IAP) where required.
+            AI results can be wrong, incomplete or out of date. Check them before relying on them, especially for
+            legal, medical, financial, immigration or other important decisions.
+          </li>
+          <li>AI results are not professional advice.</li>
+          <li>
+            We do not guarantee that NeuVault will find every date, deadline or detail in your documents.
+          </li>
+          <li>Some features need an internet connection and credits.</li>
+        </Bullets>
+      </Section>
+
+      <Section id="reminders" title="6. Reminders" icon={Bell}>
+        <Bullets>
+          <li>
+            NeuVault adds dates it finds in your documents to Reminders automatically, and you can add your own or
+            set items to resurface on a schedule.
           </li>
           <li>
-            Credits (if offered) may be consumed when you use AI-powered
-            processing features (e.g., summaries, transcription, assistant
-            tasks).
+            Notifications can be delayed or missed because of device settings, operating system limits, network
+            problems or app settings. Do not rely on NeuVault as the only reminder for anything critical, such as a
+            visa, passport or legal deadline.
+          </li>
+          <li>You can turn reminders off in the app&apos;s notification settings.</li>
+        </Bullets>
+      </Section>
+
+      <Section id="backup" title="7. Backups & your Recovery Key" icon={KeyRound}>
+        <Bullets>
+          <li>
+            NeuVault lets you create encrypted backups and save them wherever you choose. NeuVault is not a backup
+            service: making backups and keeping them safe is up to you.
           </li>
           <li>
-            Credits are not legal tender, have no cash value, and are not
-            transferable or resellable.
+            Backups are sealed with your Recovery Key, which stays on your device and is never sent to us. You are
+            responsible for keeping your Recovery Key safe.
+          </li>
+          <li>
+            If you lose your Recovery Key, backups sealed with it cannot be opened, and we cannot recover them.
+          </li>
+          <li>
+            If you lose or reset your device, or remove the app, without a backup you can open, Your Content may be
+            lost permanently.
+          </li>
+        </Bullets>
+      </Section>
+
+      <Section id="payments" title="8. Plans, billing & credits" icon={CreditCard}>
+        <h3>Subscriptions</h3>
+        <Bullets>
+          <li>
+            Plans are bought through the Apple App Store (on iPhone, iPad and Mac) or Google Play. Your purchase is
+            also subject to their terms, and they handle payment.
+          </li>
+          <li>
+            Subscriptions renew automatically at the end of each billing period unless you cancel at least 24 hours
+            before it ends. You can cancel in your App Store or Google Play account settings.
+          </li>
+          <li>
+            Refunds are handled by Apple or Google under their policies. Deleting the app or your account does not
+            cancel a subscription.
+          </li>
+          <li>
+            Prices can vary by country and may change. We will tell you in advance, and your app store will ask for
+            your consent where required.
           </li>
         </Bullets>
 
-        <Callout>
-          <p>
-            <strong>Refunds:</strong> If you purchase through Apple, refunds are handled under
-            Apple’s policies. For other platforms, refunds (if any) follow the
-            rules shown at purchase time.
-          </p>
-        </Callout>
+        <h3>Credits</h3>
+        <Bullets>
+          <li>
+            AI features such as organizing documents, reading scanned text, transcription, Nova answers and web
+            searches use credits. How many depends on the task. Storing and searching your vault never uses credits,
+            and your vault keeps working without them.
+          </li>
+          <li>The free Explorer plan includes 500 credits, which expire after 14 days.</li>
+          <li>
+            Paid plans add a credit allowance each billing period. Unused plan credits do not carry over.
+          </li>
+          <li>
+            On a paid plan, you can buy extra credits once you have used 80% of your allowance. Extra credits are
+            used after your plan credits and expire 15 days after purchase.
+          </li>
+          <li>
+            If a request fails after processing has started, it may use up to half of the credits it would have
+            cost.
+          </li>
+          <li>Credits have no cash value, cannot be transferred or sold, and are not refundable except where the law requires.</li>
+        </Bullets>
+        <p>
+          Current plans and prices are on our <Link href="/pricing">pricing page</Link> and in the app.
+        </p>
       </Section>
 
       <Section id="acceptable-use" title="9. Acceptable use" icon={Ban}>
         <p>You agree not to:</p>
         <Bullets>
-          <li>Use NeuVault for illegal activities.</li>
-          <li>
-            Upload, store, or process content that you do not have the right
-            to possess or use.
-          </li>
-          <li>
-            Attempt to reverse engineer, bypass security, or interfere with
-            the app’s integrity.
-          </li>
-          <li>
-            Use AI features to generate or facilitate unlawful conduct.
-          </li>
-          <li>
-            Abuse the service (e.g., automated scraping, excessive requests,
-            or attempts to overload systems).
-          </li>
+          <li>Use NeuVault for anything illegal, or to harm, harass or deceive others.</li>
+          <li>Add content you do not have the right to possess or use.</li>
+          <li>Use AI features to create or help with unlawful content or activity.</li>
+          <li>Reverse engineer NeuVault, get around its security or credit limits, or interfere with how it works.</li>
+          <li>Overload our systems, for example with automated or excessive requests or scraping.</li>
+          <li>Resell NeuVault or access it except through our apps and website.</li>
         </Bullets>
       </Section>
 
-      <Section id="third-parties" title="10. Third-party services" icon={Cloud}>
+      <Section id="third-parties" title="10. Connected services" icon={Users}>
         <p>
-          NeuVault may integrate with third-party services you choose to use,
-          such as cloud storage providers (for export) and AI processing
-          providers (to deliver AI features).
+          NeuVault works with services you choose to use, such as Gmail and Microsoft email, cloud storage for your
+          backups, and Apple or Google for purchases and notifications. Those services have their own terms and
+          privacy policies. We are not responsible for their availability, changes or loss of data held by them.
+        </p>
+      </Section>
+
+      <Section id="availability" title="11. Changes to the service" icon={RefreshCw}>
+        <Bullets>
+          <li>We regularly improve NeuVault and may add, change or remove features.</li>
+          <li>We aim to keep NeuVault available, but cannot promise it will always be uninterrupted or error-free.</li>
+          <li>Features that use our servers are not available offline.</li>
+        </Bullets>
+      </Section>
+
+      <Section id="termination" title="12. Ending your use" icon={Ban}>
+        <p>
+          You can stop using NeuVault at any time. We may suspend or close your account if you seriously or
+          repeatedly break these Terms, or where the law requires it. Where reasonable, we will tell you first.
+          Closing an account does not delete Your Content on your device.
+        </p>
+      </Section>
+
+      <Section id="account-deletion" title="13. Deleting your account" icon={Trash2}>
+        <p>
+          You can delete your account in the app (Settings &gt; Delete Account) or from{" "}
+          <Link href="/account-deletion">neuvault.app/account-deletion</Link>. What is deleted, and the minimal
+          record we keep, is described in the <Link href="/privacy-policy">Privacy Policy</Link>. Your vault stays on
+          your device until you delete it there, and any subscription must be cancelled in your app store.
+        </p>
+      </Section>
+
+      <Section id="liability" title="14. Disclaimers & liability" icon={TriangleAlert}>
+        <p>
+          NeuVault is provided “as is” and “as available”. To the fullest extent the law allows, we make no
+          promises beyond those in these Terms, including about fitness for a particular purpose.
         </p>
         <Bullets>
           <li>
-            Third-party services have their own terms and privacy policies.
+            We are not responsible for loss of data caused by device failure, operating system problems, removing the
+            app, losing your Recovery Key, or backups you did not make or keep.
           </li>
+          <li>We are not responsible for decisions made using AI results or for missed reminders.</li>
           <li>
-            NeuVault is not responsible for outages, data loss, or policy
-            changes of third-party providers.
+            To the fullest extent the law allows, our total liability to you is limited to the amount you paid us in
+            the 12 months before the claim.
           </li>
         </Bullets>
-      </Section>
-
-      <Section id="availability" title="11. Availability & changes" icon={RefreshCw}>
-        <p>NeuVault is provided “as is” and may change over time.</p>
-        <Bullets>
-          <li>Features may be added, modified, or removed.</li>
-          <li>
-            We do not guarantee uninterrupted availability or error-free
-            operation.
-          </li>
-          <li>
-            Some features may require internet access and may be unavailable
-            offline.
-          </li>
-        </Bullets>
-      </Section>
-
-      <Section id="termination" title="12. Termination" icon={Ban}>
-        <p>You may stop using NeuVault at any time.</p>
-        <p>
-          We may suspend or terminate your access if you violate these Terms
-          or misuse the service, to the extent permitted by law.
-        </p>
-        <p>
-          Termination does not automatically delete Your Content stored
-          locally on your device.
-        </p>
-      </Section>
-
-      <Section id="account-deletion" title="13. Account deletion" icon={Trash2}>
-        <p>
-          You can request account deletion in-app from Settings &gt; Delete Account or
-          through our account deletion page:
-        </p>
-        <p>
-          <Link href="/account-deletion">
-            neuvault.app/account-deletion
-          </Link>
-        </p>
-        <Bullets>
-          <li>
-            Account deletion removes server-side account records and authentication records.
-          </li>
-          <li>
-            Account deletion does not automatically remove local vault content stored on
-            your device.
-          </li>
-        </Bullets>
-      </Section>
-
-      <Section id="liability" title="14. Disclaimers & limitation of liability" icon={TriangleAlert}>
-        <p>
-          To the maximum extent permitted by law, NeuVault disclaims all
-          warranties, express or implied, including fitness for a particular
-          purpose and non-infringement.
-        </p>
-        <Bullets>
-          <li>
-            NeuVault is not liable for data loss caused by device failure,
-            OS issues, user error, or loss of exported backups.
-          </li>
-          <li>
-            NeuVault is not liable for decisions made based on AI outputs.
-          </li>
-          <li>
-            NeuVault is not responsible for the third-party services you
-            choose to use (including cloud storage providers).
-          </li>
-        </Bullets>
-      </Section>
-
-      <Section id="law" title="15. Governing law" icon={Gavel}>
-        <p>
-          These Terms are governed by applicable laws in your jurisdiction,
-          without regard to conflict-of-law principles.
-        </p>
-      </Section>
-
-      <Section id="changes" title="16. Changes to these Terms" icon={FileText}>
-        <p>
-          We may update these Terms to reflect product or legal changes. We
-          will update the effective date above. Continued use after changes
-          means acceptance.
-        </p>
-      </Section>
-
-      <Section id="contact" title="17. Contact" icon={UserCheck}>
-        <p>For questions about these Terms, contact:</p>
         <Callout>
           <p>
-            Email:{" "}
-            <a
-              href={`mailto:${SUPPORT_EMAIL}`}
+            Nothing in these Terms limits rights you have as a consumer that cannot be limited by law.
+          </p>
+        </Callout>
+      </Section>
 
-            >
-              {SUPPORT_EMAIL}
-            </a>
+      <Section id="law" title="15. Governing law & disputes" icon={Gavel}>
+        <p>
+          These Terms are governed by the laws of the country where NeuVault Technologies Limited is registered. If
+          you live elsewhere, you keep the protection of any mandatory consumer laws where you live. If you have a
+          problem, please contact us first at <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>, and we will
+          try to resolve it.
+        </p>
+      </Section>
+
+      <Section id="changes" title="16. Changes & contact" icon={Cloud}>
+        <p>
+          We may update these Terms as NeuVault changes. We will change the effective date above and tell you about
+          significant changes in the app or by email. If you keep using NeuVault after that, you accept the updated
+          Terms.
+        </p>
+        <Callout>
+          <p>
+            NeuVault Technologies Limited — <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
           </p>
         </Callout>
       </Section>
