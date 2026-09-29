@@ -1,0 +1,25 @@
+/* Inherits the Apple-system tokens from LandingPage .page. */
+.signoff{position:relative;overflow:hidden;padding:40px 0 0;text-align:center}
+.rule{display:block;width:44px;height:2px;margin:0 auto 34px;border-radius:2px;background:var(--amber)}
+.statement{color:var(--soft);font-size:clamp(1.45rem,2.6vw,2.05rem);line-height:1.22;letter-spacing:-.005em}
+
+/* Forest photo by Sergei A (@sakulich) on Unsplash, under the Unsplash License. */
+.giant{
+  margin:clamp(40px,7vw,96px) 0 0;padding:0 0 .1em;
+  font-size:min(15vw,20rem);font-weight:500;line-height:.95;letter-spacing:-.025em;white-space:nowrap;
+  background:url("/signoff/forest.webp") 50% 30% / 110% auto no-repeat,#28402f;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  -webkit-mask-image:linear-gradient(180deg,#000 62%,rgba(0,0,0,.6) 90%,rgba(0,0,0,.25));mask-image:linear-gradient(180deg,#000 62%,rgba(0,0,0,.6) 90%,rgba(0,0,0,.25));
+  filter:brightness(.84) saturate(1.2) contrast(1.08);
+  animation:drift 40s ease-in-out infinite alternate;
+}
+
+@keyframes drift{from{background-position:20% 30%}to{background-position:80% 34%}}
+/* Where supported, the line rises into place as it scrolls in. */
+@supports (animation-timeline:view()){
+  .giant{animation:drift 38s ease-in-out infinite alternate,rise linear both;animation-timeline:auto,view();animation-range:normal,entry 0% cover 45%}
+  @keyframes rise{from{opacity:.2;transform:translateY(22%)}to{opacity:1;transform:none}}
+}
+@media(prefers-reduced-motion:reduce){.giant{animation:none}}
+
+:global(html[data-theme="dark"]) .giant{filter:brightness(.9) saturate(.9)}

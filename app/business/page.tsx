@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Building2, CheckCircle2, CloudCog, Database, LockKeyhole, Network, ShieldCheck } from "lucide-react";
 import { buildMetadata } from "@/lib/seo";
+import styles from "./BusinessPage.module.css";
 
 export const metadata: Metadata = buildMetadata({
   title: "NeuVault Business — Private Document Intelligence for Organizations",
@@ -21,9 +22,68 @@ const capabilities = [
 ];
 
 export default function BusinessPage() {
-  return <main className="min-h-screen bg-[#07111f] pt-24 text-white">
-    <section className="px-5 py-20 sm:px-6 md:py-28"><div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_.9fr] lg:items-center"><div><p className="text-sm font-semibold uppercase tracking-[.16em] text-blue-300">NeuVault Business</p><h1 className="mt-5 text-4xl font-bold leading-tight tracking-tight sm:text-6xl">Private document intelligence on infrastructure your organization controls.</h1><p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">Bring email attachments, folder documents, notes and records into a connected workspace without requiring NeuVault to become your organization’s central document-storage provider.</p><Link href="/contact" className="mt-8 inline-flex rounded-xl bg-blue-500 px-6 py-3.5 font-semibold hover:bg-blue-400">Request an organizational demo</Link></div><div className="rounded-[1.8rem] border border-white/10 bg-white/5 p-6"><Building2 className="h-8 w-8 text-blue-300"/><h2 className="mt-8 text-2xl font-semibold">A deployment model built around control</h2><div className="mt-6 space-y-3">{[[Database,"Organization-controlled storage"],[CloudCog,"On-premises or organization-cloud models"],[LockKeyhole,"Organization-managed service credentials"],[ShieldCheck,"Private deployment architecture"]].map(([Icon,label]) => {const I=Icon as typeof Database; return <div key={label as string} className="flex items-center gap-3 rounded-xl border border-white/10 bg-black/10 p-4 text-sm text-slate-300"><I className="h-5 w-5 text-teal-300"/>{label as string}</div>})}</div></div></div></section>
-    <section className="bg-[#f6f9fc] px-5 py-20 text-slate-900 sm:px-6 md:py-28"><div className="mx-auto max-w-7xl"><div className="max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[.16em] text-blue-600">Capability roadmap</p><h2 className="mt-4 text-3xl font-bold md:text-5xl">Clear about what is ready—and what comes next.</h2><p className="mt-5 text-lg leading-8 text-slate-600">Deployment scope and feature availability are confirmed during discovery. Planned capabilities are not represented as production-ready.</p></div><div className="mt-12 grid gap-4 md:grid-cols-2">{capabilities.map((item) => <article key={item.title} className="rounded-2xl border border-slate-200 bg-white p-6"><div className="flex items-start justify-between gap-4"><CheckCircle2 className="h-6 w-6 text-blue-600"/><span className={`rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide ${item.status === "Available" ? "bg-emerald-100 text-emerald-700" : item.status === "In development" ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-600"}`}>{item.status}</span></div><h3 className="mt-6 text-xl font-semibold">{item.title}</h3><p className="mt-2 text-sm leading-6 text-slate-600">{item.description}</p></article>)}</div></div></section>
-    <section className="px-5 py-20 sm:px-6"><div className="mx-auto max-w-5xl rounded-[1.8rem] border border-white/10 bg-white/5 p-8 text-center md:p-12"><Network className="mx-auto h-8 w-8 text-blue-300"/><h2 className="mt-6 text-3xl font-bold">Discuss NeuVault for your organization.</h2><p className="mx-auto mt-4 max-w-2xl text-slate-300">Tell us about your document sources, deployment constraints, storage model and workflow requirements.</p><Link href="/contact" className="mt-7 inline-flex rounded-xl bg-blue-500 px-6 py-3.5 font-semibold hover:bg-blue-400">Request an organizational demo</Link></div></section>
-  </main>;
+  const controls = [
+    [Database, "Organization-controlled storage"],
+    [CloudCog, "On-premises or organization-cloud models"],
+    [LockKeyhole, "Organization-managed service credentials"],
+    [ShieldCheck, "Private deployment architecture"],
+  ] as const;
+
+  return (
+    <main className={styles.page}>
+      <section className={styles.hero}>
+        <div className={`${styles.wrap} ${styles.heroGrid}`}>
+          <div>
+            <p className={styles.eyebrow}>NeuVault Business</p>
+            <h1>Private document intelligence on infrastructure your organization controls.</h1>
+            <p className={styles.heroCopy}>Bring email attachments, folder documents, notes and records into a connected workspace without requiring NeuVault to become your organization’s central document-storage provider.</p>
+            <Link href="/contact" className={styles.primaryButton}>Request an organizational demo</Link>
+          </div>
+
+          <div className={styles.controlCard}>
+            <span className={styles.buildingIcon}><Building2 size={23} /></span>
+            <h2>A deployment model built around control</h2>
+            <div className={styles.controlList}>
+              {controls.map(([Icon, label]) => <div key={label} className={styles.controlItem}><Icon size={18} />{label}</div>)}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.roadmap}>
+        <div className={styles.wrap}>
+          <div className={styles.roadmapIntro}>
+            <p className={styles.sectionLabel}>Capability roadmap</p>
+            <h2>Clear about what is ready—and what comes next.</h2>
+            <p className={styles.roadmapCopy}>Deployment scope and feature availability are confirmed during discovery. Planned capabilities are not represented as production-ready.</p>
+          </div>
+
+          <div className={styles.capabilityGrid}>
+            {capabilities.map((item) => {
+              const statusClass = item.status === "Available" ? styles.available : item.status === "In development" ? styles.development : styles.planned;
+              return (
+                <article key={item.title} className={styles.capability}>
+                  <div className={styles.capabilityTop}>
+                    <CheckCircle2 size={22} />
+                    <span className={`${styles.status} ${statusClass}`}>{item.status}</span>
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.contact}>
+        <div className={styles.contactInner}>
+          <span className={styles.contactIcon}><Network size={22} /></span>
+          <h2>Discuss NeuVault for your organization.</h2>
+          <p>Tell us about your document sources, deployment constraints, storage model and workflow requirements.</p>
+          <Link href="/contact" className={styles.primaryButton}>Request an organizational demo</Link>
+        </div>
+      </section>
+    </main>
+  );
 }

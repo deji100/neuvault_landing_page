@@ -2,268 +2,87 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { ArrowUpRight, Smartphone } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Smartphone } from "lucide-react";
 import { FaAndroid, FaApple, FaWindows } from "react-icons/fa";
-import { guidePages } from "@/lib/guides";
 import {
   ANDROID_PLAY_STORE_URL,
   IOS_APP_STORE_URL,
   MACOS_APP_STORE_URL,
   WINDOWS_MICROSOFT_STORE_URL,
-  solutionPages,
 } from "@/lib/seo";
-
-const scrollToId = (id: string) => {
-  const element = document.getElementById(id);
-  if (!element) return;
-
-  const navOffset = 92;
-  const top = element.getBoundingClientRect().top + window.scrollY - navOffset;
-  window.scrollTo({ top, behavior: "smooth" });
-};
-
-const primaryLinks = [
-  { label: "Product", href: "/product" },
-  { label: "How it works", id: "how-it-works" },
-  { label: "Privacy", id: "privacy" },
-];
-
-const workflowLabels: Record<string, string> = {
-  "document-organization": "Organize important records",
-  "document-reminder": "Remember dates and renewals",
-  "document-retrieval": "Find documents faster",
-  "secure-document-backup": "Back up and restore privately",
-  "notes-export": "Keep notes portable",
-  "voice-note-transcription": "Turn voice notes searchable",
-  "scan-organization": "Scan and organize documents",
-};
+import styles from "./Footer.module.css";
 
 const downloadLinks = [
-  {
-    label: "App Store",
-    href: IOS_APP_STORE_URL,
-    icon: Smartphone,
-    primary: true,
-  },
-  {
-    label: "Google Play",
-    href: ANDROID_PLAY_STORE_URL,
-    icon: FaAndroid,
-  },
-  {
-    label: "Mac App Store",
-    href: MACOS_APP_STORE_URL,
-    icon: FaApple,
-  },
-  {
-    label: "Microsoft Store",
-    href: WINDOWS_MICROSOFT_STORE_URL,
-    icon: FaWindows,
-  },
+  { label: "iPhone", href: IOS_APP_STORE_URL, icon: Smartphone },
+  { label: "Android", href: ANDROID_PLAY_STORE_URL, icon: FaAndroid },
+  { label: "macOS", href: MACOS_APP_STORE_URL, icon: FaApple },
+  { label: "Windows", href: WINDOWS_MICROSOFT_STORE_URL, icon: FaWindows },
 ];
 
+const footerLinks = [
+  ["Product", "/product"],
+  ["Pricing", "/pricing"],
+  ["Business", "/business"],
+  ["Guides", "/guides"],
+  ["Contact", "/contact"],
+  ["Privacy", "/privacy-policy"],
+  ["Terms", "/terms-and-conditions"],
+] as const;
+
 export default function Footer() {
-  const featuredGuides = guidePages.slice(0, 3);
   const pathname = usePathname();
-  const router = useRouter();
-  const [pendingSectionId, setPendingSectionId] = useState<string | null>(null);
+  const year = new Date().getFullYear();
 
-  useEffect(() => {
-    if (pathname !== "/" || !pendingSectionId) return;
-
-    requestAnimationFrame(() => {
-      scrollToId(pendingSectionId);
-      setPendingSectionId(null);
-    });
-  }, [pathname, pendingSectionId]);
-
-  const navigateToSection = (id: string) => {
-    if (pathname === "/") {
-      scrollToId(id);
-      return;
-    }
-
-    setPendingSectionId(id);
-    router.push("/");
-  };
+  if (pathname === "/") {
+    return (
+      <footer className="home-site-footer border-t border-[#e4e2da] bg-[#fbfaf7] px-5 py-9 font-[family-name:var(--font-instrument)] text-sm text-[#8b9096] sm:px-6">
+        <div className="mx-auto flex max-w-[1120px] flex-wrap items-center gap-5">
+          <Link href="/" className="flex items-center gap-2.5 font-[family-name:var(--font-bricolage)] font-bold text-[#12161b]">
+            <span className="home-site-logo-mark grid h-7 w-7 place-items-center rounded-[9px] bg-gradient-to-br from-[#12806e] to-[#0a5a4d] text-[10px] text-white">N</span>
+            NeuVault
+          </Link>
+          <span>© {year} NeuVault</span>
+          <div className="ml-auto flex flex-wrap gap-5">
+            <Link href="/pricing" className="hover:text-[#12161b]">Pricing</Link>
+            <Link href="/guides" className="hover:text-[#12161b]">Help</Link>
+            <Link href="/privacy-policy" className="hover:text-[#12161b]">Privacy</Link>
+            <Link href="/terms-and-conditions" className="hover:text-[#12161b]">Terms</Link>
+          </div>
+        </div>
+      </footer>
+    );
+  }
 
   return (
-    <footer
-      id="site-footer"
-      className="border-t border-slate-200 bg-white px-6 py-16 text-slate-700"
-    >
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-12 rounded-[1.75rem] border border-slate-200 bg-slate-50 p-6 md:p-8">
-          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div>
-              <Link href="/" className="inline-flex items-center gap-4">
-                <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-blue-100 bg-white shadow-[0_16px_36px_-24px_rgba(37,99,235,0.7)] ring-1 ring-blue-50">
-                  <Image
-                    src="/logo.png"
-                    alt="NeuVault logo"
-                    width={44}
-                    height={44}
-                    className="h-11 w-11 object-contain"
-                  />
-                </span>
-                <div>
-                  <p className="text-2xl font-black tracking-normal text-slate-950">NeuVault</p>
-                  <p className="mt-1 text-sm font-medium text-slate-600">
-                    Private, cross-platform document intelligence
-                  </p>
-                </div>
-              </Link>
-
-              <h2 className="mt-6 max-w-3xl text-2xl font-semibold leading-tight text-slate-950 md:text-3xl">
-                Bring scattered documents into one private workspace that
-                understands, connects and tracks what matters.
-              </h2>
-            </div>
-
-            <div className="rounded-[1.4rem] border border-blue-100 bg-white p-5 text-center shadow-sm">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-blue-700">
-                Download NeuVault
-              </p>
-              <div className="mt-6 flex flex-wrap justify-center gap-3">
-                {downloadLinks.map(({ label, href, icon: Icon, primary }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition ${
-                      primary
-                        ? "bg-blue-600 text-white hover:bg-blue-700"
-                        : "border border-slate-300 bg-white text-slate-800 hover:border-blue-300 hover:text-blue-700"
-                    }`}
-                  >
-                    <Icon aria-hidden="true" className="h-5 w-5" />
-                    {label}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid gap-10 lg:grid-cols-[0.85fr_1fr_1fr_0.85fr_1fr]">
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-slate-950">
-              Explore
-            </h3>
-            <ul className="space-y-3 text-sm">
-              {primaryLinks.map((item) => <li key={item.label}>{item.href ? <Link href={item.href} className="text-slate-600 hover:text-blue-700">{item.label}</Link> : <button type="button" onClick={() => navigateToSection(item.id!)} className="text-slate-600 hover:text-blue-700">{item.label}</button>}</li>)}
-              <li>
-                <Link href="/pricing" className="text-slate-600 hover:text-blue-700">
-                  Pricing
-                </Link>
-              </li>
-              <li>
-                <Link href="/business" className="text-slate-600 hover:text-blue-700">
-                  Business
-                </Link>
-              </li>
-              <li>
-                <Link href="/guides" className="text-slate-600 hover:text-blue-700">
-                  Guides
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-slate-600 hover:text-blue-700">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-slate-950">
-              Document problems
-            </h3>
-            <ul className="space-y-3 text-sm">
-              {solutionPages.map((page) => (
-                <li key={page.slug}>
-                  <Link href={`/${page.slug}`} className="text-slate-600 hover:text-blue-700">
-                    {workflowLabels[page.slug] ?? page.metaTitle}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-slate-950">
-              Helpful guides
-            </h3>
-            <ul className="space-y-3 text-sm">
-              {featuredGuides.map((guide) => (
-                <li key={guide.slug}>
-                  <Link
-                    href={`/guides/${guide.slug}`}
-                    className="text-slate-600 hover:text-blue-700"
-                  >
-                    {guide.metaTitle}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link href="/guides" className="inline-flex items-center gap-1 font-semibold text-blue-700">
-                  View all guides
-                  <ArrowUpRight size={14} />
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-slate-950">
-              Company
-            </h3>
-            <ul className="space-y-3 text-sm">
-              {[
-                ["Contact", "/contact"],
-                ["Press", "/press"],
-                ["Privacy policy", "/privacy-policy"],
-                ["Terms of service", "/terms-and-conditions"],
-                ["Account deletion", "/account-deletion"],
-              ].map(([label, href]) => (
-                <li key={href}>
-                  <Link href={href} className="text-slate-600 hover:text-blue-700">
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-slate-950">
-              Trust note
-            </h3>
-            <p className="text-sm leading-7 text-slate-600">
-              NeuVault is designed around local-first storage. Your documents
-              live on your device by default, and encrypted backups stay under
-              your control.
-            </p>
-            <p className="mt-4 text-xs leading-6 text-slate-500">
-              AI processing may temporarily handle content when you use
-              intelligent workflows, but documents are not kept after
-              processing.
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-12 flex flex-col gap-4 border-t border-slate-200 pt-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
-          <p>
-            Copyright {new Date().getFullYear()}{" "}
-            <Link href="/" className="text-slate-900 hover:underline">
-              NeuVault
+    <footer id="site-footer" className={styles.footer}>
+      <div className={styles.inner}>
+        <div className={styles.topRow}>
+          <div className={styles.brandBlock}>
+            <Link href="/" className={styles.brand}>
+              <Image src="/logo.png" alt="NeuVault logo" width={32} height={32} className={styles.logo} />
+              <span>NeuVault</span>
             </Link>
-            . All rights reserved.
-          </p>
-          <p>Private by default. Built for documents life asks for later.</p>
+            <p>Private document intelligence across every device.</p>
+          </div>
+
+          <div className={styles.downloads} aria-label="Download NeuVault">
+            {downloadLinks.map(({ label, href, icon: Icon }) => (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer">
+                <Icon aria-hidden="true" />
+                {label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <nav className={styles.links} aria-label="Footer navigation">
+          {footerLinks.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
+        </nav>
+
+        <div className={styles.bottomRow}>
+          <p>© {year} NeuVault. All rights reserved.</p>
+          <p>Local-first by default. Encrypted backups stay under your control.</p>
         </div>
       </div>
     </footer>

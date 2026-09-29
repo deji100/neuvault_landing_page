@@ -11,6 +11,7 @@ import {
   buildWebSiteJsonLd,
   SITE_URL,
 } from "@/lib/seo";
+import styles from "./PricingPage.module.css";
 
 export const metadata: Metadata = buildMetadata({
   title: "NeuVault Pricing and Subscription Plans",
@@ -51,12 +52,17 @@ export default function PricingPage() {
     {
       question: "What do NeuVault plans change?",
       answer:
-        "NeuVault plans mainly change the available AI credit capacity for intelligent workflows such as Nova, summaries, organization, Attention, transcription, and related document work.",
+        "Every paid plan includes all NeuVault features. Plans differ by their monthly AI credits, used for Nova, summaries, organization, scanned text recognition, transcription, and web searches. Unused plan credits do not carry over.",
     },
     {
       question: "Where do I manage my subscription?",
       answer:
-        "Subscriptions are started and managed from the NeuVault mobile app.",
+        "Subscribe in the NeuVault mobile app, or in the Mac app through the App Store. Subscriptions stay synced with your NeuVault account, including on Windows.",
+    },
+    {
+      question: "Can I buy extra credits?",
+      answer:
+        "Yes. Paid plans can buy 2,000 extra credits for $5.99 or 4,000 for $11.99 after 80% of the plan allowance is used. Extra credits are used after plan credits and expire after 15 days.",
     },
     {
       question: "Does NeuVault still store my vault locally?",
@@ -77,11 +83,21 @@ export default function PricingPage() {
       availability: "https://schema.org/InStock",
       price: getSchemaPrice(plan.price),
       priceCurrency: "USD",
+      ...(plan.billing
+        ? {
+            priceSpecification: {
+              "@type": "UnitPriceSpecification",
+              price: getSchemaPrice(plan.price),
+              priceCurrency: "USD",
+              billingDuration: plan.billing === "year" ? "P1Y" : "P1M",
+            },
+          }
+        : {}),
     })),
   };
 
   return (
-    <main className="legacy-light-page relative min-h-screen overflow-hidden">
+    <main className={styles.page}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={jsonLdScript(breadcrumbJsonLd)}
@@ -99,51 +115,29 @@ export default function PricingPage() {
         dangerouslySetInnerHTML={jsonLdScript(offerCatalogJsonLd)}
       />
 
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.12),transparent_46%)]" />
-      <div className="absolute -top-40 -left-40 -z-10 h-[520px] w-[520px] rounded-full bg-[#3F8CFF]/10 blur-3xl" />
-      <div className="absolute bottom-0 right-0 -z-10 h-[460px] w-[460px] rounded-full bg-purple-500/10 blur-3xl" />
-
-      <div className="mx-auto max-w-6xl px-6 pb-8 pt-28">
-        <div className="flex items-center justify-between gap-4">
-          <Link
-            href="/"
-            className="text-sm text-gray-400 transition hover:text-white"
-          >
+      <div className={styles.hero}>
+        <div className={styles.topRow}>
+          <Link href="/" className={styles.backLink}>
             ← Back to Home
           </Link>
 
-          <div className="hidden items-center gap-2 text-xs text-gray-400 sm:flex">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
-              <ShieldCheck className="h-3.5 w-3.5 text-[#6DD1FF]" />
-              Local-first • Mobile subscription
-            </span>
-          </div>
+          <span className={styles.privacyNote}>
+            <ShieldCheck size={14} /> Local-first • In-app subscriptions
+          </span>
         </div>
 
-        <div className="mt-8">
-          <p className="mb-3 text-sm uppercase tracking-wide text-[#6DD1FF] md:text-base">
-            NeuVault Pricing
-          </p>
-          <h1 className="text-4xl font-bold leading-tight tracking-tight md:text-6xl">
-            Plans for every document routine.
-          </h1>
+        <p className={styles.eyebrow}>NeuVault Pricing</p>
+        <h1>Plans for every document routine.</h1>
 
-          <p className="mt-5 max-w-3xl text-gray-300">
-            Compare NeuVault credit allowances for Nova, summaries,
-            organization, Attention, notes, voice context, and encrypted backup
-            workflows.
-          </p>
+        <p className={styles.intro}>
+          Compare NeuVault credit allowances for Nova, summaries,
+          organization, Attention, notes, voice context, and encrypted backup
+          workflows.
+        </p>
 
-          <div className="mt-6 flex flex-col gap-3 text-sm text-gray-400 sm:flex-row sm:items-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
-              <CreditCard className="h-3.5 w-3.5 text-white/60" />
-              Explorer includes 500 free credits available for 14 days
-            </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
-              <ShieldCheck className="h-3.5 w-3.5 text-white/60" />
-              Subscriptions are managed in the mobile app
-            </span>
-          </div>
+        <div className={styles.facts}>
+          <span className={styles.fact}><CreditCard size={15} /> Explorer includes 500 free credits available for 14 days</span>
+          <span className={styles.fact}><ShieldCheck size={15} /> Subscribe in the mobile app or the Mac app</span>
         </div>
       </div>
 

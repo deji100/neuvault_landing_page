@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { buildMetadata } from "@/lib/seo";
+import styles from "./FeaturePage.module.css";
 
 type Props = { params: Promise<{ feature: string }> };
 
@@ -38,5 +39,45 @@ export default async function FeaturePage({ params }: Props) {
   const { feature } = await params;
   const page = pages[feature as keyof typeof pages];
   if (!page) notFound();
-  return <main className="min-h-screen bg-white pt-24 text-slate-900"><section className="bg-[#07111f] px-5 py-20 text-white sm:px-6 md:py-28"><div className="mx-auto max-w-5xl"><Link href="/product" className="text-sm text-blue-300">← All product capabilities</Link><p className="mt-10 text-sm font-semibold uppercase tracking-[.16em] text-blue-300">NeuVault Product</p><h1 className="mt-5 text-4xl font-bold sm:text-6xl">{page.title}</h1><p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">{page.intro}</p></div></section><section className="px-5 py-16 sm:px-6 md:py-20"><div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-2">{page.sections.map(([title,copy]) => <article key={title} className="rounded-2xl border border-slate-200 bg-slate-50 p-6"><h2 className="text-xl font-semibold">{title}</h2><p className="mt-3 text-sm leading-7 text-slate-600">{copy}</p></article>)}</div><div className="mx-auto mt-10 max-w-5xl"><Link href="/#final-cta" className="inline-flex rounded-xl bg-blue-600 px-6 py-3.5 font-semibold text-white">Download NeuVault</Link></div></section></main>;
+  return (
+    <main className={styles.page}>
+      <section className={styles.hero}>
+        <div className={styles.wrap}>
+          <Link href="/product" className={styles.backLink}>← All product capabilities</Link>
+          <div>
+            <p className={styles.eyebrow}>NeuVault Product</p>
+            <h1>{page.title}</h1>
+            <p className={styles.intro}>{page.intro}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.content}>
+        <div className={styles.wrap}>
+          <div className={styles.sectionHead}>
+            <p className={styles.sectionLabel}>What it includes</p>
+            <h2>Designed to keep the work clear, connected and under your control.</h2>
+          </div>
+
+          <div className={styles.grid}>
+            {page.sections.map(([title, copy], index) => (
+              <article key={title} className={styles.card}>
+                <span className={styles.number}>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className={styles.downloadPanel}>
+            <div>
+              <h2>Bring it into your private workspace.</h2>
+              <p>Available across iPhone, Android, Windows and macOS.</p>
+            </div>
+            <Link href="/#final-cta" className={styles.primaryButton}>Download NeuVault</Link>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
 }

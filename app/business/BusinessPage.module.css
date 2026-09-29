@@ -1,0 +1,368 @@
+.page {
+  --ink: #1d1d1f;
+  --secondary: #6e6e73;
+  --soft: #8e8e93;
+  --paper: #f5f5f7;
+  --surface: #ffffff;
+  --elevated: #f2f2f7;
+  --line: #d2d2d7;
+  --soft-line: #e5e5ea;
+  --blue: #007aff;
+  --blue-hover: #0071e3;
+  min-height: 100vh;
+  padding-top: 74px;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-instrument), system-ui, sans-serif;
+}
+
+.wrap {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding-inline: 24px;
+}
+
+.hero {
+  padding: 84px 0 78px;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.06fr 0.94fr;
+  align-items: center;
+  gap: 58px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--soft-line);
+  border-radius: 999px;
+  background: rgba(0, 122, 255, 0.1);
+  padding: 6px 13px;
+  color: var(--blue-hover);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34c759;
+  content: "";
+}
+
+.hero h1 {
+  max-width: 13ch;
+  margin-top: 22px;
+  font-family: var(--font-bricolage), system-ui, sans-serif;
+  font-size: clamp(2.7rem, 5.5vw, 4.25rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+}
+
+.heroCopy {
+  max-width: 630px;
+  margin-top: 22px;
+  color: var(--secondary);
+  font-size: 1.08rem;
+  line-height: 1.72;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  border-radius: 999px;
+  background: var(--blue);
+  padding: 13px 22px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 650;
+  box-shadow: 0 14px 28px -18px rgba(0, 122, 255, 0.75);
+}
+
+.primaryButton:hover {
+  background: var(--blue-hover);
+}
+
+.controlCard {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--surface);
+  padding: 28px;
+  box-shadow: 0 26px 70px -52px rgba(0, 0, 0, 0.45);
+}
+
+.buildingIcon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 14px;
+  background: rgba(0, 122, 255, 0.11);
+  color: var(--blue);
+}
+
+.controlCard h2 {
+  margin-top: 26px;
+  font-family: var(--font-bricolage), system-ui, sans-serif;
+  font-size: 1.55rem;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.controlList {
+  display: grid;
+  gap: 9px;
+  margin-top: 22px;
+}
+
+.controlItem {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  border: 1px solid var(--soft-line);
+  border-radius: 12px;
+  background: var(--elevated);
+  padding: 12px 13px;
+  color: var(--secondary);
+  font-size: 0.86rem;
+  font-weight: 550;
+}
+
+.controlItem svg {
+  flex: none;
+  color: var(--blue);
+}
+
+.roadmap {
+  border-block: 1px solid var(--line);
+  background: var(--elevated);
+  padding: 86px 0 96px;
+}
+
+.roadmapIntro {
+  max-width: 720px;
+}
+
+.sectionLabel {
+  color: var(--blue);
+  font-size: 0.77rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.roadmap h2 {
+  margin-top: 11px;
+  font-family: var(--font-bricolage), system-ui, sans-serif;
+  font-size: clamp(2rem, 4.2vw, 3rem);
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.roadmapCopy {
+  margin-top: 17px;
+  color: var(--secondary);
+  font-size: 1.03rem;
+  line-height: 1.7;
+}
+
+.capabilityGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 38px;
+}
+
+.capability {
+  border: 1px solid var(--line);
+  border-radius: 19px;
+  background: var(--surface);
+  padding: 24px;
+}
+
+.capabilityTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.capabilityTop svg {
+  color: var(--blue);
+}
+
+.status {
+  border-radius: 999px;
+  padding: 5px 9px;
+  font-size: 0.64rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.available {
+  background: rgba(52, 199, 89, 0.14);
+  color: #248a3d;
+}
+
+.development {
+  background: rgba(255, 149, 0, 0.14);
+  color: #b05b00;
+}
+
+.planned {
+  background: var(--elevated);
+  color: var(--secondary);
+}
+
+.capability h3 {
+  margin-top: 21px;
+  font-family: var(--font-bricolage), system-ui, sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: -0.018em;
+}
+
+.capability p {
+  margin-top: 8px;
+  color: var(--secondary);
+  font-size: 0.88rem;
+  line-height: 1.62;
+}
+
+.contact {
+  background: #1d1d1f;
+  padding: 82px 24px;
+  color: #f5f5f7;
+}
+
+.contactInner {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contactIcon {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  margin: 0 auto;
+  place-items: center;
+  border-radius: 14px;
+  background: rgba(10, 132, 255, 0.16);
+  color: #409cff;
+}
+
+.contact h2 {
+  margin-top: 22px;
+  font-family: var(--font-bricolage), system-ui, sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.contact p {
+  margin-top: 14px;
+  color: #a1a1a6;
+  line-height: 1.65;
+}
+
+:global(html[data-theme="dark"]) .page {
+  --ink: #f5f5f7;
+  --secondary: #98989d;
+  --soft: #8e8e93;
+  --paper: #000000;
+  --surface: #1c1c1e;
+  --elevated: #2c2c2e;
+  --line: #48484a;
+  --soft-line: #38383a;
+  --blue: #0a84ff;
+  --blue-hover: #409cff;
+  color-scheme: dark;
+}
+
+:global(html[data-theme="dark"]) .eyebrow {
+  background: rgba(10, 132, 255, 0.14);
+  color: #409cff;
+}
+
+:global(html[data-theme="dark"]) .eyebrow::before {
+  background: #30d158;
+}
+
+:global(html[data-theme="dark"]) .available {
+  color: #30d158;
+}
+
+:global(html[data-theme="dark"]) .development {
+  color: #ff9f0a;
+}
+
+:global(html[data-theme="dark"]) .contact {
+  background: #1c1c1e;
+}
+
+@media (max-width: 880px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    max-width: 15ch;
+  }
+}
+
+@media (max-width: 650px) {
+  .capabilityGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .page {
+    padding-top: 64px;
+  }
+
+  .wrap {
+    padding-inline: 18px;
+  }
+
+  .hero {
+    padding: 58px 0 64px;
+  }
+
+  .heroGrid {
+    gap: 42px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.45rem, 12.7vw, 3.45rem);
+  }
+
+  .controlCard {
+    border-radius: 18px;
+    padding: 23px;
+  }
+
+  .roadmap {
+    padding: 66px 0 76px;
+  }
+
+  .capability {
+    border-radius: 17px;
+    padding: 22px;
+  }
+
+  .contact {
+    padding: 68px 18px;
+  }
+}

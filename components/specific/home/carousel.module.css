@@ -1,0 +1,29 @@
+/* Carousel controls. Inherits the Apple-system tokens from LandingPage .page. */
+.controls{display:flex;flex:none;align-items:center;gap:4px;border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:5px;box-shadow:0 10px 30px -22px rgba(0,0,0,.4)}
+.arrow,.play{display:grid;flex:none;place-items:center;border:0;border-radius:50%;cursor:pointer;transition:background-color .18s ease,color .18s ease,transform .18s ease}
+.arrow{width:36px;height:36px;background:transparent;color:var(--ink)}
+.arrow:hover{background:var(--mist)}
+.arrow:active,.play:active{transform:scale(.92)}
+.play{width:32px;height:32px;margin-left:4px;background:var(--ink);color:var(--paper)}
+.play:hover{background:var(--teal);color:#fff}
+.arrow:focus-visible,.play:focus-visible,.segment:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+
+.segments{display:flex;align-items:center;gap:2px;padding-inline:4px}
+.segment{position:relative;width:22px;height:28px;border:0;border-radius:6px;background:transparent;padding:0;cursor:pointer;transition:width .45s cubic-bezier(.22,.8,.2,1)}
+.segment[data-state="active"]{width:46px}
+.segment:before,.fill{content:"";position:absolute;left:4px;right:4px;top:50%;height:4px;margin-top:-2px;border-radius:99px}
+.segment:before{background:var(--line)}
+.segment:hover:before{background:var(--soft)}
+.fill{transform:scaleX(0);transform-origin:left;background:var(--teal)}
+.segment[data-state="done"] .fill{transform:none;opacity:.45}
+.segment[data-state="active"] .fill{animation-name:progress;animation-timing-function:linear;animation-fill-mode:forwards}
+
+@keyframes progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+@media(max-width:560px){
+  .segment{width:16px}
+  .segment[data-state="active"]{width:34px}
+  .arrow{width:34px;height:34px}
+}
+@media(prefers-reduced-motion:reduce){.segment{transition-duration:.01s}}
+:global(html[data-theme="dark"]) .controls{box-shadow:none}

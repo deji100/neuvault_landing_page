@@ -78,3 +78,95 @@ export const demoVideos: DemoVideo[] = [
     uploadDate: "2026-04-01T18:41:27Z",
   },
 ];
+
+/**
+ * Delivery for the Cloudinary demo clips.
+ *
+ * The originals are 50-100 MB HEVC (`codecs=hvc1`), which Chrome and Firefox
+ * will not reliably play and no landing page should ship. Inserting a
+ * transformation makes Cloudinary transcode on the fly: `f_auto` drops to
+ * H.264 for browsers that need it, and the width cap takes the resurfacing
+ * clip from 82.7 MB to 4.8 MB. Nothing needs re-uploading.
+ */
+function withTransform(url: string, transform: string, extension?: string) {
+  const [base, rest] = url.split("/upload/");
+  if (!rest) return url;
+  const path = extension ? rest.replace(/\.[a-z0-9]+$/i, `.${extension}`) : rest;
+  return `${base}/upload/${transform}/${path}`;
+}
+
+export type Trim = {
+  /** Seconds into the clip to start. */
+  start: number;
+  /** Seconds into the clip to end. */
+  end: number;
+};
+
+function trimParams(trim?: Trim) {
+  return trim ? `so_${trim.start},eo_${trim.end},` : "";
+}
+
+/**
+ * A web-deliverable version of a demo clip, capped at `width` px.
+ *
+ * These recordings run a full minute or more, which reads as motion rather
+ * than meaning in a small strip frame. Pass a `trim` to cut one to a single
+ * beat — Cloudinary does it on delivery, so no clip has to be re-recorded.
+ */
+export function demoVideoSrc(url: string, width: number, trim?: Trim) {
+  return withTransform(url, `${trimParams(trim)}f_auto,q_auto,w_${width}`);
+}
+
+/** A still frame from the clip itself, so the poster always matches the video. */
+export function demoPosterSrc(url: string, width: number, trim?: Trim) {
+  const at = trim ? `so_${trim.start},` : "";
+  return withTransform(url, `${at}w_${width}`, "jpg");
+}
+
+export type StripClip = {
+  id: string;
+  /** Two or three words under the clip. The video carries the rest. */
+  label: string;
+  /** Absent until the clip is recorded — the frame falls back to `image`. */
+  url?: string;
+  /** Intrinsic size, which is what gives each frame its width at a shared height. */
+  width: number;
+  height: number;
+  /** Shown when there is no clip yet, and as the poster for one that exists. */
+  image?: string;
+  /** Cut the clip to one legible moment. Omit to play the whole recording. */
+  trim?: Trim;
+};
+
+const voiceNote = demoVideos.find((video) => video.title === "Smart Voice Note Intake");
+const resurfacing = demoVideos.find((video) => video.title === "Document Resurfacing");
+
+/**
+ * The home page strip: one landscape desktop capture beside two portrait phone
+ * clips. Same height throughout, so the intrinsic aspect ratios are what make
+ * the widths differ. The desktop clip is not recorded yet; until its `url` is
+ * filled in, the slot shows `image` at the same size and the layout does not move.
+ */
+export const stripClips: StripClip[] = [
+  {
+    id: "map",
+    label: "Connect it on a map",
+    width: 3456,
+    height: 2234,
+    image: "/desktop-images/vault-map-overview.png",
+  },
+  {
+    id: "voice",
+    label: "Speak it, keep it",
+    url: voiceNote?.url,
+    width: 720,
+    height: 1558,
+  },
+  {
+    id: "dates",
+    label: "Dates come back",
+    url: resurfacing?.url,
+    width: 720,
+    height: 1558,
+  },
+];

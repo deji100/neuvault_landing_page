@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 
-import Hero from "@/components/specific/home/Hero";
-import ProductStory from "@/components/specific/home/ProductStory";
-import FloatingDownloadButtons from "@/components/specific/home/FloatingDownloadButtons";
+import LandingPage from "@/components/specific/home/LandingPage";
 
 import { LOGO_URL } from "@/lib/brand";
+import { youtubeVideos } from "@/lib/youtube-videos";
 import {
   ANDROID_PLAY_STORE_URL,
   IOS_APP_STORE_URL,
@@ -21,9 +20,9 @@ import {
 } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "NeuVault — Private Document Intelligence for iPhone, Android, Mac and Windows",
+  title: "NeuVault — Your Notes, and Everything Behind Them",
   description:
-    "NeuVault automatically organizes documents from uploads, scans, selected folders and email attachments. Connect files, track reminders, transcribe voice notes and work with your documents privately across mobile and desktop.",
+    "Write it, say it, or drop it in. NeuVault keeps your notes, recordings and files together in one private workspace — and tells you when a date is coming. iPhone, Android, Mac and Windows, local-first, with encrypted backups only you can open.",
   path: "/",
   keywords: [
     "scan and organize documents",
@@ -92,6 +91,9 @@ export default function Home() {
       WINDOWS_MICROSOFT_STORE_URL,
     ],
     featureList: [
+      "Deadline and renewal dates extracted from document content",
+      "Resurfacing schedules and Memory Trail for important records",
+      "Capture that still saves when credits run out or you are offline",
       "Private local-first document vault",
       "AI document organization",
       "Document scanning",
@@ -114,17 +116,17 @@ export default function Home() {
     {
       question: "What kind of app is NeuVault?",
       answer:
-        "NeuVault is a private, cross-platform document intelligence workspace. It brings documents in, organizes and connects them, tracks important dates, and helps you turn information into useful work.",
+        "NeuVault is a private workspace for your notes and the files behind them. Write or record a note, bring in files, scans and links, connect what belongs together — and let it surface the dates it finds in your own material, before they pass.",
     },
     {
       question: "How is NeuVault different from cloud storage?",
       answer:
-        "Cloud storage mainly stores files. NeuVault is built around document memory: it helps you capture records, organize them, keep useful context, review dates, ask questions, and back up your vault under your control.",
+        "Cloud storage mainly stores files. NeuVault is built around what you meant to do with them: notes and recordings alongside the files, connections between related things, reminders from the dates in your own material, and encrypted backups under your control.",
     },
     {
       question: "Can NeuVault import email attachments?",
       answer:
-        "On desktop, NeuVault supports Google and Microsoft email attachment import. Choose a historical date range and whether NeuVault should continue monitoring newly received attachments. Yahoo support is coming soon.",
+        "Yes. Connect a Microsoft 365 mailbox with read-only access, choose a historical date range and file-type rules, and decide whether NeuVault keeps watching for new attachments. Every attachment is scanned for dangerous content before it enters the vault. Gmail and Yahoo support are built and awaiting provider review.",
     },
     {
       question: "Can NeuVault watch folders for new files?",
@@ -147,6 +149,16 @@ export default function Home() {
         "NeuVault is designed around local-first storage. Original documents remain on your device by default unless you choose a supported backup or integration workflow. Encrypted backups remain under your control.",
     },
     {
+      question: "What happens when my credits run out?",
+      answer:
+        "Capture still works. The item saves to your Inbox and organizes itself automatically once credits or your connection return. Searching, viewing, exporting and encrypted backup never cost credits, so the vault keeps working either way.",
+    },
+    {
+      question: "Can NeuVault read dates out of my documents?",
+      answer:
+        "Yes. NeuVault extracts renewal, expiry and deadline dates from document content and sorts them into Overdue, Due today, Due soon, Upcoming and Monitor. Any document or map can also be set to resurface weekly, monthly or yearly.",
+    },
+    {
       question: "Can I use NeuVault without AI?",
       answer:
         "Yes. Storage and non-AI vault functionality remain available after credits are exhausted. Credits are used only when you choose a supported AI or OCR action.",
@@ -162,6 +174,20 @@ export default function Home() {
         "NeuVault can convert supported documents, notes, extracted information, and Nova responses into practical formats including PDF, Word, CSV, and editable notes where applicable.",
     },
   ]);
+
+  // uploadDate is required for a valid VideoObject, so a video without one is left out.
+  const videoJsonLd = youtubeVideos
+    .filter((video) => video.id && video.uploadDate)
+    .map((video) => ({
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      name: `NeuVault — ${video.title}`,
+      description: video.summary,
+      embedUrl: `https://www.youtube.com/embed/${video.id}`,
+      contentUrl: `https://www.youtube.com/watch?v=${video.id}`,
+      uploadDate: video.uploadDate,
+      thumbnailUrl: [`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`],
+    }));
 
   const workflowsJsonLd = {
     "@context": "https://schema.org",
@@ -200,14 +226,19 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={jsonLdScript(faqJsonLd)}
       />
+      {videoJsonLd.map((video) => (
+        <script
+          key={video.embedUrl}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={jsonLdScript(video)}
+        />
+      ))}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={jsonLdScript(workflowsJsonLd)}
       />
 
-      <Hero />
-      <ProductStory />
-      <FloatingDownloadButtons />
+      <LandingPage />
     </main>
   );
 }

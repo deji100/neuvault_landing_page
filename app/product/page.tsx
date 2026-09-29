@@ -5,6 +5,7 @@ import {
   BellRing, Bot, FileOutput, FolderInput, Map, Mic2, Network, Search,
 } from "lucide-react";
 import { buildMetadata } from "@/lib/seo";
+import styles from "./ProductPage.module.css";
 
 export const metadata: Metadata = buildMetadata({
   title: "NeuVault Product — The Complete Document Intelligence Workspace",
@@ -24,10 +25,62 @@ const features = [
 ];
 
 export default function ProductPage() {
-  return <main className="min-h-screen bg-white pt-24 text-slate-900">
-    <section className="bg-[#07111f] px-5 py-20 text-white sm:px-6 md:py-28"><div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><div><p className="text-sm font-semibold uppercase tracking-[.16em] text-blue-300">NeuVault Product</p><h1 className="mt-5 text-4xl font-bold leading-tight tracking-tight sm:text-6xl">One connected system for the full document lifecycle.</h1><p className="mt-6 text-lg leading-8 text-slate-300">Bring documents in, understand what they contain, connect related context, track what needs attention and turn information into useful work.</p><Link href="/#how-it-works" className="mt-8 inline-flex rounded-xl bg-blue-500 px-6 py-3.5 font-semibold hover:bg-blue-400">See the end-to-end workflow</Link></div><div className="relative min-h-80 overflow-hidden rounded-[1.8rem] border border-white/10"><Image src="/dashboard.png" alt="NeuVault document intelligence dashboard" fill priority className="object-cover object-left-top" sizes="(min-width:1024px) 55vw, 100vw"/></div></div></section>
-    <nav className="sticky top-[74px] z-20 overflow-x-auto border-b border-slate-200 bg-white/95 px-5 py-3 backdrop-blur"><div className="mx-auto flex w-max max-w-7xl gap-2">{features.map((feature) => <a key={feature.id} href={`#${feature.id}`} className="rounded-full bg-slate-100 px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-blue-50 hover:text-blue-700">{feature.title}</a>)}</div></nav>
-    <section className="px-5 py-16 sm:px-6 md:py-20"><div className="mx-auto max-w-7xl space-y-5">{features.map(({id,title,icon:Icon,copy,details},index) => <article id={id} key={id} className="scroll-mt-36 grid gap-6 rounded-[1.6rem] border border-slate-200 bg-slate-50 p-6 md:grid-cols-[.75fr_1.25fr] md:p-8"><div><div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600 text-white"><Icon className="h-5 w-5"/></div><p className="mt-5 text-xs font-bold uppercase tracking-[.14em] text-blue-600">Capability {index+1}</p><h2 className="mt-2 text-2xl font-bold md:text-3xl">{title}</h2></div><div><p className="text-base leading-8 text-slate-600">{copy}</p><div className="mt-5 grid gap-3 sm:grid-cols-2">{details.map((detail) => <div key={detail} className="rounded-xl border border-slate-200 bg-white p-3 text-sm font-medium text-slate-700">{detail}</div>)}</div></div></article>)}</div></section>
-    <section className="bg-[#07111f] px-5 py-16 text-center text-white sm:px-6"><h2 className="text-3xl font-bold">Ready to bring your documents together?</h2><p className="mx-auto mt-4 max-w-xl text-slate-300">Download NeuVault across iPhone, Android, Windows and macOS.</p><Link href="/#final-cta" className="mt-7 inline-flex rounded-xl bg-blue-500 px-6 py-3.5 font-semibold hover:bg-blue-400">Choose your platform</Link></section>
-  </main>;
+  return (
+    <main className={styles.page}>
+      <section className={styles.hero}>
+        <div className={`${styles.wrap} ${styles.heroGrid}`}>
+          <div>
+            <p className={styles.eyebrow}>NeuVault Product</p>
+            <h1>One connected system for the full document lifecycle.</h1>
+            <p className={styles.heroCopy}>Bring documents in, understand what they contain, connect related context, track what needs attention and turn information into useful work.</p>
+            <Link href="/#features" className={styles.primaryButton}>See the end-to-end workflow</Link>
+          </div>
+
+          <div className={styles.productFrame}>
+            <div className={styles.frameChrome} aria-hidden="true"><i /><i /><i /></div>
+            <Image src="/desktop-images/doc-info.png" alt="NeuVault document intelligence workspace" fill priority className={styles.productImage} sizes="(min-width: 1024px) 52vw, 92vw" />
+          </div>
+        </div>
+      </section>
+
+      <nav className={styles.featureNav} aria-label="Product capabilities">
+        <div className={styles.featureNavInner}>
+          {features.map((feature) => <a key={feature.id} href={`#${feature.id}`}>{feature.title}</a>)}
+        </div>
+      </nav>
+
+      <section id="capabilities" className={styles.features}>
+        <div className={styles.wrap}>
+          <div className={styles.featuresIntro}>
+            <p className={styles.sectionLabel}>Everything stays connected</p>
+            <h2>From capture to the moment a document matters again.</h2>
+          </div>
+
+          <div className={styles.featureList}>
+            {features.map(({ id, title, icon: Icon, copy, details }, index) => (
+              <article id={id} key={id} className={styles.featureCard}>
+                <div>
+                  <div className={styles.iconBox}><Icon size={21} /></div>
+                  <p className={styles.capability}>Capability {index + 1}</p>
+                  <h3>{title}</h3>
+                </div>
+                <div>
+                  <p className={styles.featureCopy}>{copy}</p>
+                  <div className={styles.detailGrid}>
+                    {details.map((detail) => <div key={detail} className={styles.detail}>{detail}</div>)}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.cta}>
+        <h2>Ready to bring your documents together?</h2>
+        <p>Download NeuVault across iPhone, Android, Windows and macOS.</p>
+        <Link href="/#final-cta" className={styles.primaryButton}>Choose your platform</Link>
+      </section>
+    </main>
+  );
 }

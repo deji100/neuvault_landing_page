@@ -1,0 +1,57 @@
+/* Home navbar: a glossy glass capsule that floats just below the top edge. */
+.nav{
+  --nav-ink:#1d1d1f;--nav-soft:#515154;--nav-line:rgba(0,0,0,.07);
+  --nav-gloss:linear-gradient(180deg,rgba(255,255,255,.86),rgba(255,255,255,.6));
+  --nav-sheen:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(0,0,0,.03);
+  position:sticky;top:12px;z-index:1000;width:min(1400px,calc(100% - 24px));margin:12px auto 0;color:var(--nav-ink);
+}
+.nav:before{
+  content:"";position:absolute;inset:0;z-index:-1;border:1px solid var(--nav-line);border-radius:22px;background:var(--nav-gloss);
+  box-shadow:var(--nav-sheen),0 1px 2px rgba(0,0,0,.04),0 12px 32px -20px rgba(0,0,0,.28);
+  -webkit-backdrop-filter:saturate(1.9) blur(22px);backdrop-filter:saturate(1.9) blur(22px);
+  transition:box-shadow .3s ease;
+}
+.nav[data-scrolled="true"]:before{box-shadow:var(--nav-sheen),0 2px 6px rgba(0,0,0,.05),0 22px 50px -24px rgba(0,0,0,.42)}
+.inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;height:64px;padding-inline:14px 12px}
+
+.brand{display:inline-flex;align-items:center;gap:11px;width:fit-content;border-radius:14px;padding:4px 8px 4px 4px;font-family:var(--font-bricolage),system-ui,sans-serif;font-size:1.16rem;font-weight:700;letter-spacing:-.015em}
+.brand:hover :global(.app-logo){transform:translateY(-1px) rotate(-4deg)}
+
+/* Centre links: an inset glass track with a lit pill that follows the pointer. */
+.links{position:relative;display:flex;align-items:center;border-radius:999px;background:linear-gradient(180deg,rgba(0,0,0,.045),rgba(0,0,0,.02));padding:4px;box-shadow:inset 0 1px 2px rgba(0,0,0,.06),0 1px 0 rgba(255,255,255,.8)}
+.lamp{position:absolute;top:4px;bottom:4px;left:0;z-index:0;width:0;border-radius:999px;background:linear-gradient(180deg,#fff,#f4f4f6);opacity:0;box-shadow:0 1px 0 rgba(255,255,255,1) inset,0 2px 8px -2px rgba(0,0,0,.18),0 0 0 1px rgba(0,0,0,.04);transition:transform .38s cubic-bezier(.3,1.3,.5,1),width .38s cubic-bezier(.3,1.3,.5,1),opacity .2s ease}
+.lamp[data-on="true"]{opacity:1}
+.link{position:relative;z-index:1;border-radius:999px;padding:8px 18px;color:var(--nav-soft);font-size:.9rem;font-weight:550;letter-spacing:.005em}
+.link:hover,.link:focus-visible{color:var(--nav-ink)}
+.link:focus-visible,.download:focus-visible,.menu:focus-visible,.brand:focus-visible{outline:2px solid #007aff;outline-offset:2px}
+
+.end{display:flex;align-items:center;justify-content:flex-end;gap:10px}
+.download{border-radius:999px;background:linear-gradient(180deg,#2b8cff,#007aff);padding:10px 20px;color:#fff;font-size:.9rem;font-weight:600;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 10px 22px -12px rgba(0,122,255,.95)}
+.download:hover{background:linear-gradient(180deg,#1f84ff,#0071e3);transform:translateY(-1px)}
+.menu{display:none;width:40px;height:40px;place-items:center;border:1px solid var(--nav-line);border-radius:50%;background:rgba(255,255,255,.5);color:var(--nav-ink)}
+
+.panel{display:none}
+
+@media(max-width:820px){
+  .nav{top:8px;width:calc(100% - 16px);margin-top:8px}
+  .nav:before{border-radius:20px}
+  .inner{grid-template-columns:1fr auto;height:58px;padding-inline:8px}
+  .links{display:none}
+  .menu{display:grid}
+  .panel{display:flex;flex-direction:column;gap:2px;border-top:1px solid var(--nav-line);padding:10px 10px 14px}
+  .panelLink{border-radius:12px;padding:11px 12px;color:var(--nav-soft);font-size:.95rem;font-weight:500}
+  .panelLink:hover{background:rgba(0,0,0,.05);color:var(--nav-ink)}
+  .panelDownload{margin-top:8px;border-radius:999px;background:#007aff;padding:12px;color:#fff;font-weight:600;text-align:center}
+}
+@media(max-width:420px){.download{display:none}}
+@media(prefers-reduced-motion:reduce){.lamp{transition:opacity .2s ease}}
+
+:global(html[data-theme="dark"]) .nav{
+  --nav-ink:#f5f5f7;--nav-soft:#aeaeb2;--nav-line:rgba(255,255,255,.1);
+  --nav-gloss:linear-gradient(180deg,rgba(44,44,46,.78),rgba(22,22,24,.62));
+  --nav-sheen:inset 0 1px 0 rgba(255,255,255,.12),inset 0 -1px 0 rgba(0,0,0,.4);
+}
+:global(html[data-theme="dark"]) .links{background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.2));box-shadow:inset 0 1px 2px rgba(0,0,0,.5),0 1px 0 rgba(255,255,255,.06)}
+:global(html[data-theme="dark"]) .lamp{background:linear-gradient(180deg,#48484a,#3a3a3c);box-shadow:0 1px 0 rgba(255,255,255,.14) inset,0 2px 8px -2px rgba(0,0,0,.6)}
+:global(html[data-theme="dark"]) .menu{background:rgba(255,255,255,.06)}
+:global(html[data-theme="dark"]) .panelLink:hover{background:rgba(255,255,255,.08)}

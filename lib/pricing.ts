@@ -1,7 +1,18 @@
+/**
+ * Plans as the apps sell them. Credit amounts and badges follow updv-desktop
+ * (src/pages/CreditsPage.tsx BILLING_TIERS) and updv-server (app/core/config.py);
+ * USD prices follow the US App Store listing. Keep all three in step.
+ *
+ * Starter (app.neuvault.starter.monthly) is not on the App Store yet; its
+ * $4.99 price was set by the product owner (2026-09-29), so confirm it there
+ * once the product is live.
+ */
 export type PricingPlan = {
   id: string;
   name: string;
   price: string;
+  /** Billing period for structured data; absent for the free plan. */
+  billing?: "month" | "year";
   allowance: string;
   cadence: string;
   audience: string;
@@ -19,7 +30,7 @@ export const pricingPlans: PricingPlan[] = [
     cadence: "free credits for 14 days",
     audience: "For trying NeuVault with a small vault.",
     summary:
-      "Start with 500 free credits for 14 days. NeuVault remains usable afterward, and you can add credits whenever you choose to use AI-powered features.",
+      "Start with 500 free credits for 14 days. NeuVault remains usable afterward, and you can choose a plan whenever you want to use AI-powered features.",
     features: [
       "Private local-first vault on your device",
       "Scan or upload important documents",
@@ -28,71 +39,96 @@ export const pricingPlans: PricingPlan[] = [
     ],
   },
   {
+    id: "starter",
+    name: "Starter",
+    price: "$4.99 / month",
+    billing: "month",
+    allowance: "2,000",
+    cadence: "credits / month",
+    audience: "For getting started with a light monthly vault.",
+    summary: "The lightest monthly plan for getting started.",
+    features: [
+      "2,000 new credits each month",
+      "Every NeuVault feature included",
+      "Unused plan credits reset monthly",
+    ],
+  },
+  {
     id: "personal",
     name: "Personal",
-    price: "$10 / month",
+    price: "$9.99 / month",
+    billing: "month",
     allowance: "4,000",
     cadence: "credits / month",
     audience: "For everyday personal documents and reminders.",
-    summary:
-      "A comfortable monthly allowance for household paperwork, renewals, receipts, IDs, notes, and occasional Nova questions.",
+    summary: "A simple monthly plan for regular personal use.",
     features: [
-      "Nova questions for saved vault context",
-      "Attention items for dates and follow-ups",
-      "Typed notes and voice-note workflows",
-      "Encrypted backup and restore for your private vault",
+      "4,000 new credits each month",
+      "Priority AI and document processing",
+      "Unused plan credits reset monthly",
     ],
   },
   {
     id: "pro",
     name: "Pro",
-    price: "$15 / month",
+    price: "$14.99 / month",
+    billing: "month",
     allowance: "6,000",
     cadence: "credits / month",
     audience: "For frequent document work across desktop and mobile.",
-    summary:
-      "More room for regular AI organization, deeper vault questions, linked records, folder monitoring, and document-heavy weeks.",
-    highlight: "Most flexible",
+    summary: "More capacity for frequent AI and document work.",
+    highlight: "Popular",
     features: [
-      "More Nova room for document-grounded answers",
-      "Linked Documents for related records and projects",
-      "Desktop folder monitoring for new files",
-      "Export useful notes and responses when work needs to move",
+      "6,000 new credits each month",
+      "Faster responses and deeper analysis",
+      "Unused plan credits reset monthly",
     ],
   },
   {
     id: "premium",
     name: "Premium",
-    price: "$20 / month",
-    allowance: "96,000",
-    cadence: "annual credit pool",
+    price: "$19.99 / month",
+    billing: "month",
+    allowance: "8,000",
+    cadence: "credits / month",
     audience: "For heavier vaults and richer AI workflows.",
-    summary:
-      "Built for larger personal or work vaults with frequent scans, more voice context, deeper Nova usage, and ongoing Attention reviews.",
+    summary: "Our highest monthly capacity for intensive document work.",
     features: [
-      "Higher monthly capacity for scans, notes, and AI review",
-      "More room for meeting or voice-note transcription",
-      "Better fit for multi-device vault maintenance",
-      "Strongest monthly plan for active document-heavy workflows",
+      "8,000 new credits each month",
+      "Highest processing priority",
+      "Unused plan credits reset monthly",
     ],
   },
   {
     id: "premium-annual",
     name: "Premium Annual",
     price: "$200 / year",
-    allowance: "8,000",
-    cadence: "credits / month",
+    billing: "year",
+    allowance: "96,000",
+    cadence: "credits / year, 8,000 each month",
     audience: "For people building NeuVault into a long-term system.",
-    summary:
-      "A 96,000-credit annual pool for users who want one dependable document intelligence workspace.",
-    highlight: "Best long-term fit",
+    summary: "Premium capacity with one payment each year.",
+    highlight: "Best value",
     features: [
-      "96,000 credits available as an annual pool",
-      "Annual plan for long-term vault building",
-      "Good fit for family, school, property, or business records",
-      "Designed for ongoing backup, retrieval, and Attention workflows",
+      "96,000 credits a year, 8,000 added each month",
+      "Same features and priority as Premium",
+      "One annual payment",
     ],
   },
+];
+
+/** Extra credits for paid plans (updv-server config: 15-day expiry, offered at 80% use). */
+export const creditTopUps = [
+  { credits: "2,000", price: "$5.99" },
+  { credits: "4,000", price: "$11.99" },
+];
+
+/** How credits work, in the desktop app's own words (CreditsPage "How plans and credits work"). */
+export const creditRules = [
+  "Storage does not use credits. Your vault still works without credits.",
+  "AI organization, scanned text recognition, transcription, Nova responses, and web searches use credits. Usage varies by task.",
+  "Your plan allowance refreshes each billing cycle. Unused plan credits do not carry over.",
+  "Paid plans can buy extra credits after 80% of their plan allowance is used. Extra credits are used after plan credits and expire after 15 days.",
 ];
 
 export const includedPlanFeatures = [

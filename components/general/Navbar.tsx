@@ -1,43 +1,45 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
-import Logo from "@/public/logo.png";
+import { useEffect, useRef, useState } from "react";
+import AppLogo from "./AppLogo";
+import styles from "./Navbar.module.css";
 
-const navItems = [
-  { label: "Product", href: "/product" },
-  { label: "How it works", id: "how-it-works" },
-  { label: "Privacy", id: "privacy" },
+/** The only destinations the header offers, on every page. */
+const siteLinks = [
+  { label: "Privacy", href: "/privacy-policy" },
+  { label: "Terms", href: "/terms-and-conditions" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "B2B", href: "/business" },
+  { label: "Contact", href: "/contact" },
 ];
-
-const scrollToId = (id: string) => {
-  const element = document.getElementById(id);
-  if (!element) return;
-
-  const navOffset = 88;
-  const top = element.getBoundingClientRect().top + window.scrollY - navOffset;
-  window.scrollTo({ top, behavior: "smooth" });
-};
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
+  const isProductRoute = pathname.startsWith("/product");
+  const linksRef = useRef<HTMLDivElement | null>(null);
+  const [lamp, setLamp] = useState<{ left: number; width: number } | null>(null);
 
-  const navigateToSection = (id: string) => {
-    setMobileOpen(false);
-
-    if (pathname === "/") {
-      scrollToId(id);
-      return;
-    }
-
-    router.push(`/#${id}`);
+  /** The highlight glides to whichever link the pointer or focus is on. */
+  const moveLamp = (target: HTMLElement) => {
+    const group = linksRef.current;
+    if (!group) return;
+    const box = group.getBoundingClientRect();
+    const rect = target.getBoundingClientRect();
+    setLamp({ left: rect.left - box.left, width: rect.width });
   };
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const openDownloads = () => {
     setMobileOpen(false);
@@ -51,94 +53,143 @@ export default function Navbar() {
     window.dispatchEvent(new Event("neuvault:open-downloads"));
   };
 
+  // Pages that share the home page's glossy capsule navbar.
+  const capsule = ["/", "/privacy-policy", "/terms-and-conditions", "/contact"].includes(pathname);
+  const downloadHref = pathname === "/" ? "#download" : "/#download";
+
+  if (capsule) {
+    return (
+      <nav className={styles.nav} data-scrolled={scrolled}>
+        <div className={styles.inner}>
+          <Link href="/" className={styles.brand} onClick={() => setMobileOpen(false)}>
+            <AppLogo size={34} />
+            <span>NeuVault</span>
+          </Link>
+
+          <div className={styles.links} ref={linksRef} onMouseLeave={() => setLamp(null)} onBlur={() => setLamp(null)}>
+            <span
+              className={styles.lamp}
+              data-on={lamp !== null}
+              style={lamp ? { transform: `translateX(${lamp.left}px)`, width: lamp.width } : undefined}
+              aria-hidden="true"
+            />
+            {siteLinks.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={styles.link}
+                onMouseEnter={(event) => moveLamp(event.currentTarget)}
+                onFocus={(event) => moveLamp(event.currentTarget)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className={styles.end}>
+            <a href={downloadHref} className={styles.download}>
+              Download
+            </a>
+            <button
+              type="button"
+              onClick={() => setMobileOpen((value) => !value)}
+              className={styles.menu}
+              aria-label="Toggle navigation"
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? <X size={19} /> : <Menu size={19} />}
+            </button>
+          </div>
+        </div>
+
+        {mobileOpen && (
+          <div className={styles.panel}>
+            {siteLinks.map((item) => (
+              <Link key={item.label} href={item.href} onClick={() => setMobileOpen(false)} className={styles.panelLink}>
+                {item.label}
+              </Link>
+            ))}
+            <a href={downloadHref} onClick={() => setMobileOpen(false)} className={styles.panelDownload}>
+              Download NeuVault
+            </a>
+          </div>
+        )}
+      </nav>
+    );
+  }
+
+  const desktopLinks = isProductRoute
+    ? [
+        { label: "Overview", href: "/product" },
+        { label: "Capabilities", href: "/product#capabilities" },
+        { label: "Pricing", href: "/pricing" },
+        { label: "B2B", href: "/business" },
+        { label: "Contact", href: "/contact" },
+      ]
+    : siteLinks;
+
   return (
     <motion.nav
-      className="fixed inset-x-0 top-0 z-[1000] border-b border-slate-200/80 bg-white/90 shadow-[0_12px_40px_-32px_rgba(15,23,42,0.45)] backdrop-blur-xl"
+      className="site-nav fixed inset-x-0 top-0 z-[1000] border-b backdrop-blur-xl"
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
     >
-      <div className="mx-auto grid h-[74px] max-w-7xl grid-cols-[1fr_auto] items-center gap-4 px-4 sm:px-6 md:grid-cols-[1fr_auto_1fr] lg:px-8">
+      <div className="mx-auto grid h-[74px] max-w-[1360px] grid-cols-[1fr_auto] items-center gap-4 px-5 sm:px-8 md:grid-cols-[1fr_auto_1fr]">
         <Link
           href="/"
-          className="flex w-fit items-center gap-2"
+          className="site-nav-brand flex w-fit items-center gap-2.5"
           onClick={() => setMobileOpen(false)}
         >
-          <Image
-            src={Logo}
-            alt="NeuVault logo"
-            width={40}
-            height={40}
-            className="h-10 w-10 rounded-xl"
-            priority
-          />
-          <span className="text-lg font-black tracking-normal text-slate-950">NeuVault</span>
+          <AppLogo size={32} />
+          <span className="font-[family-name:var(--font-bricolage)] text-[1.15rem] font-bold tracking-[-.01em]">NeuVault</span>
+          {isProductRoute ? <span className="site-nav-product-label">Product</span> : null}
         </Link>
 
-        <div className="hidden items-center justify-center gap-1 rounded-full border border-slate-200 bg-slate-50/85 p-1 shadow-sm md:flex">
-          {navItems.map((item) => item.href ? <Link key={item.label} href={item.href} className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 hover:bg-white hover:text-slate-950 hover:shadow-sm">{item.label}</Link> : <button key={item.id} type="button" onClick={() => navigateToSection(item.id!)} className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 hover:bg-white hover:text-slate-950 hover:shadow-sm">{item.label}</button>)}
-
-          <Link
-            href="/pricing"
-            className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 hover:bg-white hover:text-slate-950 hover:shadow-sm"
-          >
-            Pricing
-          </Link>
-
-          <Link
-            href="/business"
-            className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 hover:bg-white hover:text-slate-950 hover:shadow-sm"
-          >
-            Business
-          </Link>
+        <div className="site-nav-links hidden items-center justify-center gap-5 md:flex">
+          {desktopLinks.map((item) => (
+            <Link key={item.label} href={item.href} className="text-sm font-medium">
+              {item.label}
+            </Link>
+          ))}
         </div>
 
-        <div className="hidden justify-self-end md:block">
+        <div className="hidden items-center justify-self-end gap-2 md:flex">
           <button
             type="button"
             onClick={openDownloads}
-            className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_16px_32px_-20px_rgba(37,99,235,0.75)] hover:bg-blue-700"
+            className="site-nav-download rounded-full px-[18px] py-[9px] text-sm font-semibold text-white"
           >
             Download
           </button>
         </div>
 
-        <button
-          type="button"
-          onClick={() => setMobileOpen((value) => !value)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 shadow-sm md:hidden"
-          aria-label="Toggle navigation"
-          aria-expanded={mobileOpen}
-        >
-          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="ml-auto flex items-center gap-2 md:hidden">
+          <button
+            type="button"
+            onClick={() => setMobileOpen((value) => !value)}
+            className="site-nav-menu inline-flex h-10 w-10 items-center justify-center rounded-full border"
+            aria-label="Toggle navigation"
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {mobileOpen && (
-        <div className="border-t border-slate-200 bg-white px-4 py-5 shadow-lg md:hidden">
+        <div className="site-mobile-panel border-t px-4 py-5 shadow-lg md:hidden">
           <div className="mx-auto flex max-w-7xl flex-col gap-2">
-            {navItems.map((item) => item.href ? <Link key={item.label} href={item.href} onClick={() => setMobileOpen(false)} className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700">{item.label}</Link> : <button key={item.id} type="button" onClick={() => navigateToSection(item.id!)} className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-left text-sm font-medium text-slate-700">{item.label}</button>)}
-
-            <Link
-              href="/pricing"
-              onClick={() => setMobileOpen(false)}
-              className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700"
-            >
-              Pricing
-            </Link>
-
-            <Link
-              href="/business"
-              onClick={() => setMobileOpen(false)}
-              className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700"
-            >
-              Business
-            </Link>
+            {desktopLinks.map((item) => (
+              <Link key={item.label} href={item.href} onClick={() => setMobileOpen(false)} className="rounded-xl px-4 py-3 text-sm font-medium">
+                {item.label}
+              </Link>
+            ))}
 
             <button
               type="button"
               onClick={openDownloads}
-              className="rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white"
+              className="site-nav-download rounded-xl px-4 py-3 text-sm font-semibold text-white"
             >
               Download
             </button>

@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Bricolage_Grotesque, Instrument_Sans, Inter } from "next/font/google";
 import "./globals.css";
 
 import Navbar from "@/components/general/Navbar";
 import Footer from "@/components/general/Footer";
+import ThemeModeToggle from "@/components/general/ThemeModeToggle";
 import JsonLd from "@/components/seo/JsonLd";
 
 import {
@@ -20,6 +21,18 @@ import {
 const inter = Inter({
   weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const instrument = Instrument_Sans({
+  variable: "--font-instrument",
   subsets: ["latin"],
   display: "swap",
 });
@@ -102,12 +115,20 @@ export default function RootLayout({
   ];
 
   return (
-    <html lang="en">
-      <body className={`${inter.variable} antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var saved=localStorage.getItem('neuvault-theme');var mode=saved==='light'||saved==='dark'?saved:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=mode;document.documentElement.style.colorScheme=mode;}catch(e){document.documentElement.dataset.theme='light';}})();`,
+          }}
+        />
+      </head>
+      <body className={`${inter.variable} ${bricolage.variable} ${instrument.variable} antialiased`}>
         <JsonLd data={jsonLd} />
         <Navbar />
         {children}
         <Footer />
+        <ThemeModeToggle />
       </body>
     </html>
   );

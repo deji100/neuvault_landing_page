@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Check, CreditCard, ShieldCheck, Sparkles } from "lucide-react";
-import { includedPlanFeatures, pricingPlans } from "@/lib/pricing";
+import { Check, Coins, CreditCard, ShieldCheck, Sparkles } from "lucide-react";
+import { creditRules, creditTopUps, includedPlanFeatures, pricingPlans } from "@/lib/pricing";
+import styles from "./PricingPlans.module.css";
 
 type PricingPlansProps = {
   variant?: "home" | "page";
@@ -139,93 +140,59 @@ export default function PricingPlans({ variant = "home" }: PricingPlansProps) {
   }
 
   return (
-    <section
-      id="subscription-plans"
-      className="px-6 pb-24"
-    >
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 lg:grid-cols-12">
-        <aside className="lg:col-span-4">
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm lg:sticky lg:top-24">
-            <p className="mb-3 text-sm font-semibold text-white">
-              Plan summary
-            </p>
+    <section id="subscription-plans" className={styles.pageSection}>
+      <div className={styles.pageLayout}>
+        <aside>
+          <div className={styles.summary}>
+            <p className={styles.summaryTitle}>Plan summary</p>
 
-            <nav className="space-y-2 text-sm">
+            <nav className={styles.summaryNav}>
               {pricingPlans.map((plan) => (
-                <a
-                  key={plan.id}
-                  href={`#${plan.id}`}
-                  className="block text-gray-300 transition hover:text-white"
-                >
-                  {plan.name}
-                </a>
+                <a key={plan.id} href={`#${plan.id}`}>{plan.name}</a>
               ))}
-              <a
-                href="#included"
-                className="block text-gray-300 transition hover:text-white"
-              >
-                Included across plans
-              </a>
+              <a href="#credits">How credits work</a>
+              <a href="#included">Included across plans</a>
             </nav>
 
-            <div className="mt-5 border-t border-white/10 pt-5 text-xs leading-relaxed text-gray-500">
+            <div className={styles.regionNote}>
               Prices are shown in USD. Final app-store pricing may vary by
               region.
             </div>
           </div>
         </aside>
 
-        <div className="space-y-5 lg:col-span-8">
+        <div className={styles.plans}>
           {pricingPlans.map((plan) => {
             const featured = plan.id === "pro";
             return (
               <article
                 id={plan.id}
                 key={plan.id}
-                className={`scroll-mt-28 rounded-2xl border p-5 backdrop-blur-sm md:p-6 ${
-                  featured
-                    ? "border-[#6DD1FF]/30 bg-[#3F8CFF]/10 shadow-[0_24px_70px_rgba(63,140,255,0.14)]"
-                    : "border-white/10 bg-white/5"
-                }`}
+                className={`${styles.plan} ${featured ? styles.featured : ""}`}
               >
-                <div className="grid gap-5 md:grid-cols-[1fr_auto] md:items-start">
+                <div className={styles.planHead}>
                   <div>
-                    <div className="flex flex-wrap items-center gap-3">
-                      <h2 className="text-2xl font-semibold text-white">
-                        {plan.name}
-                      </h2>
+                    <div className={styles.titleRow}>
+                      <h2>{plan.name}</h2>
                       {plan.highlight ? (
-                        <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-[#6DD1FF]">
-                          {plan.highlight}
-                        </span>
+                        <span className={styles.highlight}>{plan.highlight}</span>
                       ) : null}
                     </div>
-                    <p className="mt-2 text-sm font-semibold text-[#6DD1FF]">
-                      {plan.audience}
-                    </p>
-                    <p className="mt-4 max-w-2xl text-sm leading-7 text-gray-300">
-                      {plan.summary}
-                    </p>
+                    <p className={styles.audience}>{plan.audience}</p>
+                    <p className={styles.summaryCopy}>{plan.summary}</p>
                   </div>
 
-                  <div className="min-w-[180px] rounded-2xl border border-white/10 bg-black/20 p-4">
-                    <p className="text-2xl font-bold text-white">{plan.price}</p>
-                    <p className="mt-3 text-4xl font-black text-white">
-                      {plan.allowance}
-                    </p>
-                    <p className="mt-1 text-sm font-semibold text-gray-400">
-                      {plan.cadence}
-                    </p>
+                  <div className={styles.priceBox}>
+                    <p className={styles.price}>{plan.price}</p>
+                    <p className={styles.allowance}>{plan.allowance}</p>
+                    <p className={styles.cadence}>{plan.cadence}</p>
                   </div>
                 </div>
 
-                <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+                <ul className={styles.features}>
                   {plan.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className="flex gap-3 text-sm leading-6 text-gray-300"
-                    >
-                      <Check className="mt-1 h-4 w-4 shrink-0 text-[#6DD1FF]" />
+                    <li key={feature}>
+                      <Check size={15} />
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -234,46 +201,67 @@ export default function PricingPlans({ variant = "home" }: PricingPlansProps) {
             );
           })}
 
+          <section id="credits" className={styles.included}>
+            <div className={styles.includedHead}>
+              <div className={styles.includedIcon}><Coins size={19} /></div>
+              <div className="flex-1">
+                <h2>How credits work</h2>
+                <div className={styles.includedGrid}>
+                  {creditRules.map((rule) => (
+                    <div key={rule} className={styles.includedItem}>
+                      <Check size={15} />
+                      {rule}
+                    </div>
+                  ))}
+                </div>
+
+                <h3 className={styles.topUpTitle}>Extra credits for paid plans</h3>
+                <div className={styles.topUps}>
+                  {creditTopUps.map((pack) => (
+                    <div key={pack.credits} className={styles.topUp}>
+                      <p className={styles.topUpCredits}>{pack.credits}</p>
+                      <p className={styles.topUpLabel}>extra credits</p>
+                      <p className={styles.topUpPrice}>{pack.price}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
           <section
             id="included"
-            className="scroll-mt-28 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm md:p-6"
+            className={styles.included}
           >
-            <div className="flex items-start gap-3">
-              <div className="mt-1 text-[#6DD1FF]">
-                <ShieldCheck className="h-5 w-5" />
-              </div>
+            <div className={styles.includedHead}>
+              <div className={styles.includedIcon}><ShieldCheck size={19} /></div>
               <div className="flex-1">
-                <h2 className="mb-3 text-xl font-semibold text-white md:text-2xl">
-                  Included across plans
-                </h2>
-                <p className="max-w-2xl text-sm leading-7 text-gray-300">
-                  The plan mainly changes your available AI credit capacity. The
-                  vault experience stays centered on private document memory,
-                  retrieval, reminders, and recovery.
+                <h2>Included across plans</h2>
+                <p className={styles.includedCopy}>
+                  Every paid plan includes all NeuVault features. Credits are
+                  the only difference, and the vault experience stays centered
+                  on private document memory, retrieval, reminders, and recovery.
                 </p>
 
-                <div className="mt-5 grid gap-2 sm:grid-cols-2">
+                <div className={styles.includedGrid}>
                   {includedPlanFeatures.map((feature) => (
-                    <div
-                      key={feature}
-                      className="flex items-center gap-2 rounded-xl border border-white/10 bg-black/20 px-3 py-2 text-sm font-medium text-gray-200"
-                    >
-                      <Check className="h-4 w-4 text-[#6DD1FF]" />
+                    <div key={feature} className={styles.includedItem}>
+                      <Check size={15} />
                       {feature}
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <div className={styles.actions}>
                   <Link
                     href="/#site-footer"
-                    className="inline-flex items-center justify-center rounded-full bg-[#3F8CFF] px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-500"
+                    className={styles.primary}
                   >
                     Download NeuVault
                   </Link>
                   <Link
                     href="/"
-                    className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                    className={styles.secondary}
                   >
                     Back to home
                   </Link>

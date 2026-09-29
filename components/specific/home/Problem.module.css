@@ -1,0 +1,42 @@
+/* Inherits the Apple-system tokens (--ink, --soft, --surface, --line, --teal…) from LandingPage .page. */
+.problem{display:grid;gap:44px}
+.head{max-width:46rem}
+.head h2{font-family:var(--font-bricolage),system-ui,sans-serif;font-weight:700;font-size:clamp(2rem,4.6vw,3.2rem);letter-spacing:-.03em;line-height:1.08}
+.head p{margin-top:18px;max-width:40rem;color:var(--soft);font-size:1.12rem;line-height:1.6}
+
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.cards article{display:grid;align-content:start;gap:10px;border:1px solid var(--line);border-radius:20px;background:var(--surface);padding:28px}
+.icon{display:grid;width:42px;height:42px;margin-bottom:8px;place-items:center;border-radius:12px;background:color-mix(in srgb,var(--tone) 14%,transparent);color:var(--tone)}
+.cards h3{font-family:var(--font-bricolage),system-ui,sans-serif;font-size:1.2rem;font-weight:650;letter-spacing:-.01em;line-height:1.25}
+.cards p{color:var(--soft);font-size:.97rem;line-height:1.6}
+.cards sup a{margin-left:1px;color:var(--teal);font-size:.72em;font-weight:700}
+
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-block:1px solid var(--line);list-style:none}
+.quotes li{display:flex;flex-direction:column;justify-content:space-between;gap:14px;padding:30px 28px}
+.quotes li+li{border-left:1px solid var(--line)}
+.quotes blockquote{font-family:var(--font-baskervville),Georgia,serif;font-size:1.28rem;font-style:italic;line-height:1.4;letter-spacing:-.005em}
+.quotes p{color:var(--soft);font-size:.86rem;font-weight:600}
+.quotes a{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+.quotes a:hover{text-decoration-color:currentColor}
+
+.turn{font-family:var(--font-bricolage),system-ui,sans-serif;font-size:clamp(1.7rem,3.6vw,2.4rem);font-weight:700;letter-spacing:-.025em;line-height:1.15;background:linear-gradient(100deg,#007aff 10%,#5e5ce6 80%);-webkit-background-clip:text;background-clip:text;color:transparent;justify-self:start;max-width:24ch}
+
+.notes{margin-top:-8px;color:var(--soft);font-size:.78rem;opacity:.85}
+.notes a{text-decoration:underline;text-underline-offset:2px}
+.srOnly{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+@media(max-width:860px){
+  .cards{grid-template-columns:1fr}
+  .quotes{grid-template-columns:1fr}
+  .quotes li{padding:24px 0}
+  .quotes li+li{border-left:0;border-top:1px solid var(--line)}
+}
+@media(max-width:560px){
+  .problem{gap:34px}
+  .cards article{padding:22px}
+  .quotes blockquote{font-size:1.15rem}
+}
+
+:global(html[data-theme="dark"]) .cards article{border-color:#48484a;background:#1c1c1e}
+:global(html[data-theme="dark"]) .quotes,:global(html[data-theme="dark"]) .quotes li+li{border-color:#38383a}
+:global(html[data-theme="dark"]) .turn{background-image:linear-gradient(100deg,#409cff 10%,#7d7aff 80%)}
