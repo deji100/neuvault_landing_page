@@ -74,12 +74,12 @@ export const youtubeVideos: YouTubeVideo[] = [
   },
   {
     // YouTube title: "Your calendar only knows what you type in. NeuVault finds the dates for you."
-    id: "l4MAEBWpqmw",
+    id: "W-dSpJ9bl_w",
     title: "Dates that come back to you",
-    summary: "NeuVault finds the dates inside your documents and reminds you before they pass.",
-    uploadDate: "2026-09-28T15:45:40-07:00",
+    summary: "Your calendar only knows what you type in. NeuVault finds the dates inside your documents and reminds you before they pass.",
+    uploadDate: "2026-09-30T03:34:14-07:00",
     duration: "1:08",
-    thumbZoom: 1.16,
+    thumbZoom: 1.15,
   },
   {
     // YouTube title: "Every file for one project, on one canvas. And an AI that's read them all."
