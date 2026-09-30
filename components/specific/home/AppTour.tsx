@@ -17,6 +17,11 @@ type Slide = {
 /** Titles reuse the app's own welcome-carousel wording where one fits. */
 const desktopSlides: Slide[] = [
   {
+    src: "/desktop-images/reminder.png",
+    title: "Keep important dates in sight.",
+    copy: "Every date counts down live, overdue first, so nothing slips past.",
+  },
+  {
     src: "/desktop-images/home.png",
     title: "Bring the rest with you.",
     copy: "Drop in files, scans and chat exports, or watch a folder and let new files come to you.",
@@ -35,11 +40,6 @@ const desktopSlides: Slide[] = [
     src: "/desktop-images/note-audio-2.png",
     title: "From voice to structured notes.",
     copy: "A recording becomes an overview, key points and the full transcript, all in the note itself.",
-  },
-  {
-    src: "/desktop-images/reminder.png",
-    title: "Keep important dates in sight.",
-    copy: "Dates found inside your documents show up here, overdue first, before they pass.",
   },
   {
     src: "/desktop-images/vault-map-overview.png",
@@ -62,7 +62,7 @@ const mobileSlides: Slide[] = [
   {
     src: "/mobile-images/attention-m.png",
     title: "What needs you, first.",
-    copy: "Deadlines and follow-ups that need a look, waiting on your home screen.",
+    copy: "Deadlines and follow-ups count down live, with anything overdue at the top.",
   },
   {
     src: "/mobile-images/vault-m.png",
