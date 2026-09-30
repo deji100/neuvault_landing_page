@@ -155,7 +155,7 @@ export default function HomeHero() {
             <div className={styles.phone}>
               <div className={styles.screen}>
                 <Image
-                  src="/mobile-images/vault-m.png"
+                  src="/mobile-images/attention-m.png"
                   alt=""
                   width={1320}
                   height={2868}
