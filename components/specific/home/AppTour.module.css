@@ -67,3 +67,10 @@
 
 :global(html[data-theme="dark"]) .window{border-color:#48484a}
 :global(html[data-theme="dark"]) .phone{border-color:#3a3a3c}
+
+/* Phones: the active screenshot opens full screen (ScreenshotViewer); a small chip says so. */
+.zoomHint{display:none}
+@media(max-width:760px){
+  .desktopStage,.phone[data-active="true"]{cursor:zoom-in}
+  .zoomHint{position:absolute;right:10px;bottom:10px;z-index:3;display:inline-flex;align-items:center;border-radius:999px;background:rgba(0,0,0,.62);padding:4px 10px;color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.02em;pointer-events:none;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+}

@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import type { CSSProperties } from "react";
+import { useCallback, useRef, useState, type CSSProperties } from "react";
 
 import { CarouselControls, useCarousel } from "./carousel";
 import styles from "./AppTour.module.css";
+import ScreenshotViewer, { useViewerTrigger, type ViewerShot } from "./ScreenshotViewer";
 
 type Slide = {
   src: string;
@@ -126,9 +127,35 @@ function Caption({ slides, index, live }: { slides: Slide[]; index: number; live
   );
 }
 
+/** The viewer's open screenshot, pausing the carousel while it is open and resuming after. */
+function useScreenshotViewer(carousel: ReturnType<typeof useCarousel>) {
+  const [shot, setShot] = useState<ViewerShot | null>(null);
+  const wasPlaying = useRef(false);
+  const open = (next: ViewerShot) => {
+    wasPlaying.current = carousel.playing;
+    carousel.setPlaying(false);
+    setShot(next);
+  };
+  const close = useCallback(() => {
+    setShot(null);
+    if (wasPlaying.current) carousel.setPlaying(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [carousel.setPlaying]);
+  return { shot, open, close };
+}
+
+function ZoomHint() {
+  return <span className={styles.zoomHint} aria-hidden="true">Tap to zoom</span>;
+}
+
 function DesktopCarousel() {
   const carousel = useCarousel(desktopSlides.length, DESKTOP_INTERVAL);
   const { index, rootProps, swipeProps, running } = carousel;
+  const viewer = useScreenshotViewer(carousel);
+  const active = desktopSlides[index];
+  const trigger = useViewerTrigger(() =>
+    viewer.open({ src: active.src, alt: `NeuVault desktop: ${active.title}`, width: 3456, height: 2234 }),
+  );
 
   return (
     <div className={styles.carousel} aria-roledescription="carousel" aria-label="NeuVault on desktop" {...rootProps}>
@@ -139,7 +166,8 @@ function DesktopCarousel() {
           <i />
           <span>NeuVault</span>
         </div>
-        <div className={styles.desktopStage}>
+        <div className={styles.desktopStage} {...trigger}>
+          <ZoomHint />
           {desktopSlides.map((slide, i) => (
             <div
               key={slide.src}
@@ -167,6 +195,7 @@ function DesktopCarousel() {
         <Caption slides={desktopSlides} index={index} live={!running} />
         <CarouselControls carousel={carousel} items={desktopSlides.map((s) => s.title)} interval={DESKTOP_INTERVAL} label="desktop" />
       </div>
+      <ScreenshotViewer shot={viewer.shot} onClose={viewer.close} />
     </div>
   );
 }
@@ -175,6 +204,16 @@ function MobileCarousel() {
   const carousel = useCarousel(mobileSlides.length, MOBILE_INTERVAL);
   const { index, go, rootProps, swipeProps, running } = carousel;
   const count = mobileSlides.length;
+  const viewer = useScreenshotViewer(carousel);
+  const active = mobileSlides[index];
+  const trigger = useViewerTrigger(() =>
+    viewer.open({
+      src: active.src,
+      alt: `NeuVault mobile: ${active.title}`,
+      width: active.size?.[0] ?? 1320,
+      height: active.size?.[1] ?? 2868,
+    }),
+  );
 
   return (
     <div className={styles.carousel} aria-roledescription="carousel" aria-label="NeuVault on mobile" {...rootProps}>
@@ -197,8 +236,9 @@ function MobileCarousel() {
               aria-roledescription="slide"
               aria-label={`${i + 1} of ${count}`}
               aria-hidden={offset !== 0}
-              onClick={offset === 0 ? undefined : () => go(i)}
+              {...(offset === 0 ? trigger : { onClick: () => go(i) })}
             >
+              {offset === 0 ? <ZoomHint /> : null}
               <div className={styles.phoneScreen}>
                 <Image
                   src={slide.src}
@@ -218,6 +258,7 @@ function MobileCarousel() {
         <Caption slides={mobileSlides} index={index} live={!running} />
         <CarouselControls carousel={carousel} items={mobileSlides.map((s) => s.title)} interval={MOBILE_INTERVAL} label="mobile" />
       </div>
+      <ScreenshotViewer shot={viewer.shot} onClose={viewer.close} />
     </div>
   );
 }
