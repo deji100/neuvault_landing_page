@@ -19,13 +19,31 @@ export type YouTubeVideo = {
  */
 export const youtubeVideos: YouTubeVideo[] = [
   {
-    // YouTube title: "Notion keeps your files. Obsidian makes you sort them. NeuVault does neither."
+    // YouTube title: "Five apps to keep your life in order. NeuVault makes it one."
     id: "pllDhJnnRt8",
     title: "Meet NeuVault",
     summary: "Five apps to keep your life in order. NeuVault makes it one: save anything, let it sort itself, and get it back when it matters.",
     uploadDate: "2026-09-30T02:47:55-07:00",
     duration: "3:38",
     thumbZoom: 1.15,
+  },
+  {
+    // YouTube title: "Your calendar only knows what you type in. NeuVault finds the dates for you."
+    id: "W-dSpJ9bl_w",
+    title: "Dates that come back to you",
+    summary: "Your calendar only knows what you type in. NeuVault finds the dates inside your documents and reminds you before they pass.",
+    uploadDate: "2026-09-30T03:34:14-07:00",
+    duration: "1:08",
+    thumbZoom: 1.15,
+  },
+  {
+    // YouTube title: "Your files come to you. Notion and Obsidian can't do this."
+    id: "X5NXOh_vrdQ",
+    title: "How your vault organizes itself",
+    summary: "Files arrive on their own, and Nova sorts them into the right groups.",
+    uploadDate: "2026-09-27T17:43:25-07:00",
+    duration: "2:06",
+    thumbZoom: 1.16,
   },
   {
     // YouTube title: "The app that organizes itself. Here's the 60-second tour."
@@ -46,15 +64,6 @@ export const youtubeVideos: YouTubeVideo[] = [
     thumbZoom: 1.16,
   },
   {
-    // YouTube title: "Your files come to you. Notion and Obsidian can't do this."
-    id: "X5NXOh_vrdQ",
-    title: "How your vault organizes itself",
-    summary: "Files arrive on their own, and Nova sorts them into the right groups.",
-    uploadDate: "2026-09-27T17:43:25-07:00",
-    duration: "2:06",
-    thumbZoom: 1.16,
-  },
-  {
     // YouTube title: "Notion saves your links. NeuVault files them for you."
     id: "48EyjvDwszo",
     title: "Bookmarks and YouTube links",
@@ -71,15 +80,6 @@ export const youtubeVideos: YouTubeVideo[] = [
     uploadDate: "2026-09-28T15:51:07-07:00",
     duration: "2:02",
     thumbZoom: 1.16,
-  },
-  {
-    // YouTube title: "Your calendar only knows what you type in. NeuVault finds the dates for you."
-    id: "W-dSpJ9bl_w",
-    title: "Dates that come back to you",
-    summary: "Your calendar only knows what you type in. NeuVault finds the dates inside your documents and reminds you before they pass.",
-    uploadDate: "2026-09-30T03:34:14-07:00",
-    duration: "1:08",
-    thumbZoom: 1.15,
   },
   {
     // YouTube title: "Every file for one project, on one canvas. And an AI that's read them all."
