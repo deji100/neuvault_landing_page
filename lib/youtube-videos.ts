@@ -20,12 +20,12 @@ export type YouTubeVideo = {
 export const youtubeVideos: YouTubeVideo[] = [
   {
     // YouTube title: "Notion keeps your files. Obsidian makes you sort them. NeuVault does neither."
-    id: "VD0mkm5XHjM",
+    id: "pllDhJnnRt8",
     title: "Meet NeuVault",
-    summary: "The introduction: save anything, let Nova sort it, and get it back when it matters.",
-    uploadDate: "2026-09-27T16:35:56-07:00",
-    duration: "3:37",
-    thumbZoom: 1.16,
+    summary: "Five apps to keep your life in order. NeuVault makes it one: save anything, let it sort itself, and get it back when it matters.",
+    uploadDate: "2026-09-30T02:47:55-07:00",
+    duration: "3:38",
+    thumbZoom: 1.15,
   },
   {
     // YouTube title: "The app that organizes itself. Here's the 60-second tour."
