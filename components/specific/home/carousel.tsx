@@ -10,22 +10,23 @@ const SWIPE_THRESHOLD = 40;
 const IN_VIEW = 0.6;
 
 /**
- * Auto-advancing carousel state. Autoplay stops for hover, keyboard focus,
- * a hidden tab or an off-screen carousel, and resumes where it left off.
+ * Auto-advancing carousel state. Autoplay keeps going under the pointer (people
+ * should not have to know that hovering stops it); it stops for keyboard focus,
+ * the pause button, a hidden tab or an off-screen carousel, and resumes where it
+ * left off.
  * It starts paused for visitors who ask for reduced motion.
  */
 export function useCarousel(count: number, interval: number) {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(true);
-  const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const [visible, setVisible] = useState(false);
   const [pageVisible, setPageVisible] = useState(true);
   const remaining = useRef(interval);
   const timedIndex = useRef(0);
 
-  const running = playing && !hovered && !focused && visible && pageVisible;
+  const running = playing && !focused && visible && pageVisible;
 
   const go = useCallback((target: number) => setIndex(((target % count) + count) % count), [count]);
   const next = useCallback(() => setIndex((i) => (i + 1) % count), [count]);
@@ -83,9 +84,11 @@ export function useCarousel(count: number, interval: number) {
 
   const rootProps = {
     ref: rootRef,
-    onMouseEnter: () => setHovered(true),
-    onMouseLeave: () => setHovered(false),
-    onFocus: () => setFocused(true),
+    // Only keyboard focus pauses: a mouse click on an arrow or dot focuses it too,
+    // and that should not freeze the carousel.
+    onFocus: (event: React.FocusEvent<HTMLDivElement>) => {
+      if ((event.target as HTMLElement).matches?.(":focus-visible")) setFocused(true);
+    },
     onBlur: (event: React.FocusEvent<HTMLDivElement>) => {
       if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setFocused(false);
     },
