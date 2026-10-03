@@ -14,6 +14,7 @@ const siteLinks = [
   { label: "Pricing", href: "/pricing" },
   { label: "B2B", href: "/business" },
   { label: "Help", href: "/guides" },
+  { label: "Feedback", href: "/feedback" },
   { label: "Contact", href: "/contact" },
 ];
 
