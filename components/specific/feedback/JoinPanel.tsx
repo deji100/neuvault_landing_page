@@ -156,7 +156,7 @@ export function MemberBar({ member }: { member: Member }) {
   return (
     <p className={styles.memberBar}>
       Signed in as <strong>{member.displayName}</strong>
-      <button type="button" className={styles.linkButton} onClick={signOut}>
+      <button type="button" className={styles.linkButton} onClick={() => void signOut()}>
         <LogOut size={13} aria-hidden="true" /> Sign out
       </button>
     </p>

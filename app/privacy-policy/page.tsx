@@ -23,7 +23,7 @@ import {
 
 import { Bullets, Callout, Chip, Chips, LegalPage, MetaPill, Section, type TocItem } from "@/components/specific/legal/Legal";
 
-const EFFECTIVE_DATE = "September 29, 2026";
+const EFFECTIVE_DATE = "October 3, 2026";
 const PRIVACY_EMAIL = "support@neuvault.app";
 
 const toc: TocItem[] = [
@@ -39,6 +39,7 @@ const toc: TocItem[] = [
   { id: "sign-in", label: "Sign-in & device security" },
   { id: "payments", label: "Subscriptions & payments" },
   { id: "communications", label: "Emails we send" },
+  { id: "feedback-board", label: "Feedback board" },
   { id: "diagnostics", label: "Diagnostics & no tracking" },
   { id: "staff-access", label: "Staff access" },
   { id: "retention", label: "How long we keep data" },
@@ -422,7 +423,37 @@ export default function PrivacyPolicyPage() {
         </Bullets>
       </Section>
 
-      <Section id="diagnostics" title="13. Diagnostics & no tracking" icon={Shield}>
+      <Section id="feedback-board" title="13. Feedback board" icon={Users}>
+        <p>
+          The feedback board at <Link href="/feedback">neuvault.app/feedback</Link> is public: anyone can read it.
+          Posting, voting and commenting need a NeuVault account.
+        </p>
+        <Bullets>
+          <li>
+            What you post, your comments and your votes are stored on our servers and shown publicly. Your name
+            appears as your first name and last initial. Your email address is never shown.
+          </li>
+          <li>
+            Don&apos;t include document contents, ID numbers or other personal details in posts or comments. We hide
+            anything that does.
+          </li>
+          <li>
+            You sign in on the website with a code sent to your email. The sign-in is kept in your browser&apos;s
+            storage, works only on the board, cannot reach your vault, backups or account settings, and ends after
+            30 days, when you sign out, or when you sign out of all devices in the app.
+          </li>
+          <li>
+            When you remove a post or comment, or we hide one, it leaves the board straight away. We keep the text,
+            hidden, until your account is deleted, so we can deal with abuse.
+          </li>
+          <li>
+            When the NeuVault team replies to your post or changes its status, we email you. The board uses no
+            cookies for tracking and no analytics.
+          </li>
+        </Bullets>
+      </Section>
+
+      <Section id="diagnostics" title="14. Diagnostics & no tracking" icon={Shield}>
         <Bullets>
           <li>
             NeuVault contains no advertising or third-party analytics tools, and does not track you across other
@@ -439,7 +470,7 @@ export default function PrivacyPolicyPage() {
         </Bullets>
       </Section>
 
-      <Section id="staff-access" title="14. Staff access" icon={UserCheck}>
+      <Section id="staff-access" title="15. Staff access" icon={UserCheck}>
         <p>
           A small number of authorized staff can use internal tools to run the service, answer support requests,
           keep it secure and fix billing problems. They can see account details, sessions, subscription and credit
@@ -453,10 +484,11 @@ export default function PrivacyPolicyPage() {
         </Bullets>
       </Section>
 
-      <Section id="retention" title="15. How long we keep data" icon={Lock}>
+      <Section id="retention" title="16. How long we keep data" icon={Lock}>
         <Bullets>
           <li>Files sent for processing and their results: deleted within an hour (section 3).</li>
           <li>Reminders: until you delete them or your account.</li>
+          <li>Feedback board posts, comments and votes: until your account is deleted (section 13).</li>
           <li>Notification history: 30 days, or up to 180 days if unopened.</li>
           <li>Account, device, subscription and credit records: while your account is open.</li>
           <li>Server logs: for a limited period, for security and troubleshooting.</li>
@@ -464,7 +496,7 @@ export default function PrivacyPolicyPage() {
         </Bullets>
       </Section>
 
-      <Section id="account-deletion" title="16. Deleting your account" icon={Trash2}>
+      <Section id="account-deletion" title="17. Deleting your account" icon={Trash2}>
         <p>
           You can delete your account in the app (Settings &gt; Delete Account) or from{" "}
           <Link href="/account-deletion">neuvault.app/account-deletion</Link>.
@@ -472,7 +504,8 @@ export default function PrivacyPolicyPage() {
         <Bullets>
           <li>
             Deleting your account removes your account, sessions, devices, reminders, notifications, organization
-            settings, feedback and subscription and credit records from our servers.
+            settings, feedback (including your feedback board posts, comments and votes) and subscription and credit
+            records from our servers.
           </li>
           <li>
             We keep a minimal record that an account was deleted, including its email address, in our internal
@@ -486,7 +519,7 @@ export default function PrivacyPolicyPage() {
         </Bullets>
       </Section>
 
-      <Section id="rights" title="17. Your rights" icon={UserCheck}>
+      <Section id="rights" title="18. Your rights" icon={UserCheck}>
         <p>
           Depending on where you live, you may have the right to access, correct, export or delete your personal
           data, to object to or restrict certain processing, and to withdraw consent. You can also complain to your
@@ -495,14 +528,14 @@ export default function PrivacyPolicyPage() {
         </p>
       </Section>
 
-      <Section id="children" title="18. Children" icon={Mic}>
+      <Section id="children" title="19. Children" icon={Mic}>
         <p>
           NeuVault is not intended for children under 13, and we do not knowingly collect their personal data. If
           you believe a child has given us personal data, contact us and we will delete it.
         </p>
       </Section>
 
-      <Section id="security" title="19. Security" icon={Lock}>
+      <Section id="security" title="20. Security" icon={Lock}>
         <p>
           We protect data in transit with encryption (TLS), limit access to our systems, and encrypt backups on
           your device. No system is perfectly secure, so please keep your device, email account and Recovery Key
@@ -510,7 +543,7 @@ export default function PrivacyPolicyPage() {
         </p>
       </Section>
 
-      <Section id="changes" title="20. Changes & contact" icon={FileText}>
+      <Section id="changes" title="21. Changes & contact" icon={FileText}>
         <p>
           We will update this policy when NeuVault changes, change the effective date above, and tell you in the
           app or by email about significant changes. For any privacy question or request, contact:

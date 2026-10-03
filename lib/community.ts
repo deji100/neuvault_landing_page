@@ -85,8 +85,20 @@ export function onMemberChange(listener: () => void) {
   };
 }
 
-export function signOut() {
+/** Signs out here, and ends the board sign-in on the server so it stops working in every browser. */
+export async function signOut() {
+  const member = readMember();
   writeMember(null);
+  if (!member) return;
+  try {
+    await fetch(`${API_URL}/api/v1/community/auth/logout`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${member.token}` },
+      cache: "no-store",
+    });
+  } catch {
+    // Signed out here regardless; the token also lapses on its own.
+  }
 }
 
 // ---------- requests ----------

@@ -22,7 +22,7 @@ import {
 
 import { Bullets, Callout, LegalPage, MetaPill, Section, type TocItem } from "@/components/specific/legal/Legal";
 
-const EFFECTIVE_DATE = "September 29, 2026";
+const EFFECTIVE_DATE = "October 3, 2026";
 const SUPPORT_EMAIL = "support@neuvault.app";
 
 const toc: TocItem[] = [
@@ -118,6 +118,11 @@ export default function TermsPage() {
           <li>
             If you record other people, such as in a meeting or call, you are responsible for telling them and
             getting their consent where the law requires it.
+          </li>
+          <li>
+            The <Link href="/feedback">feedback board</Link> is different: what you post there is public. You still
+            own it, and you give us permission to show it on the board and to use your suggestions to improve
+            NeuVault, without owing you anything for them. You can remove your posts and comments at any time.
           </li>
         </Bullets>
       </Section>
@@ -231,6 +236,11 @@ export default function TermsPage() {
           <li>Reverse engineer NeuVault, get around its security or credit limits, or interfere with how it works.</li>
           <li>Overload our systems, for example with automated or excessive requests or scraping.</li>
           <li>Resell NeuVault or access it except through our apps and website.</li>
+          <li>
+            Post on the feedback board anything abusive, misleading, off-topic or promotional, anyone&apos;s personal
+            details, or anything that pretends to come from the NeuVault team. We may hide such posts and comments
+            and remove access to the board.
+          </li>
         </Bullets>
       </Section>
 
