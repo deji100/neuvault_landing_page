@@ -23,7 +23,7 @@ import {
 
 import { Bullets, Callout, Chip, Chips, LegalPage, MetaPill, Section, type TocItem } from "@/components/specific/legal/Legal";
 
-const EFFECTIVE_DATE = "October 3, 2026";
+const EFFECTIVE_DATE = "October 8, 2026";
 const PRIVACY_EMAIL = "support@neuvault.app";
 
 const toc: TocItem[] = [
@@ -318,6 +318,20 @@ export default function PrivacyPolicyPage() {
             <strong>Shared and WhatsApp imports:</strong> when you share a chat export or files into NeuVault, the
             content can include other people&apos;s names, messages and files. It is processed like any other
             content.
+          </li>
+          <li>
+            <strong>Save to NeuVault browser extension and bookmark:</strong> when you click the extension, use its
+            right-click menu or press its shortcut, it passes the address and title of that page to the NeuVault app
+            on your computer. Nothing is saved yet: NeuVault asks you what to do with the page. If you choose Save to
+            Inbox, the page is stored on your device only. If you choose Organize with AI, our service reads the page
+            to work out its title, summary and category, returns the result to your app, and does not keep the page
+            or the result; they are stored on your devices. The extension itself keeps nothing, has no account, and
+            sends nothing anywhere except to the NeuVault app on your computer.
+          </li>
+          <li>
+            <strong>Sharing a link from your phone or from Safari:</strong> choosing NeuVault in the Share menu works
+            the same way. The link waits on your device until you open NeuVault, which then asks whether to save it
+            to your Inbox or organize it with AI.
           </li>
           <li>
             <strong>Recordings:</strong> if you record a meeting or call, please tell the people involved and get
