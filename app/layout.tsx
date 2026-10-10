@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/general/Navbar";
 import Footer from "@/components/general/Footer";
 import ThemeModeToggle from "@/components/general/ThemeModeToggle";
+import ReferralTracker from "@/components/general/ReferralTracker";
 import JsonLd from "@/components/seo/JsonLd";
 
 import {
@@ -130,6 +131,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <ThemeModeToggle />
+        <ReferralTracker />
       </body>
     </html>
   );

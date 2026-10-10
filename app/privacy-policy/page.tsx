@@ -23,7 +23,7 @@ import {
 
 import { Bullets, Callout, Chip, Chips, LegalPage, MetaPill, Section, type TocItem } from "@/components/specific/legal/Legal";
 
-const EFFECTIVE_DATE = "October 8, 2026";
+const EFFECTIVE_DATE = "October 10, 2026";
 const PRIVACY_EMAIL = "support@neuvault.app";
 
 const toc: TocItem[] = [
@@ -480,6 +480,12 @@ export default function PrivacyPolicyPage() {
           <li>
             The mobile apps check for app updates with our app update provider, which receives basic device and
             app version information.
+          </li>
+          <li>
+            If you open the website through a referral link (one ending in <code>?ref=</code> and a code), your
+            browser keeps that code and a random visitor number for 30 days, and tells us about that visit and any
+            app-store button you press, so we can see how many people the link brought. We do not record your IP
+            address or connect this to an account, and visits without a referral link are not recorded.
           </li>
         </Bullets>
       </Section>
