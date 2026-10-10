@@ -20,6 +20,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+import { DesktopCarousel, type Slide } from "./AppTour";
 import styles from "./Features.module.css";
 
 /** Every screenshot on this page is a 3456×2234 desktop capture. */
@@ -119,10 +120,42 @@ const capture: {
   },
 ];
 
-const mapShots = [
-  { src: "/desktop-images/vault-map-nova.png", label: "Ask Nova about the whole map" },
-  { src: "/desktop-images/vault-map-split.png", label: "Read two side by side" },
-  { src: "/desktop-images/vault-map-share.png", label: "Export and share the map" },
+const mapSlides: Slide[] = [
+  {
+    src: "/desktop-images/vault-map-overview.png",
+    title: "One canvas for the whole project.",
+    copy: "Documents, notes, PDFs and videos about one subject, grouped by topic and connected so you can see how they fit.",
+  },
+  {
+    src: "/desktop-images/vault-map-2.png",
+    title: "Groups, colours and labelled links.",
+    copy: "Sort cards into coloured groups and label each connection, so the map explains itself when you come back to it.",
+  },
+  {
+    src: "/desktop-images/vault-map-3.png",
+    title: "Write right on the map.",
+    copy: "Every note card is a full editor, with headings, lists, tables and code, and you can recolour it or move it between groups.",
+  },
+  {
+    src: "/desktop-images/vault-map-nova.png",
+    title: "Ask Nova about the whole map.",
+    copy: "Nova reads every card, then summarizes, compares or drafts a revision document, and adds it only when you confirm.",
+  },
+  {
+    src: "/desktop-images/vault-map-split.png",
+    title: "Read two side by side.",
+    copy: "Open any two cards in split screen, like a lecture video next to the assignment it explains.",
+  },
+  {
+    src: "/desktop-images/vault-map-reminder.png",
+    title: "Bring it back when it matters.",
+    copy: "Set a reminder for the whole group, with a date or a weekly, monthly or yearly return.",
+  },
+  {
+    src: "/desktop-images/vault-map-share.png",
+    title: "Export and share the map.",
+    copy: "Send the whole map, or just the groups you choose, as one package with every card, document and file.",
+  },
 ];
 
 const extras: { title: string; copy: string; icon: LucideIcon }[] = [
@@ -282,20 +315,7 @@ export default function Features() {
             export the whole map and share it with a classmate, client, colleague or family member.
           </p>
         </div>
-        <Shot
-          src="/desktop-images/vault-map-overview.png"
-          alt="A NeuVault Vault Map: related documents grouped and connected on one canvas"
-          sizes="(min-width: 1140px) 1072px, calc(100vw - 48px)"
-          className={styles.mapHero}
-        />
-        <ul className={styles.mapThumbs}>
-          {mapShots.map((shot) => (
-            <li key={shot.src}>
-              <Shot src={shot.src} alt={shot.label} sizes="(min-width: 960px) 340px, calc(100vw - 48px)" />
-              <p>{shot.label}</p>
-            </li>
-          ))}
-        </ul>
+        <DesktopCarousel slides={mapSlides} label="NeuVault Vault Map" controlsLabel="Vault Map" />
       </article>
 
       {/* 5 */}

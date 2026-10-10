@@ -7,7 +7,7 @@ import { CarouselControls, useCarousel } from "./carousel";
 import styles from "./AppTour.module.css";
 import ScreenshotViewer, { useViewerTrigger, type ViewerShot } from "./ScreenshotViewer";
 
-type Slide = {
+export type Slide = {
   src: string;
   title: string;
   copy: string;
@@ -148,17 +148,28 @@ function ZoomHint() {
   return <span className={styles.zoomHint} aria-hidden="true">Tap to zoom</span>;
 }
 
-function DesktopCarousel() {
-  const carousel = useCarousel(desktopSlides.length, DESKTOP_INTERVAL);
+/** A Mac-window carousel of desktop screenshots; also used by the Vault Map section. */
+export function DesktopCarousel({
+  slides = desktopSlides,
+  label = "NeuVault on desktop",
+  controlsLabel = "desktop",
+  interval = DESKTOP_INTERVAL,
+}: {
+  slides?: Slide[];
+  label?: string;
+  controlsLabel?: string;
+  interval?: number;
+}) {
+  const carousel = useCarousel(slides.length, interval);
   const { index, rootProps, swipeProps, running } = carousel;
   const viewer = useScreenshotViewer(carousel);
-  const active = desktopSlides[index];
+  const active = slides[index];
   const trigger = useViewerTrigger(() =>
     viewer.open({ src: active.src, alt: `NeuVault desktop: ${active.title}`, width: 3456, height: 2234 }),
   );
 
   return (
-    <div className={styles.carousel} aria-roledescription="carousel" aria-label="NeuVault on desktop" {...rootProps}>
+    <div className={styles.carousel} aria-roledescription="carousel" aria-label={label} {...rootProps}>
       <div className={styles.window} {...swipeProps}>
         <div className={styles.chrome} aria-hidden="true">
           <i />
@@ -168,14 +179,14 @@ function DesktopCarousel() {
         </div>
         <div className={styles.desktopStage} {...trigger}>
           <ZoomHint />
-          {desktopSlides.map((slide, i) => (
+          {slides.map((slide, i) => (
             <div
               key={slide.src}
               className={styles.desktopSlide}
               data-active={i === index}
               role="group"
               aria-roledescription="slide"
-              aria-label={`${i + 1} of ${desktopSlides.length}`}
+              aria-label={`${i + 1} of ${slides.length}`}
               aria-hidden={i !== index}
             >
               <Image
@@ -192,8 +203,8 @@ function DesktopCarousel() {
       </div>
 
       <div className={styles.footer}>
-        <Caption slides={desktopSlides} index={index} live={!running} />
-        <CarouselControls carousel={carousel} items={desktopSlides.map((s) => s.title)} interval={DESKTOP_INTERVAL} label="desktop" />
+        <Caption slides={slides} index={index} live={!running} />
+        <CarouselControls carousel={carousel} items={slides.map((s) => s.title)} interval={interval} label={controlsLabel} />
       </div>
       <ScreenshotViewer shot={viewer.shot} onClose={viewer.close} />
     </div>
