@@ -38,9 +38,9 @@ const desktopSlides: Slide[] = [
     copy: "A summary, tags, dates and related documents sit beside every file.",
   },
   {
-    src: "/desktop-images/note-audio-2.png",
+    src: "/desktop-images/structured-note.png",
     title: "From voice to structured notes.",
-    copy: "A recording becomes an overview, key points and the full transcript, all in the note itself.",
+    copy: "A recording becomes an overview, key points, action items and the full transcript, all in the note itself.",
   },
   {
     src: "/desktop-images/vault-map-overview.png",
