@@ -22,7 +22,7 @@ import {
 
 import { Bullets, Callout, LegalPage, MetaPill, Section, type TocItem } from "@/components/specific/legal/Legal";
 
-const EFFECTIVE_DATE = "October 3, 2026";
+const EFFECTIVE_DATE = "October 12, 2026";
 const SUPPORT_EMAIL = "support@neuvault.app";
 
 const toc: TocItem[] = [
@@ -68,7 +68,7 @@ export default function TermsPage() {
         { icon: Lock, label: "You own everything you put in your vault" },
         { icon: Bot, label: "Check AI results before relying on them" },
         { icon: KeyRound, label: "Keep your Recovery Key safe" },
-        { icon: CreditCard, label: "Subscriptions are managed in your app store" },
+        { icon: CreditCard, label: "Subscriptions are managed where you bought them" },
       ]}
       toc={toc}
       footnote="NeuVault — Your data. Your device. Your control."
@@ -184,20 +184,25 @@ export default function TermsPage() {
         <h3>Subscriptions</h3>
         <Bullets>
           <li>
-            Plans are bought through the Apple App Store (on iPhone, iPad and Mac) or Google Play. Your purchase is
-            also subject to their terms, and they handle payment.
+            Plans and extra credits are bought through the Apple App Store (on iPhone, iPad and the Mac App Store
+            version), Google Play, or, on our website and in the desktop app downloaded from our website, through
+            Paddle. Paddle (Paddle.com) is our authorized reseller and merchant of record for those purchases. Your
+            purchase is also subject to the seller&apos;s terms, and the seller handles payment and any sales tax.
           </li>
           <li>
-            Subscriptions renew automatically at the end of each billing period unless you cancel at least 24 hours
-            before it ends. You can cancel in your App Store or Google Play account settings.
+            Subscriptions renew automatically at the end of each billing period unless you cancel before it ends
+            (at least 24 hours before for App Store and Google Play). Cancel where you subscribed: in your App Store
+            or Google Play account settings, or, for Paddle purchases, from Manage subscription in the app or the
+            link in your receipt.
           </li>
           <li>
-            Refunds are handled by Apple or Google under their policies. Deleting the app or your account does not
-            cancel a subscription.
+            Refunds are covered by our <Link href="/refund-policy">Refund Policy</Link>: Apple and Google refund
+            their purchases under their own policies, and Paddle purchases can be refunded in full within 14 days.
+            Deleting the app or your account does not cancel a subscription.
           </li>
           <li>
-            Prices can vary by country and may change. We will tell you in advance, and your app store will ask for
-            your consent where required.
+            Prices can vary by country and may change. We will tell you in advance, and your app store or Paddle
+            will ask for your consent where required.
           </li>
         </Bullets>
 
@@ -220,7 +225,10 @@ export default function TermsPage() {
             If a request fails after processing has started, it may use up to half of the credits it would have
             cost.
           </li>
-          <li>Credits have no cash value, cannot be transferred or sold, and are not refundable except where the law requires.</li>
+          <li>
+            Credits have no cash value and cannot be transferred or sold. They are not refundable except as our{" "}
+            <Link href="/refund-policy">Refund Policy</Link> describes or where the law requires.
+          </li>
         </Bullets>
         <p>
           Current plans and prices are on our <Link href="/pricing">pricing page</Link> and in the app.

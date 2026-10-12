@@ -26,6 +26,7 @@ export default function Footer() {
           <Link href="/feedback" className="hover:text-[#12161b]">Feedback</Link>
           <Link href="/privacy-policy" className="hover:text-[#12161b]">Privacy</Link>
           <Link href="/terms-and-conditions" className="hover:text-[#12161b]">Terms</Link>
+          <Link href="/refund-policy" className="hover:text-[#12161b]">Refunds</Link>
         </div>
       </div>
     </footer>
