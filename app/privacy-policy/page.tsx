@@ -23,7 +23,7 @@ import {
 
 import { Bullets, Callout, Chip, Chips, LegalPage, MetaPill, Section, type TocItem } from "@/components/specific/legal/Legal";
 
-const EFFECTIVE_DATE = "October 10, 2026";
+const EFFECTIVE_DATE = "October 12, 2026";
 const PRIVACY_EMAIL = "support@neuvault.app";
 
 const toc: TocItem[] = [
@@ -72,7 +72,7 @@ export default function PrivacyPolicyPage() {
       }
       highlights={[
         { icon: FileText, label: "Your vault lives on your device" },
-        { icon: Clock, label: "Processing results are deleted from our servers within an hour" },
+        { icon: Clock, label: "We don't keep your files: processed, then deleted automatically" },
         { icon: KeyRound, label: "Backups are sealed with a key only you hold" },
         { icon: Shield, label: "No advertising, no tracking, never sold" },
       ]}
@@ -87,8 +87,8 @@ export default function PrivacyPolicyPage() {
           </li>
           <li>
             <strong>Some features need our servers.</strong> Reading a scan, writing a summary, transcribing a
-            recording and answering Nova questions happen on our servers and with our service providers. We
-            delete what we processed as soon as your device has it, and within an hour at most.
+            recording and answering Nova questions happen on our servers and with our service providers.
+            NeuVault doesn&apos;t keep your files: the file is processed and then deleted automatically.
           </li>
           <li>
             <strong>We keep a small amount of account data</strong> so you can sign in, receive reminders and
@@ -156,23 +156,16 @@ export default function PrivacyPolicyPage() {
           </li>
         </Bullets>
 
-        <h3>Deleted within an hour</h3>
+        <h3>Processed, then deleted</h3>
         <p>
-          Once processing finishes, the result is sent back to your device and stored there. We then delete the
-          file and its result from our servers automatically:
+          NeuVault doesn&apos;t keep your files. When a feature needs our servers, the file is processed, the
+          result is sent back to your device and stored there, and the file and its result are then deleted from
+          our servers automatically.
         </p>
-        <Bullets>
-          <li>Document results are deleted shortly after your device receives them.</li>
-          <li>
-            Recordings and transcripts are kept for up to an hour, so a large or interrupted audio download can be
-            retried, then deleted.
-          </li>
-          <li>
-            If your device cannot collect a result straight away, for example because it went offline or the app
-            was closed during processing, we keep it briefly so your device can collect it when it reconnects
-            without being charged again. In every case it is deleted within an hour.
-          </li>
-        </Bullets>
+        <p>
+          If processing fails, or your device goes offline before it receives the result, we keep it for up to an
+          hour so you can retry, then delete it. A password-protected PDF waits the same hour for its password.
+        </p>
         <p>
           Adding content while offline is queued on your device and sent when you are back online.
         </p>
@@ -506,7 +499,10 @@ export default function PrivacyPolicyPage() {
 
       <Section id="retention" title="16. How long we keep data" icon={Lock}>
         <Bullets>
-          <li>Files sent for processing and their results: deleted within an hour (section 3).</li>
+          <li>
+            Files sent for processing and their results: deleted automatically once processed; kept up to an hour
+            only for a retry if processing fails or your device goes offline (section 3).
+          </li>
           <li>Reminders: until you delete them or your account.</li>
           <li>Feedback board posts, comments and votes: until your account is deleted (section 13).</li>
           <li>Notification history: 30 days, or up to 180 days if unopened.</li>
@@ -574,7 +570,7 @@ export default function PrivacyPolicyPage() {
           </p>
         </Callout>
         <Chips>
-          <Chip icon={Clock} label="Processing results deleted within an hour" />
+          <Chip icon={Clock} label="Your files are processed, then deleted" />
           <Chip icon={KeyRound} label="Recovery Key never leaves your device" />
         </Chips>
       </Section>

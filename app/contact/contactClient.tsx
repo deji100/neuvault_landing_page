@@ -51,7 +51,7 @@ const faqs = [
   },
   {
     q: "Does NeuVault store my documents on its servers?",
-    a: "No. Your vault lives on your device. When a feature needs our servers, such as reading a scan or transcribing a recording, the file and its result are deleted as soon as your device receives them, and within an hour at most. We keep reminder details so we can notify you about your dates.",
+    a: "No. NeuVault doesn't keep your files. When a feature needs our servers, such as reading a scan or transcribing a recording, the file is processed and then deleted automatically. If processing fails or your device goes offline before receiving the result, it stays for up to an hour so you can retry, then it's deleted. We keep reminder details so we can notify you about your dates.",
   },
   {
     q: "Does NeuVault train AI models on my documents?",
