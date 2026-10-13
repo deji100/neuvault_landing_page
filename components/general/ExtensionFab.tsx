@@ -3,13 +3,11 @@
 import { useEffect, useRef, useState, type ComponentType } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BookOpen, Download, Puzzle, X } from "lucide-react";
+import { BookOpen, Download, Puzzle } from "lucide-react";
 import { SiArc, SiBrave, SiFirefoxbrowser, SiGooglechrome, SiOpera, SiSafari, SiVivaldi } from "react-icons/si";
 import { TbBrandEdge } from "react-icons/tb";
 
 import { detectBrowser, extensionTargetFor, isMobileBrowser, type BrowserKind, type ExtensionTarget } from "@/lib/browserExtension";
-
-const DISMISS_KEY = "nv_extension_fab_dismissed";
 
 const ICONS: Partial<Record<BrowserKind, ComponentType<{ size?: number; "aria-hidden"?: boolean }>>> = {
   chrome: SiGooglechrome,
@@ -28,7 +26,7 @@ const HELP_PAGES = new Set(["/save-from-browser", "/how-to-use-extension"]);
  * A round extension button in the bottom-left corner of every page. Hover or
  * click opens it into "Download extension" (for the visitor's own browser) and
  * "Learn how to use it" (its own page). Hidden on phones (no extensions
- * there), on the two help pages, and after the visitor closes it.
+ * there) and on the two help pages.
  */
 export default function ExtensionFab() {
   const pathname = usePathname();
@@ -38,11 +36,6 @@ export default function ExtensionFab() {
 
   useEffect(() => {
     if (isMobileBrowser()) return;
-    try {
-      if (window.localStorage.getItem(DISMISS_KEY) === "1") return;
-    } catch {
-      // storage blocked: show it; closing still hides it for this page view
-    }
     setTarget(extensionTargetFor(detectBrowser()));
   }, []);
 
@@ -66,14 +59,6 @@ export default function ExtensionFab() {
   if (!target || HELP_PAGES.has(pathname)) return null;
 
   const Icon = ICONS[target.browser] || Puzzle;
-  const dismiss = () => {
-    try {
-      window.localStorage.setItem(DISMISS_KEY, "1");
-    } catch {
-      // remembered for this view only
-    }
-    setTarget(null);
-  };
 
   return (
     <div
@@ -114,9 +99,6 @@ export default function ExtensionFab() {
             <small>Save pages and links in one click</small>
           </span>
         </Link>
-        <button type="button" className="extension-fab-dismiss" onClick={dismiss}>
-          <X size={12} aria-hidden="true" /> Don&apos;t show again
-        </button>
       </div>
     </div>
   );
