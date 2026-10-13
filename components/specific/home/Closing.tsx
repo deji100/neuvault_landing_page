@@ -5,7 +5,6 @@ import { Play, Puzzle } from "lucide-react";
 
 import {
   ANDROID_PLAY_STORE_URL,
-  CHROME_EXTENSION_URL,
   IOS_APP_STORE_URL,
   MACOS_APP_STORE_URL,
   WINDOWS_MICROSOFT_STORE_URL,
@@ -14,6 +13,7 @@ import { visibleYouTubeVideos } from "@/lib/youtube-videos";
 
 import styles from "./Closing.module.css";
 import { useStoreUrl } from "./useStoreUrl";
+import { useExtensionTarget } from "./useExtensionTarget";
 
 const platforms = [
   ["iPhone", IOS_APP_STORE_URL],
@@ -27,6 +27,7 @@ export default function Closing() {
   const storeUrl = useStoreUrl();
   const external = storeUrl.startsWith("http");
   const tourHref = visibleYouTubeVideos.length > 0 ? "#videos" : "#tour";
+  const extension = useExtensionTarget();
 
   return (
     <div className={styles.closing}>
@@ -54,12 +55,12 @@ export default function Closing() {
         ))}
       </ul>
       <p className={styles.extension}>
-        <a href={CHROME_EXTENSION_URL} target="_blank" rel="noreferrer">
+        <a href={extension.href} {...(extension.external ? { target: "_blank", rel: "noreferrer" } : {})}>
           <Puzzle size={15} aria-hidden="true" />
-          Save pages from your browser: <strong>Add to Chrome</strong>
+          Save pages from your browser: <strong>{extension.action}</strong>
         </a>
         <span>
-          Also works in Edge and Brave. <Link href="/save-from-browser">How to save from Safari and other browsers</Link>
+          <Link href="/save-from-browser">Other browsers and phones</Link>
         </span>
       </p>
     </div>

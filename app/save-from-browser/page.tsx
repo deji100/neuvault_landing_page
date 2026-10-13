@@ -57,7 +57,8 @@ export default function SaveFromBrowserPage() {
         <>
           Send the page you&apos;re reading, or any link, straight into NeuVault without copy and paste. It arrives in
           NeuVault for you to confirm, then Nova can summarize and file it. You need the{" "}
-          <Link href="/#download">NeuVault desktop app</Link> on the same computer.
+          <Link href="/#download">NeuVault desktop app</Link> on the same computer. Already set up? See{" "}
+          <Link href="/how-to-use-extension">how to use it</Link>.
         </>
       }
       meta={

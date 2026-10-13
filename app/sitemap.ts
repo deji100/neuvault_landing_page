@@ -45,6 +45,11 @@ const staticRoutes = [
     priority: 0.3,
   },
   {
+    path: "/how-to-use-extension",
+    changeFrequency: "monthly" as const,
+    priority: 0.5,
+  },
+  {
     path: "/save-from-browser",
     changeFrequency: "monthly" as const,
     priority: 0.5,

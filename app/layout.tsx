@@ -6,6 +6,7 @@ import Navbar from "@/components/general/Navbar";
 import Footer from "@/components/general/Footer";
 import ThemeModeToggle from "@/components/general/ThemeModeToggle";
 import ReferralTracker from "@/components/general/ReferralTracker";
+import ExtensionFab from "@/components/general/ExtensionFab";
 import JsonLd from "@/components/seo/JsonLd";
 
 import {
@@ -132,6 +133,7 @@ export default function RootLayout({
         <Footer />
         <ThemeModeToggle />
         <ReferralTracker />
+        <ExtensionFab />
       </body>
     </html>
   );

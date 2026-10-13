@@ -18,6 +18,10 @@ export const ANDROID_PLAY_STORE_URL =
 // other Chromium browsers; add the Edge and Firefox listings when approved.
 export const CHROME_EXTENSION_URL =
   "https://chromewebstore.google.com/detail/flciopmebiobadkboieflhapjifhmijj";
+// Fill in when Microsoft and Mozilla approve the listings; until then Edge
+// uses the Chrome Web Store and Firefox gets the bookmark instructions.
+export const EDGE_EXTENSION_URL = "";
+export const FIREFOX_EXTENSION_URL = "";
 
 export const WINDOWS_MICROSOFT_STORE_URL =
   "https://apps.microsoft.com/detail/9PNM0GXZPT8T";
