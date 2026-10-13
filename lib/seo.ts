@@ -14,6 +14,11 @@ export const MACOS_APP_STORE_URL =
 export const ANDROID_PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=app.neuvault";
 
+// The Save to NeuVault browser extension. It also installs in Edge, Brave and
+// other Chromium browsers; add the Edge and Firefox listings when approved.
+export const CHROME_EXTENSION_URL =
+  "https://chromewebstore.google.com/detail/flciopmebiobadkboieflhapjifhmijj";
+
 export const WINDOWS_MICROSOFT_STORE_URL =
   "https://apps.microsoft.com/detail/9PNM0GXZPT8T";
 

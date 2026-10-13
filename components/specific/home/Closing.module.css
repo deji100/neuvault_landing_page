@@ -13,6 +13,10 @@
 .platforms{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:28px;list-style:none}
 .platforms a{display:block;border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:7px 15px;color:var(--soft);font-size:.84rem;font-weight:600}
 .platforms a:hover{border-color:var(--teal);color:var(--ink)}
+.extension{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 10px;margin-top:18px;color:var(--soft);font-size:.84rem}
+.extension a{display:inline-flex;align-items:center;gap:7px;color:var(--soft);font-weight:600}
+.extension a strong{color:var(--teal)}
+.extension a:hover{color:var(--ink)}
 @media(max-width:560px){
   .actions{flex-direction:column;align-items:stretch;width:100%}
   .primary,.secondary{justify-content:center}

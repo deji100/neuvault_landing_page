@@ -100,7 +100,7 @@ const capture: {
     tone: "#ff3b30",
     shot: "/desktop-images/map-doc-with-related-docs.png",
     focus: ["40% 35%", 1.12],
-    copy: "Save bookmarks and YouTube links once. Nova reads each page, writes a summary and files it, so you know what it is before you open it. YouTube videos play right inside NeuVault.",
+    copy: "Save bookmarks and YouTube links once, straight from Chrome with the Save to NeuVault extension or from any app's share menu. Nova reads each page, writes a summary and files it, so you know what it is before you open it. YouTube videos play right inside NeuVault.",
   },
   {
     title: "Automatic import",

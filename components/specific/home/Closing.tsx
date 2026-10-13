@@ -1,9 +1,10 @@
 "use client";
 
-import { Play } from "lucide-react";
+import { Play, Puzzle } from "lucide-react";
 
 import {
   ANDROID_PLAY_STORE_URL,
+  CHROME_EXTENSION_URL,
   IOS_APP_STORE_URL,
   MACOS_APP_STORE_URL,
   WINDOWS_MICROSOFT_STORE_URL,
@@ -51,6 +52,13 @@ export default function Closing() {
           </li>
         ))}
       </ul>
+      <p className={styles.extension}>
+        <a href={CHROME_EXTENSION_URL} target="_blank" rel="noreferrer">
+          <Puzzle size={15} aria-hidden="true" />
+          Save pages from your browser: <strong>Add to Chrome</strong>
+        </a>
+        <span>Also works in Edge and Brave.</span>
+      </p>
     </div>
   );
 }
