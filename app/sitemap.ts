@@ -45,6 +45,11 @@ const staticRoutes = [
     priority: 0.3,
   },
   {
+    path: "/save-from-browser",
+    changeFrequency: "monthly" as const,
+    priority: 0.5,
+  },
+  {
     path: "/refund-policy",
     changeFrequency: "yearly" as const,
     priority: 0.3,

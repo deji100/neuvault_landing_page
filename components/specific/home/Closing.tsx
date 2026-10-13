@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Play, Puzzle } from "lucide-react";
 
 import {
@@ -57,7 +58,9 @@ export default function Closing() {
           <Puzzle size={15} aria-hidden="true" />
           Save pages from your browser: <strong>Add to Chrome</strong>
         </a>
-        <span>Also works in Edge and Brave.</span>
+        <span>
+          Also works in Edge and Brave. <Link href="/save-from-browser">How to save from Safari and other browsers</Link>
+        </span>
       </p>
     </div>
   );

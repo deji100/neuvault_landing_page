@@ -44,7 +44,9 @@ export function LegalPage({
   toc,
   footnote,
   children,
+  kicker = "NeuVault Legal",
 }: {
+  kicker?: string;
   title: string;
   lede: ReactNode;
   meta: ReactNode;
@@ -63,7 +65,7 @@ export function LegalPage({
         <Link href="/" className={styles.back}>
           <ArrowLeft size={15} aria-hidden="true" /> Back to Home
         </Link>
-        <p className={styles.kicker}>NeuVault Legal</p>
+        <p className={styles.kicker}>{kicker}</p>
         <h1>{title}</h1>
         <p className={styles.lede}>{lede}</p>
         <div className={styles.meta}>{meta}</div>

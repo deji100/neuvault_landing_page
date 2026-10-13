@@ -17,6 +17,7 @@
 .extension a{display:inline-flex;align-items:center;gap:7px;color:var(--soft);font-weight:600}
 .extension a strong{color:var(--teal)}
 .extension a:hover{color:var(--ink)}
+.extension span a{display:inline;color:var(--teal);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:560px){
   .actions{flex-direction:column;align-items:stretch;width:100%}
   .primary,.secondary{justify-content:center}
