@@ -52,7 +52,7 @@ export default function HowToUseExtensionPage() {
       <Section id="page" title="1. Save the page you're on" icon={Puzzle}>
         <Bullets>
           <li>
-            <strong>Chrome, Edge, Brave and Arc:</strong> click the NeuVault button in the toolbar, or press{" "}
+            <strong>Chrome, Edge, Firefox, Brave and Arc:</strong> click the NeuVault button in the toolbar, or press{" "}
             <Kbd>Option+Shift+S</Kbd> on a Mac (<Kbd>Alt+Shift+S</Kbd> on Windows). You can also right-click
             anywhere on the page and choose <strong>Save page to NeuVault</strong>.
           </li>
@@ -60,7 +60,7 @@ export default function HowToUseExtensionPage() {
             <strong>Safari:</strong> click the <strong>Share</strong> button and choose <strong>NeuVault</strong>.
           </li>
           <li>
-            <strong>Firefox and other browsers:</strong> click your <strong>Save to NeuVault</strong> bookmark.
+            <strong>Other browsers:</strong> click your <strong>Save to NeuVault</strong> bookmark.
           </li>
           <li>
             <strong>iPhone and Android:</strong> tap <strong>Share</strong> in Safari, Chrome or any app and choose{" "}

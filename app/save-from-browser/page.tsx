@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Bookmark, Compass, Globe, HelpCircle, Keyboard, MousePointerClick, Puzzle, Smartphone } from "lucide-react";
 
 import { Bullets, Callout, LegalPage, MetaPill, Section, type TocItem } from "@/components/specific/legal/Legal";
-import { CHROME_EXTENSION_URL, MACOS_APP_STORE_URL } from "@/lib/seo";
+import { CHROME_EXTENSION_URL, FIREFOX_EXTENSION_URL, MACOS_APP_STORE_URL } from "@/lib/seo";
 
 const SUPPORT_EMAIL = "support@neuvault.app";
 
@@ -91,7 +91,13 @@ export default function SaveFromBrowserPage() {
             Pin it so it stays in view: click the puzzle-piece icon in the toolbar, then the pin next to{" "}
             <strong>Save to NeuVault</strong>.
           </li>
-          <li>A Firefox version is on its way. Until then, use the bookmark below.</li>
+          <li>
+            <strong>Firefox:</strong> open{" "}
+            <a href={FIREFOX_EXTENSION_URL} target="_blank" rel="noopener noreferrer">
+              Save to NeuVault on Firefox Add-ons
+            </a>{" "}
+            and click <strong>Add to Firefox</strong>, then <strong>Add</strong>.
+          </li>
         </Bullets>
         <h3>Save</h3>
         <Bullets>

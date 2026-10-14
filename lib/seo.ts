@@ -15,13 +15,13 @@ export const ANDROID_PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=app.neuvault";
 
 // The Save to NeuVault browser extension. It also installs in Edge, Brave and
-// other Chromium browsers; add the Edge and Firefox listings when approved.
+// other Chromium browsers from the Chrome Web Store.
 export const CHROME_EXTENSION_URL =
   "https://chromewebstore.google.com/detail/flciopmebiobadkboieflhapjifhmijj";
-// Fill in when Microsoft and Mozilla approve the listings; until then Edge
-// uses the Chrome Web Store and Firefox gets the bookmark instructions.
+// Fill in when Microsoft approves the listing; until then Edge uses the
+// Chrome Web Store.
 export const EDGE_EXTENSION_URL = "";
-export const FIREFOX_EXTENSION_URL = "";
+export const FIREFOX_EXTENSION_URL = "https://addons.mozilla.org/en-US/firefox/addon/save-to-neuvault/";
 
 export const WINDOWS_MICROSOFT_STORE_URL =
   "https://apps.microsoft.com/detail/9PNM0GXZPT8T";
