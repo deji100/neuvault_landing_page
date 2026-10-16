@@ -23,7 +23,7 @@ import {
 
 import { Bullets, Callout, Chip, Chips, LegalPage, MetaPill, Section, type TocItem } from "@/components/specific/legal/Legal";
 
-const EFFECTIVE_DATE = "October 12, 2026";
+const EFFECTIVE_DATE = "October 16, 2026";
 const PRIVACY_EMAIL = "support@neuvault.app";
 
 const toc: TocItem[] = [
@@ -96,7 +96,7 @@ export default function PrivacyPolicyPage() {
           </li>
           <li>
             <strong>Backups are yours.</strong> They are sealed on your device with your Recovery Key, which we
-            never receive, and saved wherever you choose.
+            never receive, and saved wherever you choose. Our servers play no part in backing up or restoring.
           </li>
           <li>
             <strong>No ads, no tracking, no selling.</strong> We do not sell your data, use it for advertising,
@@ -387,8 +387,18 @@ export default function PrivacyPolicyPage() {
             Files or Google Drive on Android. The storage provider cannot read it.
           </li>
           <li>
-            Backups made by older versions of NeuVault used a key tied to your account and can still be restored
-            while you are signed in.
+            Backing up and restoring happen entirely in the NeuVault app on your device. Our servers are not
+            involved: we never receive or store your backups, we hold no key that can open them, and nothing is
+            checked with us when you restore.
+          </li>
+          <li>
+            A backup can only be restored into the NeuVault account that created it. The app checks this on your
+            device before anything is restored.
+          </li>
+          <li>
+            On desktop you can also export a <strong>Vault Map package</strong> to share a single map. Unlike a
+            backup, it is not encrypted: anyone who has the file can open the documents in it, so share it only
+            with people you trust.
           </li>
         </Bullets>
         <Callout>
@@ -422,7 +432,10 @@ export default function PrivacyPolicyPage() {
         <Bullets>
           <li>Sign-in codes and important account, security and billing messages.</li>
           <li>Reminder emails for your dates, if reminders are turned on.</li>
-          <li>Backup reminders, on the schedule you choose.</li>
+          <li>
+            Backup reminders, on the schedule you choose. They are based only on that schedule: we never know when
+            or where you back up.
+          </li>
           <li>
             Occasional requests for feedback if you have not used NeuVault for a while, which you can unsubscribe
             from.

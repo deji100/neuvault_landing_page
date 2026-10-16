@@ -22,7 +22,7 @@ import {
 
 import { Bullets, Callout, LegalPage, MetaPill, Section, type TocItem } from "@/components/specific/legal/Legal";
 
-const EFFECTIVE_DATE = "October 12, 2026";
+const EFFECTIVE_DATE = "October 16, 2026";
 const SUPPORT_EMAIL = "support@neuvault.app";
 
 const toc: TocItem[] = [
@@ -169,6 +169,15 @@ export default function TermsPage() {
           <li>
             Backups are sealed with your Recovery Key, which stays on your device and is never sent to us. You are
             responsible for keeping your Recovery Key safe.
+          </li>
+          <li>
+            Backing up and restoring run in the app on your device, not on our servers. We do not store, receive or
+            control your backups, and we cannot restore, open or delete them for you.
+          </li>
+          <li>A backup can only be restored into the NeuVault account that created it.</li>
+          <li>
+            A Vault Map package, which you can export on desktop to share a map, is not encrypted. You are
+            responsible for who you share it with.
           </li>
           <li>
             If you lose your Recovery Key, backups sealed with it cannot be opened, and we cannot recover them.
