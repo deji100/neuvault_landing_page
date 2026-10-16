@@ -15,7 +15,7 @@ const toc: TocItem[] = [
   { id: "app-stores", label: "App Store and Google Play" },
   { id: "paddle", label: "Website and desktop app purchases" },
   { id: "after", label: "After a refund" },
-  { id: "cancelling", label: "Cancelling" },
+  { id: "canceling", label: "Canceling" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -41,7 +41,7 @@ export default function RefundPolicyPage() {
         { icon: Store, label: "App Store and Google Play purchases are refunded by Apple or Google" },
         { icon: RotateCcw, label: `Website and desktop app purchases: full refund within ${REFUND_DAYS} days` },
         { icon: ReceiptText, label: "Paddle is our reseller for website and desktop app purchases" },
-        { icon: CreditCard, label: "Cancelling stops renewals; your plan runs to the end of the period" },
+        { icon: CreditCard, label: "Canceling stops renewals; your plan runs to the end of the period" },
       ]}
       toc={toc}
       footnote="NeuVault — Your data. Your device. Your control."
@@ -119,10 +119,10 @@ export default function RefundPolicyPage() {
         </Bullets>
       </Section>
 
-      <Section id="cancelling" title="5. Cancelling" icon={CreditCard}>
+      <Section id="canceling" title="5. Canceling" icon={CreditCard}>
         <Bullets>
           <li>
-            Cancelling stops future renewals. Your plan stays active until the end of the period you paid for.
+            Canceling stops future renewals. Your plan stays active until the end of the period you paid for.
           </li>
           <li>
             Cancel where you subscribed: in your App Store or Google Play account settings, or, for website and

@@ -133,7 +133,7 @@ export default function PrivacyPolicyPage() {
           </li>
           <li>
             <strong>Transcribing a recording:</strong> the audio is processed into a structured note with an
-            overview, key points and a transcript. In Meeting mode, speakers are labelled. A playable copy of the
+            overview, key points and a transcript. In Meeting mode, speakers are labeled. A playable copy of the
             audio is prepared for your device.
           </li>
           <li>
@@ -215,7 +215,7 @@ export default function PrivacyPolicyPage() {
         <Bullets>
           <li>
             When you organize a document, scan, note or recording with AI, NeuVault looks for dates that may
-            need your attention, such as expiry, renewal or due dates, and adds them to Reminders automatically.
+            need your attention, such as expiration, renewal or due dates, and adds them to Reminders automatically.
             Items saved without AI are not read for dates. You can also add your own reminders and set items to
             resurface weekly, monthly or yearly.
           </li>

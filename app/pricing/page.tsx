@@ -131,7 +131,7 @@ export default function PricingPage() {
 
         <p className={styles.intro}>
           Compare NeuVault credit allowances for Nova, summaries,
-          organization, Attention, notes, voice context, and encrypted backup
+          organization, reminders, notes, voice context, and encrypted backup
           workflows.
         </p>
 

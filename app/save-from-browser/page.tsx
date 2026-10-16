@@ -163,7 +163,7 @@ export default function SaveFromBrowserPage() {
           </li>
           <li>
             iPhone: if NeuVault isn&apos;t in the row of apps, scroll to the end, tap <strong>More</strong>, and add
-            NeuVault to your favourites.
+            NeuVault to your favorites.
           </li>
         </Bullets>
       </Section>

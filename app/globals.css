@@ -148,7 +148,7 @@ html[data-theme="dark"] .home-site-footer a {
   color: #b7b7bc;
 }
 
-/* The brand name only; the link group's first link keeps the muted colour. */
+/* The brand name only; the link group's first link keeps the muted color. */
 html[data-theme="dark"] .home-site-footer > div > a:first-child {
   color: #f5f5f7 !important;
 }

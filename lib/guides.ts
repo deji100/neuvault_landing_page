@@ -83,7 +83,7 @@ const baseGuides: GuidePage[] = [
       {
         title: "Add the future action while the context is fresh",
         description:
-          "If the document has a renewal date, due date, expiry date, or follow-up step, make sure a reminder is attached before you move on. That is how scans stay useful instead of being forgotten.",
+          "If the document has a renewal date, due date, expiration date, or follow-up step, make sure a reminder is attached before you move on. That is how scans stay useful instead of being forgotten.",
       },
     ],
     faqs: [
@@ -164,17 +164,17 @@ const baseGuides: GuidePage[] = [
   },
   {
     slug: "track-passport-visa-and-id-expiry-dates",
-    title: "How to track passport, visa, and ID expiry dates without missing them",
-    metaTitle: "How to Track Passport, Visa, and ID Expiry Dates",
+    title: "How to track passport, visa, and ID expiration dates without missing them",
+    metaTitle: "How to Track Passport, Visa, and ID Expiration Dates",
     description:
       "Use a document-based reminder workflow to track passport, visa, ID, permit, and renewal dates so the alert stays attached to the paperwork you need.",
     intro:
-      "Expiry dates are easy to miss because the document disappears until it suddenly matters. This guide explains how to keep renewals tied to the real paperwork so reminders are useful when they appear.",
-    primaryKeyword: "track document expiry dates",
+      "Expiration dates are easy to miss because the document disappears until it suddenly matters. This guide explains how to keep renewals tied to the real paperwork so reminders are useful when they appear.",
+    primaryKeyword: "track document expiration dates",
     secondaryKeywords: [
-      "passport expiry reminder",
+      "passport expiration reminder",
       "visa renewal reminder",
-      "ID expiry tracker",
+      "ID expiration tracker",
       "document renewal reminder",
       "document deadline reminder",
     ],
@@ -184,7 +184,7 @@ const baseGuides: GuidePage[] = [
       "back-up-important-documents-securely",
     ],
     keyTakeaways: [
-      "Expiry tracking works best when the reminder stays attached to the source document.",
+      "Expiration tracking works best when the reminder stays attached to the source document.",
       "Renewal workflows need the file and supporting context, not just the alert.",
       "Recurring document checks are more reliable than one-off memory-based reminders.",
     ],
@@ -197,7 +197,7 @@ const baseGuides: GuidePage[] = [
       {
         title: "Record the date and plan for the lead time",
         description:
-          "Many documents need attention well before the final expiry date. Know how long the renewal takes, and plan the reminder for when you need to start, not just for the expiry itself.",
+          "Many documents need attention well before the final expiration date. Know how long the renewal takes, and plan the reminder for when you need to start, not just for the expiration itself.",
       },
       {
         title: "Attach context for the follow-up",
@@ -212,9 +212,9 @@ const baseGuides: GuidePage[] = [
     ],
     faqs: [
       {
-        question: "What is the best way to track passport expiry dates?",
+        question: "What is the best way to track passport expiration dates?",
         answer:
-          "Store the passport in one document system, make sure its expiry date has a reminder, add an earlier one if the renewal takes time, and keep related notes or supporting records with it so the reminder is actionable.",
+          "Store the passport in one document system, make sure its expiration date has a reminder, add an earlier one if the renewal takes time, and keep related notes or supporting records with it so the reminder is actionable.",
       },
       {
         question: "Why not just use a calendar reminder?",

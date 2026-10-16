@@ -290,7 +290,7 @@ export default function TermsPage() {
           You can delete your account in the app (Settings &gt; Delete Account) or from{" "}
           <Link href="/account-deletion">neuvault.app/account-deletion</Link>. What is deleted, and the minimal
           record we keep, is described in the <Link href="/privacy-policy">Privacy Policy</Link>. Your vault stays on
-          your device until you delete it there, and any subscription must be cancelled in your app store.
+          your device until you delete it there, and any subscription must be canceled in your app store.
         </p>
       </Section>
 

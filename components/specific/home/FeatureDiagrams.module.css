@@ -102,3 +102,19 @@
 @media(prefers-reduced-motion:reduce){
   .mapNode,.packet,.packetDown{animation:none}
 }
+
+/* Works offline: two lists side by side */
+.offline2{display:grid;grid-template-columns:1.1fr 1fr;gap:12px}
+.offCard{border:1px solid color-mix(in srgb,#34c759 40%,var(--line));border-radius:18px;background:color-mix(in srgb,#34c759 7%,var(--surface));padding:16px 18px}
+.onCard{border-color:var(--line);background:var(--surface)}
+.offHead{display:flex;align-items:center;gap:9px;margin-bottom:10px;color:var(--ink);font-size:.95rem;font-weight:700}
+.offBadge{position:relative;display:grid;width:26px;height:26px;place-items:center;border-radius:50%;background:#34c759;color:#fff}
+.onBadge{background:var(--teal)}
+.offPulse{position:absolute;inset:0;border-radius:50%;border:2px solid #34c759;animation:offPulse 2.4s ease-out infinite}
+@keyframes offPulse{0%{opacity:.8;transform:scale(1)}100%{opacity:0;transform:scale(1.7)}}
+.offCard ul{display:grid;gap:7px;list-style:none;margin:0;padding:0}
+.offCard li{display:flex;align-items:center;gap:8px;color:var(--soft);font-size:.9rem;line-height:1.35}
+.offCard li svg{flex:none;color:#28a745}
+.onCard li svg{color:var(--teal)}
+@media(max-width:560px){.offline2{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.offPulse{animation:none;opacity:0}}

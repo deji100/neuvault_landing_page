@@ -1,11 +1,11 @@
 /**
- * Animated diagrams for the home page features. Pure SVG + CSS: colours come
+ * Animated diagrams for the home page features. Pure SVG + CSS: colors come
  * from the landing tokens (--ink, --soft, --surface, --line, --teal, --amber),
  * so they follow light and dark mode, and every animation stops under
- * prefers-reduced-motion. Each diagram is one labelled image to assistive tech.
+ * prefers-reduced-motion. Each diagram is one labeled image to assistive tech.
  */
 import Image from "next/image";
-import { Share, Sparkles } from "lucide-react";
+import { FileText, Film, Globe, HardDrive, LogIn, Mic, Search, Share, Sparkles, StickyNote, Wifi, WifiOff } from "lucide-react";
 import {
   SiFacebook,
   SiGooglechrome,
@@ -135,7 +135,7 @@ const STEPS = [
   { label: "If it slips past", when: "Email" },
 ];
 
-/** A reminder date travelling down its notifications. */
+/** A reminder date traveling down its notifications. */
 export function ReminderTimeline() {
   return (
     <figure className={styles.figure}>
@@ -361,5 +361,58 @@ export function VaultMapShare() {
       </svg>
       <figcaption className={styles.caption}>Same layout, groups and links. Share it only with people you trust.</figcaption>
     </figure>
+  );
+}
+
+const OFFLINE = [
+  { label: "Notes", Icon: StickyNote },
+  { label: "Files and scans", Icon: FileText },
+  { label: "Recordings", Icon: Mic },
+  { label: "Imported videos", Icon: Film },
+  { label: "Search", Icon: Search },
+  { label: "Backup", Icon: HardDrive },
+];
+const ONLINE = [
+  { label: "NeuVault AI: organize, transcribe, Nova", Icon: Sparkles },
+  { label: "YouTube videos and web pages", Icon: Globe },
+  { label: "Signing in", Icon: LogIn },
+];
+
+/** What opens without internet, and what needs a connection. */
+export function OfflineSplit() {
+  return (
+    <div className={styles.offline2}>
+      <section className={styles.offCard} aria-labelledby="offline-yes">
+        <h4 className={styles.offHead} id="offline-yes">
+          <span className={styles.offBadge}>
+            <WifiOff size={14} strokeWidth={2.4} aria-hidden="true" />
+            <span className={styles.offPulse} aria-hidden="true" />
+          </span>
+          Without internet
+        </h4>
+        <ul>
+          {OFFLINE.map(({ label, Icon }) => (
+            <li key={label}>
+              <Icon size={15} aria-hidden="true" /> {label}
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section className={`${styles.offCard} ${styles.onCard}`} aria-labelledby="offline-no">
+        <h4 className={styles.offHead} id="offline-no">
+          <span className={`${styles.offBadge} ${styles.onBadge}`}>
+            <Wifi size={14} strokeWidth={2.4} aria-hidden="true" />
+          </span>
+          Needs internet
+        </h4>
+        <ul>
+          {ONLINE.map(({ label, Icon }) => (
+            <li key={label}>
+              <Icon size={15} aria-hidden="true" /> {label}
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
   );
 }

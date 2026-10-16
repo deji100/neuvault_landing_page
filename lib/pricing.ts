@@ -117,7 +117,7 @@ export const pricingPlans: PricingPlan[] = [
   },
 ];
 
-/** Extra credits for paid plans (updv-server config: 15-day expiry, offered at 80% use). */
+/** Extra credits for paid plans (updv-server config: 15-day expiration, offered at 80% use). */
 export const creditTopUps = [
   { credits: "2,000", price: "$5.99" },
   { credits: "4,000", price: "$11.99" },
@@ -136,8 +136,8 @@ export const includedPlanFeatures = [
   "Document scanning and uploads",
   "Notes and voice-note context",
   "Nova assistant for vault-aware questions",
-  "Attention for dates and follow-ups",
-  "Linked Documents for related records",
+  "Reminders for dates and follow-ups",
+  "Vault Map for related records",
   "Encrypted backup and restore",
   "iPhone, Android, macOS, and Windows apps",
 ];

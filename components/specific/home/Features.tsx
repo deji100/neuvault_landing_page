@@ -17,11 +17,12 @@ import {
   ScanLine,
   ScanSearch,
   Share2,
+  WifiOff,
   type LucideIcon,
 } from "lucide-react";
 
 import { DesktopCarousel, type Slide } from "./AppTour";
-import { BackupFlow, CaptureFlow, ReminderTimeline, SendFromAnywhere, VaultMapShare } from "./FeatureDiagrams";
+import { BackupFlow, CaptureFlow, OfflineSplit, ReminderTimeline, SendFromAnywhere, VaultMapShare } from "./FeatureDiagrams";
 import styles from "./Features.module.css";
 
 /** Every screenshot on this page is a 3456×2234 desktop capture. */
@@ -107,7 +108,7 @@ const capture: {
     tone: "#5e5ce6",
     shot: "/desktop-images/home.png",
     focus: ["55% 30%", 1.7],
-    copy: "Watch a folder on your computer, connect Gmail or Microsoft 365, or share straight from WhatsApp on your phone, and new files arrive on their own.",
+    copy: "Watch a folder on your computer and new files are organized with AI as they arrive, using credits. Connect Gmail or Microsoft 365, or share from WhatsApp on your phone, and you choose what comes in.",
   },
   {
     title: "Nova, your organizer",
@@ -115,7 +116,7 @@ const capture: {
     tone: "#af52de",
     shot: "/desktop-images/inbox.png",
     focus: ["35% 20%", 1.45],
-    copy: "Everything lands in your Inbox untouched. When you're ready, Nova summarizes, tags and sorts it into the right group. Ask Nova anything about your files, and it answers from your own vault.",
+    copy: "Anything you save without AI waits in your Inbox, unread. When you're ready, Nova summarizes, tags and sorts it into the right group. Ask Nova anything about your files, and it answers from your own vault.",
   },
 ];
 
@@ -127,13 +128,13 @@ const mapSlides: Slide[] = [
   },
   {
     src: "/desktop-images/vault-map-2.png",
-    title: "Groups, colours and labelled links.",
-    copy: "Sort cards into coloured groups and label each connection, so the map explains itself when you come back to it.",
+    title: "Groups, colors and labeled links.",
+    copy: "Sort cards into colored groups and label each connection, so the map explains itself when you come back to it.",
   },
   {
     src: "/desktop-images/vault-map-3.png",
     title: "Write right on the map.",
-    copy: "Every note card is a full editor, with headings, lists, tables and code, and you can recolour it or move it between groups.",
+    copy: "Every note card is a full editor, with headings, lists, tables and code, and you can recolor it or move it between groups.",
   },
   {
     src: "/desktop-images/vault-map-nova.png",
@@ -187,9 +188,13 @@ export default function Features() {
             </div>
             <div className={styles.block}>
               <h3>
-                <Lock size={18} aria-hidden="true" /> Local-first by design
+                <WifiOff size={18} aria-hidden="true" /> Works offline
               </h3>
-              <p>Your vault lives on your device. Your files aren&rsquo;t kept on our servers.</p>
+              <p>
+                Your vault lives on your device, so it opens without internet. NeuVault AI needs a
+                connection.
+              </p>
+              <OfflineSplit />
             </div>
           </div>
           <Shot

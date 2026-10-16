@@ -35,7 +35,7 @@ export default function ThemeModeToggle() {
   if (!theme) return null;
 
   return (
-    <div className="theme-float" role="radiogroup" aria-label="Colour theme" data-mode={theme}>
+    <div className="theme-float" role="radiogroup" aria-label="Color theme" data-mode={theme}>
       <span className="theme-float-thumb" aria-hidden="true" />
       {options.map(({ mode, label, Icon }) => (
         <button

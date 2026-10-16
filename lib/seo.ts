@@ -35,7 +35,7 @@ export const DEFAULT_OG_IMAGE_PATH = "/opengraph-image";
 
 const BASE_KEYWORDS = [
   "scan and organize documents",
-  "document expiry reminder app",
+  "document expiration reminder app",
   "document reminder software",
   "organize scanned documents",
   "digital personal document vault",
@@ -43,8 +43,8 @@ const BASE_KEYWORDS = [
   "document retrieval software",
   "important documents app",
   "scan and store documents",
-  "passport expiry reminder",
-  "visa expiry tracker",
+  "passport expiration reminder",
+  "visa expiration tracker",
   "secure document storage",
   "private AI document vault",
   "private AI document search",
@@ -54,7 +54,6 @@ const BASE_KEYWORDS = [
   "AI file organizer",
   "document organization app",
   "search PDFs with AI",
-  "scan and organize documents",
   "document reminder app",
   "find deadlines in documents",
   "document retrieval app",
@@ -148,7 +147,7 @@ export const solutionPages: SolutionPage[] = [
     appProof: [
       "NeuVault organizes intake items into groups and subgroups inside the vault.",
       "NeuVault supports documents, scans, notes, voice notes, and screenshots.",
-      "Linked Documents lets users group related records around real-life context.",
+      "Vault Map lets users group related records around real-life context.",
     ],
     keywords: [
       "document organization app",
@@ -173,26 +172,26 @@ export const solutionPages: SolutionPage[] = [
   {
     slug: "document-expiry-reminder-app",
     aliases: ["document-reminder"],
-    primaryKeyword: "document expiry reminder app",
+    primaryKeyword: "document expiration reminder app",
     secondaryKeywords: [
       "reminders for important documents",
       "renewal date tracker",
       "document deadline reminder",
-      "track document expiry dates",
+      "track document expiration dates",
       "document attention app",
     ],
-    metaTitle: "Document Expiry Reminder App and Expiry Tracker",
+    metaTitle: "Document Expiration Reminder App and Expiration Tracker",
     metaDescription:
-      "Track expiry dates for passports, visas, IDs, licences and insurance. NeuVault reads each date and reminds you a month ahead, two weeks ahead and on the day.",
+      "Track expiration dates for passports, visas, IDs, licenses and insurance. NeuVault reads each date and reminds you a month ahead, two weeks ahead and on the day.",
     title: "Get reminders before important documents expire.",
     description:
       "Get reminders before passports, IDs, licenses, contracts, visas, renewals, and important document dates expire. Track document deadlines with NeuVault.",
-    eyebrow: "Attention",
+    eyebrow: "Reminders",
     intro:
       "A reminder only helps when it stays attached to the document you need to revisit. NeuVault keeps important dates and follow-ups tied to the source record or linked group, so future actions are easier to trust.",
     ctaTitle: "Keep deadlines attached to the document they belong to",
     ctaDescription:
-      "Review renewal windows, expiry dates, due dates, and follow-up actions without separating the reminder from the real document context.",
+      "Review renewal windows, expiration dates, due dates, and follow-up actions without separating the reminder from the real document context.",
     relatedSlugs: [
       "scan-and-organize-documents",
       "document-storage-retrieval",
@@ -216,16 +215,16 @@ export const solutionPages: SolutionPage[] = [
       },
     ],
     appProof: [
-      "NeuVault includes Attention and resurfacing flows for important records.",
+      "NeuVault includes reminders and resurfacing for important records.",
       "Users can set document-level reminders and backup reminders.",
-      "Attention items can point back to the relevant record context.",
+      "Reminders point back to the record they came from.",
     ],
     keywords: [
       "document reminder app",
       "document attention app",
       "reminders for important documents",
       "renewal date tracker",
-      "track document expiry dates",
+      "track document expiration dates",
     ],
     faqs: [
       {
@@ -239,7 +238,7 @@ export const solutionPages: SolutionPage[] = [
           "Yes. NeuVault keeps reminders connected to the relevant document or linked group so the surrounding context is still there when you need it.",
       },
       {
-        question: "Is NeuVault free to use as an expiry reminder app?",
+        question: "Is NeuVault free to use as an expiration reminder app?",
         answer:
           "You can start free. The Explorer plan includes 500 AI credits for 14 days, and NeuVault keeps working afterwards: storage never uses credits, and you can choose a paid plan when you want more AI features.",
       },
@@ -297,7 +296,7 @@ export const solutionPages: SolutionPage[] = [
     appProof: [
       "Nova is designed to answer document-grounded questions from the vault.",
       "NeuVault uses grouped organization, summaries, tags, and linked context to improve retrieval.",
-      "Linked Documents helps users recover related records from one place.",
+      "Vault Map helps users recover related records from one place.",
     ],
     keywords: [
       "document retrieval app",
@@ -624,27 +623,27 @@ export const solutionPages: SolutionPage[] = [
   },
   {
     slug: "passport-visa-expiry-reminder",
-    primaryKeyword: "passport expiry reminder",
-    secondaryKeywords: ["visa expiry tracker", "passport issue date and expiry date", "visa expiration date", "document expiration date"],
-    metaTitle: "Passport, Visa and ID Expiry Reminder and Tracker",
+    primaryKeyword: "passport expiration reminder",
+    secondaryKeywords: ["visa expiration tracker", "passport issue date and expiration date", "visa expiration date", "document expiration date"],
+    metaTitle: "Passport, Visa and ID Expiration Reminder and Tracker",
     metaDescription:
-      "Keep your passport, visa, ID and permits in one private app. NeuVault finds each expiry date and reminds you well ahead, with the document ready to renew.",
-    title: "Track passport, visa, and ID expiry dates.",
-    description: "Save passport, visa, and ID documents, track expiry dates, and get reminders before important travel or identity documents expire.",
+      "Keep your passport, visa, ID and permits in one private app. NeuVault finds each expiration date and reminds you well ahead, with the document ready to renew.",
+    title: "Track passport, visa, and ID expiration dates.",
+    description: "Save passport, visa, and ID documents, track expiration dates, and get reminders before important travel or identity documents expire.",
     eyebrow: "Travel document reminders",
     intro: "Passports, visas, and identity documents are easy to forget until a trip or application makes the date urgent. NeuVault keeps each reminder connected to the document and its surrounding context.",
     ctaTitle: "See travel document dates before they become urgent",
-    ctaDescription: "Save passports, visas, and IDs, then keep expiry and renewal reminders attached to the records they belong to.",
+    ctaDescription: "Save passports, visas, and IDs, then keep expiration and renewal reminders attached to the records they belong to.",
     relatedSlugs: ["document-expiry-reminder-app", "digital-personal-document-vault", "document-storage-retrieval"],
     benefits: [
-      { title: "Track passport and visa expiry dates", description: "Keep important identity and travel-document dates visible instead of buried inside scans or folders." },
-      { title: "Keep reminders with the document", description: "Open the source passport, visa, or ID record directly when an expiry or renewal needs attention." },
+      { title: "Track passport and visa expiration dates", description: "Keep important identity and travel-document dates visible instead of buried inside scans or folders." },
+      { title: "Keep reminders with the document", description: "Open the source passport, visa, or ID record directly when an expiration or renewal needs attention." },
       { title: "Find travel records quickly", description: "Use summaries, tags, dates, and linked records to retrieve the right travel document under time pressure." },
     ],
-    appProof: ["Expiry, renewal, and follow-up reminders.", "Attention items connected to source records.", "Searchable scanned identity and travel documents."],
-    keywords: ["passport expiry reminder", "visa expiry tracker", "passport expiration date", "travel document reminder"],
+    appProof: ["Expiration, renewal, and follow-up reminders.", "Reminders connected to source records.", "Searchable scanned identity and travel documents."],
+    keywords: ["passport expiration reminder", "visa expiration tracker", "passport expiration date", "travel document reminder"],
     faqs: [
-      { question: "Can NeuVault remind me before a passport expires?", answer: "Yes. NeuVault is designed to surface expiry and renewal dates while keeping the reminder attached to the saved passport record." },
+      { question: "Can NeuVault remind me before a passport expires?", answer: "Yes. NeuVault is designed to surface expiration and renewal dates while keeping the reminder attached to the saved passport record." },
       { question: "Can I track visas and IDs too?", answer: "Yes. You can keep visas, IDs, and other time-sensitive documents in the same vault and review their important dates." },
     ],
   },
@@ -818,9 +817,9 @@ export function buildSoftwareApplicationJsonLd() {
       "Voice note transcription",
       "Notes export",
       "Nova AI assistant",
-      "Document reminders and Attention",
+      "Document reminders",
       "Encrypted cross-device backup and restore",
-      "Linked Documents",
+      "Vault Map",
       ...solutionPages.map((page) => page.metaTitle),
     ],
     publisher: {

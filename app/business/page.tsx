@@ -18,7 +18,7 @@ const capabilities = [
   { title: "Organization-provided services", description: "Use organization-managed credentials for supported AI, OCR and web-search workflows.", status: "In development" },
   { title: "Roles and administration", description: "Role-based access, administrative controls and shared document workflows for managed teams.", status: "Planned" },
   { title: "Audit logging", description: "Review supported activity for governance, oversight and operational accountability.", status: "Planned" },
-  { title: "Compliance and Attention", description: "Track renewals, expirations, evidence and follow-ups across linked document groups.", status: "In development" },
+  { title: "Compliance and reminders", description: "Track renewals, expirations, evidence and follow-ups across linked document groups.", status: "In development" },
 ];
 
 export default function BusinessPage() {

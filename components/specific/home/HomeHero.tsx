@@ -1,21 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import {
-  AtSign,
-  Bookmark,
-  Camera,
-  FileScan,
-  Laptop,
-  MessageCircle,
-  Mic,
-  Play,
-  ServerOff,
-  StickyNote,
-  Users,
-  Youtube,
-  type LucideIcon,
-} from "lucide-react";
+import { AtSign, Bookmark, Camera, FileScan, Laptop, type LucideIcon, MessageCircle, Mic, Play, ServerOff, StickyNote, Users, WifiOff, Youtube } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { visibleYouTubeVideos } from "@/lib/youtube-videos";
@@ -62,6 +48,7 @@ const reminders = [
 
 const trust: { label: string; icon: LucideIcon }[] = [
   { label: "Your files aren't kept on our servers", icon: ServerOff },
+  { label: "Works offline", icon: WifiOff },
   { label: "Mac, Windows, iPhone & Android", icon: Laptop },
 ];
 

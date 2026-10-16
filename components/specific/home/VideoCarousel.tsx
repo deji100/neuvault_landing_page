@@ -31,7 +31,7 @@ function VideoCard({ video, onPlay }: { video: YouTubeVideo; onPlay: () => void 
               loading="lazy"
               draggable={false}
               style={video.thumbZoom ? { transform: `scale(${video.thumbZoom})` } : undefined}
-              // maxresdefault is missing for some uploads; YouTube serves a 120px grey stub instead.
+              // maxresdefault is missing for some uploads; YouTube serves a 120px gray stub instead.
               onLoad={(event) => {
                 if (event.currentTarget.naturalWidth <= 120) setThumb(`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`);
               }}

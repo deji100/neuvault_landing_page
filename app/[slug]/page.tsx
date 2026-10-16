@@ -57,7 +57,7 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
     comparisons: [
       { title: "Compared with calendar reminders", limitation: "A calendar alert may show a date without the scan or supporting records needed next.", neuvaultAdvantage: "NeuVault keeps the reminder attached to the source travel document." },
       { title: "Compared with spreadsheets", limitation: "Manual trackers separate deadlines from the documents they describe.", neuvaultAdvantage: "NeuVault keeps dates, records, and retrieval in one workflow." },
-      { title: "Compared with manual checks", limitation: "Repeatedly opening scans to inspect expiry dates is slow and easy to postpone.", neuvaultAdvantage: "NeuVault brings important dates back through Attention and reminder flows." },
+      { title: "Compared with manual checks", limitation: "Repeatedly opening scans to inspect expiration dates is slow and easy to postpone.", neuvaultAdvantage: "NeuVault brings important dates back with reminders before they pass." },
     ],
     extraFaqs: [],
   },
@@ -154,7 +154,7 @@ const supplementalContentBySlug: Record<string, SupplementalContent> = {
         limitation:
           "Spreadsheets and manual reminders break when dates are buried inside many documents or scattered across multiple places.",
         neuvaultAdvantage:
-          "NeuVault adds Attention and resurfacing flows designed around dates that live inside real paperwork.",
+          "NeuVault adds reminders and resurfacing designed around dates that live inside real paperwork.",
       },
     ],
     extraFaqs: [

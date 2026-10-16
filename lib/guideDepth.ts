@@ -29,7 +29,7 @@ export const guideDepth: Record<string, GuideDepth> = {
           "On iPhone or Android, tap Open scanner. NeuVault finds the page edges, straightens each page and crops it for you.",
           "Add every page of a document before you finish, and use Scan batch to capture several documents in one session.",
           "On Mac or Windows, choose Add files or scans to bring in scans and PDFs you already have.",
-          "NeuVault recognises files that are already in your vault, so the same letter is not stored twice.",
+          "NeuVault recognizes files that are already in your vault, so the same letter is not stored twice.",
         ],
       },
       "Run OCR and keep the extracted meaning": {
@@ -53,7 +53,7 @@ export const guideDepth: Record<string, GuideDepth> = {
       },
       "Add the future action while the context is fresh": {
         inApp: [
-          "When you organize a document with AI and NeuVault finds a date such as an expiry, renewal or due date, it shows up in Reminders on its own.",
+          "When you organize a document with AI and NeuVault finds a date such as an expiration, renewal or due date, it shows up in Reminders on its own.",
           "To add your own, open the document, go to Resurface this later? and pick a date, or set it to Recurring.",
         ],
       },
@@ -144,12 +144,12 @@ export const guideDepth: Record<string, GuideDepth> = {
       "Store the document where it can be resurfaced later": {
         inApp: [
           "Scan the passport, visa, permit or ID with Open scanner on your phone, or add the file you already have with Add files or scans.",
-          "NeuVault files it with your other identity and travel documents and reads the expiry date from the page.",
+          "NeuVault files it with your other identity and travel documents and reads the expiration date from the page.",
         ],
       },
       "Record the date and plan for the lead time": {
         details: [
-          "Many renewals take weeks, and some travel rules require months of validity left on a passport. The date that matters is often not the expiry date itself but the last sensible day to start the renewal.",
+          "Many renewals take weeks, and some travel rules require months of validity left on a passport. The date that matters is often not the expiration date itself but the last sensible day to start the renewal.",
         ],
         inApp: [
           "Dates NeuVault finds when you organize with AI appear in Reminders, sorted into Overdue, Due today, Due soon, Upcoming and Monitor.",
@@ -173,14 +173,14 @@ export const guideDepth: Record<string, GuideDepth> = {
     },
     checklist: [
       "Scan every passport, visa, permit and ID in the household",
-      "Check each one shows its expiry date in Reminders",
+      "Check each one shows its expiration date in Reminders",
       "Add an earlier reminder for renewals that take time",
       "Link the supporting documents each renewal needs",
       "Set recurring reminders for the documents you cannot afford to miss",
     ],
     faqs: [
       {
-        question: "When will NeuVault remind me about an expiry date?",
+        question: "When will NeuVault remind me about an expiration date?",
         answer:
           "For dates it finds in your documents, NeuVault reminds you a month before, two weeks before and on the day, and the item stays in Reminders until you mark it reviewed.",
       },

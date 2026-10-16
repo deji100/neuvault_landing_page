@@ -14,7 +14,7 @@ import styles from "@/components/specific/guides/Guides.module.css";
 export const metadata: Metadata = buildMetadata({
   title: "Help and Guides for Organizing Important Documents",
   description:
-    "Practical guides to scanning, organizing, finding and backing up important documents, tracking expiry dates, and turning voice notes into searchable records.",
+    "Practical guides to scanning, organizing, finding and backing up important documents, tracking expiration dates, and turning voice notes into searchable records.",
   path: "/guides",
   keywords: [
     "document organization guides",
