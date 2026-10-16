@@ -63,7 +63,7 @@ const faqs = [
   },
   {
     q: "Does NeuVault work offline?",
-    a: "Core vault access and local document storage are designed around offline use. AI-powered processing requires connectivity when used.",
+    a: "Yes. Opening your vault, searching, reading your files, writing notes and backing up all work without internet. Anything you add while offline is kept and organized once you are back online. AI features, such as organizing, transcription, Nova and file conversion, need an internet connection, and so does signing in.",
   },
   {
     q: "Can I report a security issue?",
