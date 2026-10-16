@@ -126,7 +126,7 @@ export default function PrivacyPolicyPage() {
         </p>
         <Bullets>
           <li>
-            <strong>Organizing a document or image:</strong> the file, or the text read from it, is processed to
+            <strong>Organizing a document, scan, image or note:</strong> the file, or the text read from it, is processed to
             produce a title, summary, tags, a group, key details such as names, amounts and dates, and any
             dates that may need a reminder. If the text cannot be read well, the whole file or page images may
             be processed.
@@ -214,9 +214,10 @@ export default function PrivacyPolicyPage() {
       <Section id="reminders" title="5. Reminders & notifications" icon={Bell}>
         <Bullets>
           <li>
-            When you add a document, NeuVault looks for dates that may need your attention, such as expiry,
-            renewal or due dates, and adds them to Reminders automatically. You can also add your own and set
-            items to resurface weekly, monthly or yearly.
+            When you organize a document, scan, note or recording with AI, NeuVault looks for dates that may
+            need your attention, such as expiry, renewal or due dates, and adds them to Reminders automatically.
+            Items saved without AI are not read for dates. You can also add your own reminders and set items to
+            resurface weekly, monthly or yearly.
           </li>
           <li>
             Reminder details are kept on our servers so we can notify you even when the app is closed. They are

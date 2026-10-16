@@ -3,7 +3,6 @@ import {
   Activity,
   Bot,
   CalendarCheck,
-  Clock,
   FileDown,
   FileText,
   FolderInput,
@@ -17,10 +16,12 @@ import {
   Pin,
   ScanLine,
   ScanSearch,
+  Share2,
   type LucideIcon,
 } from "lucide-react";
 
 import { DesktopCarousel, type Slide } from "./AppTour";
+import { BackupFlow, CaptureFlow, ReminderTimeline, SendFromAnywhere, VaultMapShare } from "./FeatureDiagrams";
 import styles from "./Features.module.css";
 
 /** Every screenshot on this page is a 3456×2234 desktop capture. */
@@ -59,8 +60,6 @@ function PillarHead({ n, title, answers = [] }: { n: string; title: string; answ
   );
 }
 
-const destinations = ["Google Drive", "iCloud", "OneDrive", "Dropbox", "USB drive"];
-
 const capture: {
   title: string;
   icon: LucideIcon;
@@ -90,7 +89,7 @@ const capture: {
     title: "NeuVault Voice Transcription",
     icon: Mic,
     tone: "#ff9500",
-    shot: "/desktop-images/note-audio-1.png",
+    shot: "/desktop-images/structured-note.png",
     focus: ["50% 30%", 1.5],
     copy: "Record a meeting or a voice note, or upload one you already have. Get back an overview, key points, action items and the full transcript. NeuVault even labels who said what, and the transcript scrolls along as the audio plays.",
   },
@@ -181,29 +180,16 @@ export default function Features() {
                 <HardDrive size={18} aria-hidden="true" /> NeuVault Backup &amp; Recovery Key
               </h3>
               <p>
-                Back up your entire vault as one encrypted bundle and keep it wherever you like: Google
-                Drive, iCloud, OneDrive, Dropbox or a USB drive. It&rsquo;s unlocked by a Recovery Key
-                that never leaves your device, and each backup can only be restored into the account
-                that created it.
+                One encrypted file, saved where you choose. Only your Recovery Key opens it, and it
+                restores on any of your devices.
               </p>
-              <ul className={styles.destinations} aria-label="Backup destinations">
-                {destinations.map((d) => (
-                  <li key={d}>{d}</li>
-                ))}
-              </ul>
-              <p>
-                Switch from Mac to Windows or Android to iPhone, restore your bundle, and everything
-                comes back exactly as you left it, with every group, note and map intact.
-              </p>
+              <BackupFlow />
             </div>
             <div className={styles.block}>
               <h3>
                 <Lock size={18} aria-hidden="true" /> Local-first by design
               </h3>
-              <p>
-                Your vault lives on your device, not on our servers. Nova only processes what you
-                choose, when you choose, and nothing is stored on our servers.
-              </p>
+              <p>Your vault lives on your device. Your files aren&rsquo;t kept on our servers.</p>
             </div>
           </div>
           <Shot
@@ -221,12 +207,16 @@ export default function Features() {
           <h3>
             <Layers size={18} aria-hidden="true" /> One app instead of five
           </h3>
-          <p>
-            Notes, scanning, transcription, links, reminders and backup, all connected in one place, so
-            everything you save for the same project finds its way together.
-          </p>
+          <p>Documents, scans, notes, recordings and links, sorted together in one place.</p>
         </div>
-        <p className={styles.intro}>Bring everything in, however it arrives. NeuVault takes it from there.</p>
+        <CaptureFlow />
+        <div className={styles.block}>
+          <h3>
+            <Share2 size={18} aria-hidden="true" /> Send it in from anywhere
+          </h3>
+          <p>On your phone, tap Share in any app. On your computer, use the Save to NeuVault extension.</p>
+        </div>
+        <SendFromAnywhere />
         <div className={styles.bento}>
           {capture.map(({ title, icon: Icon, tone, copy, shot, focus, mobile }) => (
             <section key={title} className={styles.card} style={{ "--tone": tone } as React.CSSProperties}>
@@ -273,21 +263,11 @@ export default function Features() {
                 <CalendarCheck size={18} aria-hidden="true" /> NeuVault Reminders
               </h3>
               <p>
-                NeuVault reads your documents and notes for important dates, like renewals, payments
-                and events, and sets the reminder for you. Or set your own on any document or a whole
-                group of related files.
-              </p>
-              <p>
-                Get notified on your phone and desktop before the day and on the day, with an email if
-                it slips past. Add any reminder to your calendar in one tap. Small dots on groups and
-                documents show exactly where something needs your attention.
+                Organize a document, scan, note or recording with AI and NeuVault finds the dates inside.
+                Or set your own on anything.
               </p>
             </div>
-            <ul className={styles.timeline} aria-label="When you hear about it">
-              <li><Clock size={14} aria-hidden="true" /> Before the day</li>
-              <li><Clock size={14} aria-hidden="true" /> On the day</li>
-              <li><Clock size={14} aria-hidden="true" /> Email if it slips past</li>
-            </ul>
+            <ReminderTimeline />
           </div>
           <Shot
             src="/desktop-images/reminder.png"
@@ -304,18 +284,15 @@ export default function Features() {
           <div className={styles.block}>
             <h3>NeuVault Vault Map</h3>
             <p>
-              Real work comes in clusters, not single files. Pull everything about one project, client,
-              course or trip onto one canvas: documents, notes, links and videos. Draw connections
-              between them, group and colour them, and read two side by side.
+              Put everything about one project, client, course or trip on one canvas, and connect it.
             </p>
           </div>
           <p className={styles.mapSecond}>
-            Then ask Nova about the whole map. It can summarize, compare, find what&rsquo;s missing or
-            build a timeline, and it only changes your map when you confirm. When it&rsquo;s ready,
-            export the whole map and share it with a classmate, client, colleague or family member.
+            Ask Nova about the whole map. It changes the map only when you confirm.
           </p>
         </div>
         <DesktopCarousel slides={mapSlides} label="NeuVault Vault Map" controlsLabel="Vault Map" />
+        <VaultMapShare />
       </article>
 
       {/* 5 */}

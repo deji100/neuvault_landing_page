@@ -53,7 +53,7 @@ export const guideDepth: Record<string, GuideDepth> = {
       },
       "Add the future action while the context is fresh": {
         inApp: [
-          "When NeuVault finds a date such as an expiry, renewal or due date, it shows up in Reminders on its own.",
+          "When you organize a document with AI and NeuVault finds a date such as an expiry, renewal or due date, it shows up in Reminders on its own.",
           "To add your own, open the document, go to Resurface this later? and pick a date, or set it to Recurring.",
         ],
       },
@@ -152,7 +152,7 @@ export const guideDepth: Record<string, GuideDepth> = {
           "Many renewals take weeks, and some travel rules require months of validity left on a passport. The date that matters is often not the expiry date itself but the last sensible day to start the renewal.",
         ],
         inApp: [
-          "Dates NeuVault finds appear in Reminders, sorted into Overdue, Due today, Due soon, Upcoming and Monitor.",
+          "Dates NeuVault finds when you organize with AI appear in Reminders, sorted into Overdue, Due today, Due soon, Upcoming and Monitor.",
           "You are reminded a month before, two weeks before and on the day.",
           "If your renewal takes longer, open the document, go to Resurface this later? and set an earlier date of your own.",
         ],

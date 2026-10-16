@@ -1,0 +1,104 @@
+/* Inherits the landing tokens (--ink, --soft, --surface, --line, --teal, --amber) from LandingPage .page. */
+.figure{margin:0}
+.capture{width:100%;max-width:860px;margin-inline:auto}
+.svg{display:block;width:100%;height:auto;overflow:visible;font-family:var(--font-instrument),system-ui,sans-serif}
+.tall{display:none}
+.svg text{fill:var(--ink);font-size:16px;font-weight:600}
+.svg .small{font-size:14px;font-weight:600;fill:var(--ink)}
+.caption{margin-top:14px;color:var(--soft);font-size:.92rem;text-align:center}
+
+/* Chips and cards */
+.chip rect{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
+.chipAmber rect{fill:color-mix(in srgb,var(--amber) 12%,var(--surface));stroke:color-mix(in srgb,var(--amber) 45%,var(--line))}
+.amberText{fill:color-mix(in srgb,var(--amber) 70%,var(--ink)) !important;font-size:15px !important;font-weight:700 !important}
+.bar{fill:color-mix(in srgb,var(--teal) 22%,transparent) !important;stroke:none !important}
+.screen{fill:color-mix(in srgb,var(--teal) 14%,var(--surface)) !important;stroke:color-mix(in srgb,var(--teal) 40%,var(--line)) !important}
+.pill rect{fill:color-mix(in srgb,var(--teal) 10%,var(--surface));stroke:color-mix(in srgb,var(--teal) 30%,var(--line));stroke-width:1.2}
+
+/* Moving connectors: a dash pattern that flows toward the next step. */
+.flow{fill:none;stroke:var(--teal);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:6 10;opacity:.75;animation:flow 1.6s linear infinite}
+.flowAmber{stroke:var(--amber)}
+@keyframes flow{to{stroke-dashoffset:-32}}
+
+/* The AI step */
+.core rect{fill:color-mix(in srgb,var(--teal) 14%,var(--surface));stroke:var(--teal);stroke-width:2}
+.core .coreHalo{fill:none;stroke:var(--teal);stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center;animation:halo 2.4s ease-out infinite}
+.coreTitle{fill:var(--ink) !important;font-size:17px !important;font-weight:700 !important}
+.spark{fill:var(--teal);transform-box:fill-box;transform-origin:center;animation:spark 2.4s ease-in-out infinite}
+@keyframes halo{0%{opacity:.6;transform:scale(1)}100%{opacity:0;transform:scale(1.12)}}
+@keyframes spark{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.18) rotate(20deg)}}
+
+/* Reminder timeline */
+.track{stroke:var(--line);stroke-width:3;stroke-linecap:round}
+.trackFill{stroke:var(--amber);stroke-width:3;stroke-linecap:round;stroke-dasharray:184;stroke-dashoffset:184;animation:fill 4.4s ease-in-out infinite}
+@keyframes fill{0%{stroke-dashoffset:184}80%,100%{stroke-dashoffset:0}}
+.stepRing{fill:none;stroke:var(--amber);stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center}
+.stepDot{fill:var(--amber)}
+.stepDotMuted{fill:var(--soft)}
+.step .stepRing{animation:ping 4.4s ease-out infinite;animation-delay:inherit}
+@keyframes ping{0%{opacity:0;transform:scale(.6)}6%{opacity:.9}24%{opacity:0;transform:scale(1.6)}100%{opacity:0}}
+
+/* Backup */
+.key circle{fill:color-mix(in srgb,var(--amber) 18%,var(--surface));stroke:var(--amber);stroke-width:1.8}
+.key path{fill:none;stroke:color-mix(in srgb,var(--amber) 75%,var(--ink));stroke-width:2;stroke-linecap:round}
+.lock rect{fill:var(--teal)}
+.lock path{fill:none;stroke:#fff;stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round}
+.lock{transform-box:fill-box;transform-origin:center;animation:breathe 2.4s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.offline rect{fill:none;stroke:var(--line);stroke-width:1.5;stroke-dasharray:5 5}
+.offline path{fill:none;stroke:var(--soft);stroke-width:2;stroke-linecap:round}
+.offline text{fill:var(--soft) !important}
+
+@media(max-width:700px){
+  .wide{display:none}
+  .tall{display:block}
+}
+@media(prefers-reduced-motion:reduce){
+  .flow,.core .coreHalo,.spark,.trackFill,.step .stepRing,.lock{animation:none}
+  .trackFill{stroke-dashoffset:0}
+}
+
+/* Send from anywhere: app icons -> Share -> NeuVault */
+.send{display:flex;align-items:center;justify-content:center;gap:14px;margin:0;border:1px solid var(--line);border-radius:22px;background:var(--surface);padding:22px 24px}
+.sendSources{display:grid;grid-template-columns:repeat(5,40px);gap:10px;list-style:none;margin:0;padding:0}
+.sendSources li{display:grid;width:40px;height:40px;place-items:center;border-radius:12px;background:color-mix(in srgb,var(--tone) 12%,var(--surface));color:var(--tone);animation:bob 3.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.sendLine{flex:1;min-width:28px;max-width:120px;height:3px;border-radius:2px;background:repeating-linear-gradient(90deg,var(--teal) 0 8px,transparent 8px 16px);background-size:32px 3px;opacity:.75;animation:dash 1s linear infinite}
+@keyframes dash{to{background-position:32px 0}}
+.sendShare{display:inline-flex;flex:none;align-items:center;gap:7px;border-radius:999px;background:var(--teal);padding:9px 16px;color:#fff;font-size:.92rem;font-weight:700;box-shadow:0 10px 24px -14px var(--teal)}
+.sendApp{display:flex;flex:none;align-items:center;gap:12px}
+.sendApp img{box-sizing:content-box;border-radius:12px;background:#fff;padding:5px;box-shadow:0 8px 20px -10px rgba(0,0,0,.35)}
+.sendOut{display:grid;gap:6px}
+.sendOut span{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--ink);font-size:.78rem;font-weight:700}
+.sendOut .sendAi{border-color:color-mix(in srgb,var(--teal) 40%,var(--line));background:color-mix(in srgb,var(--teal) 10%,var(--surface));color:var(--teal)}
+@media(max-width:700px){
+  .send{flex-direction:column;gap:12px;padding:20px 16px}
+  .sendSources{grid-template-columns:repeat(5,36px);gap:8px}
+  .sendSources li{width:36px;height:36px}
+  .sendLine{width:3px;height:26px;min-width:0;max-width:none;flex:none;background:repeating-linear-gradient(180deg,var(--teal) 0 8px,transparent 8px 16px);background-size:3px 32px;animation-name:dashDown}
+  @keyframes dashDown{to{background-position:0 32px}}
+}
+@media(prefers-reduced-motion:reduce){
+  .sendSources li,.sendLine{animation:none}
+}
+
+/* Vault Map share */
+.mapGroup{fill:color-mix(in srgb,var(--teal) 6%,transparent);stroke:color-mix(in srgb,var(--teal) 40%,var(--line));stroke-width:1.4;stroke-dasharray:5 5}
+.mapLink{stroke:color-mix(in srgb,var(--soft) 55%,transparent);stroke-width:1.8}
+.mapNode rect{fill:var(--surface);stroke-width:1.8}
+.mapNode{transform-box:fill-box;transform-origin:center;animation:nodePulse 3.5s ease-in-out infinite}
+@keyframes nodePulse{0%,100%{transform:scale(1)}10%{transform:scale(1.08)}20%{transform:scale(1)}}
+.svg .mapLabel{font-size:12px;font-weight:700;fill:var(--ink)}
+.fileBody{fill:var(--surface);stroke:var(--teal);stroke-width:2}
+.fileFold{fill:none;stroke:var(--teal);stroke-width:2;stroke-linejoin:round}
+.fileDot{fill:var(--teal)}
+.fileLink{fill:none;stroke:color-mix(in srgb,var(--teal) 60%,transparent);stroke-width:1.6}
+.svg .fileName{font-size:13px;font-weight:700;fill:var(--ink)}
+.svg .flowLabel{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;fill:var(--soft)}
+.packet{animation:packetAcross 3.5s ease-in-out infinite}
+.packetDown{animation:packetDown 3.5s ease-in-out infinite}
+@keyframes packetAcross{0%{transform:translateX(-24px);opacity:0}12%{opacity:1}80%{transform:translateX(92px);opacity:1}100%{transform:translateX(92px);opacity:0}}
+@keyframes packetDown{0%{transform:translateY(-10px);opacity:0}15%{opacity:1}80%{transform:translateY(20px);opacity:1}100%{transform:translateY(20px);opacity:0}}
+@media(prefers-reduced-motion:reduce){
+  .mapNode,.packet,.packetDown{animation:none}
+}

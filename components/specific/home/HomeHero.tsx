@@ -61,7 +61,7 @@ const reminders = [
 ];
 
 const trust: { label: string; icon: LucideIcon }[] = [
-  { label: "Nothing stored on our servers", icon: ServerOff },
+  { label: "Your files aren't kept on our servers", icon: ServerOff },
   { label: "Mac, Windows, iPhone & Android", icon: Laptop },
 ];
 
@@ -93,13 +93,13 @@ export default function HomeHero() {
       <div className={styles.inner}>
         <div className={styles.text}>
           <h1>
-            Five apps to keep your life in order.{" "}
-            <span className={styles.accent}>NeuVault makes it one, and does the organizing.</span>
+            Everything you save, in one private app.{" "}
+            <span className={styles.accent}>It tells you when something needs you.</span>
           </h1>
 
           <p className={styles.lede}>
-            Your notes, screenshots, scans, recordings and links, in one private app that sorts and remembers them
-            for you.
+            Write a note and connect it to your documents, scans, recordings and links. Organize with AI and
+            NeuVault finds the dates inside.
           </p>
 
           <div className={styles.actions}>

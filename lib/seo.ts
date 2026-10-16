@@ -26,10 +26,10 @@ export const FIREFOX_EXTENSION_URL = "https://addons.mozilla.org/en-US/firefox/a
 export const WINDOWS_MICROSOFT_STORE_URL =
   "https://apps.microsoft.com/detail/9PNM0GXZPT8T";
 
-export const DEFAULT_TITLE = "NeuVault — One Private App for Notes, Scans and Documents";
+export const DEFAULT_TITLE = "NeuVault — Private Vault That Reminds You Before Dates Pass";
 
 export const DEFAULT_DESCRIPTION =
-  "Notes, screenshots, scans, recordings and links in one private app that sorts them and reminds you before dates pass. iPhone, Android, Mac and Windows.";
+  "Notes connected to your documents, scans, recordings and links, in one private app. Organize with AI and NeuVault reminds you before the dates inside pass. iPhone, Android, Mac and Windows.";
 
 export const DEFAULT_OG_IMAGE_PATH = "/opengraph-image";
 
