@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Bookmark, Compass, Globe, HelpCircle, Keyboard, MousePointerClick, Puzzle, Smartphone } from "lucide-react";
 
 import { Bullets, Callout, LegalPage, MetaPill, Section, type TocItem } from "@/components/specific/legal/Legal";
-import { CHROME_EXTENSION_URL, FIREFOX_EXTENSION_URL, MACOS_APP_STORE_URL } from "@/lib/seo";
+import { CHROME_EXTENSION_URL, EDGE_EXTENSION_URL, FIREFOX_EXTENSION_URL, MACOS_APP_STORE_URL } from "@/lib/seo";
 
 const SUPPORT_EMAIL = "support@neuvault.app";
 
@@ -84,8 +84,15 @@ export default function SaveFromBrowserPage() {
             <a href={CHROME_EXTENSION_URL} target="_blank" rel="noopener noreferrer">
               Save to NeuVault on the Chrome Web Store
             </a>{" "}
-            and click <strong>Add to Chrome</strong>, then <strong>Add extension</strong>. Edge, Brave, Opera, Vivaldi
+            and click <strong>Add to Chrome</strong>, then <strong>Add extension</strong>. Brave, Opera, Vivaldi
             and Arc install it from the same page.
+          </li>
+          <li>
+            <strong>Edge:</strong> open{" "}
+            <a href={EDGE_EXTENSION_URL} target="_blank" rel="noopener noreferrer">
+              Save to NeuVault on Edge Add-ons
+            </a>{" "}
+            and click <strong>Get</strong>, then <strong>Add extension</strong>.
           </li>
           <li>
             Pin it so it stays in view: click the puzzle-piece icon in the toolbar, then the pin next to{" "}
