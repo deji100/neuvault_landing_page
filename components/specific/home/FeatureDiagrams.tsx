@@ -272,14 +272,19 @@ export function SendFromAnywhere() {
 }
 
 // One map's canvas, drawn at the same coordinates on both computers.
+// An engineering project with every kind of item a map holds, drawn at the same
+// coordinates on both computers. The dashed group holds the design documents.
 const MAP_NODES = [
-  { x: 24, y: 30, w: 70, tone: "#007aff", label: "Ticket" },
-  { x: 128, y: 18, w: 70, tone: "#af52de", label: "Notes" },
-  { x: 128, y: 92, w: 70, tone: "#ff2d55", label: "Video" },
-  { x: 24, y: 116, w: 70, tone: "#34c759", label: "Visa" },
-  { x: 222, y: 58, w: 70, tone: "#ff9500", label: "Hotel" },
+  { x: 6, y: 10, w: 94, tone: "#ff3b30", label: "Spec.pdf" },
+  { x: 6, y: 54, w: 94, tone: "#007aff", label: "Report.docx" },
+  { x: 6, y: 98, w: 94, tone: "#ff9500", label: "Review.pptx" },
+  { x: 110, y: 0, w: 94, tone: "#34c759", label: "Site scan" },
+  { x: 110, y: 44, w: 94, tone: "#5856d6", label: "Site video" },
+  { x: 110, y: 88, w: 94, tone: "#ff0000", label: "YouTube" },
+  { x: 110, y: 132, w: 94, tone: "#ff2d55", label: "Standup" },
+  { x: 214, y: 54, w: 94, tone: "#af52de", label: "Notes" },
 ];
-const MAP_LINKS: [number, number][] = [[0, 1], [0, 3], [1, 2], [1, 4], [2, 4]];
+const MAP_LINKS: [number, number][] = [[0, 7], [1, 3], [2, 6], [3, 4], [5, 7], [6, 7], [4, 7]];
 
 function MiniMap({ x, y, title }: { x: number; y: number; title: string }) {
   const mid = (i: number) => ({ cx: MAP_NODES[i].x + MAP_NODES[i].w / 2, cy: MAP_NODES[i].y + 15 });
@@ -293,7 +298,7 @@ function MiniMap({ x, y, title }: { x: number; y: number; title: string }) {
       <circle cx="44" cy="16" r="4" fill="#28c840" />
       <text x="165" y="21" textAnchor="middle" className={styles.small}>{title}</text>
       <g transform="translate(10 36)">
-        <rect className={styles.mapGroup} x="14" y="8" width="88" height="160" rx="12" />
+        <rect className={styles.mapGroup} x="0" y="2" width="106" height="134" rx="12" />
         {MAP_LINKS.map(([a, b]) => (
           <line key={`${a}-${b}`} className={styles.mapLink} x1={mid(a).cx} y1={mid(a).cy} x2={mid(b).cx} y2={mid(b).cy} />
         ))}
@@ -331,7 +336,7 @@ export function VaultMapShare() {
         className={`${styles.svg} ${styles.wide}`}
         viewBox="0 0 960 250"
         role="img"
-        aria-label="Export a Vault Map as a file on your Mac and a teammate imports it on Windows, with the same documents, groups, links and layout."
+        aria-label="Export an engineering project's Vault Map as a file on your Mac and a teammate imports it on Windows, with the same PDFs, Word and PowerPoint files, scans, videos, YouTube links, recordings, notes, groups, links and layout."
       >
         <MiniMap x={16} y={16} title="You · Mac" />
         <line className={styles.track} x1="362" y1="123" x2="598" y2="123" />
@@ -339,7 +344,7 @@ export function VaultMapShare() {
         <text x="594" y="108" textAnchor="end" className={styles.flowLabel}>Import</text>
         <g className={styles.packet}>
           <MapFile x={406} y={97} />
-          <text x="426" y="172" textAnchor="middle" className={styles.fileName}>Trip map.nvmap</text>
+          <text x="426" y="172" textAnchor="middle" className={styles.fileName}>Bridge project.nvmap</text>
         </g>
         <MiniMap x={614} y={16} title="Teammate · Windows" />
       </svg>
@@ -347,7 +352,7 @@ export function VaultMapShare() {
         className={`${styles.svg} ${styles.tall}`}
         viewBox="0 0 360 560"
         role="img"
-        aria-label="Export a Vault Map as a file on your Mac and a teammate imports it on Windows, with the same documents, groups, links and layout."
+        aria-label="Export an engineering project's Vault Map as a file on your Mac and a teammate imports it on Windows, with the same PDFs, Word and PowerPoint files, scans, videos, YouTube links, recordings, notes, groups, links and layout."
       >
         <MiniMap x={15} y={8} title="You · Mac" />
         <line className={styles.track} x1="180" y1="230" x2="180" y2="330" />
@@ -355,7 +360,7 @@ export function VaultMapShare() {
         <text x="164" y="312" textAnchor="end" className={styles.flowLabel}>Import</text>
         <g className={styles.packetDown}>
           <MapFile x={160} y={246} />
-          <text x="210" y="276" className={styles.fileName}>Trip map.nvmap</text>
+          <text x="210" y="276" className={styles.fileName}>Bridge project.nvmap</text>
         </g>
         <MiniMap x={15} y={338} title="Teammate · Windows" />
       </svg>
