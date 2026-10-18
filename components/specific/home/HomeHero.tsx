@@ -80,8 +80,8 @@ export default function HomeHero() {
       <div className={styles.inner}>
         <div className={styles.text}>
           <h1>
-            Everything you save, in one private app.{" "}
-            <span className={styles.accent}>It tells you when something needs you.</span>
+            Five apps to keep your life in order.{" "}
+            <span className={styles.accent}>NeuVault makes it one, and does the organizing.</span>
           </h1>
 
           <p className={styles.lede}>
