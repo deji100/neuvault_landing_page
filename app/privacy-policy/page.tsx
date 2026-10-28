@@ -346,8 +346,8 @@ export default function PrivacyPolicyPage() {
         <Bullets>
           <li>
             <strong>AI model providers</strong> to organize documents, transcribe recordings and answer Nova
-            questions. Content sent to them is not used to train their models. They may keep it for a limited
-            period for abuse monitoring, as their terms allow.
+            questions. Content sent to them is not used to train their models. They may keep processing logs
+            for up to 30 days for safety monitoring, then delete them.
           </li>
           <li>
             <strong>Text recognition</strong> to read text in scans and images.
