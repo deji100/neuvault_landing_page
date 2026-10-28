@@ -22,6 +22,7 @@ export default function Footer() {
         <span>© {year} NeuVault</span>
         <div className="ml-auto flex flex-wrap gap-5">
           <Link href="/pricing" className="hover:text-[#12161b]">Pricing</Link>
+          <Link href="/compare" className="hover:text-[#12161b]">Compare</Link>
           <Link href="/guides" className="hover:text-[#12161b]">Help</Link>
           <Link href="/feedback" className="hover:text-[#12161b]">Feedback</Link>
           <Link href="/privacy-policy" className="hover:text-[#12161b]">Privacy</Link>

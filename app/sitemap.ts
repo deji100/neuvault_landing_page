@@ -1,6 +1,7 @@
 // sitemap.ts
 import type { MetadataRoute } from "next";
 import { guidePages } from "@/lib/guides";
+import { comparisonPages } from "@/lib/comparisons";
 import { SITE_URL, solutionPages } from "@/lib/seo";
 
 const staticRoutes = [
@@ -18,6 +19,11 @@ const staticRoutes = [
     path: "/pricing",
     changeFrequency: "monthly" as const,
     priority: 0.82,
+  },
+  {
+    path: "/compare",
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
   },
   {
     path: "/feedback",
@@ -87,5 +93,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...solutionEntries, ...guideEntries];
+  const comparisonEntries: MetadataRoute.Sitemap = comparisonPages.map((page) => ({
+    url: `${SITE_URL}/compare/${page.slug}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  return [...staticEntries, ...solutionEntries, ...guideEntries, ...comparisonEntries];
 }

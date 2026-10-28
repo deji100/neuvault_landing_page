@@ -9,13 +9,13 @@ import styles from "./Navbar.module.css";
 
 /** The only destinations the header offers, on every page. */
 const siteLinks = [
-  { label: "Privacy", href: "/privacy-policy" },
-  { label: "Terms", href: "/terms-and-conditions" },
   { label: "Pricing", href: "/pricing" },
-  { label: "B2B", href: "/business" },
+  { label: "Compare", href: "/compare" },
   { label: "Help", href: "/guides" },
+  { label: "B2B", href: "/business" },
   { label: "Feedback", href: "/feedback" },
   { label: "Contact", href: "/contact" },
+  { label: "Privacy", href: "/privacy-policy" },
 ];
 
 export default function Navbar() {
