@@ -61,6 +61,11 @@ const staticRoutes = [
     priority: 0.5,
   },
   {
+    path: "/meeting-notes-without-a-bot",
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  },
+  {
     path: "/refund-policy",
     changeFrequency: "yearly" as const,
     priority: 0.3,

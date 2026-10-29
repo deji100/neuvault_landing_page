@@ -42,6 +42,8 @@ export type ComparisonPage = {
   tone: string;
   metaTitle: string;
   description: string;
+  /** Search phrases this page should also answer, beyond the generic "<app> alternative" set. */
+  extraKeywords?: string[];
   headline: string;
   subheadline: string;
   intro: string;
@@ -784,7 +786,7 @@ export const comparisonPages: ComparisonPage[] = [
       {
         question: "Are NeuVault notes plain files I can take elsewhere?",
         answer:
-          "Not in the way Obsidian's are. Notes live in NeuVault's vault on your device, not as files in a folder. Markdown files you import stay as files, and edits save back to them. On desktop, a note on a Vault Map exports as a Markdown file, and a whole map, or chosen groups, exports as one package with every card and file. Your encrypted backup holds everything. A one-click export of every note as plain files isn't offered yet.",
+          "Not in the way Obsidian's are. Notes live in NeuVault's vault on your device, not as files in a folder. Markdown files you import stay Markdown inside the vault and you keep editing them there. Any note exports as Markdown, PDF or Word, any file shares as its original, and a whole Vault Map, or chosen groups, exports as one package with every card and file. Your encrypted backup holds everything. A one-click export of every note as plain files isn't offered yet.",
       },
       {
         question: "Can I sync NeuVault between devices like Obsidian Sync?",
@@ -816,6 +818,269 @@ export const comparisonPages: ComparisonPage[] = [
       { label: "NeuVault privacy policy", url: "/privacy-policy" },
     ],
     factsCheckedOn: "2026-10-27",
+  },
+  {
+    slug: "octarine",
+    competitor: "Octarine",
+    competitorSummary: "A fast, local-first Markdown notebook with bring-your-own-key AI and a one-time price.",
+    tone: "#1d1d1f",
+    metaTitle: "NeuVault vs Octarine: Local-First Notes, Two Approaches to AI",
+    description:
+      "Both keep your notes on your device. Octarine is a lean Markdown workspace where you bring your own AI key; NeuVault organizes files, scans and recordings for you, with AI included.",
+    headline: "NeuVault vs Octarine",
+    subheadline:
+      "Both keep your notes on your device. Octarine is a lean Markdown workspace with AI you bring your own key for; NeuVault organizes everything for you, with AI included.",
+    intro:
+      "Octarine is a rising alternative for people who like Obsidian's local Markdown files but not its plugins. NeuVault shares the local-first belief and the built-in AI, then goes further into files, scans, recordings and dates. Here's an honest comparison to help you choose.",
+    verdict:
+      "Octarine is a fast, private Markdown notebook for writers who want built-in essentials and their own AI key. NeuVault is a vault for everything you save, organized for you, with AI included.",
+    extraKeywords: ["Obsidian alternative", "local-first Markdown notes app", "notes app with AI built in"],
+    glance: [
+      {
+        label: "Best for",
+        them: "Writing and linking Markdown notes in files you control, without plugins",
+        us: "Keeping notes, files, scans and dates organized for you, privately",
+      },
+      {
+        label: "Where your notes live",
+        them: "Plain Markdown files in a workspace folder on your device",
+        us: "In a vault on your device; your files aren't kept on NeuVault's servers",
+      },
+      {
+        label: "Organizing",
+        them: "Folders, tags, properties, saved views and daily notes you set up",
+        us: "Save something, and Nova summarizes, tags and sorts it into groups",
+      },
+      {
+        label: "AI",
+        them: "Built in on Pro, with your own API key, a ChatGPT or Claude subscription, or a local model",
+        us: "Built in and included: organizing, transcription, Nova answers from your vault",
+      },
+      {
+        label: "Voice and meetings",
+        them: "Minutes, recordings with transcription, announced for the iOS beta; none on desktop",
+        us: "Recordings become an overview, key points, action items and a transcript, on desktop and phone",
+      },
+      {
+        label: "Reminders",
+        them: "Tasks and daily notes with natural-language dates",
+        us: "Finds dates inside notes, documents, scans and recordings, or set your own",
+      },
+      {
+        label: "Visual canvas",
+        them: "Graph view; a freeform canvas is on the roadmap",
+        us: "Vault Map: a canvas per project, with Nova, side-by-side cards and group reminders",
+      },
+      {
+        label: "Capture",
+        them: "Open-source Web Clipper for Chrome and Firefox, a bookmarklet, Inbox and Quick Capture, a CLI",
+        us: "Share from any app, including social apps and WhatsApp; browser extension for Chrome, Edge and Firefox; Gmail and Microsoft 365; watched folders; batch scanner",
+      },
+      {
+        label: "Sync",
+        them: "Your own file sync (iCloud, Dropbox, OneDrive, Google Drive, Syncthing) or built-in Git sync",
+        us: "No cloud sync; move your vault with an encrypted backup",
+      },
+      {
+        label: "Apps",
+        them: "Mac, Windows, Linux; iPhone as a TestFlight beta for Pro users; Android planned",
+        us: "Mac, Windows, iPhone, Android",
+      },
+      {
+        label: "Price",
+        them: "Free core; Pro $79 once for 3 devices; Teams $129 a seat once",
+        us: "Free to start with 500 credits; paid from $4.99 a month",
+      },
+    ],
+    theirStrengths: {
+      lede: "Octarine is the better choice if you want plain Markdown files, a light app, and AI on your own terms.",
+      points: [
+        {
+          title: "Plain Markdown files, no lock-in",
+          body: "Your notes are ordinary files in a folder you choose, readable by any Markdown app, and Octarine says it never uploads their content to its servers.",
+        },
+        {
+          title: "Light and quick, with the essentials built in",
+          body: "A true WYSIWYG editor, graph view, properties, saved views, templates, daily and weekly notes and themes, all without a plugin marketplace.",
+        },
+        {
+          title: "AI on your own terms",
+          body: "On Pro, Ask Octarine and the Writing Assistant work with your own key for Claude, OpenAI, Gemini and others, a ChatGPT or Claude subscription, or a local model through Ollama or LM Studio.",
+        },
+        {
+          title: "Sync the way you already do",
+          body: "Because notes are files, iCloud, Dropbox, OneDrive, Google Drive or Syncthing keep them in step, and built-in Git sync backs them up to GitHub or GitLab.",
+        },
+        {
+          title: "Pay once",
+          body: "The core app is free. Pro is $79 one time for three devices, with a 7-day trial, and Teams seats are $129 one time.",
+        },
+        {
+          title: "Built for power users",
+          body: "A CLI, a URI scheme, MCP integrations, skills, one-click publishing of a note on the web, and Linux support.",
+        },
+      ],
+      closing: "If you want a fast Markdown workspace you fully control, Octarine is a strong pick.",
+    },
+    ourDifferences: {
+      lede: "Octarine is a writing workspace you arrange. NeuVault is a vault for everything you save, where the sorting, the reminders and the meeting notes are done for you.",
+      points: [
+        {
+          title: "AI is included, not assembled",
+          body: "In Octarine, AI needs a Pro license plus your own API key, subscription or local model, and you watch your own usage. In NeuVault, organizing, transcription and Nova are part of every paid plan, using credits, with no keys to manage.",
+        },
+        {
+          title: "It organizes itself",
+          body: "In Octarine, you decide on folders, tags, properties and views. In NeuVault, you write a note or save a file, then choose: organize it with AI on the spot, and Nova summarizes, tags and files it into the right group; or save it to your Inbox and let Nova sort it when you're ready.",
+        },
+        {
+          title: "Files, scans and recordings are first-class",
+          body: "Octarine attaches files to notes. NeuVault treats a PDF, a scanned contract, a recording or a saved web page as its own item, with a summary, tags, a group and reminders, and lets you scan a stack of pages into one document from your phone.",
+        },
+        {
+          title: "Voice and meetings become notes, on every platform",
+          body: "Record a meeting or voice note from your device, or upload one, and get an overview, key points, action items and the full transcript with speakers labeled. Nothing joins the call, and the recording stays with the note.",
+        },
+        {
+          title: "It finds the dates for you",
+          body: "NeuVault reads the notes, documents, scans and recordings you organize and finds the dates inside, like a lease renewal, payment deadline or exam. Get reminded a month before, two weeks before and on the day, or set your own reminder on anything.",
+        },
+        {
+          title: "Vault Map, today",
+          body: "Octarine lists a freeform canvas on its roadmap. Vault Map already puts a project, course or trip on one canvas, with side-by-side cards, Nova across the whole map, group reminders and export as one package.",
+        },
+      ],
+    },
+    deepDives: [
+      {
+        id: "privacy",
+        title: "Privacy, offline, sync and backup",
+        lede: "Both are local-first and work offline; the difference is what AI sees and how you move between devices.",
+        paragraphs: [
+          "Octarine stores your notes as Markdown files in a workspace folder you choose, works fully offline, and says it does not upload note content to its servers; its network use is limited to update checks, an anonymous install count, license activation, sharing you ask for, and the AI providers you choose ([Octarine FAQ](https://octarine.app/faq)). To use notes on several devices, you sync the folder with iCloud, Dropbox, OneDrive, Google Drive or Syncthing, or use the built-in Git sync. The iPhone app is a TestFlight beta for Pro users; Android is on the roadmap ([Octarine roadmap](https://octarine.app/roadmap)).",
+          "NeuVault keeps your vault on your device, and notes, files, scans, recordings, search and backup all work without internet. AI features (organizing, transcription and Nova) and signing in need a connection. When you use AI, the content you choose is sent to our AI provider to be processed; NeuVault doesn't store it, and it's never used to train AI models. Our provider may keep processing logs for up to 30 days for safety monitoring, then deletes them ([NeuVault privacy policy](/privacy-policy)). There's no cloud sync: to move your vault, you make one encrypted backup file, save it where you choose, and restore it on any of your devices with your Recovery Key.",
+          "In short: if you want files you can sync any way you like, Octarine does that today. If you mainly use one device at a time and want backups only you can open, NeuVault fits.",
+        ],
+      },
+      {
+        id: "ai",
+        title: "AI, voice and meeting notes",
+        lede: "Octarine lets you plug in the AI you trust; NeuVault includes it and uses it for more than writing.",
+        paragraphs: [
+          "On Pro, Octarine's Writing Assistant and Ask Octarine chat with your notes, create and move notes, run reusable skills and connect to MCP servers. You choose the model: your own API key for Claude, OpenAI, Gemini, Groq or xAI, a ChatGPT or Claude Code subscription, or a local model through Ollama or LM Studio ([Octarine pricing](https://octarine.app/pricing)). A Weekly AI Recap summarizes your daily notes. Recordings with transcription, called Minutes, are announced for the iOS beta ([Octarine for iOS](https://octarine.app/testflight)).",
+          "NeuVault includes AI in every paid plan and the free trial, using credits; storage never uses credits. Record or upload a meeting or voice note on Mac, Windows, iPhone or Android and get an overview, key points, action items and a full transcript with speakers labeled. Transcription works in many languages, so you can record in the language you speak. Nova organizes what you save, answers questions from your own vault, and can read a whole Vault Map, adding a summary or comparison only when you confirm.",
+        ],
+      },
+      {
+        id: "files",
+        title: "Your files, in and out",
+        lede: "Octarine's notes are files to begin with; NeuVault keeps a vault and exports from it.",
+        paragraphs: [
+          "Octarine's notes are Markdown files from the moment you write them, so there's nothing to export, and the free plan also exports a note as text while Pro adds PDF, HTML and DOCX ([Octarine pricing](https://octarine.app/pricing)). You can point it at a copy of an Obsidian vault and start writing.",
+          "NeuVault keeps your notes in a vault on your device, not as a folder of files. Markdown files you import stay Markdown inside the vault and you keep editing them; paste Markdown into any note and the structure is kept. To get things out, export a note as PDF, Word or Markdown, share any file as its original, bundle a selection as a ZIP, or export a whole Vault Map as one package with every card, file and recording. Your encrypted backup holds everything. A one-click export of every note as plain files isn't offered yet.",
+        ],
+      },
+    ],
+    pricing: {
+      lede: "Octarine is a one-time purchase and you pay your AI provider separately; NeuVault's plans include the AI.",
+      rows: [
+        {
+          label: "Free",
+          them: "Core editor, unlimited workspaces, graph view, search, 4 themes, text export",
+          us: "Explorer: 500 credits for 14 days, with every feature; your vault stays usable afterwards",
+        },
+        {
+          label: "Paid",
+          them: "Pro: $79 once, 3 devices, all features and future updates; 7-day trial",
+          us: "Starter: $4.99 a month; 2,000 credits a month, every feature",
+        },
+        {
+          label: "AI",
+          them: "Pro, plus your own API key, subscription or local model",
+          us: "Included in every paid plan: $4.99 to $19.99 a month, or $200 a year",
+        },
+        {
+          label: "Teams",
+          them: "$129 a seat once, minimum 2 seats, company-owned seats",
+          us: "Not yet; export a Vault Map as a package to share",
+        },
+        {
+          label: "Phone apps",
+          them: "iPhone beta included with Pro; Android planned",
+          us: "iPhone and Android included",
+        },
+      ],
+      footnote:
+        "Prices are in US dollars. For someone who already pays for an AI subscription or runs a local model, Octarine's one-time price is hard to beat. For someone who wants AI organizing, transcription and date reminders without managing keys, NeuVault starts at $4.99 a month. NeuVault's app-store prices may vary by region.",
+    },
+    choose: {
+      lede: "Pick by how much you want to set up, and what you keep.",
+      them: [
+        "Want your notes as plain Markdown files you sync yourself",
+        "Already have an AI key, subscription or local model you prefer",
+        "Want to pay once",
+        "Mostly write and link text notes, and use Linux",
+        "Like a CLI, a URI scheme and integrations",
+      ],
+      us: [
+        "Keep files, scans and recordings, not just text",
+        "Want notes, files and recordings organized for you, with no keys to manage",
+        "Record meetings and voice notes on your phone and computer today",
+        "Lose track of due dates hidden in documents and notes",
+        "Want a project on one canvas, with Nova across it",
+      ],
+      both: "You can also use both: Octarine for the notes you write and link by hand, NeuVault for everything you capture and the dates inside it.",
+    },
+    closing: "Save it once. Find it when it matters. Keep it yours.",
+    faqs: [
+      {
+        question: "Is NeuVault an Octarine alternative?",
+        answer:
+          "Yes, if you like local-first notes but want AI organizing, transcription and date reminders included, and you keep files, scans and recordings as well as notes. If you want plain Markdown files and your own AI key, Octarine may suit you better.",
+      },
+      {
+        question: "Are my notes local in both apps?",
+        answer: "Yes. Both keep your notes on your device and work offline. In NeuVault, AI features need a connection.",
+      },
+      {
+        question: "Do I need my own AI key for NeuVault?",
+        answer: "No. Organizing, transcription and Nova are built in and included in every paid plan, using credits.",
+      },
+      {
+        question: "Can I bring my Octarine or Obsidian notes into NeuVault?",
+        answer:
+          "Yes. Import your Markdown files and keep editing them, or paste Markdown straight into a note; NeuVault keeps its structure.",
+      },
+      {
+        question: "Are NeuVault notes plain files like Octarine's?",
+        answer:
+          "No. Notes live in NeuVault's vault on your device. Markdown you import stays Markdown inside the vault, and any note exports as Markdown, PDF or Word. A whole Vault Map exports as one package. A one-click export of every note as plain files isn't offered yet.",
+      },
+      {
+        question: "Does NeuVault work on Linux?",
+        answer: "No. NeuVault runs on Mac, Windows, iPhone and Android.",
+      },
+      {
+        question: "Does NeuVault sync between devices?",
+        answer: "Not through the cloud. You move your vault with an encrypted backup, restored with your Recovery Key on any of your devices.",
+      },
+      {
+        question: "Is NeuVault free?",
+        answer:
+          "You start with 500 free credits for 14 days, with every feature available, and your vault stays usable afterwards. After the trial, AI features need a paid plan, from $4.99 a month.",
+      },
+    ],
+    sources: [
+      { label: "Octarine pricing and feature comparison", url: "https://octarine.app/pricing" },
+      { label: "Octarine FAQ", url: "https://octarine.app/faq" },
+      { label: "Octarine roadmap and release history", url: "https://octarine.app/roadmap" },
+      { label: "Octarine for iOS (TestFlight)", url: "https://octarine.app/testflight" },
+      { label: "Octarine Web Clipper", url: "https://octarine.app/extension" },
+      { label: "Octarine vs Obsidian, by Octarine", url: "https://octarine.app/compare/obsidian" },
+      { label: "NeuVault pricing", url: "/pricing" },
+      { label: "NeuVault privacy policy", url: "/privacy-policy" },
+    ],
+    factsCheckedOn: "2026-10-29",
   },
   {
     slug: "evernote",
@@ -1068,6 +1333,273 @@ export const comparisonPages: ComparisonPage[] = [
     factsCheckedOn: "2026-10-27",
   },
   {
+    slug: "upnote",
+    competitor: "UpNote",
+    competitorSummary: "A clean, inexpensive cloud notebook with a lifetime plan, popular with people leaving Evernote.",
+    tone: "#1d1d1f",
+    metaTitle: "NeuVault vs UpNote: A Private Notes App With AI Built In",
+    description:
+      "UpNote is a tidy, inexpensive notebook synced through its cloud. NeuVault keeps notes, files and scans on your device, organizes them for you and finds the dates inside.",
+    headline: "NeuVault vs UpNote",
+    subheadline:
+      "UpNote is a clean notebook synced through its cloud, with a one-time price. NeuVault keeps everything on your device and organizes it for you, with AI built in.",
+    intro:
+      "UpNote has become a favorite for people leaving Evernote: it's fast, tidy, works on every platform and costs very little. NeuVault takes a different approach to where your notes live and how much organizing you do yourself. Here's an honest comparison to help you choose.",
+    verdict:
+      "UpNote is a polished, low-cost notebook that syncs through its cloud. NeuVault keeps notes, files and scans on your device, organizes them for you, and finds the dates inside.",
+    extraKeywords: ["UpNote vs Evernote alternative", "Evernote alternative", "notes app lifetime license alternative"],
+    glance: [
+      {
+        label: "Best for",
+        them: "Writing and organizing text notes by hand, cheaply, on every platform",
+        us: "Keeping notes, files, scans and dates organized for you, privately",
+      },
+      {
+        label: "Where your notes live",
+        them: "UpNote's central server, hosted on Firebase in the United States, so they can sync",
+        us: "On your device; your files aren't kept on NeuVault's servers",
+      },
+      {
+        label: "Note limits",
+        them: "Free: 50 notes. Premium: unlimited, with 20,000 notes recommended for performance",
+        us: "No note limits on any plan",
+      },
+      {
+        label: "Organizing",
+        them: "Notebooks, nested notebooks, hashtags and filters you manage",
+        us: "Nova summarizes, tags and sorts what you save into groups, or it waits in your Inbox",
+      },
+      {
+        label: "AI",
+        them: "None",
+        us: "Built in: organizing, transcription, Nova answers from your vault",
+      },
+      {
+        label: "Voice and meetings",
+        them: "Not offered",
+        us: "Recordings become an overview, key points, action items and a transcript",
+      },
+      {
+        label: "Reminders",
+        them: "Not offered; checklists with a Todo filter",
+        us: "Finds dates inside notes, documents, scans and recordings, or set your own",
+      },
+      {
+        label: "Capture",
+        them: "Web Clipper for Chrome, Firefox and Safari; document scanning into a note on phones",
+        us: "Share from any app, including social apps and WhatsApp; browser extension for Chrome, Edge and Firefox; Gmail and Microsoft 365; watched folders; batch scanner",
+      },
+      {
+        label: "Import and export",
+        them: "Imports Evernote, Bear, Simplenote, Google Keep, Markdown and HTML; exports notes as PDF, text, HTML or Markdown, including all notes at once",
+        us: "Imports Markdown and any file; exports a note as PDF, Word or Markdown, a set of files as a ZIP, and the whole vault as an encrypted backup",
+      },
+      {
+        label: "Sync",
+        them: "Automatic, through UpNote's cloud, on unlimited devices",
+        us: "No cloud sync; move your vault with an encrypted backup",
+      },
+      {
+        label: "Apps",
+        them: "Mac, Windows, Linux, iPhone, Android (no web app)",
+        us: "Mac, Windows, iPhone, Android (no web app)",
+      },
+      {
+        label: "Price",
+        them: "Free; Premium $1.99 a month or $39.99 once",
+        us: "Free to start with 500 credits; paid from $4.99 a month",
+      },
+    ],
+    theirStrengths: {
+      lede: "UpNote is the better choice if you want a simple, fast notebook that syncs everywhere and costs almost nothing.",
+      points: [
+        {
+          title: "A one-time price",
+          body: "Premium is $1.99 a month or $39.99 once, for life, and UpNote has said lifetime users keep every Premium feature even if it ever moves to subscriptions.",
+        },
+        {
+          title: "Clean and quick",
+          body: "A clutter-free editor with Markdown shortcuts, tables, code blocks, attachments, templates, themes and a focus mode.",
+        },
+        {
+          title: "Sync everywhere, including Linux",
+          body: "Sign in on unlimited devices and your notes stay in sync, on Mac, Windows, Linux, iPhone and Android.",
+        },
+        {
+          title: "Easy to move in and out",
+          body: "Import from Evernote, Bear, Simplenote, Google Keep, Markdown or HTML, and export a note, a notebook or everything as PDF, text, HTML or Markdown.",
+        },
+        {
+          title: "Locks and clipping",
+          body: "Lock notebooks or the whole app, clip pages from Chrome, Firefox or Safari, and scan a document into a note from your phone.",
+        },
+      ],
+      closing: "If you mainly write text notes and want them everywhere for a few dollars, UpNote is hard to argue with.",
+    },
+    ourDifferences: {
+      lede: "UpNote is a place to write. NeuVault is a place to keep everything, where the organizing, the reminders and the meeting notes are done for you.",
+      points: [
+        {
+          title: "Your notes stay on your device",
+          body: "UpNote stores your notes on its server so they can sync; it encrypts them in transit and at rest, and says it never uses them for AI training. NeuVault keeps your vault on your device, so your files aren't kept on our servers, and everything except AI works offline.",
+        },
+        {
+          title: "It organizes itself",
+          body: "In UpNote, you choose the notebook and hashtags for every note. In NeuVault, you save something and choose: organize it with AI on the spot, and Nova summarizes, tags and files it into the right group; or save it to your Inbox and sort it later. While you write, connect a note to the scans, PDFs, links and recordings it belongs with.",
+        },
+        {
+          title: "Files and scans, not just notes",
+          body: "UpNote attaches files to notes. NeuVault treats a PDF, a scanned contract, a recording or a saved web page as a first-class item, with its own summary, tags, group and reminders.",
+        },
+        {
+          title: "It finds the dates for you",
+          body: "UpNote has no reminders. NeuVault reads the notes, documents, scans and recordings you organize and finds the dates inside, like a lease renewal, payment deadline or exam, then reminds you a month before, two weeks before and on the day.",
+        },
+        {
+          title: "Voice and meetings become notes",
+          body: "Record a meeting or voice note from your device, or upload one, and get an overview, key points, action items and the full transcript with speakers labeled. Nothing joins the call, and the recording stays with the note.",
+        },
+        {
+          title: "Everything for one project, on one canvas",
+          body: "Vault Map puts a project, client, course or trip on one canvas: notes, PDFs, recordings, links and videos, grouped and connected. Open two cards side by side, ask Nova about the whole map, or export it as one package to share.",
+        },
+      ],
+    },
+    deepDives: [
+      {
+        id: "privacy",
+        title: "Privacy, offline and where your notes live",
+        lede: "UpNote syncs through its own server; NeuVault keeps your vault on your device.",
+        paragraphs: [
+          "UpNote stores your notes on a central server so they can sync across your devices. Its privacy policy says the server is Firebase, located in the United States, that data is encrypted in transit and at rest, and that your notes are never sold or used for advertising or AI training ([UpNote privacy](https://getupnote.com/privacy.html)). Notes are not end-to-end encrypted, so the protection is the server's, not a key only you hold. You can lock notebooks or the app with a password, and the app works offline.",
+          "NeuVault keeps your vault on your device, so your files aren't kept on our servers, and notes, files, scans, recordings, search and backup all work without internet. AI features (organizing, transcription and Nova) and signing in need a connection. When you use AI, the content you choose is sent to our AI provider to be processed; NeuVault doesn't store it, and it's never used to train AI models. Our provider may keep processing logs for up to 30 days for safety monitoring, then deletes them ([NeuVault privacy policy](/privacy-policy)).",
+          "Your backup is one encrypted file, saved where you choose: Google Drive, iCloud, OneDrive, Dropbox, a USB drive or your own device. Only your Recovery Key opens it, and it restores on any of your devices.",
+          "The trade-off: UpNote syncs your notes to every device automatically; NeuVault doesn't sync through the cloud, so you move your vault with a backup.",
+        ],
+      },
+      {
+        id: "moving",
+        title: "Moving your notes in, and getting them out",
+        lede: "UpNote is built for importing an old archive; NeuVault is built for everything you save from now on.",
+        paragraphs: [
+          "UpNote imports Evernote's ENEX files directly, keeping notebooks and turning tags into hashtags, and also imports from Bear, Simplenote, Google Keep, Markdown and HTML ([UpNote help: import](https://help.getupnote.com/import-and-export/import-content-to-upnote/import-from-evernote)). It exports a note, several notes, a notebook or your whole library as PDF, text, HTML or Markdown ([UpNote help: export](https://help.getupnote.com/import-and-export/export-notes)). Bulk imports are limited above 20,000 notes or 10 GB of attachments.",
+          "NeuVault doesn't read ENEX files yet. Markdown files import and stay Markdown inside your vault, and you can paste Markdown straight into a note. Any PDF, image, scan or recording you save becomes its own item, and Nova summarizes, tags and files it. To get things out, export a note as PDF, Word or Markdown, share any file as its original, bundle a selection as a ZIP, or export a whole Vault Map as one package. Your encrypted backup holds everything. A one-click export of every note as plain files isn't offered yet.",
+        ],
+      },
+      {
+        id: "ai",
+        title: "AI, voice and meeting notes",
+        lede: "UpNote has no AI features; NeuVault's AI is the point.",
+        paragraphs: [
+          "UpNote is deliberately simple: there are no AI features, no voice recording and no transcription, which is part of why it's fast and inexpensive.",
+          "NeuVault includes every AI feature on every paid plan, from $4.99 a month, using credits; storage never uses credits. Record or upload a meeting or voice note and get an overview, key points, action items and a full transcript with speakers labeled; the transcript scrolls along as the audio plays. Transcription works in many languages, so you can record in the language you speak. Nova also organizes everything you save, finds the dates inside it, and answers questions from your own vault.",
+        ],
+      },
+    ],
+    pricing: {
+      lede: "UpNote is one of the cheapest notebooks there is; NeuVault's price pays for the built-in AI.",
+      rows: [
+        {
+          label: "Free",
+          them: "Up to 50 notes, with sync and the core editor",
+          us: "Explorer: 500 credits for 14 days, with every feature; your vault stays usable afterwards",
+        },
+        {
+          label: "Paid",
+          them: "Premium: $1.99 a month or $39.99 once; unlimited notes, attachments, tables, locks, export",
+          us: "Starter: $4.99 a month; 2,000 credits a month, every feature",
+        },
+        {
+          label: "Where to buy",
+          them: "From the iPhone, Android or Mac app; Windows and Linux users buy on one of those, then sign in",
+          us: "App stores, or on the website for the Mac download and Windows",
+        },
+        {
+          label: "Top plan",
+          them: "Premium is the only paid plan",
+          us: "Premium: $19.99 a month, or $200 a year",
+        },
+        {
+          label: "AI",
+          them: "Not offered",
+          us: "Included in every paid plan",
+        },
+      ],
+      footnote: "Prices are in US dollars. App-store prices for both apps may vary by region.",
+    },
+    choose: {
+      lede: "Pick by what you keep, and how much you want done for you.",
+      them: [
+        "Mostly write text notes and want them synced everywhere",
+        "Want a one-time price and nothing recurring",
+        "Are moving an Evernote archive and need ENEX import today",
+        "Use Linux",
+        "Don't want AI anywhere near your notes",
+      ],
+      us: [
+        "Keep files, scans and recordings, not just text",
+        "Want your notes on your own device, with backups only you can open",
+        "Want notes, files and recordings organized for you",
+        "Lose track of due dates hidden in documents, scans and notes",
+        "Record meetings and want notes, not just audio",
+      ],
+      both: "You can also use both: UpNote for the archive you brought over, NeuVault for what you save from now on and the dates inside it.",
+    },
+    closing: "Save it once. Find it when it matters. Keep it yours.",
+    faqs: [
+      {
+        question: "Is NeuVault a good UpNote alternative?",
+        answer:
+          "Yes, if you keep files, scans and recordings as well as notes, want them on your own device, and want AI to organize them and find the dates inside. If you want a simple, cheap text notebook synced everywhere, UpNote may suit you better.",
+      },
+      {
+        question: "Does UpNote keep my notes on its servers?",
+        answer:
+          "Yes. UpNote stores notes on a central server so they can sync, encrypted in transit and at rest. NeuVault keeps your vault on your device.",
+      },
+      {
+        question: "Can I bring my UpNote notes into NeuVault?",
+        answer:
+          "Yes. Export them from UpNote as Markdown, then import the files into NeuVault; they stay Markdown and you can keep editing them. Nova can summarize, tag and file each one.",
+      },
+      {
+        question: "Which one is better for leaving Evernote?",
+        answer:
+          "For an old archive, UpNote imports ENEX files directly today and NeuVault doesn't yet. For everything you save from now on, including PDFs, scans and recordings, NeuVault organizes it for you and finds the dates inside.",
+      },
+      {
+        question: "Does NeuVault have a lifetime plan like UpNote?",
+        answer:
+          "No. NeuVault's plans are monthly or yearly because AI processing is an ongoing cost. Storage never uses credits, and your vault stays usable without a plan.",
+      },
+      {
+        question: "Does NeuVault sync between devices like UpNote?",
+        answer:
+          "Not through the cloud. You move or restore your vault with an encrypted backup, opened only by your Recovery Key.",
+      },
+      {
+        question: "Does NeuVault work offline?",
+        answer: "Yes. Notes, files, scans, recordings, search and backup work without internet. AI features need a connection.",
+      },
+      {
+        question: "Is NeuVault free?",
+        answer:
+          "You start with 500 free credits for 14 days, with every feature available, and your vault stays usable afterwards. After the trial, AI features need a paid plan, from $4.99 a month.",
+      },
+    ],
+    sources: [
+      { label: "UpNote: features and pricing", url: "https://getupnote.com" },
+      { label: "UpNote help: Premium FAQs", url: "https://help.getupnote.com/resources/upnote-premium/premium-faqs" },
+      { label: "UpNote help: upgrade to Premium", url: "https://help.getupnote.com/resources/upnote-premium/upgrade-to-premium" },
+      { label: "UpNote help: import from Evernote", url: "https://help.getupnote.com/import-and-export/import-content-to-upnote/import-from-evernote" },
+      { label: "UpNote help: export notes", url: "https://help.getupnote.com/import-and-export/export-notes" },
+      { label: "UpNote privacy policy", url: "https://getupnote.com/privacy.html" },
+      { label: "NeuVault pricing", url: "/pricing" },
+      { label: "NeuVault privacy policy", url: "/privacy-policy" },
+    ],
+    factsCheckedOn: "2026-10-29",
+  },
+  {
     slug: "apple-notes",
     competitor: "Apple Notes",
     competitorSummary: "The quick, free notepad built into iPhone, iPad and Mac.",
@@ -1299,12 +1831,13 @@ export const comparisonPages: ComparisonPage[] = [
     competitor: "Otter",
     competitorSummary: "A meeting transcription specialist with live transcripts and team features.",
     tone: "#1d1d1f",
-    metaTitle: "NeuVault vs Otter: Meeting Notes That Connect to Everything",
+    metaTitle: "NeuVault vs Otter: AI Meeting Notes Without a Bot",
     description:
-      "Otter transcribes your meetings. NeuVault turns each meeting into a note connected to your files, links and deadlines, kept on your device.",
+      "Otter sends a notetaker into your calls and keeps transcripts in its cloud. NeuVault records on your device, nothing joins the call, and each meeting connects to your files and deadlines.",
+    extraKeywords: ["AI meeting notes without a bot", "meeting notes without a recording bot", "Otter alternative without a bot", "AI notetaker that doesn't join the call"],
     headline: "NeuVault vs Otter",
     subheadline:
-      "Otter is built for transcribing meetings. NeuVault turns each meeting into a note that connects to the files, links and deadlines around it.",
+      "Otter sends a notetaker into your meetings. NeuVault records on your device, so nothing joins the call, and turns each meeting into a note connected to the files, links and deadlines around it.",
     intro:
       "Otter is one of the best-known meeting transcription tools. If meetings are your whole workflow, it's a strong choice. But if your meetings are one part of a bigger picture, with documents, links, recordings and deadlines, NeuVault takes a different approach. Here's an honest comparison.",
     verdict:
@@ -1420,7 +1953,7 @@ export const comparisonPages: ComparisonPage[] = [
           "Otter stores your conversations in its cloud so you and your team can access them anywhere. Its privacy policy lists training its proprietary AI on de-identified audio recordings and on transcriptions among the ways it uses your data, and says it keeps de-identified data in that form ([Otter privacy policy](https://otter.ai/privacy-policy)). You can turn off sharing your conversations for training in Otter's account settings ([Otter help](https://help.otter.ai/hc/en-us/articles/25352082563863-Provide-feedback-to-Otter)). When linked to your calendar, Otter's notetaker can join meetings automatically.",
           "NeuVault keeps your recordings, transcripts and notes on your device, so your files aren't kept on our servers, and everything opens without internet. Transcription and other AI features need a connection. When you use AI, the content you choose is sent to our AI provider to be processed; NeuVault doesn't store it, and it's never used to train AI models. Our provider may keep processing logs for up to 30 days for safety monitoring, then deletes them ([NeuVault privacy policy](/privacy-policy)).",
           "Your backup is one encrypted file, saved where you choose: Google Drive, iCloud, OneDrive, Dropbox, a USB drive or your own device. Only your Recovery Key opens it, and it restores on any of your devices.",
-          "Whichever app you use, recording laws differ by country and state; tell people when you're recording and get consent where required.",
+          "Whichever app you use, recording laws differ by country and state; tell people when you're recording and get consent where required. For how NeuVault records without anything joining the call, on each platform, see [meeting notes without a bot](/meeting-notes-without-a-bot).",
         ],
       },
       {
@@ -1531,12 +2064,13 @@ export const comparisonPages: ComparisonPage[] = [
     competitor: "Granola",
     competitorSummary: "A bot-free AI notepad for people in back-to-back meetings.",
     tone: "#1d1d1f",
-    metaTitle: "NeuVault vs Granola: Meeting Notes, Connected and Kept",
+    metaTitle: "NeuVault vs Granola: Bot-Free Meeting Notes That Keep the Recording",
     description:
-      "Granola is a bot-free AI notepad for meetings. NeuVault keeps the recording, connects each meeting to your files and deadlines, and stores it on your device.",
+      "Both take meeting notes without a bot. Granola deletes the audio and keeps notes in its cloud; NeuVault keeps the recording with the note, on your device, connected to your files and deadlines.",
+    extraKeywords: ["AI meeting notes without a bot", "bot-free meeting notes that keep the recording", "Granola alternative that keeps the audio", "meeting notes on device"],
     headline: "NeuVault vs Granola",
     subheadline:
-      "Granola is a great notepad for back-to-back meetings. NeuVault keeps the recording, connects each meeting to everything around it, and keeps it on your device.",
+      "Granola is a great bot-free notepad for back-to-back meetings. NeuVault is bot-free too, keeps the recording with the note, connects each meeting to everything around it, and keeps it on your device.",
     intro:
       "Granola and NeuVault both capture meetings without a bot joining the call. Granola focuses on enhancing the notes you type during meetings; NeuVault treats each meeting as one part of a bigger vault of notes, files and deadlines. Here's an honest comparison.",
     verdict:
@@ -1657,7 +2191,7 @@ export const comparisonPages: ComparisonPage[] = [
           "Granola sends meeting audio to transcription providers, deletes the audio once transcription completes, and stores transcripts and notes in its encrypted cloud, hosted in the US ([Granola: where it runs](https://www.granola.ai/blog/local-first-ai-notetaker-vs-cloud)). Third-party AI providers are contractually prohibited from training on your data. Granola itself trains on your anonymized data by default on the Basic and Business plans unless you opt out in Settings; Enterprise accounts have training turned off by default ([Granola security](https://www.granola.ai/security)).",
           "NeuVault keeps your recordings, transcripts and notes on your device, so your files aren't kept on our servers, and everything opens without internet. Transcription and other AI features need a connection. When you use AI, the content you choose is sent to our AI provider to be processed; NeuVault doesn't store it, and it's never used to train AI models. Our provider may keep processing logs for up to 30 days for safety monitoring, then deletes them ([NeuVault privacy policy](/privacy-policy)). The copy in your vault stays.",
           "Your backup is one encrypted file, saved where you choose: Google Drive, iCloud, OneDrive, Dropbox, a USB drive or your own device. Only your Recovery Key opens it, and it restores on any of your devices.",
-          "Whichever app you use, recording laws differ by country and state; tell people when you're recording and get consent where required.",
+          "Whichever app you use, recording laws differ by country and state; tell people when you're recording and get consent where required. For how NeuVault records without anything joining the call, on each platform, see [meeting notes without a bot](/meeting-notes-without-a-bot).",
         ],
       },
       {
@@ -1666,7 +2200,7 @@ export const comparisonPages: ComparisonPage[] = [
         lede: "Granola is designed around writing during the meeting; NeuVault around what you do with the meeting afterwards.",
         paragraphs: [
           "Granola transcribes your device's audio during the call while you type rough notes. Afterwards, it merges your notes with the transcript into structured meeting notes, using templates you can customize, and lets you chat with the meeting or run Recipes. Video calls are captured on the Mac and Windows apps; the phone apps cover in-person meetings, plus one-to-one calls through the iPhone dialer ([Granola on phone calls](https://www.granola.ai/blog/best-ai-note-taker-for-phone-calls-on-android-and-iphone)).",
-          "NeuVault records a meeting or voice note on your device, or takes one you upload, and returns an overview, key points, action items and the full transcript, with speakers labeled. Transcription works in many languages, so you can record in the language you speak. On Mac and Windows it hears both your microphone and the call's audio; on phones it records the room, like Granola. The recording stays with the note, and you can write your own notes alongside it. Then the meeting joins your vault: connected to related files and links, placed on a Vault Map, checked for dates that become reminders, and open to Nova, which answers questions from your own vault.",
+          "NeuVault records a meeting or voice note on your device, or takes one you upload, and returns an overview, key points, action items and the full transcript, with speakers labeled. Transcription works in many languages, so you can record in the language you speak. On Windows, and on Mac with macOS 14.2 or later, it hears both your microphone and the call's audio; otherwise it records your microphone and tells you so. On phones it records the room, like Granola. The recording stays with the note, and you can write your own notes alongside it. Then the meeting joins your vault: connected to related files and links, placed on a Vault Map, checked for dates that become reminders, and open to Nova, which answers questions from your own vault.",
         ],
       },
     ],
@@ -1770,12 +2304,13 @@ export const comparisonPages: ComparisonPage[] = [
     competitor: "Fathom",
     competitorSummary: "A polished AI notetaker for video calls, built for sales and customer teams.",
     tone: "#1d1d1f",
-    metaTitle: "NeuVault vs Fathom: Meeting Notes Beyond the Meeting",
+    metaTitle: "NeuVault vs Fathom: AI Meeting Notes Without a Bot",
     description:
-      "Fathom records and summarizes your calls. NeuVault connects each meeting to your files, links and deadlines, and keeps everything on your device.",
+      "Fathom's bot joins your calls by default and stores video in its cloud. NeuVault records on your device, nothing joins the call, and each meeting connects to your files, links and deadlines.",
+    extraKeywords: ["AI meeting notes without a bot", "meeting notes without a recording bot", "Fathom alternative without a bot", "AI notetaker that doesn't join the call"],
     headline: "NeuVault vs Fathom",
     subheadline:
-      "Fathom is a polished AI notetaker for video calls. NeuVault turns every meeting into a note connected to the rest of your work, kept on your device.",
+      "Fathom is a polished AI notetaker that joins your video calls. NeuVault records on your device, so nothing joins the call, and turns every meeting into a note connected to the rest of your work.",
     intro:
       "Fathom is one of the most popular meeting notetakers, with a generous free plan and deep CRM integrations. If your work happens in video calls and sales pipelines, it's a strong choice. If meetings are one part of a bigger picture of notes, documents and deadlines, NeuVault takes a different approach. Here's an honest comparison.",
     verdict:
@@ -1891,7 +2426,7 @@ export const comparisonPages: ComparisonPage[] = [
           "Fathom stores all data in the United States, encrypted in transit and at rest. Its help center says its AI providers (Anthropic, OpenAI and Google) aren't permitted to train on your data, while Fathom uses de-identified customer data to improve its own models; you can opt out in your settings, and Team Edition organizations can opt out everyone at once ([Fathom help: Is Fathom secure?](https://help.fathom.video/en/articles/296512)). When the meeting bot records, it captures video too, so faces, shared screens and slides are stored.",
           "NeuVault keeps your recordings, transcripts and notes on your device, so your files aren't kept on our servers, and everything opens without internet. Transcription and other AI features need a connection. When you use AI, the content you choose is sent to our AI provider to be processed; NeuVault doesn't store it, and it's never used to train AI models. Our provider may keep processing logs for up to 30 days for safety monitoring, then deletes them ([NeuVault privacy policy](/privacy-policy)). The copy in your vault stays.",
           "Your backup is one encrypted file, saved where you choose: Google Drive, iCloud, OneDrive, Dropbox, a USB drive or your own device. Only your Recovery Key opens it, and it restores on any of your devices.",
-          "Whichever app you use, recording laws differ by country and state; tell people when you're recording and get consent where required.",
+          "Whichever app you use, recording laws differ by country and state; tell people when you're recording and get consent where required. For how NeuVault records without anything joining the call, on each platform, see [meeting notes without a bot](/meeting-notes-without-a-bot).",
         ],
       },
       {
@@ -1900,7 +2435,7 @@ export const comparisonPages: ComparisonPage[] = [
         lede: "Fathom is stronger for video calls and sales workflows; NeuVault is stronger at what happens to the meeting afterwards.",
         paragraphs: [
           "Fathom joins Zoom, Google Meet and Microsoft Teams calls as a notetaker bot by default and records video, audio and transcript, or captures bot-free from the Mac app ([Fathom help: supported devices](https://help.fathom.video/en/articles/296576)). After the call, you get a summary, and on paid plans AI action items, follow-up email drafts, custom templates and Ask Fathom across all your calls ([Fathom pricing](https://www.fathom.ai/pricing)). Clips and playlists make it easy to share key moments, and CRM sync pushes notes into Salesforce or HubSpot.",
-          "NeuVault records a meeting or voice note on your device, whether online or in person, or takes one you upload, and returns an overview, key points, action items and the full transcript, with speakers labeled. Transcription works in many languages, so you can record in the language you speak. On Mac and Windows it hears both your microphone and the call's audio; on phones it records the room. The transcript scrolls along as the audio plays, and you can write your own notes alongside it. Then the meeting joins your vault: connected to related files and links, placed on a Vault Map, checked for dates that become reminders, and open to Nova, which answers questions from your own vault.",
+          "NeuVault records a meeting or voice note on your device, whether online or in person, or takes one you upload, and returns an overview, key points, action items and the full transcript, with speakers labeled. Transcription works in many languages, so you can record in the language you speak. On Windows, and on Mac with macOS 14.2 or later, it hears both your microphone and the call's audio; otherwise it records your microphone and tells you so. On phones it records the room. The transcript scrolls along as the audio plays, and you can write your own notes alongside it. Then the meeting joins your vault: connected to related files and links, placed on a Vault Map, checked for dates that become reminders, and open to Nova, which answers questions from your own vault.",
         ],
       },
     ],
@@ -2048,6 +2583,7 @@ export function buildComparisonMetadata(page: ComparisonPage) {
       `${page.competitor} vs NeuVault`,
       `private ${page.competitor} alternative`,
       `${page.competitor} alternative for personal notes`,
+      ...(page.extraKeywords ?? []),
       "self-organizing notes app",
       "local-first notes app",
     ],
