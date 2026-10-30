@@ -13,15 +13,6 @@ export const metadata: Metadata = buildMetadata({
   title: TITLE,
   description: DESCRIPTION,
   path: PATH,
-  keywords: [
-    "AI meeting notes without a bot",
-    "meeting notes without a recording bot",
-    "AI notetaker that doesn't join the call",
-    "bot-free meeting transcription",
-    "record meetings on device",
-    "meeting recorder no bot Zoom Google Meet Teams",
-    "private meeting notes app",
-  ],
 });
 
 function jsonLdScript(data: Record<string, unknown>) {

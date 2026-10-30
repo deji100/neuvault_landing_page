@@ -16,17 +16,6 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Practical guides to scanning, organizing, finding and backing up important documents, tracking expiration dates, and turning voice notes into searchable records.",
   path: "/guides",
-  keywords: [
-    "document organization guides",
-    "organize important documents",
-    "scan and organize documents",
-    "document reminder guide",
-    "document retrieval guide",
-    "secure document backup guide",
-    "voice note transcription guide",
-    "private document vault guide",
-    "local-first document app",
-  ],
 });
 
 function jsonLdScript(data: Record<string, unknown>) {

@@ -11,33 +11,6 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Honest, side-by-side comparisons of NeuVault with the apps you may already use. Where each one shines, where NeuVault is different, and which fits you.",
   path: "/compare",
-  keywords: [
-    "NeuVault vs Notion",
-    "NeuVault vs HyNote",
-    "HyNote alternative",
-    "NeuVault vs Obsidian",
-    "Obsidian alternative",
-    "NeuVault vs Evernote",
-    "Evernote alternative",
-    "NeuVault vs UpNote",
-    "UpNote alternative",
-    "NeuVault vs Octarine",
-    "Octarine alternative",
-    "NeuVault vs Apple Notes",
-    "Apple Notes alternative for Windows and Android",
-    "NeuVault vs Otter",
-    "Otter alternative without a bot",
-    "AI meeting notes without a bot",
-    "NeuVault vs Granola",
-    "Granola alternative that keeps the recording",
-    "NeuVault vs Fathom",
-    "Fathom alternative without a bot",
-    "Notion alternative",
-    "private notes app comparison",
-    "self-organizing notes app",
-    "local-first notes app",
-    "notes app with document reminders",
-  ],
 });
 
 function jsonLdScript(data: Record<string, unknown>) {

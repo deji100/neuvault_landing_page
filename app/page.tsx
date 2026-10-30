@@ -12,49 +12,13 @@ import {
   WINDOWS_MICROSOFT_STORE_URL,
   buildBreadcrumbJsonLd,
   buildMetadata,
-  buildOrganizationJsonLd,
   buildSoftwareApplicationJsonLd,
-  buildWebSiteJsonLd,
   solutionPages,
 } from "@/lib/seo";
 
 // The home page states the site-wide title and description; lib/seo.ts holds them.
 export const metadata: Metadata = buildMetadata({
   path: "/",
-  keywords: [
-    "scan and organize documents",
-    "document expiration reminder app",
-    "organize scanned documents",
-    "digital personal document vault",
-    "document storage app",
-    "document retrieval software",
-    "important documents app",
-    "scan and store documents",
-    "passport expiration reminder",
-    "visa expiration tracker",
-    "secure document storage",
-    "private AI document vault",
-    "private AI document search",
-    "AI PDF summarizer",
-    "private document vault app",
-    "local-first document app",
-    "AI document organizer",
-    "AI file organizer",
-    "document memory app",
-    "scan and organize documents app",
-    "document reminder app",
-    "find deadlines in documents",
-    "search PDFs with AI",
-    "document retrieval app",
-    "secure document backup app",
-    "voice note transcription app",
-    "encrypted document backup",
-    "cross-device document restore",
-    "automatic folder monitoring",
-    "Windows document vault app",
-    "Nova document assistant",
-    "documents life will ask you for later",
-  ],
 });
 
 function jsonLdScript(data: Record<string, unknown>) {
@@ -64,13 +28,6 @@ function jsonLdScript(data: Record<string, unknown>) {
 }
 
 export default function Home() {
-  const organizationJsonLd = {
-    ...buildOrganizationJsonLd(),
-    logo: LOGO_URL,
-  };
-
-  const websiteJsonLd = buildWebSiteJsonLd();
-
   const softwareJsonLd = {
     ...buildSoftwareApplicationJsonLd(),
     image: LOGO_URL,
@@ -140,14 +97,6 @@ export default function Home() {
 
   return (
     <main className="overflow-hidden">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={jsonLdScript(organizationJsonLd)}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={jsonLdScript(websiteJsonLd)}
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={jsonLdScript(softwareJsonLd)}

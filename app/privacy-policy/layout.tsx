@@ -7,8 +7,6 @@ export const metadata: Metadata = buildMetadata({
   description:
     "How NeuVault handles your data: your vault stays on your device, files sent for processing are deleted automatically, and backups are sealed with a key only you hold.",
   path: "/privacy-policy",
-  noindex: true,
-  keywords: ["neuvault privacy policy", "document vault privacy policy", "local-first privacy policy"],
 });
 
 export default function PrivacyPolicyLayout({ children }: { children: ReactNode }) {

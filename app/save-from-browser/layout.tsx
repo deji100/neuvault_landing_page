@@ -7,13 +7,6 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Save any web page or link to NeuVault from Chrome, Edge, Brave, Safari or your phone: install the Save to NeuVault extension, turn on NeuVault in Safari's Share menu, or use the bookmark.",
   path: "/save-from-browser",
-  keywords: [
-    "save to neuvault",
-    "neuvault chrome extension",
-    "save web page to notes",
-    "save links from browser",
-    "safari share extension neuvault",
-  ],
 });
 
 export default function SaveFromBrowserLayout({ children }: { children: ReactNode }) {

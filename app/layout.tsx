@@ -16,7 +16,6 @@ import {
   SITE_NAME,
   SITE_URL,
   buildOrganizationJsonLd,
-  buildSoftwareApplicationJsonLd,
   buildWebSiteJsonLd,
 } from "@/lib/seo";
 
@@ -110,11 +109,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = [
-    buildOrganizationJsonLd(),
-    buildWebSiteJsonLd(),
-    buildSoftwareApplicationJsonLd(),
-  ];
+  // Site-wide entities only. Pages add their own (SoftwareApplication on the home
+  // and solution pages, Article on guides) so no entity is emitted twice on one page.
+  const jsonLd = [buildOrganizationJsonLd(), buildWebSiteJsonLd()];
 
   return (
     <html lang="en" data-theme="dark" style={{ colorScheme: "dark" }} suppressHydrationWarning>

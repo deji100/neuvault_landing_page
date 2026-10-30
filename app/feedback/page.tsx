@@ -13,7 +13,6 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Suggest features, report problems and vote on what NeuVault builds next. See what's planned, in progress and shipped.",
   path: "/feedback",
-  keywords: ["NeuVault feedback", "NeuVault feature request", "NeuVault roadmap", "NeuVault bug report"],
 });
 
 function jsonLdScript(data: Record<string, unknown>) {

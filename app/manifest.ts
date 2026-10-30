@@ -1,11 +1,11 @@
 import type { MetadataRoute } from "next";
+import { DEFAULT_DESCRIPTION } from "@/lib/seo";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "NeuVault",
     short_name: "NeuVault",
-    description:
-      "Private document intelligence for automatic intake, connected records, reminders, notes and secure local-first storage.",
+    description: DEFAULT_DESCRIPTION,
     start_url: "/",
     display: "standalone",
     background_color: "#f7fbff",

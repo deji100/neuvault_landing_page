@@ -475,15 +475,6 @@ export async function generateMetadata({
     title: resolved.page.metaTitle,
     description: resolved.page.metaDescription ?? resolved.page.description,
     path: `/${resolved.canonicalSlug}`,
-    keywords: [
-      resolved.page.primaryKeyword,
-      ...resolved.page.secondaryKeywords,
-      ...resolved.page.keywords,
-      "document memory",
-      "private AI document vault",
-      "local-first document app",
-      "NeuVault",
-    ],
   });
 }
 

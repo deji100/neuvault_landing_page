@@ -14,14 +14,6 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Contact NeuVault for support, feedback, privacy questions, bug reports, backup and restore help, or questions about your private document vault.",
   path: "/contact",
-  keywords: [
-    "contact NeuVault",
-    "NeuVault support",
-    "document vault support",
-    "private document vault help",
-    "NeuVault privacy support",
-    "NeuVault backup support",
-  ],
 });
 
 function jsonLdScript(data: Record<string, unknown>) {

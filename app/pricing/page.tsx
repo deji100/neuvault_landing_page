@@ -18,14 +18,6 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Start free with 500 credits. Paid plans from $4.99 a month add 2,000 to 8,000 AI credits monthly, and storage never uses credits. Compare every NeuVault plan.",
   path: "/pricing",
-  keywords: [
-    "NeuVault pricing",
-    "NeuVault subscription",
-    "document vault pricing",
-    "AI document assistant pricing",
-    "document organization app pricing",
-    "private document vault subscription",
-  ],
 });
 
 function jsonLdScript(data: Record<string, unknown>) {

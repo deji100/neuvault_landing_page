@@ -10,8 +10,6 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Learn how to delete your NeuVault account, what data is removed, what stays on your device, and how encrypted backups are handled.",
   path: "/account-deletion",
-  noindex: true,
-  keywords: ["neuvault account deletion", "delete neuvault account", "document vault account deletion"],
 });
 
 export default function AccountDeletionPage() {

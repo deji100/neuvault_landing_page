@@ -446,14 +446,6 @@ export function buildGuideMetadata(guide: GuidePage) {
     title: guide.metaTitle,
     description: guide.description,
     path: `/guides/${guide.slug}`,
-    keywords: [
-      guide.primaryKeyword,
-      ...guide.secondaryKeywords,
-      "document memory",
-      "private document vault",
-      "local-first document app",
-      "NeuVault",
-    ],
   });
 }
 

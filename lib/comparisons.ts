@@ -42,8 +42,6 @@ export type ComparisonPage = {
   tone: string;
   metaTitle: string;
   description: string;
-  /** Search phrases this page should also answer, beyond the generic "<app> alternative" set. */
-  extraKeywords?: string[];
   headline: string;
   subheadline: string;
   intro: string;
@@ -834,7 +832,6 @@ export const comparisonPages: ComparisonPage[] = [
       "Octarine is a rising alternative for people who like Obsidian's local Markdown files but not its plugins. NeuVault shares the local-first belief and the built-in AI, then goes further into files, scans, recordings and dates. Here's an honest comparison to help you choose.",
     verdict:
       "Octarine is a fast, private Markdown notebook for writers who want built-in essentials and their own AI key. NeuVault is a vault for everything you save, organized for you, with AI included.",
-    extraKeywords: ["Obsidian alternative", "local-first Markdown notes app", "notes app with AI built in"],
     glance: [
       {
         label: "Best for",
@@ -1347,7 +1344,6 @@ export const comparisonPages: ComparisonPage[] = [
       "UpNote has become a favorite for people leaving Evernote: it's fast, tidy, works on every platform and costs very little. NeuVault takes a different approach to where your notes live and how much organizing you do yourself. Here's an honest comparison to help you choose.",
     verdict:
       "UpNote is a polished, low-cost notebook that syncs through its cloud. NeuVault keeps notes, files and scans on your device, organizes them for you, and finds the dates inside.",
-    extraKeywords: ["UpNote vs Evernote alternative", "Evernote alternative", "notes app lifetime license alternative"],
     glance: [
       {
         label: "Best for",
@@ -1834,7 +1830,6 @@ export const comparisonPages: ComparisonPage[] = [
     metaTitle: "NeuVault vs Otter: AI Meeting Notes Without a Bot",
     description:
       "Otter sends a notetaker into your calls and keeps transcripts in its cloud. NeuVault records on your device, nothing joins the call, and each meeting connects to your files and deadlines.",
-    extraKeywords: ["AI meeting notes without a bot", "meeting notes without a recording bot", "Otter alternative without a bot", "AI notetaker that doesn't join the call"],
     headline: "NeuVault vs Otter",
     subheadline:
       "Otter sends a notetaker into your meetings. NeuVault records on your device, so nothing joins the call, and turns each meeting into a note connected to the files, links and deadlines around it.",
@@ -2067,7 +2062,6 @@ export const comparisonPages: ComparisonPage[] = [
     metaTitle: "NeuVault vs Granola: Bot-Free Meeting Notes That Keep the Recording",
     description:
       "Both take meeting notes without a bot. Granola deletes the audio and keeps notes in its cloud; NeuVault keeps the recording with the note, on your device, connected to your files and deadlines.",
-    extraKeywords: ["AI meeting notes without a bot", "bot-free meeting notes that keep the recording", "Granola alternative that keeps the audio", "meeting notes on device"],
     headline: "NeuVault vs Granola",
     subheadline:
       "Granola is a great bot-free notepad for back-to-back meetings. NeuVault is bot-free too, keeps the recording with the note, connects each meeting to everything around it, and keeps it on your device.",
@@ -2307,7 +2301,6 @@ export const comparisonPages: ComparisonPage[] = [
     metaTitle: "NeuVault vs Fathom: AI Meeting Notes Without a Bot",
     description:
       "Fathom's bot joins your calls by default and stores video in its cloud. NeuVault records on your device, nothing joins the call, and each meeting connects to your files, links and deadlines.",
-    extraKeywords: ["AI meeting notes without a bot", "meeting notes without a recording bot", "Fathom alternative without a bot", "AI notetaker that doesn't join the call"],
     headline: "NeuVault vs Fathom",
     subheadline:
       "Fathom is a polished AI notetaker that joins your video calls. NeuVault records on your device, so nothing joins the call, and turns every meeting into a note connected to the rest of your work.",
@@ -2577,16 +2570,8 @@ export function buildComparisonMetadata(page: ComparisonPage) {
     title: page.metaTitle,
     description: page.description,
     path: comparisonPath(page),
-    keywords: [
-      `NeuVault vs ${page.competitor}`,
-      `${page.competitor} alternative`,
-      `${page.competitor} vs NeuVault`,
-      `private ${page.competitor} alternative`,
-      `${page.competitor} alternative for personal notes`,
-      ...(page.extraKeywords ?? []),
-      "self-organizing notes app",
-      "local-first notes app",
-    ],
+    // Every comparison title already starts with "NeuVault vs", so the site-name suffix would repeat it.
+    absoluteTitle: true,
   });
 }
 

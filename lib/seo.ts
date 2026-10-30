@@ -32,46 +32,6 @@ export const DEFAULT_DESCRIPTION =
 
 export const DEFAULT_OG_IMAGE_PATH = "/opengraph-image";
 
-const BASE_KEYWORDS = [
-  "scan and organize documents",
-  "document expiration reminder app",
-  "document reminder software",
-  "organize scanned documents",
-  "digital personal document vault",
-  "document storage app",
-  "document retrieval software",
-  "important documents app",
-  "scan and store documents",
-  "passport expiration reminder",
-  "visa expiration tracker",
-  "secure document storage",
-  "private AI document vault",
-  "private AI document search",
-  "AI PDF summarizer",
-  "private document vault",
-  "AI document organizer",
-  "AI file organizer",
-  "document organization app",
-  "search PDFs with AI",
-  "document reminder app",
-  "find deadlines in documents",
-  "document retrieval app",
-  "secure document backup",
-  "encrypted document backup",
-  "local-first document app",
-  "local-first document vault",
-  "AI document assistant",
-  "voice note transcription",
-  "notes export",
-  "organize important documents",
-  "find documents faster",
-  "document memory app",
-  "private document assistant",
-  "organize scans and notes",
-  "cross-device document backup",
-  "Windows document vault app",
-];
-
 export type SeoFaq = {
   question: string;
   answer: string;
@@ -94,7 +54,6 @@ export type SolutionPage = {
   relatedSlugs: string[];
   benefits: { title: string; description: string }[];
   appProof: string[];
-  keywords: string[];
   faqs: SeoFaq[];
 };
 
@@ -147,13 +106,6 @@ export const solutionPages: SolutionPage[] = [
       "NeuVault organizes intake items into groups and subgroups inside the vault.",
       "NeuVault supports documents, scans, notes, voice notes, and screenshots.",
       "Vault Map lets users group related records around real-life context.",
-    ],
-    keywords: [
-      "document organization app",
-      "organize important documents",
-      "AI document organizer",
-      "private document organizer",
-      "digital paperwork organization",
     ],
     faqs: [
       {
@@ -217,13 +169,6 @@ export const solutionPages: SolutionPage[] = [
       "NeuVault includes reminders and resurfacing for important records.",
       "Users can set document-level reminders and backup reminders.",
       "Reminders point back to the record they came from.",
-    ],
-    keywords: [
-      "document reminder app",
-      "document attention app",
-      "reminders for important documents",
-      "renewal date tracker",
-      "track document expiration dates",
     ],
     faqs: [
       {
@@ -297,13 +242,6 @@ export const solutionPages: SolutionPage[] = [
       "NeuVault uses grouped organization, summaries, tags, and linked context to improve retrieval.",
       "Vault Map helps users recover related records from one place.",
     ],
-    keywords: [
-      "document retrieval app",
-      "find important documents faster",
-      "AI document search",
-      "searchable document vault",
-      "private document search",
-    ],
     faqs: [
       {
         question: "Is NeuVault only keyword search?",
@@ -365,13 +303,6 @@ export const solutionPages: SolutionPage[] = [
       "NeuVault supports encrypted backup and restore flows.",
       "The backup model is user-controlled rather than forced permanent cloud storage.",
       "NeuVault is built for mobile and desktop compatibility.",
-    ],
-    keywords: [
-      "secure document backup",
-      "private document backup",
-      "cross-device document backup",
-      "back up important documents",
-      "restore important documents",
     ],
     faqs: [
       {
@@ -435,13 +366,6 @@ export const solutionPages: SolutionPage[] = [
       "NeuVault supports note export workflows.",
       "Nova responses can become notes inside the product loop.",
     ],
-    keywords: [
-      "notes export",
-      "export notes to pdf",
-      "export notes to word",
-      "document notes app",
-      "portable notes and records",
-    ],
     faqs: [
       {
         question: "Can NeuVault export notes to more than one format?",
@@ -503,13 +427,6 @@ export const solutionPages: SolutionPage[] = [
       "NeuVault supports voice note capture and transcription.",
       "Voice notes are part of the same vault workflow as documents and notes.",
       "Transcribed voice notes can become searchable records.",
-    ],
-    keywords: [
-      "voice note transcription",
-      "transcribe voice notes",
-      "organize voice notes",
-      "voice notes and documents app",
-      "voice note to structured note",
     ],
     faqs: [
       {
@@ -574,13 +491,6 @@ export const solutionPages: SolutionPage[] = [
       "Scanned items can be grouped, tagged, summarized, and linked like other vault records.",
       "NeuVault is designed for private document storage and retrieval.",
     ],
-    keywords: [
-      "scan and organize documents",
-      "organize scanned documents",
-      "scan and store documents",
-      "document scanning and organizing software",
-      "store scanned documents securely",
-    ],
     faqs: [
       {
         question: "Can NeuVault organize scans after capture?",
@@ -614,7 +524,6 @@ export const solutionPages: SolutionPage[] = [
       { title: "Back up your vault securely", description: "Create encrypted backups under your control and restore your organized vault on another supported device." },
     ],
     appProof: ["Local-first storage for private documents.", "One searchable vault for documents, scans, notes, and voice notes.", "Encrypted backup and restore under your control."],
-    keywords: ["digital personal document vault", "important documents app", "secure document storage", "document backup"],
     faqs: [
       { question: "What can I keep in a personal document vault?", answer: "NeuVault supports IDs, certificates, receipts, contracts, scans, PDFs, notes, screenshots, and voice notes in the same private vault." },
       { question: "Is the NeuVault document vault private?", answer: "NeuVault is designed around local-first storage and user-controlled encrypted backups rather than permanent cloud-drive storage." },
@@ -640,7 +549,6 @@ export const solutionPages: SolutionPage[] = [
       { title: "Find travel records quickly", description: "Use summaries, tags, dates, and linked records to retrieve the right travel document under time pressure." },
     ],
     appProof: ["Expiration, renewal, and follow-up reminders.", "Reminders connected to source records.", "Searchable scanned identity and travel documents."],
-    keywords: ["passport expiration reminder", "visa expiration tracker", "passport expiration date", "travel document reminder"],
     faqs: [
       { question: "Can NeuVault remind me before a passport expires?", answer: "Yes. NeuVault is designed to surface expiration and renewal dates while keeping the reminder attached to the saved passport record." },
       { question: "Can I track visas and IDs too?", answer: "Yes. You can keep visas, IDs, and other time-sensitive documents in the same vault and review their important dates." },
@@ -679,27 +587,27 @@ type BuildMetadataInput = {
   title?: string;
   description?: string;
   path?: string;
-  keywords?: string[];
   noindex?: boolean;
   image?: string;
+  /** Use the title as-is instead of appending the site name (for titles that already start with it). */
+  absoluteTitle?: boolean;
 };
 
 export function buildMetadata({
   title = DEFAULT_TITLE,
   description = DEFAULT_DESCRIPTION,
   path = "/",
-  keywords = [],
   noindex = false,
   image = DEFAULT_OG_IMAGE_PATH,
+  absoluteTitle = false,
 }: BuildMetadataInput = {}): Metadata {
   const canonicalPath = path.startsWith("/") ? path : `/${path}`;
   const canonicalUrl = absoluteUrl(canonicalPath);
 
   return {
     metadataBase: new URL(SITE_URL),
-    title,
+    title: absoluteTitle ? { absolute: title } : title,
     description,
-    keywords: Array.from(new Set([...BASE_KEYWORDS, ...keywords])),
     alternates: {
       canonical: canonicalPath,
     },
@@ -755,6 +663,7 @@ export function buildOrganizationJsonLd() {
     "@id": `${SITE_URL}/#organization`,
     name: SITE_NAME,
     url: SITE_URL,
+    logo: absoluteUrl("/logo.png"),
     email: SUPPORT_EMAIL,
     sameAs: [
       IOS_APP_STORE_URL,
