@@ -4,6 +4,7 @@ import { CalendarClock, FileScan, FolderTree, Mic, Search, ShieldCheck, BookOpen
 
 /** One icon and tint per guide, so a guide looks the same on the index and on its own page. */
 const guideIcons: Record<string, { icon: LucideIcon; tone: string }> = {
+  "plan-tasks-from-notes-and-documents": { icon: CalendarClock, tone: "#007aff" },
   "how-to-scan-and-organize-documents": { icon: FileScan, tone: "#34c759" },
   "organize-important-documents-digitally": { icon: FolderTree, tone: "#007aff" },
   "track-passport-visa-and-id-expiry-dates": { icon: CalendarClock, tone: "#ff9500" },

@@ -158,6 +158,29 @@ const mapSlides: Slide[] = [
   },
 ];
 
+const plannerSlides: Slide[] = [
+  {
+    src: "/desktop-images/planner-agenda.png",
+    title: "See what needs you next.",
+    copy: "Agenda brings tasks and events into one list. Keep supporting notes and documents attached to the work.",
+  },
+  {
+    src: "/desktop-images/planner-weekly.png",
+    title: "Make room for your week.",
+    copy: "See your schedule in Week view and move tasks to another day as your plans change.",
+  },
+  {
+    src: "/desktop-images/planner-monthly.png",
+    title: "Look ahead without losing the details.",
+    copy: "Month view keeps upcoming tasks and events in sight, with dates, priorities, and recurring tasks.",
+  },
+  {
+    src: "/desktop-images/planner-board.png",
+    title: "Move work from To do to Done.",
+    copy: "Name your Board columns and move tasks between them as work progresses.",
+  },
+];
+
 const extras: { title: string; copy: string; icon: LucideIcon }[] = [
   { title: "Media Review", copy: "check scans, images and audio before anything is processed", icon: ScanSearch },
   { title: "Queue", copy: "watch files process while you keep working", icon: ListChecks },
@@ -173,7 +196,7 @@ export default function Features() {
     <div className={styles.features}>
       {/* 1 */}
       <article className={styles.pillar} id="yours">
-        <PillarHead n="01" title="Yours, everywhere." answers={["Your data isn't really yours"]} />
+        <PillarHead n="01" title="Local-first. Yours to keep." answers={["Your data isn't really yours"]} />
         <div className={styles.split}>
           <div className={styles.copy}>
             <div className={styles.block}>
@@ -188,11 +211,12 @@ export default function Features() {
             </div>
             <div className={styles.block}>
               <h3>
-                <WifiOff size={18} aria-hidden="true" /> Works offline
+                <WifiOff size={18} aria-hidden="true" /> Local-first, with offline access
               </h3>
               <p>
-                Your vault lives on your device, so it opens without internet. NeuVault AI needs a
-                connection.
+                Your files and notes stay on your device. Browse saved material, edit notes, and manage
+                Planner tasks offline. AI processing and Planner sync need an internet connection.
+                Relevant content is sent for processing when you use AI.
               </p>
               <OfflineSplit />
             </div>
@@ -283,8 +307,28 @@ export default function Features() {
       </article>
 
       {/* 4 */}
+      <article className={styles.pillar} id="planner">
+        <PillarHead n="04" title="Turn what you know into what you do." />
+        <div className={styles.mapCopy}>
+          <div className={styles.block}>
+            <h3>NeuVault Planner</h3>
+            <p>
+              Plan action items from a note, a document, a Vault Map, or a Nova answer.
+              Keep the source material attached, with dates, priorities, reminders, and recurring tasks.
+            </p>
+          </div>
+          <p className={styles.mapSecond}>
+            Ask Nova what is due or have it help plan your day. Review proposed changes before confirming.
+            Your local-first Planner works offline; tasks, board columns, and reminder settings sync
+            through your account when connected. Attached files transfer separately.
+          </p>
+        </div>
+        <DesktopCarousel slides={plannerSlides} label="NeuVault Planner" controlsLabel="Planner" />
+      </article>
+
+      {/* 5 */}
       <article className={styles.pillar} id="map">
-        <PillarHead n="04" title="Connect the dots." />
+        <PillarHead n="05" title="Connect the dots." />
         <div className={styles.mapCopy}>
           <div className={styles.block}>
             <h3>NeuVault Vault Map</h3>
@@ -300,9 +344,9 @@ export default function Features() {
         <VaultMapShare />
       </article>
 
-      {/* 5 */}
+      {/* 6 */}
       <article className={styles.pillar} id="more">
-        <PillarHead n="05" title="And everything in between" />
+        <PillarHead n="06" title="And everything in between" />
         <ul className={styles.extras}>
           {extras.map(({ title, copy, icon: Icon }) => (
             <li key={title}>

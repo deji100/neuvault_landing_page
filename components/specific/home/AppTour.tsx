@@ -18,6 +18,11 @@ export type Slide = {
 /** Titles reuse the app's own welcome-carousel wording where one fits. */
 const desktopSlides: Slide[] = [
   {
+    src: "/desktop-images/planner-agenda.png",
+    title: "Your next steps, connected to your notes.",
+    copy: "Plan tasks and events in Agenda, Week, Month, or Board view. Your local-first Planner saves on your device and syncs when connected.",
+  },
+  {
     src: "/desktop-images/reminder.png",
     title: "Keep important dates in sight.",
     copy: "Every date counts down live, overdue first, so nothing slips past.",
@@ -60,6 +65,30 @@ const desktopSlides: Slide[] = [
 ];
 
 const mobileSlides: Slide[] = [
+  {
+    src: "/mobile-images/plan-agenda.png",
+    title: "See what needs you next.",
+    copy: "Keep tasks, events, and their supporting notes together in Agenda view.",
+    size: [1206, 2622],
+  },
+  {
+    src: "/mobile-images/plan-weekly.png",
+    title: "Plan your week on the go.",
+    copy: "See upcoming work in Week view and open tasks to review their details.",
+    size: [1206, 2622],
+  },
+  {
+    src: "/mobile-images/plan-monthly.png",
+    title: "Keep the month in sight.",
+    copy: "Look ahead at tasks and events without leaving your local-first workspace.",
+    size: [1206, 2622],
+  },
+  {
+    src: "/mobile-images/plan-board.png",
+    title: "Keep work moving.",
+    copy: "Organize tasks in Board columns. Edit offline and sync changes when connected.",
+    size: [1206, 2622],
+  },
   {
     src: "/mobile-images/attention-m.png",
     title: "What needs you, first.",

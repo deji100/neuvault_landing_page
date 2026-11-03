@@ -69,7 +69,7 @@ export const metadata: Metadata = {
         url: DEFAULT_OG_IMAGE_PATH,
         width: 1200,
         height: 630,
-        alt: "NeuVault private AI document vault",
+        alt: "NeuVault local-first notes, files, and Planner",
       },
     ],
     locale: "en_US",

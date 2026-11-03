@@ -20,6 +20,7 @@ export type GuidePage = {
   slug: string;
   title: string;
   metaTitle: string;
+  metaDescription?: string;
   description: string;
   intro: string;
   primaryKeyword: string;
@@ -39,9 +40,92 @@ const DEFAULT_GUIDE_DATE = "2026-05-02";
 
 const baseGuides: GuidePage[] = [
   {
+    slug: "plan-tasks-from-notes-and-documents",
+    title: "How to plan tasks from notes and documents in NeuVault",
+    metaTitle: "Local-First Planner: Turn Notes and Documents Into Tasks",
+    metaDescription: "Plan tasks from notes, documents, and reminders in NeuVault’s local-first Planner. Work offline and sync task changes when connected.",
+    description: "Turn notes, documents, and reminders into tasks with their sources attached. Use NeuVault's local-first Planner offline and sync when connected.",
+    intro: "A meeting note, a renewal letter, and a project brief all contain work to do. NeuVault Planner keeps that work connected to its source, so you can see what is next and open the information behind it. This guide walks through capturing tasks, choosing a view, and working offline.",
+    primaryKeyword: "plan tasks from notes",
+    secondaryKeywords: ["local-first planner", "tasks with documents attached", "meeting action items", "offline task planning"],
+    parentSolutionSlug: "document-reminder",
+    relatedGuideSlugs: ["turn-voice-notes-into-searchable-records", "organize-important-documents-digitally", "track-passport-visa-and-id-expiry-dates"],
+    keyTakeaways: [
+      "Keep each task attached to the note or document that explains it.",
+      "Use Agenda, Week, Month, or Board to view the same plan in different ways.",
+      "Create and edit tasks locally while offline. Sync and Nova need internet.",
+    ],
+    sections: [
+      {
+        title: "Start with the information behind the task",
+        description: "Review the note, document, or recording before planning the work. Check that an action item says what you actually intend to do.",
+        inApp: [
+          "Open a note with action items and choose Plan action items from this note. The button shows how many action items are available.",
+          "You can also plan from a document, a Vault Map card or group, or a Nova answer. Keep the supporting material attached to the task.",
+          "Review the proposed tasks and their dates before saving them to Planner.",
+        ],
+      },
+      {
+        title: "Bring reminders into your plan",
+        description: "A reminder identifies something that needs attention. A Planner task records the work you will do about it, such as preparing a renewal application before the expiry date.",
+        inApp: [
+          "Open Planner and choose Plan from reminders to review document dates and reminders you have set.",
+          "Plan an item to put it on your schedule with its document attached.",
+          "Choose a realistic action date. For a renewal, allow time to gather forms and submit the application.",
+        ],
+      },
+      {
+        title: "Add dates, priorities, and repeats",
+        description: "Give each task enough detail to make the next action clear. Use a repeat for work that returns on a regular schedule.",
+        inApp: [
+          "For a new task, type a short instruction such as Pay rent Friday. NeuVault reads the date on your device without using AI credits.",
+          "Open the item to review its date, priority, notes, and supporting files. Set a repeat when needed.",
+          "Mark a repeating item done when you finish it. NeuVault keeps the completed item and creates its next occurrence.",
+        ],
+      },
+      {
+        title: "Choose the view that helps you work",
+        description: "The four views show the same tasks and events. Changing views does not create a separate plan.",
+        inApp: [
+          "Use Agenda for work in time order, including overdue and upcoming items.",
+          "Use Week or Month to see your schedule. On desktop, drag an item to another day to move it.",
+          "Use Board to organize work in columns you name, such as To do and Done. Move cards as work progresses.",
+        ],
+      },
+      {
+        title: "Ask Nova for help, then review the changes",
+        description: "Nova can answer questions about your plan or propose changes. You decide which changes to apply.",
+        inApp: [
+          "Open Nova in Planner and ask what is due today, what is overdue, or what is coming this week.",
+          "Ask it to add or update tasks, move work to a Board column, or find supporting documents to attach.",
+          "Review the proposal before confirming. Nova needs internet and uses credits.",
+        ],
+      },
+      {
+        title: "Understand what local-first means for Planner",
+        description: "Your tasks save on your device, so you can keep working without a connection. Online sync brings Planner changes to your other signed-in devices.",
+        details: [
+          "Create, view, edit, and complete tasks offline. Planner sync sends task information, including titles, notes, dates, board columns, and reminder settings, through your account when connected.",
+          "Attached files do not upload through Planner sync. Bring them to another device using an encrypted backup or a supported bundle. Nova and server-delivered reminders need internet.",
+        ],
+      },
+    ],
+    faqs: [
+      { question: "Is NeuVault Planner local-first?", answer: "Yes. Tasks save on your device and can be viewed, created, edited, and completed offline. Planner information syncs through your account when connected; attached files transfer separately." },
+      { question: "Does adding a task use AI credits?", answer: "Manually adding and editing tasks does not use AI credits. Reading a date from a quick-add instruction happens on your device. Asking Nova to help uses credits and requires internet." },
+      { question: "Do attached documents sync with Planner tasks?", answer: "The task and its document references sync, but the files themselves do not. Use encrypted backup and restore or a supported bundle to bring the files to another device." },
+    ],
+    checklist: ["Review the action before creating a task", "Keep the source note or document attached", "Check dates, priorities, and repeats", "Choose a view for today's work", "Review Nova proposals before confirming", "Bring supporting files to other devices separately"],
+    ctaLabel: "Explore document reminders",
+    datePublished: "2026-11-02",
+    dateModified: "2026-11-02",
+  },
+
+  {
     slug: "how-to-scan-and-organize-documents",
     title: "How to scan and organize documents without losing them later",
-    metaTitle: "How to Scan and Organize Documents Without Losing Them Later",
+    metaTitle: "Scan and Organize Documents in a Local-First Vault",
+    metaDescription: "Learn to scan, group, and find documents in NeuVault’s local-first vault, with optional online AI organization, reminders, and encrypted backups.",
     description:
       "Learn how to scan and organize documents so paperwork becomes searchable, grouped, remembered, and ready for reminders or private backup later.",
     intro:
@@ -56,6 +140,7 @@ const baseGuides: GuidePage[] = [
     ],
     parentSolutionSlug: "scan-organization",
     relatedGuideSlugs: [
+      "plan-tasks-from-notes-and-documents",
       "organize-important-documents-digitally",
       "search-old-documents-without-folder-chaos",
     ],
@@ -103,7 +188,8 @@ const baseGuides: GuidePage[] = [
   {
     slug: "organize-important-documents-digitally",
     title: "How to organize important documents digitally at home or work",
-    metaTitle: "How to Organize Important Documents Digitally",
+    metaTitle: "Organize Important Documents With a Local-First Vault",
+    metaDescription: "Organize files and notes in a local-first workspace. Keep related records together, plan follow-ups, and find important documents when you need them.",
     description:
       "A practical guide to organizing important documents digitally without relying on endless folder cleanup, perfect filenames, or memory-heavy systems.",
     intro:
@@ -118,6 +204,7 @@ const baseGuides: GuidePage[] = [
     ],
     parentSolutionSlug: "document-organization",
     relatedGuideSlugs: [
+      "plan-tasks-from-notes-and-documents",
       "how-to-scan-and-organize-documents",
       "track-passport-visa-and-id-expiry-dates",
     ],
@@ -165,7 +252,8 @@ const baseGuides: GuidePage[] = [
   {
     slug: "track-passport-visa-and-id-expiry-dates",
     title: "How to track passport, visa, and ID expiration dates without missing them",
-    metaTitle: "How to Track Passport, Visa, and ID Expiration Dates",
+    metaTitle: "Track ID and Passport Dates With a Local-First Vault",
+    metaDescription: "Keep travel records in NeuVault’s local-first vault. Track passport, visa, and ID dates and plan renewal tasks with supporting documents attached.",
     description:
       "Use a document-based reminder workflow to track passport, visa, ID, permit, and renewal dates so the alert stays attached to the paperwork you need.",
     intro:
@@ -180,6 +268,7 @@ const baseGuides: GuidePage[] = [
     ],
     parentSolutionSlug: "document-reminder",
     relatedGuideSlugs: [
+      "plan-tasks-from-notes-and-documents",
       "organize-important-documents-digitally",
       "back-up-important-documents-securely",
     ],
@@ -227,7 +316,8 @@ const baseGuides: GuidePage[] = [
   {
     slug: "search-old-documents-without-folder-chaos",
     title: "How to search old documents without digging through folder chaos",
-    metaTitle: "How to Search Old Documents Without Folder Chaos",
+    metaTitle: "Find Old Documents in Your Local-First Vault",
+    metaDescription: "Find saved documents in NeuVault’s local-first vault using titles, tags, summaries, and related records. Use online Nova when you need AI assistance.",
     description:
       "A practical workflow for finding old documents faster using summaries, tags, dates, OCR, and related context instead of relying only on exact filenames.",
     intro:
@@ -289,7 +379,8 @@ const baseGuides: GuidePage[] = [
   {
     slug: "back-up-important-documents-securely",
     title: "How to back up important documents securely without losing control",
-    metaTitle: "How to Back Up Important Documents Securely",
+    metaTitle: "Back Up Your Local-First Vault Securely",
+    metaDescription: "Back up NeuVault’s local-first vault with encrypted bundles. Choose where to store your backup and restore files using your Recovery Key.",
     description:
       "Learn how to back up important documents securely using encrypted export bundles and user-controlled storage instead of depending on one cloud provider by default.",
     intro:
@@ -351,7 +442,8 @@ const baseGuides: GuidePage[] = [
   {
     slug: "turn-voice-notes-into-searchable-records",
     title: "How to turn voice notes into searchable records you can actually use",
-    metaTitle: "How to Turn Voice Notes Into Searchable Records",
+    metaTitle: "Voice Notes to Searchable Records in a Local-First Vault",
+    metaDescription: "Use online transcription to turn recordings into searchable notes in NeuVault’s local-first vault, then connect documents and plan action items.",
     description:
       "Learn how to capture voice notes quickly, transcribe them into structured text, and keep them searchable alongside your documents, notes, reminders, and vault context.",
     intro:
@@ -366,6 +458,7 @@ const baseGuides: GuidePage[] = [
     ],
     parentSolutionSlug: "voice-note-transcription",
     relatedGuideSlugs: [
+      "plan-tasks-from-notes-and-documents",
       "search-old-documents-without-folder-chaos",
       "organize-important-documents-digitally",
     ],
@@ -444,7 +537,7 @@ export function getGuidesForSolution(slug: string) {
 export function buildGuideMetadata(guide: GuidePage) {
   return buildMetadata({
     title: guide.metaTitle,
-    description: guide.description,
+    description: guide.metaDescription ?? guide.description,
     path: `/guides/${guide.slug}`,
   });
 }

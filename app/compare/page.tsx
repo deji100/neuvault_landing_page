@@ -7,9 +7,9 @@ import { comparisonPages, comparisonPath } from "@/lib/comparisons";
 import styles from "@/components/specific/compare/Compare.module.css";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Compare NeuVault With Notion, Evernote, Obsidian and More",
+  title: "Compare NeuVault: Local-First Notes, Files & Planner",
   description:
-    "Honest, side-by-side comparisons of NeuVault with the apps you may already use. Where each one shines, where NeuVault is different, and which fits you.",
+    "Compare NeuVault with other apps for notes and information. Explore its local-first vault, connected Planner, transcription, and document workflows.",
   path: "/compare",
 });
 
@@ -42,7 +42,7 @@ export default function ComparePage() {
           <h1>NeuVault, next to the apps you might already use.</h1>
           <p className={styles.lede}>
             One honest page per app: where it shines, where NeuVault is different, what each costs, and which one fits
-            how you work. Pick an app to see the two side by side.
+            how you work. See how NeuVault connects notes, files, and Planner tasks in a local-first workspace.
           </p>
         </header>
 

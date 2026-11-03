@@ -370,6 +370,7 @@ export function VaultMapShare() {
 }
 
 const OFFLINE = [
+  { label: "Planner tasks and events", Icon: StickyNote },
   { label: "Notes", Icon: StickyNote },
   { label: "Files and scans", Icon: FileText },
   { label: "Recordings", Icon: Mic },
@@ -378,6 +379,7 @@ const OFFLINE = [
   { label: "Backup", Icon: HardDrive },
 ];
 const ONLINE = [
+  { label: "Planner sync and server reminders", Icon: Globe },
   { label: "NeuVault AI: organize, transcribe, Nova", Icon: Sparkles },
   { label: "YouTube videos and web pages", Icon: Globe },
   { label: "Signing in", Icon: LogIn },

@@ -12,9 +12,9 @@ import { guideIcon, guideReadingMinutes } from "@/components/specific/guides/gui
 import styles from "@/components/specific/guides/Guides.module.css";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Help and Guides for Organizing Important Documents",
+  title: "NeuVault Guides: Local-First Notes, Documents & Planner",
   description:
-    "Practical guides to scanning, organizing, finding and backing up important documents, tracking expiration dates, and turning voice notes into searchable records.",
+    "Learn to capture and organize information, plan tasks from notes and documents, and work offline with NeuVault's local-first vault and Planner.",
   path: "/guides",
 });
 
@@ -47,10 +47,10 @@ export default function GuidesPage() {
 
         <header className={styles.hero}>
           <p className={styles.kicker}>Help &amp; guides</p>
-          <h1>Better ways to stop losing, forgetting, and digging for important documents.</h1>
+          <h1>Capture information. Keep it connected. Plan your next step.</h1>
           <p className={styles.lede}>
-            Practical guides for the records life asks for later: scans, receipts, forms, IDs, certificates, school
-            files, contracts, notes, voice notes, reminders, and private backups.
+            Practical guides to your local-first workspace: notes, documents, scans, recordings,
+            Planner tasks, reminders, and encrypted backups.
           </p>
 
           <ul className={styles.topics} aria-label="Guide topics">

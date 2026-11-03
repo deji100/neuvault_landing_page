@@ -41,6 +41,7 @@ export type ComparisonPage = {
   /** Accent for the competitor's side of the page. */
   tone: string;
   metaTitle: string;
+  metaDescription?: string;
   description: string;
   headline: string;
   subheadline: string;
@@ -82,7 +83,8 @@ export const comparisonPages: ComparisonPage[] = [
     competitor: "Notion",
     competitorSummary: "A flexible workspace you build yourself, in Notion's cloud.",
     tone: "#1d1d1f",
-    metaTitle: "NeuVault vs Notion: The Private, Self-Organizing Notes App",
+    metaTitle: "NeuVault vs Notion: Local-First Notes & Plans",
+    metaDescription: "Compare NeuVault with Notion. Explore NeuVault’s local-first notes, files, and Planner, with offline editing, task sync, and online AI assistance.",
     description:
       "Notion gives you building blocks. NeuVault organizes your notes for you, finds the dates inside them, and keeps everything on your device.",
     headline: "NeuVault vs Notion",
@@ -328,7 +330,8 @@ export const comparisonPages: ComparisonPage[] = [
     competitor: "HyNote",
     competitorSummary: "Turns recordings and files into summaries, synced through HyNote's cloud.",
     tone: "#1d1d1f",
-    metaTitle: "NeuVault vs HyNote: Connected Notes vs AI Summaries",
+    metaTitle: "NeuVault vs HyNote: Local-First Notes & Plans",
+    metaDescription: "Compare NeuVault with HyNote. Explore NeuVault’s local-first notes, files, and Planner, with offline editing, task sync, and online AI assistance.",
     description:
       "HyNote turns recordings and files into summaries. NeuVault connects your notes to everything around them, finds the dates inside, and keeps it on your device.",
     headline: "NeuVault vs HyNote",
@@ -572,7 +575,8 @@ export const comparisonPages: ComparisonPage[] = [
     competitor: "Obsidian",
     competitorSummary: "Local Markdown notes with a system you build yourself.",
     tone: "#1d1d1f",
-    metaTitle: "NeuVault vs Obsidian: Local-First Notes, With AI Built In",
+    metaTitle: "NeuVault vs Obsidian: Local-First Notes & Plans",
+    metaDescription: "Compare NeuVault with Obsidian. Explore NeuVault’s local-first notes, files, and Planner, with offline editing, task sync, and online AI assistance.",
     description:
       "Both keep your notes on your device. Obsidian lets you build your own system; NeuVault organizes it for you and finds the dates inside.",
     headline: "NeuVault vs Obsidian",
@@ -822,7 +826,8 @@ export const comparisonPages: ComparisonPage[] = [
     competitor: "Octarine",
     competitorSummary: "A fast, local-first Markdown notebook with bring-your-own-key AI and a one-time price.",
     tone: "#1d1d1f",
-    metaTitle: "NeuVault vs Octarine: Local-First Notes, Two Approaches to AI",
+    metaTitle: "NeuVault vs Octarine: Local-First Notes & Plans",
+    metaDescription: "Compare NeuVault with Octarine. Explore NeuVault’s local-first notes, files, and Planner, with offline editing, task sync, and online AI assistance.",
     description:
       "Both keep your notes on your device. Octarine is a lean Markdown workspace where you bring your own AI key; NeuVault organizes files, scans and recordings for you, with AI included.",
     headline: "NeuVault vs Octarine",
@@ -1084,7 +1089,8 @@ export const comparisonPages: ComparisonPage[] = [
     competitor: "Evernote",
     competitorSummary: "A mature cloud notebook with strong search, and note limits below its top plan.",
     tone: "#1d1d1f",
-    metaTitle: "NeuVault vs Evernote: A Private Evernote Alternative",
+    metaTitle: "NeuVault vs Evernote: Local-First Notes & Plans",
+    metaDescription: "Compare NeuVault with Evernote. Explore NeuVault’s local-first notes, files, and Planner, with offline editing, task sync, and online AI assistance.",
     description:
       "Evernote now limits notes and devices on its cheaper plans. NeuVault keeps your notes on your device, organizes them with AI and finds the dates inside.",
     headline: "NeuVault vs Evernote",
@@ -1334,7 +1340,8 @@ export const comparisonPages: ComparisonPage[] = [
     competitor: "UpNote",
     competitorSummary: "A clean, inexpensive cloud notebook with a lifetime plan, popular with people leaving Evernote.",
     tone: "#1d1d1f",
-    metaTitle: "NeuVault vs UpNote: A Private Notes App With AI Built In",
+    metaTitle: "NeuVault vs UpNote: Local-First Notes & Plans",
+    metaDescription: "Compare NeuVault with UpNote. Explore NeuVault’s local-first notes, files, and Planner, with offline editing, task sync, and online AI assistance.",
     description:
       "UpNote is a tidy, inexpensive notebook synced through its cloud. NeuVault keeps notes, files and scans on your device, organizes them for you and finds the dates inside.",
     headline: "NeuVault vs UpNote",
@@ -1600,7 +1607,8 @@ export const comparisonPages: ComparisonPage[] = [
     competitor: "Apple Notes",
     competitorSummary: "The quick, free notepad built into iPhone, iPad and Mac.",
     tone: "#1d1d1f",
-    metaTitle: "NeuVault vs Apple Notes: Smarter Notes on Any Device",
+    metaTitle: "NeuVault vs Apple Notes: Local-First Notes & Plans",
+    metaDescription: "Compare NeuVault with Apple Notes. Explore NeuVault’s local-first notes, files, and Planner, with offline editing, task sync, and online AI assistance.",
     description:
       "Apple Notes is great for quick notes on Apple devices. NeuVault organizes your notes and files, finds the dates inside, and works on Windows and Android too.",
     headline: "NeuVault vs Apple Notes",
@@ -1827,7 +1835,8 @@ export const comparisonPages: ComparisonPage[] = [
     competitor: "Otter",
     competitorSummary: "A meeting transcription specialist with live transcripts and team features.",
     tone: "#1d1d1f",
-    metaTitle: "NeuVault vs Otter: AI Meeting Notes Without a Bot",
+    metaTitle: "NeuVault vs Otter: Local-First Notes & Plans",
+    metaDescription: "Compare NeuVault with Otter. Explore NeuVault’s local-first notes, files, and Planner, with offline editing, task sync, and online AI assistance.",
     description:
       "Otter sends a notetaker into your calls and keeps transcripts in its cloud. NeuVault records on your device, nothing joins the call, and each meeting connects to your files and deadlines.",
     headline: "NeuVault vs Otter",
@@ -2059,7 +2068,8 @@ export const comparisonPages: ComparisonPage[] = [
     competitor: "Granola",
     competitorSummary: "A bot-free AI notepad for people in back-to-back meetings.",
     tone: "#1d1d1f",
-    metaTitle: "NeuVault vs Granola: Bot-Free Meeting Notes That Keep the Recording",
+    metaTitle: "NeuVault vs Granola: Local-First Notes & Plans",
+    metaDescription: "Compare NeuVault with Granola. Explore NeuVault’s local-first notes, files, and Planner, with offline editing, task sync, and online AI assistance.",
     description:
       "Both take meeting notes without a bot. Granola deletes the audio and keeps notes in its cloud; NeuVault keeps the recording with the note, on your device, connected to your files and deadlines.",
     headline: "NeuVault vs Granola",
@@ -2298,7 +2308,8 @@ export const comparisonPages: ComparisonPage[] = [
     competitor: "Fathom",
     competitorSummary: "A polished AI notetaker for video calls, built for sales and customer teams.",
     tone: "#1d1d1f",
-    metaTitle: "NeuVault vs Fathom: AI Meeting Notes Without a Bot",
+    metaTitle: "NeuVault vs Fathom: Local-First Notes & Plans",
+    metaDescription: "Compare NeuVault with Fathom. Explore NeuVault’s local-first notes, files, and Planner, with offline editing, task sync, and online AI assistance.",
     description:
       "Fathom's bot joins your calls by default and stores video in its cloud. NeuVault records on your device, nothing joins the call, and each meeting connects to your files, links and deadlines.",
     headline: "NeuVault vs Fathom",
@@ -2528,9 +2539,14 @@ export const comparisonPages: ComparisonPage[] = [
  * How the features form one system. Shared by every comparison page so the
  * story stays identical wherever a reader lands.
  */
+export const plannerDifference: ComparePoint = {
+  title: "A local-first Planner connected to your sources",
+  body: "Turn action items from notes, documents, Vault Maps, and Nova answers into tasks with the source material attached. Set dates, priorities, reminders, and recurring tasks, then work in Agenda, Week, Month, or Board view. Create and edit tasks offline. When connected, Planner tasks, board columns, and reminder settings sync through your account; attached files transfer separately. Nova can help plan your day, with changes reviewed before you confirm.",
+};
+
 export const howItFitsTogether = {
   title: "How NeuVault fits together",
-  lede: "The features above are one system, not a list. Here is how a note travels through it.",
+  lede: "Capture information, connect it to its context, and plan the next step in one local-first workspace.",
   steps: [
     {
       title: "Write it or save it",
@@ -2549,8 +2565,12 @@ export const howItFitsTogether = {
       body: "Vault Map puts a project, course or trip on one canvas: those same notes, files, recordings and links, grouped and joined with labeled links. Open two cards side by side, ask Nova about the whole map, or export it as one package to share.",
     },
     {
-      title: "All of it stays yours",
-      body: "Everything lives on your device and works offline, including search. One encrypted backup, opened only by your Recovery Key, which only you hold, moves it to any of your devices, on Mac, Windows, iPhone or Android, including from iPhone to Android or Mac to Windows. Storage never uses credits.",
+      title: "The next step goes into Planner",
+      body: "Plan action items from a note, document, Vault Map, or Nova answer, or choose Plan from reminders. Keep the source attached and add a date, priority, or repeat. Review work in Agenda, Week, Month, or Board view. Ask Nova what is due or have it propose a plan, then confirm the changes you want.",
+    },
+    {
+      title: "Local-first, with clear online boundaries",
+      body: "Vault files and notes stay on your device. Read saved material, edit notes, search, and manage Planner tasks offline. When connected, Planner tasks, board columns, and reminder settings sync through your account; files transfer separately through backups or bundles. AI features need internet and credits, and send relevant content for processing. Encrypted backups are saved where you choose and opened with your Recovery Key. Storage never uses credits.",
     },
   ],
 };
@@ -2568,7 +2588,7 @@ export function comparisonPath(page: Pick<ComparisonPage, "slug">) {
 export function buildComparisonMetadata(page: ComparisonPage) {
   return buildMetadata({
     title: page.metaTitle,
-    description: page.description,
+    description: page.metaDescription ?? page.description,
     path: comparisonPath(page),
     // Every comparison title already starts with "NeuVault vs", so the site-name suffix would repeat it.
     absoluteTitle: true,

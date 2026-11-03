@@ -47,7 +47,7 @@ const reminders = [
 ];
 
 const trust: { label: string; icon: LucideIcon }[] = [
-  { label: "Your files aren't kept on our servers", icon: ServerOff },
+  { label: "Local-first: your vault lives on your device", icon: ServerOff },
   { label: "Works offline", icon: WifiOff },
   { label: "Mac, Windows, iPhone & Android", icon: Laptop },
 ];
@@ -80,13 +80,13 @@ export default function HomeHero() {
       <div className={styles.inner}>
         <div className={styles.text}>
           <h1>
-            Five apps to keep your life in order.{" "}
-            <span className={styles.accent}>NeuVault makes it one, and does the organizing.</span>
+            Your notes, plans, and information.{" "}
+            <span className={styles.accent}>All connected. Local-first.</span>
           </h1>
 
           <p className={styles.lede}>
-            Write a note and connect it to your documents, scans, recordings and links. Organize with AI and
-            NeuVault finds the dates inside.
+            Capture notes, files, recordings, and links in one local-first workspace. Organize with AI,
+            connect ideas, and turn action items into plans with the source material attached.
           </p>
 
           <div className={styles.actions}>

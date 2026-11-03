@@ -12,6 +12,7 @@ import {
   comparisonPath,
   getComparisonBySlug,
   howItFitsTogether,
+  plannerDifference,
   type CompareRow,
 } from "@/lib/comparisons";
 import DownloadLink from "@/components/specific/compare/DownloadLink";
@@ -180,7 +181,7 @@ export default async function ComparisonPage({ params }: ComparePageProps) {
               <h2 id="our-differences-title">Where NeuVault is different</h2>
               <p className={styles.sectionLede}>{page.ourDifferences.lede}</p>
               <ul className={styles.points}>
-                {page.ourDifferences.points.map((point) => (
+                {[...page.ourDifferences.points, plannerDifference].map((point) => (
                   <li key={point.title} className={styles.point}>
                     <h3>
                       <Sparkles size={16} aria-hidden="true" /> {point.title}
@@ -207,6 +208,11 @@ export default async function ComparisonPage({ params }: ComparePageProps) {
                   </li>
                 ))}
               </ol>
+              <p className={styles.closingNote}>
+                <Link href="/guides/plan-tasks-from-notes-and-documents">
+                  Learn how to plan tasks from notes and documents <ArrowRight size={14} aria-hidden="true" />
+                </Link>
+              </p>
             </section>
 
             {page.deepDives.map((section) => (

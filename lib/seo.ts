@@ -25,10 +25,10 @@ export const FIREFOX_EXTENSION_URL = "https://addons.mozilla.org/en-US/firefox/a
 export const WINDOWS_MICROSOFT_STORE_URL =
   "https://apps.microsoft.com/detail/9PNM0GXZPT8T";
 
-export const DEFAULT_TITLE = "NeuVault — Private Vault That Reminds You Before Dates Pass";
+export const DEFAULT_TITLE = "NeuVault — Local-First Notes, Files & Planner";
 
 export const DEFAULT_DESCRIPTION =
-  "Notes connected to your documents, scans, recordings and links, in one private app. Organize with AI and NeuVault reminds you before the dates inside pass. iPhone, Android, Mac and Windows.";
+  "A local-first workspace for notes, files, recordings, and plans. Transcribe audio, connect ideas, and plan tasks with supporting documents attached.";
 
 export const DEFAULT_OG_IMAGE_PATH = "/opengraph-image";
 
@@ -68,9 +68,9 @@ export const solutionPages: SolutionPage[] = [
       "private document organizer",
       "AI document organizer",
     ],
-    metaTitle: "Document Organization App for Important Files",
+    metaTitle: "Local-First Document Organization App",
     metaDescription:
-      "Organize scanned documents, PDFs, screenshots, notes and voice notes in one private app that sorts them for you and brings back the dates that matter.",
+      "Keep files, notes, and scans in NeuVault’s local-first vault. Group items yourself or use online AI organization, then connect sources to Planner tasks.",
     title: "Organize important documents, scans, notes, and voice records in one private vault",
     description:
       "NeuVault is a private document organization app for important files, scans, notes, screenshots, PDFs, and voice notes. Capture records, organize them automatically, keep useful context, and find them faster when life asks.",
@@ -131,9 +131,9 @@ export const solutionPages: SolutionPage[] = [
       "track document expiration dates",
       "document attention app",
     ],
-    metaTitle: "Document Expiration Reminder App and Expiration Tracker",
+    metaTitle: "Document Reminders With a Local-First Vault",
     metaDescription:
-      "Track expiration dates for passports, visas, IDs, licenses and insurance. NeuVault reads each date and reminds you a month ahead, two weeks ahead and on the day.",
+      "Keep records in a local-first vault, track document dates, and plan follow-ups with the source attached. AI date extraction and server alerts need internet.",
     title: "Get reminders before important documents expire.",
     description:
       "Get reminders before passports, IDs, licenses, contracts, visas, renewals, and important document dates expire. Track document deadlines with NeuVault.",
@@ -203,9 +203,9 @@ export const solutionPages: SolutionPage[] = [
       "AI document search",
       "private document search",
     ],
-    metaTitle: "Secure Document Storage and Retrieval App",
+    metaTitle: "Local-First Document Storage and Search",
     metaDescription:
-      "Store important documents privately and find them fast. Search titles, summaries, tags and notes, or ask Nova when you only remember the situation.",
+      "Store and search saved files in NeuVault’s local-first vault. Find records by title, tags, and notes, or ask Nova for help online.",
     title: "Store and retrieve documents faster.",
     description:
       "Store documents and retrieve them faster with search across titles, summaries, tags and notes, plus Nova for when you only remember the situation.",
@@ -265,9 +265,9 @@ export const solutionPages: SolutionPage[] = [
       "restore important documents",
       "cross-device document backup",
     ],
-    metaTitle: "Encrypted Document Backup and Restore",
+    metaTitle: "Encrypted Backup for Your Local-First Vault",
     metaDescription:
-      "Back up your whole vault into one encrypted file, sealed on your device with a Recovery Key only you hold. Save it where you choose; restore on any device.",
+      "Protect your local-first vault with encrypted backups saved where you choose. Restore files across supported devices with your Recovery Key.",
     title: "Back up important documents securely without giving up control",
     description:
       "NeuVault supports encrypted document backup and cross-device restore with user-controlled storage choices, so your vault can move with you across mobile and desktop.",
@@ -327,9 +327,9 @@ export const solutionPages: SolutionPage[] = [
       "portable notes and records",
       "document notes app",
     ],
-    metaTitle: "Export Notes to PDF and Word",
+    metaTitle: "Export Notes From Your Local-First Vault",
     metaDescription:
-      "Write rich notes in NeuVault and convert them to PDF or Word, so notes and transcripts stay portable and easy to share. Tables export to CSV too.",
+      "Write and keep notes in NeuVault’s local-first workspace. Export notes as PDF, Word, or CSV to share your work and keep it portable.",
     title: "Export notes, scans, and records without locking them into one app",
     description:
       "NeuVault lets you create rich notes inside your vault and export notes to PDF, Word, or CSV so your records stay portable, shareable, and useful.",
@@ -389,9 +389,9 @@ export const solutionPages: SolutionPage[] = [
       "voice notes for reminders",
       "voice note to structured note",
     ],
-    metaTitle: "Voice Note and Meeting Transcription App",
+    metaTitle: "Voice Transcription for a Local-First Notes Workspace",
     metaDescription:
-      "Record or import voice notes and meetings. NeuVault writes an overview, key points, action items and the full transcript into a note, speakers named.",
+      "Transcribe recordings online, then keep notes and audio in NeuVault’s local-first vault. Review transcripts and turn action items into Planner tasks.",
     title: "Turn voice notes into structured, searchable records you can keep",
     description:
       "NeuVault records or accepts voice notes, transcribes them, and turns them into structured notes that fit into the rest of your private vault.",
@@ -452,9 +452,9 @@ export const solutionPages: SolutionPage[] = [
       "store scanned documents securely",
       "scan documents into private vault",
     ],
-    metaTitle: "Scan and Organize Documents in One Private App",
+    metaTitle: "Scan Documents Into a Local-First Vault",
     metaDescription:
-      "Scan paper documents with your phone, many pages at a time. NeuVault files each scan into the right group, adds a summary and tags, and finds it again.",
+      "Scan paperwork into NeuVault’s local-first vault. Group related records, use online AI organization, and keep reminders connected to their documents.",
     title: "Scan and organize documents in one private vault.",
     description:
       "Scan paper documents, organize scanned files, add tags, find records quickly, and keep important documents in a private AI-powered vault with NeuVault.",
@@ -508,9 +508,9 @@ export const solutionPages: SolutionPage[] = [
     slug: "digital-personal-document-vault",
     primaryKeyword: "digital personal document vault",
     secondaryKeywords: ["important documents app", "document storage apps", "secure document storage", "document backup"],
-    metaTitle: "Digital Vault for IDs, Records and Receipts",
+    metaTitle: "Local-First Digital Vault for Documents and Notes",
     metaDescription:
-      "A private digital vault for IDs, certificates, receipts, contracts and scans. Files are sorted for you, dates come back in time, and backups are encrypted.",
+      "Keep IDs, receipts, contracts, scans, and notes in a local-first vault with search, optional online AI assistance, and encrypted backups you control.",
     title: "A private digital vault for your important documents.",
     description: "Store IDs, certificates, receipts, contracts, scans, notes, and voice memos in a private AI-powered document vault with smart search and encrypted backup.",
     eyebrow: "Personal document vault",
@@ -533,9 +533,9 @@ export const solutionPages: SolutionPage[] = [
     slug: "passport-visa-expiry-reminder",
     primaryKeyword: "passport expiration reminder",
     secondaryKeywords: ["visa expiration tracker", "passport issue date and expiration date", "visa expiration date", "document expiration date"],
-    metaTitle: "Passport, Visa and ID Expiration Reminder and Tracker",
+    metaTitle: "Passport and ID Reminders With a Local-First Vault",
     metaDescription:
-      "Keep your passport, visa, ID and permits in one private app. NeuVault finds each expiration date and reminds you well ahead, with the document ready to renew.",
+      "Store travel records in NeuVault’s local-first vault. Track passport, visa, and ID expiration dates, then plan renewal work with the documents attached.",
     title: "Track passport, visa, and ID expiration dates.",
     description: "Save passport, visa, and ID documents, track expiration dates, and get reminders before important travel or identity documents expire.",
     eyebrow: "Travel document reminders",
@@ -726,6 +726,8 @@ export function buildSoftwareApplicationJsonLd() {
       "Notes export",
       "Nova AI assistant",
       "Document reminders",
+      "Local-first Planner with Agenda, Week, Month, and Board views",
+      "Tasks linked to notes and documents with cross-device Planner sync",
       "Encrypted cross-device backup and restore",
       "Vault Map",
       ...solutionPages.map((page) => page.metaTitle),

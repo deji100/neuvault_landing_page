@@ -32,7 +32,7 @@ export default function Closing() {
   return (
     <div className={styles.closing}>
       <h2>
-        Save it once. <span>Find it when it matters.</span> Keep it yours.
+        Capture it. <span>Connect it. Plan your next step.</span> Local-first.
       </h2>
       <div className={styles.actions}>
         <a className={styles.primary} href={storeUrl} {...(external ? { target: "_blank", rel: "noreferrer" } : {})}>

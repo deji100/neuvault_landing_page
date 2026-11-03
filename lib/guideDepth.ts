@@ -19,7 +19,7 @@ export type GuideDepth = {
 
 export const guideDepth: Record<string, GuideDepth> = {
   "how-to-scan-and-organize-documents": {
-    dateModified: "2026-09-29",
+    dateModified: "2026-11-02",
     steps: {
       "Capture into one destination": {
         details: [
@@ -53,6 +53,7 @@ export const guideDepth: Record<string, GuideDepth> = {
       },
       "Add the future action while the context is fresh": {
         inApp: [
+          "Choose Add to planner on a reminder, or open Planner and use Plan from reminders. Plan the follow-up with the scan attached.",
           "When you organize a document with AI and NeuVault finds a date such as an expiration, renewal or due date, it shows up in Reminders on its own.",
           "To add your own, open the document, go to Resurface this later? and pick a date, or set it to Recurring.",
         ],
@@ -80,7 +81,7 @@ export const guideDepth: Record<string, GuideDepth> = {
   },
 
   "organize-important-documents-digitally": {
-    dateModified: "2026-09-29",
+    dateModified: "2026-11-02",
     steps: {
       "Start with categories you will actually remember": {
         details: [
@@ -104,6 +105,7 @@ export const guideDepth: Record<string, GuideDepth> = {
           "Most documents are reference: you keep them in case. A few are active: something has to happen by a date. Treating them the same is why important deadlines get buried under old receipts.",
         ],
         inApp: [
+          "For work you need to do, use Plan from reminders in Planner and keep the document attached. Add a date and priority to the task.",
           "Give active items a reminder, or set Resurfacing to Recurring so they come back on a schedule.",
           "Pin the documents you open often so they stay one tap away in your pinned documents.",
           "Reference items need nothing more. They stay in their group and in search.",
@@ -139,7 +141,7 @@ export const guideDepth: Record<string, GuideDepth> = {
   },
 
   "track-passport-visa-and-id-expiry-dates": {
-    dateModified: "2026-09-29",
+    dateModified: "2026-11-02",
     steps: {
       "Store the document where it can be resurfaced later": {
         inApp: [
@@ -152,6 +154,7 @@ export const guideDepth: Record<string, GuideDepth> = {
           "Many renewals take weeks, and some travel rules require months of validity left on a passport. The date that matters is often not the expiration date itself but the last sensible day to start the renewal.",
         ],
         inApp: [
+          "Use Plan from reminders in Planner to schedule the renewal work with the document attached. Allow enough time before the expiration date.",
           "Dates NeuVault finds when you organize with AI appear in Reminders, sorted into Overdue, Due today, Due soon, Upcoming and Monitor.",
           "You are reminded a month before, two weeks before and on the day.",
           "If your renewal takes longer, open the document, go to Resurface this later? and set an earlier date of your own.",
@@ -294,7 +297,7 @@ export const guideDepth: Record<string, GuideDepth> = {
   },
 
   "turn-voice-notes-into-searchable-records": {
-    dateModified: "2026-09-29",
+    dateModified: "2026-11-02",
     steps: {
       "Capture the thought while it is fresh": {
         details: [
@@ -314,6 +317,7 @@ export const guideDepth: Record<string, GuideDepth> = {
       },
       "Link the voice note to the document issue": {
         inApp: [
+          "Review the note's action items and choose Plan action items from this note to turn them into tasks with the source attached.",
           "Use Connect files in the note to attach the documents it talks about, such as the contract you were discussing.",
         ],
       },

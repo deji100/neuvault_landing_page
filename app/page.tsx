@@ -31,7 +31,7 @@ export default function Home() {
   const softwareJsonLd = {
     ...buildSoftwareApplicationJsonLd(),
     image: LOGO_URL,
-    applicationSubCategory: "Document organization",
+    applicationSubCategory: "Notes, document organization, and planning",
     offers: {
       "@type": "Offer",
       price: "0",
@@ -57,6 +57,9 @@ export default function Home() {
       "Nova AI document assistant",
       "Reminders for important dates and follow-ups",
       "Vault Map for related records",
+      "Local-first Planner with Agenda, Week, Month, and Board views",
+      "Turn note action items into tasks with source documents attached",
+      "Cross-device sync for Planner tasks, columns, and reminder settings",
       "Encrypted cross-device backup and restore",
       "Mobile apps for iPhone and Android",
       "Windows desktop app",
