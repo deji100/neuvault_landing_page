@@ -25,10 +25,10 @@ export const FIREFOX_EXTENSION_URL = "https://addons.mozilla.org/en-US/firefox/a
 export const WINDOWS_MICROSOFT_STORE_URL =
   "https://apps.microsoft.com/detail/9PNM0GXZPT8T";
 
-export const DEFAULT_TITLE = "NeuVault — Local-First Notes, Files & Planner";
+export const DEFAULT_TITLE = "NeuVault — Local-First AI Notes, Files & Links";
 
 export const DEFAULT_DESCRIPTION =
-  "A local-first workspace for notes, files, recordings, and plans. Transcribe audio, connect ideas, and plan tasks with supporting documents attached.";
+  "Keep notes, files and links on your device. Organize with AI, connect ideas, set reminders and control encrypted backups. Planner syncs when online.";
 
 export const DEFAULT_OG_IMAGE_PATH = "/opengraph-image";
 
