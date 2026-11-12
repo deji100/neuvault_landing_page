@@ -81,8 +81,8 @@ export default function HomeHero() {
           </h1>
 
           <p className={styles.lede}>
-            Capture notes, files, recordings, and links in one local-first workspace. Organize with AI,
-            connect ideas, and turn action items into plans with the source material attached.
+            Keep notes, files, recordings, webpages, bookmarks and YouTube videos in one workspace.
+            Let Nova organize them, connect ideas and turn action items into plans—with the source material attached.
           </p>
 
           <div className={styles.actions}>
