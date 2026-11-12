@@ -1,0 +1,23 @@
+{
+  "version": "9ea22ff1a827b420",
+  "jsxUnchanged": true,
+  "controllers": {
+    "src/pages/SmartSuggestionsPage.tsx": true,
+    "src/components/intake/DesktopSmartDocHandler.tsx": true
+  },
+  "sources": {
+    "src/pages/SmartSuggestionsPage.tsx": "4c6afe8d0c81a96ad0fc1f9c3256327096e595f435c62b28823ea5b99530f6fe",
+    "src/components/layout/AppSidebar.tsx": "1a54dd78e556a31f294fb7882b172dd53572a5d4fe97cfb0a41e337a3c84cd0c",
+    "src/components/intake/DesktopSmartDocHandler.tsx": "473f7a7020156be46e3d6919fffc2543f88e3bef00aa4e43d29a9d65052e9069",
+    "src/components/intake/DesktopResurfaceSection.tsx": "1ec9e8d5c4dd9fdf66e223e711bb950fd7f775b42fc1dc4568500293ae43e1e3",
+    "src/components/intake/GlobalIntakePreview.tsx": "5b34908fcd83a7602b99b85990a7f59788276578c1393bf424793c1e4c28aaa9",
+    "src/components/intake/DesktopSectionShell.tsx": "382fba55456860498b629d7e683df531621823006a67b244611f62b8bc993e4f",
+    "src/components/vault/VaultSubgroupDocumentCard.tsx": "db2bb5a84575702eb2600d9729d81e0d52cab409de60cad47e3963772e8bc3f4",
+    "src/lib/documentThumbnails.ts": "6745793251f95e129f792ba5f2d981edf3a919209e15f338cd3775e4ca56b3b5",
+    "src/components/layout/DesktopVaultBrowserHeader.tsx": "15174f53437c5d5338db50961f87a2985a047d13ed9fdea9f9957b3650c6315b",
+    "src/components/attention/ReminderCountdown.tsx": "f5636fb8d20acca0356f1af179d6b21b6db87a0fc0a6376dff1f0c3287427da0",
+    "src/components/attention/FlipCountdown.tsx": "9ffb53d4e46b8dc465157699668bb86cb3123e789c9fa250d14dfd2c9c2f0eb4",
+    "src/styles.css": "f0588d68f5a2f364dc113a49f94d38df6daf244f1d9054ccf8b2fd0ba027e438",
+    "src/document-preview.css": "33823fc8da44884df2058676930d8ffe83c82191c2c2882fcce7216419cdad05"
+  }
+}

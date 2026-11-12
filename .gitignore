@@ -15,6 +15,7 @@
 
 # next.js
 /.next/
+/.next-dev/
 /out/
 
 # production
@@ -41,3 +42,8 @@ yarn-error.log*
 next-env.d.ts
 .agents/
 skills-lock.json
+
+# Native desktop UI presentation build scratch files
+/.native-map-build/
+
+/.native-reminders-build/

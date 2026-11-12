@@ -4,8 +4,6 @@ import Image from "next/image";
 import { AtSign, Bookmark, Camera, FileScan, Laptop, type LucideIcon, MessageCircle, Mic, Play, ServerOff, StickyNote, Users, WifiOff, Youtube } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import { visibleYouTubeVideos } from "@/lib/youtube-videos";
-
 import styles from "./HomeHero.module.css";
 import { useStoreUrl } from "./useStoreUrl";
 
@@ -70,8 +68,6 @@ export default function HomeHero() {
   const storeUrl = useStoreUrl();
   const reminderIndex = useCycle(reminders.length, 4200);
   const reminder = reminders[reminderIndex];
-  // Until the tour video is published, the button goes to the screenshot tour.
-  const tourHref = visibleYouTubeVideos.length > 0 ? "#videos" : "#tour";
   const external = storeUrl.startsWith("http");
 
   return (
@@ -97,11 +93,11 @@ export default function HomeHero() {
             >
               Download free
             </a>
-            <a className={styles.secondary} href={tourHref}>
+            <a className={styles.secondary} href="#capture">
               <span className={styles.playDot} aria-hidden="true">
                 <Play size={13} fill="currentColor" strokeWidth={0} />
               </span>
-              Watch the 3-minute tour
+              Watch the demo
             </a>
           </div>
 

@@ -10,6 +10,7 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  { ignores: [".native-map-build/**", "scripts/native-map/**", ".native-reminders-build/**", "scripts/native-reminders/**", "public/desktop-tour/**", ".next-dev/**"] },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
 ];
 

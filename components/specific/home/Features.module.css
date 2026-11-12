@@ -96,3 +96,6 @@
 :global(html[data-theme="dark"]) .window{border-color:#48484a}
 :global(html[data-theme="dark"]) .card,:global(html[data-theme="dark"]) .cardMedia{border-color:#38383a}
 :global(html[data-theme="dark"]) .extras{border-color:#38383a;background:#38383a}
+
+/* Preserve legacy sections while keeping them out of layout and navigation. */
+.features [hidden]{display:none!important}

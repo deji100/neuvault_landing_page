@@ -249,6 +249,7 @@ html[data-theme="dark"] .theme-float-option:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   .theme-float { animation: none; }
   .theme-float-thumb { transition: none; }
 }

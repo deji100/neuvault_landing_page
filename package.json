@@ -6,7 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:desktop-tour": "node scripts/native-map/build.mjs",
+    "check:vault-map": "node scripts/check-vault-map.cjs",
+    "build:reminders": "node scripts/native-reminders/build.mjs",
+    "check:reminders": "node scripts/check-reminders.cjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

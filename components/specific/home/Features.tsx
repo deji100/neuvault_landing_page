@@ -196,7 +196,7 @@ export default function Features() {
     <div className={styles.features}>
       {/* 1 */}
       <article className={styles.pillar} id="yours">
-        <PillarHead n="01" title="Local-first. Yours to keep." answers={["Your data isn't really yours"]} />
+        <PillarHead n="01" title="Local-first. Yours to keep." />
         <div className={styles.split}>
           <div className={styles.copy}>
             <div className={styles.block}>
@@ -230,8 +230,8 @@ export default function Features() {
       </article>
 
       {/* 2 */}
-      <article className={styles.pillar} id="capture">
-        <PillarHead n="02" title="Save anything. Find it again." answers={["Saved, then lost", "One goal, five apps"]} />
+      <article className={styles.pillar} id="capture-details">
+        <PillarHead n="02" title="Save anything. Find it again." />
         <div className={styles.oneApp}>
           <h3>
             <Layers size={18} aria-hidden="true" /> One app instead of five
@@ -246,7 +246,8 @@ export default function Features() {
           <p>On your phone, tap Share in any app. On your computer, use the Save to NeuVault extension.</p>
         </div>
         <SendFromAnywhere />
-        <div className={styles.bento}>
+        {/* Retain the older feature cards without displaying them. */}
+        <div className={styles.bento} hidden>
           {capture.map(({ title, icon: Icon, tone, copy, shot, focus, mobile }) => (
             <section key={title} className={styles.card} style={{ "--tone": tone } as React.CSSProperties}>
               <div className={styles.cardMedia}>
@@ -283,7 +284,7 @@ export default function Features() {
       </article>
 
       {/* 3 */}
-      <article className={styles.pillar} id="reminders">
+      <article className={styles.pillar} id="reminders" hidden>
         <PillarHead n="03" title="Never miss what matters." answers={["Deadlines hiding in plain sight"]} />
         <div className={`${styles.split} ${styles.splitReverse}`}>
           <div className={styles.copy}>
@@ -307,7 +308,7 @@ export default function Features() {
       </article>
 
       {/* 4 */}
-      <article className={styles.pillar} id="planner">
+      <article className={styles.pillar} id="planner" hidden>
         <PillarHead n="04" title="Turn what you know into what you do." />
         <div className={styles.mapCopy}>
           <div className={styles.block}>
@@ -327,7 +328,7 @@ export default function Features() {
       </article>
 
       {/* 5 */}
-      <article className={styles.pillar} id="map">
+      <article className={styles.pillar} id="map" hidden>
         <PillarHead n="05" title="Connect the dots." />
         <div className={styles.mapCopy}>
           <div className={styles.block}>
@@ -345,7 +346,7 @@ export default function Features() {
       </article>
 
       {/* 6 */}
-      <article className={styles.pillar} id="more">
+      <article className={styles.pillar} id="more" hidden>
         <PillarHead n="06" title="And everything in between" />
         <ul className={styles.extras}>
           {extras.map(({ title, copy, icon: Icon }) => (

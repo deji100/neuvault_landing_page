@@ -1,0 +1,18 @@
+{
+  "version": "e8aaf717289edba4",
+  "jsxUnchanged": true,
+  "sources": {
+    "src/lib/noteImageAssets.ts": "c8bf67f2f3c8d8c58103d709d80807d9cd3529866847c8cfd2127686d8c7dc78",
+    "src/lib/documentThumbnails.ts": "6745793251f95e129f792ba5f2d981edf3a919209e15f338cd3775e4ca56b3b5",
+    "src/features/linked-document-map/LinkedDocumentMapView.tsx": "d3f0df240056218d2b33d20f95700a8f9632d1fb3eee0691184bd0f00b0d0830",
+    "src/features/linked-document-map/LinkedDocumentMapPreview.tsx": "deb6588ae9c48327cc9bb7504f498dcb2a0e4e31c8eeb1f2a0e06c9cc91181af",
+    "src/features/linked-document-map/map-ai/MapAIDrawer.tsx": "22ea5044072575d18b91e3428296c952bdd5c78e601ad6a259db668902ba512f",
+    "src/styles.css": "f0588d68f5a2f364dc113a49f94d38df6daf244f1d9054ccf8b2fd0ba027e438",
+    "src/document-preview.css": "33823fc8da44884df2058676930d8ffe83c82191c2c2882fcce7216419cdad05",
+    "src/linked-share-help.css": "7ac00bf6da442b4247399c21f977496ac70fa855d17fb7e8f5c33bc296d18208",
+    "src/isolated-controls.css": "890c90352eb5d867f65d56234f766a22f0cec70ebf49cffeb947150bd7ae0f20",
+    "src/notes-voice-workspace.css": "bc2aac9ecabdda49ffdf4edd397d89f6e7b25d246efdcfc7dc5c7cb121c4a521",
+    "src/build-with-us.css": "4381155ec667a419801eacf9c9dfe7b0c50dbfcf20453f09ff0b2a8ed342bb83",
+    "src/nova-assistant-workspace.css": "fd294d429b0c2b725c4362094862604de2abe1bfd46668a97beba7cae1341cc3"
+  }
+}

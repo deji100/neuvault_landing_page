@@ -90,3 +90,10 @@
 .problemSection{padding-bottom:40px}
 .featuresSection{padding:40px 0 120px}
 @media(max-width:860px){.featuresSection{padding-bottom:90px}}
+
+/* A short problem/solution overview, with optional product detail below. */
+.problemSection{padding:60px 0 70px;border-top:0;scroll-margin-top:100px}
+.productDetails{margin-top:25px;border-top:1px solid var(--line);scroll-margin-top:110px}
+.productDetails>summary{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 0;list-style:none;cursor:pointer;color:var(--ink);font-size:14px;font-weight:600}
+.productDetails>summary::-webkit-details-marker{display:none}.productDetails>summary svg{color:var(--soft);flex-shrink:0;transition:transform .2s}.productDetails[open]>summary svg{transform:rotate(180deg)}.productDetails>summary:focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:4px}.productDetailsBody{padding:30px 0 50px}
+@media(max-width:760px){.problemSection{padding:35px 0 50px}.productDetails>summary{font-size:13px}.productDetailsBody{padding-top:20px}}

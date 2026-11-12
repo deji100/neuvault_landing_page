@@ -306,7 +306,8 @@ function MobileCarousel() {
 export default function AppTour() {
   return (
     <div className={styles.tour}>
-      <div className={styles.block}>
+      {/* Retain the legacy desktop tour for later; the animated demos replace it. */}
+      <div className={styles.block} hidden>
         <div className={styles.head}>
           <p className={styles.kicker}>Mac · Windows</p>
           <h2>On your desktop.</h2>

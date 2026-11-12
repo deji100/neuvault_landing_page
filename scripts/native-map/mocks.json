@@ -1,0 +1,22 @@
+{
+  "/lib/noteImageAssets": "export const useResolvedNoteHtml=(s)=>s; export const stripResolvedNoteImageSources=s=>s; export const migrateNoteImagesToAssets=async(id,s)=>s; export const NOTE_IMAGE_PATH_ATTRIBUTE=\"data-nv-image-path\"; export const resolveNoteImageUrl=async()=>null;",
+  "/lib/documentThumbnails": "const thumbs={kyoto:{url:'/desktop-tour-media/kyoto.jpg',aspectRatio:1400/934},tokyo:{url:'/desktop-tour-media/tokyo.jpg',aspectRatio:1400/908}};export const useDocumentThumbnail=(id,enabled=true)=>enabled?thumbs[id]||null:null;export const hasCachedDocumentThumbnail=id=>Boolean(thumbs[id]);export const forgetDocumentThumbnail=()=>{};export const loadDocumentThumbnail=async id=>thumbs[id]||null;export const loadDocumentImageFull=async id=>thumbs[id]?.url||null;",
+  "/lib/vaultAssets": "export const getResolvedPreferredVaultAsset=async()=>null;",
+  "/features/linked-document-map/youtubeThumbnailCache": "export const cacheYouTubeThumbnail=async()=>null;",
+  "/lib/plannerWriteBack": "export const syncMapChecklistTickToPlanner=async()=>{}; export const syncNoteChecklistTickToPlanner=async()=>{};",
+  "/database/actions/plannerItemActions": "export const listPlannerItemsForMapNode=async()=>[];export const createPlannerItem=async()=>({id:\"demo\"}); export const listPlannerItemsForDocument=async()=>[];",
+  "/lib/credits": "export const checkAiCredits=async()=>({ok:true});",
+  "/database": "export const database={write:async f=>f(),get:()=>({find:async()=>({update:async()=>{}})})};",
+  "/database/models/Intake": "export default class Intake {}",
+  "/database/actions/linkingActions": "export const hydrateDesktopIntakeItem=async item=>item;",
+  "/database/actions/vaultSearchIndexActions": "export const upsertVaultSearchIndexForDoc=async()=>{};",
+  "/database/actions/vaultGroupIndexActions": "export const rebuildVaultGroupIndex=async()=>{};",
+  "/lib/noteAudioAssets": "export const getNoteSourceAudio=()=>null;",
+  "/lib/documentSource": "export const resolveManagedDocumentSource=async item=>item.id==='pdf'?{path:'/desktop-tour-media/kyoto-stay.pdf'}:null;",
+  "/lib/vaultAssetChanges": "export const changeMatchesPath=()=>false;export const subscribeVaultAssetChanges=()=>()=>{};",
+  "/database/actions/documentHighlightActions": "export const loadDocumentHighlights=async()=>[];export const saveDocumentHighlights=async()=>{};",
+  "/database/actions/youtubeLinkActions": "export const queueYouTubeForIntake=async()=>\"queued\";export const refreshYouTubeDetails=async()=>null;",
+  "/lib/desktopQueue": "export const addDesktopQueueWebBookmark=async()=>{};",
+  "/lib/auth": "export const API_BASE=\"\";",
+  "/lib/authRetry": "export const fetchWithTokenRetry=async()=>{throw Error(\"Network API disabled in demo\")};"
+}

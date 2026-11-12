@@ -26,7 +26,7 @@ const platforms = [
 export default function Closing() {
   const storeUrl = useStoreUrl();
   const external = storeUrl.startsWith("http");
-  const tourHref = visibleYouTubeVideos.length > 0 ? "#videos" : "#tour";
+  const tourHref = visibleYouTubeVideos.length > 0 ? "#videos" : "#capture";
   const extension = useExtensionTarget();
 
   return (

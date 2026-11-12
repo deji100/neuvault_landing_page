@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { useAnyDemoFocused } from "./demoFocus";
 import AppLogo from "./AppLogo";
 import styles from "./Navbar.module.css";
 
@@ -22,6 +23,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const demoFocused = useAnyDemoFocused();
   const linksRef = useRef<HTMLDivElement | null>(null);
   const [lamp, setLamp] = useState<{ left: number; width: number } | null>(null);
 
@@ -47,7 +49,7 @@ export default function Navbar() {
   if (pathname === "/banner") return null;
 
   return (
-    <nav className={styles.nav} data-scrolled={scrolled}>
+    <nav className={styles.nav} data-scrolled={scrolled} data-demo-focused={demoFocused} inert={demoFocused} aria-hidden={demoFocused || undefined}>
       <div className={styles.inner}>
         <Link href="/" className={styles.brand} onClick={() => setMobileOpen(false)}>
           <AppLogo size={34} />
