@@ -12,10 +12,10 @@ function cameraAt(time){
  if(time>=26000&&time<32000)return {x:120-30*.95,y:180-1150*.95,zoom:.95};
  if(time>=39000&&time<46000)return {x:110-30*1.15,y:160-410*1.15,zoom:1.15};
  if(time>=61500&&time<85000)return {x:80-30*.9,y:120-410*.9,zoom:.9};
- if(time>=87500&&time<97000)return {x:80-940*1.05,y:130-410*1.05,zoom:1.05};
- if(time>=97000&&time<99000)return {x:75,y:65,zoom:.56};
+ if(time>=87500&&time<96600)return {x:80-940*1.05,y:130-410*1.05,zoom:1.05};
+ if(time>=96600&&time<100000)return {x:75,y:65,zoom:.56};
  // Both connection gestures share one frame for the complete related chain.
- if(time>=99000&&time<108000)return {x:80-30*.9,y:130-500*.9,zoom:.9};
+ if(time>=100000&&time<108000)return {x:80-30*.9,y:130-500*.9,zoom:.9};
  if(time>=128000&&time<129700)return {x:40-450*.65,y:100-450*.65,zoom:.65};
  if(time>=129700&&time<130000)return {x:80-30*.82,y:130-470*.82,zoom:.82};
  if(time>=130000&&time<131500)return {x:80-450*.72,y:120-30*.72,zoom:.72};
@@ -57,8 +57,19 @@ export function useNativeMapTour(context){
   setProjectTime(time);
   const c=latest.current,snapshot=projectAt(time);
   c.editFocusAtRef.current=Date.now();
-  const key=JSON.stringify(snapshot.nodes)+JSON.stringify(snapshot.edges);
-  if(snapshotKey.current!==key){c.applySnapshot(snapshot);snapshotKey.current=key}
+  // Commit the arrangement once. Per-frame snapshots recreated every flow
+  // node and discarded its measured geometry while the cards were moving.
+  const arranging=time>=97000&&time<99000;
+  const committed=arranging?projectAt(99000):snapshot;
+  const key=JSON.stringify(committed.nodes)+JSON.stringify(committed.edges);
+  if(snapshotKey.current!==key){c.applySnapshot(committed);snapshotKey.current=key}
+  if(arranging||previous.current>=97000&&previous.current<99000){
+   const positions=new Map(snapshot.nodes.map(node=>[node.id,{x:node.x,y:node.y}]));
+   c.setNodes(nodes=>nodes.map(node=>{
+    const position=positions.get(node.id);
+    return position&&(node.position.x!==position.x||node.position.y!==position.y)?{...node,position}:node;
+   }));
+  }
   const documents=documentsAt(time),nextDocKey=time>=19000?'saved':'initial';
   if(docKey.current!==nextDocKey){c.setLiveDocuments(documents);docKey.current=nextDocKey}
   c.setLoading(false);c.setError(null);
