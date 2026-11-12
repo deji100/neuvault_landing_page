@@ -33,6 +33,7 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
       requests.push(message.params.request.url);
     }
   });
+  socket.on('close',()=>{for(const promise of pending.values())promise.reject(new Error('Browser debugging connection closed'));pending.clear()});
   const send = (method, params = {}) => new Promise((resolve, reject) => {
     pending.set(++id, {resolve, reject});
     socket.send(JSON.stringify({id, method, params}));
@@ -81,12 +82,12 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
     let canvasFormatting;
     assert.equal(await evaluate(`getComputedStyle(document.querySelector('#vault-map-demo iframe')).pointerEvents`),'none','Demo content cannot be manipulated');
     assert.equal(await evaluate(`document.querySelector('#vault-map-demo iframe').tabIndex`),-1);
-    for(const time of [0,5500,9000,10500,11500,14000,24000,27000,30000,36000,40000,49000,55000,62500,65000,67500,72000,77500,82500,92000,95500,95600,101700,106500,114000,115500,125000,130000,129200,129500,129600,129700,130000,133100,142000,142200,142500,142600,142700,143200,145100,163000,167000,170000,179000,188000,72000,0]){
+    for(const time of [0,5500,9000,10500,11500,14000,24000,27000,30000,36000,40000,49000,55000,62500,65000,67500,72000,77500,82500,92000,95500,95600,101700,106500,114000,115500,125000,130000,129200,129500,129600,129700,130000,130000,130800,131000,131300,131400,131500,132000,133400,134500,136000,137600,138800,139000,139500,142000,153000,157000,160000,169000,178000,72000,0]){
       await seek(time);
       assert.equal(await frame('!!document.querySelector(".react-flow__node")'),true,`Map exists at ${time}`);
       assert.equal(await frame('!!document.querySelector(".react-flow__minimap")'),false,'Native map has no extra minimap');
       if(time===0){assert.equal(await frame('document.querySelectorAll(".react-flow__node").length'),1);assert.match(await frame('document.querySelector(".nv-map-chat-coach").textContent'),/Open your saved note/)}
-      const visibleCards=time===14000?['saved-note','saved-edit']:time===82500?['video','design']:time===92000?['design','milestones']:time===106500||time===143200||time===170000?['pdf','design','milestones']:[];
+      const visibleCards=time===14000?['saved-note','saved-edit']:time===82500?['video','design']:time===92000?['design','milestones']:time===106500||time===132000||time===160000?['pdf','design','milestones']:[];
       if(visibleCards.length){
         const bounds=await frame(`JSON.parse('${JSON.stringify(visibleCards)}').map(id=>{const r=document.querySelector('.react-flow__node[data-id="'+id+'"]').getBoundingClientRect();return {id,left:r.left,right:r.right,top:r.top,bottom:r.bottom}})`);
         for(const r of bounds)assert.ok(r.left>=16&&r.right<=1584&&r.top>=68&&r.bottom<=1010,`Related card stays fully framed at ${time}: ${r.id} ${JSON.stringify(r)}`);
@@ -136,7 +137,7 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
         assert.equal(await frame('getComputedStyle(document.querySelector("[data-map-note-id=milestones]")).backgroundColor'),'rgb(223, 246, 232)');
         assert.ok(await frame(`document.querySelector('[data-map-note-id=milestones] [aria-label="Use note color #dff6e8"]').classList.contains('is-selected')`));
       }
-      if([92000,95500,106500,188000].includes(time)){
+      if([92000,95500,106500,178000].includes(time)){
         const surfaces=await frame('Array.from(document.querySelectorAll("[data-map-note-id=milestones] :is(.linked-map-note-content,.linked-map-note-rich,.linked-map-note-inline-shell,.linked-map-note-editor-frame,.linked-map-note-inline-editor)")).map(e=>({className:e.className,color:getComputedStyle(e).backgroundColor,image:getComputedStyle(e).backgroundImage}))');
         assert.ok(surfaces.length>0,'Sticky content is rendered');
         for(const surface of surfaces){
@@ -165,7 +166,7 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
         assert.equal(await frame('getComputedStyle(document.querySelector(".linked-map-split-note-pane table")).borderTopWidth'),'0px');
       }
       if(time===129200){assert.notEqual(await frame('document.querySelector(".react-flow__node[data-id=travel-day]").style.transform'),'translate(1650px, 1100px)')}
-      if(time===129500||time===142500){
+      if(time===129500||time===131300){
         const drop=await frame(`(()=>{const source=document.querySelector('.react-flow__node[data-id="${time===129500?'travel-day':'kyoto'}"]'),note=document.querySelector('[data-map-note-id=design]'),line=note.querySelector('.linked-map-note-insert-line').getBoundingClientRect(),body=note.querySelector('.linked-map-note-content-render'),blocks=[...body.children],a=blocks[0].getBoundingClientRect(),b=blocks[1].getBoundingClientRect(),last=blocks.at(-1).getBoundingClientRect(),s=source.getBoundingClientRect();return {pointer:Number(source.dataset.tourDragY),line:line.top,expected:${time===129500?'last.bottom':'(a.bottom+b.top)/2'},sourceTop:s.top,noteTop:note.getBoundingClientRect().top,noteHeight:note.getBoundingClientRect().height,cursor:parseFloat(document.querySelector('.nv-map-tour-cursor').style.top)}})()`);
         assert.ok(Math.abs(drop.pointer-drop.line)<3,'Pointer and native insertion line agree');
         assert.ok(Math.abs(drop.pointer-drop.expected)<3,'Drop uses the intended document boundary');
@@ -178,33 +179,59 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
         assert.match(await frame('document.querySelector("[data-map-note-id=design]").textContent'),/Travel-day checklist/);
         assert.match(await frame('document.querySelector("[data-map-note-id=design]").textContent'),/departure station/);
       }
-      if(time===133100||time===143200||time===145100){
+      if(time===130000||time===132000||time===133400){
         const size=await frame('(()=>{const n=document.querySelector(".react-flow__node[data-id=design]");return {width:n.style.width,height:n.style.height}})()');
-        assert.deepEqual(size,time===133100?{width:'640px',height:'680px'}:{width:'720px',height:'720px'},'The note grows as content is combined');
-        if(time===145100){
+        assert.deepEqual(size,time===130000?{width:'640px',height:'680px'}:{width:'720px',height:'720px'},'The note grows as content is combined');
+        if(time===133400){
           const scroll=await frame('(()=>{const n=document.querySelector("[data-map-note-id=design] .linked-map-note-editor-frame");return {top:n.scrollTop,max:n.scrollHeight-n.clientHeight,view:document.querySelector(".react-flow__viewport").style.transform}})()');
           assert.ok(scroll.max<1||Math.abs(scroll.top-scroll.max)<3,'Automatic internal scrolling reveals the merged checklist');
           assert.match(await frame('document.querySelector("[data-map-note-id=design]").textContent'),/Share the Kyoto address/);
         }
       }
-      if(time===142200){assert.notEqual(await frame('document.querySelector(".react-flow__node[data-id=kyoto]").style.transform'),'translate(800px, 30px)')}
-      if(time===142600||time===142700||time===143200){
+      if(time===131000){assert.notEqual(await frame('document.querySelector(".react-flow__node[data-id=kyoto]").style.transform'),'translate(800px, 30px)')}
+      if(time===131400||time===131500||time===132000){
 
         assert.ok(await frame('!!document.querySelector("[data-map-note-id=design] img")'),'Native image drop inserts the photo');
         assert.equal(await frame('(()=>{const e=document.querySelector("[data-map-note-id=design] .linked-map-note-content-render, [data-map-note-id=design] .ProseMirror");const blocks=[...e.children].filter(b=>b.textContent.trim()||b.matches("h2,img")||b.querySelector("img"));return Boolean(blocks[0].matches("h2")&&(blocks[1].matches("img")||blocks[1].querySelector("img")))})()'),true,'The native image drop lands immediately below the heading');
         assert.equal(await frame('document.querySelector(".react-flow__node[data-id=kyoto]").style.transform'),'translate(800px, 30px)','The original photo returns to its clean position');
       }
       if(time===125000)assert.match(await frame('document.querySelector(".linked-map-split-note-pane .ProseMirror").textContent'),/Group nearby ideas/);
-      if(time===163000){assert.match(await frame('document.querySelector(".map-ai-action-confirm").textContent'),/Update the selected note/);assert.equal(await frame('document.querySelectorAll("[data-map-note-id=design] tr").length'),3,'Nova edit waits for confirmation')}
-      if(time===167000||time===188000){assert.ok(await frame('!!document.querySelector("[data-map-note-id=design] img")'),'Nova preserves the inserted photo');assert.equal(await frame('(()=>{const e=document.querySelector("[data-map-note-id=design]"),i=e.querySelector("img"),t=e.querySelector("table");return Boolean(i.compareDocumentPosition(t)&Node.DOCUMENT_POSITION_FOLLOWING)})()'),true,'The photo stays above the table after Nova edits');assert.match(await frame('document.querySelector("[data-map-note-id=design]").textContent'),/Travel-day checklist/);assert.equal(await frame('document.querySelectorAll("[data-map-note-id=design] tr").length'),5);assert.match(await frame('document.querySelector("[data-map-note-id=design]").textContent'),/Three nights for two adults/)}
-      if(time===170000){
+      if(time===134500||time===136000||time===137600){
+        assert.equal(await frame('!!document.querySelector(".linked-map-group-composer")'),true,'The desktop group composer appears for the two selected references');
+        assert.equal(await frame('document.querySelectorAll(".react-flow__node.selected:not([data-id^=backdrop])").length'),2);
+        if(time>=136000)assert.equal(await frame('document.querySelector(".linked-map-group-composer-input").value'),'Trip research');
+        if(time===137600)assert.ok(await frame(`document.querySelector('[aria-label="Use group color #42a5b3"]').classList.contains('is-selected')`));
+      }
+      if(time===138800||time===139000){
+        assert.ok(await frame('Array.from(document.querySelectorAll(".linked-map-group-node:not(.is-draft-preview)")).some(n=>n.textContent.includes("Trip research"))'),'Native save creates a named group');
+      }
+      if(time===139500||time===142000){
+        assert.equal(await frame('document.querySelector(".react-flow__node[data-id=design]").classList.contains("selected")'),true,'Select the itinerary before asking Nova to edit');
+        if(time===142000)assert.ok(await frame(`!!document.querySelector('[aria-label="Show context options. Nova is using Selected note"]')`),'Nova is scoped to the selected note');
+      }
+      if(time===153000){assert.match(await frame('document.querySelector(".map-ai-action-confirm").textContent'),/Update the selected note/);assert.equal(await frame('document.querySelectorAll("[data-map-note-id=design] tr").length'),3,'Nova edit waits for confirmation')}
+      if(time===157000||time===178000){assert.ok(await frame('!!document.querySelector("[data-map-note-id=design] img")'),'Nova preserves the inserted photo');assert.equal(await frame('(()=>{const e=document.querySelector("[data-map-note-id=design]"),i=e.querySelector("img"),t=e.querySelector("table");return Boolean(i.compareDocumentPosition(t)&Node.DOCUMENT_POSITION_FOLLOWING)})()'),true,'The photo stays above the table after Nova edits');assert.match(await frame('document.querySelector("[data-map-note-id=design]").textContent'),/Travel-day checklist/);assert.equal(await frame('document.querySelectorAll("[data-map-note-id=design] tr").length'),5);assert.match(await frame('document.querySelector("[data-map-note-id=design]").textContent'),/Three nights for two adults/)}
+      if(time===160000){
         const widths=await frame('(()=>{const t=document.querySelector("[data-map-note-id=design] table");return {table:t.getBoundingClientRect().width,frame:t.parentElement.getBoundingClientRect().width,layout:getComputedStyle(t).tableLayout}})()');
         assert.ok(widths.table<=widths.frame+1,'Detailed table text wraps within the note');
         assert.equal(widths.layout,'fixed');
       }
-      if(time===179000)assert.match(await frame('document.querySelector(".linked-map-export-modal").textContent'),/Entire map/);
+      if(time===169000)assert.match(await frame('document.querySelector(".linked-map-export-modal").textContent'),/Entire map/);
     }
-    await seek(188000);
+    // Run the complete merge → photo → group → selected-note Nova sequence live.
+    await seek(128800);
+    await evaluate(`document.querySelector('#vault-map-demo iframe').scrollIntoView({behavior:'instant',block:'center'});document.querySelector('[aria-label="Play Vault Map tour"]').click()`);
+    let sawPhoto=false,sawGroup=false,sawNoteScope=false;
+    for(let attempt=0;attempt<90;attempt++){
+      const state=await frame(`(()=>{const t=Number(document.querySelector('[data-tour-time]').dataset.tourTime);return {time:t,photo:!!document.querySelector('[data-map-note-id=design] img'),group:Array.from(document.querySelectorAll('.linked-map-group-node:not(.is-draft-preview)')).some(n=>n.textContent.includes('Trip research')),scope:!!document.querySelector('[aria-label="Show context options. Nova is using Selected note"]')}})()`);
+      if(state.time>=131600){assert.equal(state.photo,true,'The photo appears immediately after the merge sequence');sawPhoto=true}
+      if(state.time>=139100){assert.equal(state.group,true,'Continuous playback saves the native group');sawGroup=true}
+      if(state.time>=140800){assert.equal(state.scope,true,'Continuous playback opens Nova with the note selected');sawNoteScope=true;break}
+      await pause(200);
+    }
+    await evaluate(`document.querySelector('[aria-label="Pause Vault Map tour"]')?.click()`);
+    assert.ok(sawPhoto&&sawGroup&&sawNoteScope,'The live sequence completes without an idle gap');
+    await seek(178000);
     const lockedPosition=await frame('document.querySelector(".react-flow__node[data-id=kyoto]").style.transform');
     const dragPoint=await evaluate(`(()=>{const f=document.querySelector('#vault-map-demo iframe'),r=f.getBoundingClientRect(),n=f.contentDocument.querySelector('.react-flow__node[data-id=kyoto]').getBoundingClientRect(),scale=r.width/f.clientWidth;return {x:r.x+(n.x+40)*scale,y:r.y+(n.y+40)*scale}})()`);
     await send('Input.dispatchMouseEvent',{type:'mousePressed',...dragPoint,button:'left',buttons:1,clickCount:1});
@@ -238,13 +265,13 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
     await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
     await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});await pause(700);
     assert.equal(await evaluate('document.documentElement.scrollWidth'),390);
-    assert.equal(await evaluate('Number(document.querySelector("#vault-map-demo input[type=range]").value)'),188000);
+    assert.equal(await evaluate('Number(document.querySelector("#vault-map-demo input[type=range]").value)'),178000);
     assert.equal(await frame('!!document.querySelector(".nv-map-tour-cursor")'),false);
     assert.equal(await frame('!!document.querySelector(".is-editing")'),false);
     assert.equal(await frame('document.querySelectorAll("[data-map-note-id=design] tr").length'),5);
     assert.equal(requests.some(url=>/\/(?:api|v1|v2)\//.test(url)&&url.startsWith(preview)),false);
     assert.deepEqual(errors,[],'No browser exceptions');
     if(process.env.SCREENSHOT_PATH){const shot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(process.env.SCREENSHOT_PATH,Buffer.from(shot.data,'base64'))}
-    console.log('Passed: native guide and edit flow; photos/PDF; desktop video size; live fullscreen web; real toolbar actions; tables; continuous typing without editor remount or camera movement; video playback while taking notes; confirmed Nova edit preserving the inserted photo; native note merge and photo drag; stable photo position; single table frame; matching split formatting; locked demo content; native sticky color change; related cards fully framed; automatic note growth and internal scrolling; replay; offscreen pause; mobile and reduced motion; native JSX/style fidelity.');
+    console.log('Passed: native guide and edit flow; photos/PDF; desktop video size; live fullscreen web; real toolbar actions; tables; continuous typing without editor remount or camera movement; video playback while taking notes; selected-note Nova scope; native named/color group creation; confirmed Nova edit preserving the inserted photo; native note merge and photo drag; stable photo position; single table frame; matching split formatting; locked demo content; native sticky color change; related cards fully framed; automatic note growth and internal scrolling; replay; offscreen pause; mobile and reduced motion; native JSX/style fidelity.');
   }finally{socket.close()}
 })().catch(error=>{console.error(error);process.exitCode=1});

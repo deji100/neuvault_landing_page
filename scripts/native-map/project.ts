@@ -39,8 +39,8 @@ export function notePlan(noteId:string,time:number){
  }
  if(noteId==='milestones'&&time>=89000&&time<97000)return {body:html(typed(MILESTONE_NOTE,time,89500,9)),expanded:time>=90000,action:null};
  if(noteId==='design'&&time>=111000&&time<128000){const text=typed('Group nearby ideas into one day, with a café or food stop along the walking route.\n\nKeep a free afternoon for discoveries and a quieter option if we are tired.\n\nCheck opening days and booking requirements, and save an indoor alternative for rain.',time,116000,43);return {body:ITINERARY_BASE+'<h2>Notes while watching</h2><ul>'+text.split('\n\n').map(line=>'<li>'+line+'</li>').join('')+'</ul>',expanded:time>=113000,action:time>=115000&&time<116000?'Bullet list':null}}
- if(noteId==='design'&&time>=142700&&time<150000)return {body:ITINERARY_WITH_PHOTO,expanded:true,action:null};
- if(noteId==='design'&&time>=169000&&time<172000)return {body:NOVA_NOTE,expanded:true,action:null};
+ if(noteId==='design'&&time>=131500&&time<133500)return {body:ITINERARY_WITH_PHOTO,expanded:true,action:null};
+ if(noteId==='design'&&time>=159000&&time<162000)return {body:NOVA_NOTE,expanded:true,action:null};
  return null;
 }
 export function projectAt(time:number){
@@ -49,7 +49,7 @@ export function projectAt(time:number){
  if(time>=26000){nodes.push(record('pdf',pdfItem.title,'document',420,30,300,260,'',{documentType:'PDF'}));nodes.push(record('kyoto',imageItems[0].title,'document',30,1150,500,null,'',{documentType:'JPG'}),record('tokyo',imageItems[1].title,'document',600,1150,500,null,'',{documentType:'JPG'}))}
  if(time>=39000)nodes.push(record('video',VIDEO.title,'document',30,410,null,null,'',{documentType:'YOUTUBE'}));
  if(time>=51500)nodes.push(record('web',WEBPAGE.title,'document',780,30,300,260,'',{documentType:'WEBPAGE'}));
- if(time>=61500)nodes.push(record('design',time<64000?typed('Tokyo + Kyoto itinerary',time,62000,90)||'Untitled note':'Tokyo + Kyoto itinerary','map_note',940,410,time>=142700?720:time>=129700?640:480,time>=142700?720:time>=129700?680:620,time>=166000?NOVA_NOTE:time>=142700?ITINERARY_WITH_PHOTO:time>=129700?ITINERARY_WITH_TRAVEL:time>=128000?ITINERARY_BASE+WATCH_NOTES:time>=85000?ITINERARY_BASE:'<p></p>'));
+ if(time>=61500)nodes.push(record('design',time<64000?typed('Tokyo + Kyoto itinerary',time,62000,90)||'Untitled note':'Tokyo + Kyoto itinerary','map_note',940,410,time>=131500?720:time>=129700?640:480,time>=131500?720:time>=129700?680:620,time>=156000?NOVA_NOTE:time>=131500?ITINERARY_WITH_PHOTO:time>=129700?ITINERARY_WITH_TRAVEL:time>=128000?ITINERARY_BASE+WATCH_NOTES:time>=85000?ITINERARY_BASE:'<p></p>'));
  if(time>=85000&&time<129700)nodes.push(record('travel-day','Travel-day checklist','map_note',1650,1100,480,380,TRAVEL_DAY_NOTE));
  if(time>=87500)nodes.push(record('milestones',MILESTONE_NOTE_TITLE,'map_note',1500,410,480,470,time>=97000?html(MILESTONE_NOTE):'<p></p>',{noteKind:'sticky',cardColor:time>=95600?'#dff6e8':'#e6dcff'}));
  const progress=Math.max(0,Math.min(1,(time-97000)/2000));
@@ -58,11 +58,12 @@ export function projectAt(time:number){
   const target=CONNECTED_LAYOUT[node.id];
   if(target&&settled){
    const centredY=target.y+(node.id==='design'?(620-node.height)/2:0);
-   const extraX=time>=142700?280:time>=129700?200:0;
+   const extraX=time>=131500?280:time>=129700?200:0;
    const targetX=target.x+(['milestones','video'].includes(node.id)?extraX:0);
    node.x+=(targetX-node.x)*settled;node.y+=(centredY-node.y)*settled;
   }
  }
+ if(time>=139000)for(const node of nodes)if(['saved-note','web'].includes(node.id))node.metadata={...node.metadata,mapGroupId:'trip-research',mapGroupName:'Trip research',mapGroupColor:'#42a5b3',mapGroupParentId:null};
  const edge=(id,sourceNodeId,targetNodeId,label)=>({id,mapId:'tour-map',sourceNodeId,targetNodeId,label,relationType:'supports',createdBy:'user',createdAt:0,updatedAt:0,provenance:null});
  const edges=[];
  if(time>=102000)edges.push(edge('reservation','pdf','design','stay details'));
@@ -70,9 +71,9 @@ export function projectAt(time:number){
  return {map:{id:'tour-map',linkedGroupId:'tour-group',name:PROJECT_TITLE,createdAt:0,updatedAt:0},nodes,edges,documents:documentsAt(time)};
 }
 export function messagesAt(time:number){
- const sources=[{source_type:'document',source_id:'pdf',title:pdfItem.title},{source_type:'document',source_id:'web',title:WEBPAGE.title},{source_type:'note',source_id:'design',title:'Tokyo + Kyoto itinerary'}];
+ const sources=[{source_type:'note',source_id:'design',title:'Tokyo + Kyoto itinerary'}];
  const proposal={id:'edit-itinerary',type:'UPDATE_NOTE_CARD',title:'Turn the itinerary into a clear day-by-day plan',description:'Replace this note with the reviewed itinerary, preserving the stay details and your viewing notes.',target_note_ids:['design'],target_document_ids:[],requires_confirmation:true,payload:{note_id:'design',new_title:'Tokyo + Kyoto itinerary',new_body:NOVA_NOTE}};
- return [...(time>=157000?[{id:'question',role:'user',content:NOVA_PROMPT,created_at:'2026-11-11'}]:[]),...(time>=160000?[{id:'answer',role:'assistant',content:'Here is a proposed edit of your itinerary note. I kept the accommodation and arrival details and the notes you wrote while watching, and turned the rough plan into a day-by-day table. Review the changes before confirming.',response:{sources,action_proposals:[proposal],warnings:[]},created_at:'2026-11-11'}]:[])];
+ return [...(time>=147000?[{id:'question',role:'user',content:NOVA_PROMPT,created_at:'2026-11-11'}]:[]),...(time>=150000?[{id:'answer',role:'assistant',content:'Here is a proposed edit of your itinerary note. I kept the accommodation and arrival details and the notes you wrote while watching, and turned the rough plan into a day-by-day table. Review the changes before confirming.',response:{sources,action_proposals:[proposal],warnings:[]},created_at:'2026-11-11'}]:[])];
 }
 
 let currentTime=0;
@@ -100,3 +101,5 @@ export const CONNECTED_LAYOUT={
 export const insertDemoNote=async(sourceId,targetId,body)=>({target:{...projectAt(currentTime).nodes.find(node=>node.id===targetId),body},rewiredEdges:[]});
 
 export const updateDemoColor=async(id,color)=>{const node=projectAt(currentTime).nodes.find(node=>node.id===id);return {...node,metadata:{...node?.metadata,cardColor:color}}};
+
+export const updateDemoGroups=async(ids,group)=>projectAt(currentTime).nodes.filter(node=>ids.includes(node.id)).map(node=>({...node,metadata:{...node.metadata,mapGroupId:group.id,mapGroupName:group.name,mapGroupColor:group.color,mapGroupParentId:group.parentId||null}}));

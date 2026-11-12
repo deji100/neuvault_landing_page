@@ -17,12 +17,14 @@ function cameraAt(time){
  // Both connection gestures share one frame for the complete related chain.
  if(time>=99000&&time<108000)return {x:80-30*.9,y:130-500*.9,zoom:.9};
  if(time>=128000&&time<129700)return {x:40-450*.65,y:100-450*.65,zoom:.65};
- if(time>=129700&&time<140000)return {x:80-30*.82,y:130-470*.82,zoom:.82};
- if(time>=140000&&time<142700)return {x:80-450*.72,y:120-30*.72,zoom:.72};
- if(time>=142700&&time<150000)return {x:80-30*.8,y:130-450*.8,zoom:.8};
- if(time>=150000&&time<169000)return {x:30,y:40,zoom:.4};
- if(time>=169000&&time<173000)return {x:80-30*.8,y:130-450*.8,zoom:.8};
- if(time>=142700)return {x:75,y:65,zoom:.53};
+ if(time>=129700&&time<130000)return {x:80-30*.82,y:130-470*.82,zoom:.82};
+ if(time>=130000&&time<131500)return {x:80-450*.72,y:120-30*.72,zoom:.72};
+ if(time>=131500&&time<133500)return {x:80-30*.8,y:130-450*.8,zoom:.8};
+ if(time>=133500&&time<139500)return {x:75,y:150,zoom:1.1};
+ if(time>=139500&&time<140000)return {x:75,y:65,zoom:.53};
+ if(time>=140000&&time<159000)return {x:30,y:40,zoom:.4};
+ if(time>=159000&&time<163000)return {x:80-30*.8,y:130-450*.8,zoom:.8};
+ if(time>=131500)return {x:75,y:65,zoom:.53};
  if(time>=97000)return {x:75,y:65,zoom:.56};
  return {x:75,y:65,zoom:.67};
 }
@@ -60,7 +62,7 @@ export function useNativeMapTour(context){
   const documents=documentsAt(time),nextDocKey=time>=19000?'saved':'initial';
   if(docKey.current!==nextDocKey){c.setLiveDocuments(documents);docKey.current=nextDocKey}
   c.setLoading(false);c.setError(null);
-  if(time<129000||time>=140000)c.setMergeRestructureSuggestion(null);
+  if(time<129000||time>=130000)c.setMergeRestructureSuggestion(null);
   c.setReplayNoteId('saved-note');
   c.setMapCoachEditCardId('saved-edit');
   const coach=time<2500?'open':time<7000?'edit':time<19000?'editing':time<22000?'add':null;
@@ -70,7 +72,7 @@ export function useNativeMapTour(context){
   c.setYoutubeLinkDraft(typed(VIDEO.url,time,34000,70));
   c.setWebBookmarkOpen(time>=47000&&time<51500);
   c.setWebBookmarkDraft(typed(WEBPAGE.url,time,47500,55));
-  const menu=time>=20000&&time<22000||time>=32000&&time<33000||time>=46000&&time<47000||time>=60000&&time<61500||time>=86000&&time<87500?'add':time>=108000&&time<109500?'view':time>=173000&&time<176000?'transfer':null;
+  const menu=time>=20000&&time<22000||time>=32000&&time<33000||time>=46000&&time<47000||time>=60000&&time<61500||time>=86000&&time<87500?'add':time>=108000&&time<109500?'view':time>=163000&&time<166000?'transfer':null;
   c.setOpenToolbarCategory(menu);
   c.setPreviewDocument(time>=28800&&time<31800?pdfItem:time>=2500&&time<7000?savedItem:time>=52500&&time<59000?webItem:null);
   c.setPlayingMediaNodeId(time>=39700&&time<46000?'video':null);
@@ -80,18 +82,20 @@ export function useNativeMapTour(context){
   const splitItems=split?[{kind:'document',id:'video',title:VIDEO.title,document:videoItem},{kind:'note',id:'design',title:'Tokyo + Kyoto itinerary',note:design}]:time>=110000&&time<111000?[{kind:'document',id:'video',title:VIDEO.title,document:videoItem}]:[];
   c.setSplitScreenItems(current=>JSON.stringify(current)===JSON.stringify(splitItems)?current:splitItems);
   c.setExpandedSplitPane(null);
-  c.setNovaOpen(time>=150500&&time<169000);
-  c.setNovaDraft(time>=157000?'':typed(NOVA_PROMPT,time,151500,25));
-  const phase=time>=166000?'applied':time>=160000?'response':time>=157000?'sent':'draft';
-  const old=previous.current>=166000?'applied':previous.current>=160000?'response':previous.current>=157000?'sent':'draft';
-  if(phase!==old||previous.current<0){c.setNovaMessages(messagesAt(time));c.setExecutedNovaProposalIds(new Set(time>=166000?['answer:edit-itinerary']:[]))}
-  c.setNovaSending(time>=157000&&time<160000);c.setNovaScopeChoice('whole_map');
-  c.setMapExportOpen(time>=176000&&time<184000);
-  const editing=time>=7000&&time<19000?'saved-edit':time>=64000&&time<85000||time>=142700&&time<150000||time>=169000&&time<172000?'design':time>=89000&&time<97000?'milestones':null;
-  const selected=editing?[editing]:time>=26800&&time<28500?['kyoto']:time>=39500&&time<46000?['video']:time>=51800&&time<52500?['web']:time>=61500&&time<64000?['design']:[];
+  c.setNovaOpen(time>=140500&&time<159000);
+  c.setNovaDraft(time>=147000?'':typed(NOVA_PROMPT,time,141500,25));
+  const phase=time>=156000?'applied':time>=150000?'response':time>=147000?'sent':'draft';
+  const old=previous.current>=156000?'applied':previous.current>=150000?'response':previous.current>=147000?'sent':'draft';
+  if(phase!==old||previous.current<0){c.setNovaMessages(messagesAt(time));c.setExecutedNovaProposalIds(new Set(time>=156000?['answer:edit-itinerary']:[]))}
+  c.setNovaSending(time>=147000&&time<150000);c.setNovaScopeChoice('auto');
+  c.setMapExportOpen(time>=166000&&time<174000);
+  const editing=time>=7000&&time<19000?'saved-edit':time>=64000&&time<85000||time>=131500&&time<133500||time>=159000&&time<162000?'design':time>=89000&&time<97000?'milestones':null;
+  const focused=editing||(time>=139500&&time<159000?'design':null);
+  const selected=time>=134000&&time<139000?['saved-note','web']:time>=133500&&time<134000?['saved-note']:focused?[focused]:time>=26800&&time<28500?['kyoto']:time>=39500&&time<46000?['video']:time>=51800&&time<52500?['web']:time>=61500&&time<64000?['design']:[];
   c.setSelectedNodeIds(current=>sameIds(current,selected)?current:selected);
   c.setNodes(nodes=>nodes.some(node=>Boolean(node.selected)!==selected.includes(node.id))?nodes.map(node=>({...node,selected:selected.includes(node.id)})):nodes);
-  c.setSelection(current=>current?.id===editing?current:editing?{kind:'node',id:editing}:null);
+  c.setSelectedGroupIds(current=>current.length?[]:current);
+  c.setSelection(current=>current?.id===focused?current:focused?{kind:'node',id:focused}:null);
   cancelAnimationFrame(entryFrame.current);
   entryFrame.current=requestAnimationFrame(()=>{
    document.querySelectorAll('.linked-map-note-node.is-editing .ProseMirror').forEach(editor=>{if(editor.closest('[data-map-note-id]')?.getAttribute('data-map-note-id')!==editing)editor.dispatchEvent(new FocusEvent('blur',{relatedTarget:document.body}))});
@@ -99,12 +103,33 @@ export function useNativeMapTour(context){
    if(time>=27000&&time<28500){if(!document.querySelector('.linked-map-image-lightbox'))document.querySelector('.react-flow__node[data-id=kyoto] button[title="Expand image"]')?.click()}else document.querySelector('[aria-label="Close expanded image"]')?.click();
    if(time>=5000&&time<7000){const button=document.querySelector('.document-view-modal [aria-label="Edit note"]');if(button&&button.getAttribute('aria-expanded')!=='true')button.click()}
    if(time>=53500&&time<59000){document.querySelector('[aria-label="Expand document view"]')?.click()}
-   if(time>=162000&&time<169000){const thread=document.querySelector('.map-ai-thread');thread?.scrollTo({top:thread.scrollHeight,behavior:'instant'})}
+   if(time>=152000&&time<159000){const thread=document.querySelector('.map-ai-thread');thread?.scrollTo({top:thread.scrollHeight,behavior:'instant'})}
    const noteContent=document.querySelector('[data-map-note-id="design"] .linked-map-note-content');
-   if(noteContent&&time>=140000&&time<142700)noteContent.scrollTop=0;
+   if(noteContent&&time>=130000&&time<131500)noteContent.scrollTop=0;
   });
   previous.current=time;
  },[time,reduced]);
+ // Use the native multi-selection composer, color picker and save action.
+ const groupSaved=useRef(false);
+ useEffect(()=>{
+  const c=latest.current;
+  if(time<134000||time>=139000){groupSaved.current=false;c.setGroupDraft(null);return}
+  if(time<138800)groupSaved.current=false;
+  const sync=()=>{
+   if(groupSaved.current)return;
+   c.setGroupDraft({mode:'create',name:typed('Trip research',time,135000,45),color:time>=137500?'#42a5b3':'#6f8fe8',nodeIds:['saved-note','web']});
+   if(time>=137500&&time<138800)document.querySelector('[aria-label="Use group color #42a5b3"]')?.click();
+   if(time>=138800){
+    const input=document.querySelector('.linked-map-group-composer-input'),save=document.querySelector('[aria-label="Create group"]');
+    if(input?.value==='Trip research'&&save){groupSaved.current=true;save.click()}
+   }
+  };
+  sync();
+  // Native multi-selection creates its initial blank draft after selection.
+  // Reconcile after that effect too, including a paused seek into this scene.
+  const frame=requestAnimationFrame(sync),retry=setTimeout(sync,100);
+  return()=>{cancelAnimationFrame(frame);clearTimeout(retry)};
+ },[time]);
  const cameraTarget=cameraAt(time),cameraTargetKey=JSON.stringify(cameraTarget);
  useEffect(()=>{
   let frame=0,second=0,settleUntil=0;
@@ -131,7 +156,7 @@ export function useNativeMapTour(context){
  // Scroll the note's own reading surface, never the canvas or landing page.
  // Start at the top after each resize, then reveal the combined lower blocks.
  useEffect(()=>{
-  const range=time>=129700&&time<140000?[130000,133000]:time>=142700&&time<150000?[143200,145000]:time>=169000&&time<173000?[169800,172500]:null;
+  const range=time>=129700&&time<130000?[129700,130000]:time>=131500&&time<133500?[132000,133300]:time>=159000&&time<163000?[159800,162500]:null;
   if(!range)return;
   let second=0;
   const frame=requestAnimationFrame(()=>{second=requestAnimationFrame(()=>{
@@ -184,7 +209,7 @@ export function useNativeMapTour(context){
  },[time]);
  const photoDrag=useRef({started:false,dropped:false});
  useEffect(()=>{
-  if(time<142000||time>=142700){photoDrag.current={started:false,dropped:false};dragPointer('kyoto',null);return}
+  if(time<130800||time>=131500){photoDrag.current={started:false,dropped:false};dragPointer('kyoto',null);return}
   const sync=()=>{
    if(Date.now()<cameraReadyAt.current)return;
    const c=latest.current,source=c.nodesRef.current.find(node=>node.id==='kyoto');
@@ -192,7 +217,7 @@ export function useNativeMapTour(context){
    if(!source||!target)return;
    const aim=dropPoint(target,false),destination=c.screenToFlowPosition({x:aim.clientX,y:aim.clientY});
    if(!photoDrag.current.started){const start=c.flowToScreenPosition({x:1050,y:150});c.handleNodeDragStart({clientX:start.x,clientY:start.y},source);photoDrag.current.started=true}
-   const progress=Math.max(0,Math.min(1,(time-142000)/500));
+   const progress=Math.max(0,Math.min(1,(time-130800)/500));
    const eased=progress*progress*(3-2*progress);
    const node={...source,position:{x:800+(destination.x-250-800)*eased,y:30+(destination.y-120-30)*eased}};
    const point=c.flowToScreenPosition({x:node.position.x+250,y:node.position.y+120});
@@ -200,13 +225,13 @@ export function useNativeMapTour(context){
    if(!photoDrag.current.dropped){
     c.setNodes(nodes=>nodes.map(item=>item.id==='kyoto'?node:item));
     dragPointer('kyoto',point);c.handleNodeDrag(event,node);
-    if(time>=142600){photoDrag.current.dropped=true;void c.handleNodeDragStop(event,node)}
+    if(time>=131400){photoDrag.current.dropped=true;void c.handleNodeDragStop(event,node)}
    }
   };
   const frame=requestAnimationFrame(sync),retry=setInterval(sync,50);
   return()=>{cancelAnimationFrame(frame);clearInterval(retry)};
  },[time]);
- const editTarget=time>=7000&&time<19000?'saved-edit':time>=64000&&time<85000||time>=142700&&time<150000||time>=169000&&time<172000?'design':time>=89000&&time<97000?'milestones':null;
+ const editTarget=time>=7000&&time<19000?'saved-edit':time>=64000&&time<85000||time>=131500&&time<133500||time>=159000&&time<162000?'design':time>=89000&&time<97000?'milestones':null;
  const guideChoice=time>=5000&&time<7000,webFullscreen=time>=53500&&time<59000;
  useEffect(()=>{
   let attempts=0;

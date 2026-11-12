@@ -86,7 +86,7 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
       [32300,'Add tools'],[32800,'YouTube link'],[38400,'Save to Inbox'],
       [46300,'Add tools'],[46800,'Webpage bookmark'],[50900,'Save to Inbox'],
       [60300,'Add tools'],[61100,'Note'],[86400,'Add tools'],[87200,'Sticky note'],
-      [109200,'Split view'],[175500,'Save as Vault Map file'],[183000,'Export'],
+      [109200,'Split view'],[137500,'Use group color #42a5b3'],[138500,'Create group'],[165500,'Save as Vault Map file'],[173000,'Export'],
     ];
     for(const [time,label] of actions){
       await seek(time-100);

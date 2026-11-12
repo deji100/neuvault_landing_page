@@ -8,14 +8,16 @@ const PATH:[number,string][]=[
  [60300,'add'],[61100,'menu-note'],[62500,'design-title'],[64000,'design-body'],[64500,'expand-tools'],[65000,'heading'],[67500,'bold'],[69000,'design-body'],[76000,'design-body'],[77000,'table'],[82000,'design-body'],[84700,'design-body'],
  [86400,'add'],[87200,'menu-sticky'],[88500,'milestone-title'],[90500,'expand-tools'],[92000,'milestone-body'],[94500,'milestone-body'],[95500,'note-green'],[96500,'milestone-body'],
  [99000,'pdf-handle'],[100000,'pdf-handle'],[102000,'design-target'],[104000,'design-handle'],[106000,'milestone-target'],
- [108400,'view'],[109200,'menu-split'],[110000,'video'],[110800,'design-card'],[112000,'split-video'],[114000,'split-note'],[115000,'bullets'],[118000,'split-note'],[127500,'split-close'],[128500,'travel-day'],[129000,'travel-day'],[129600,'merge-target'],[130000,'design-card'],[141000,'kyoto'],[142000,'kyoto'],[142600,'photo-target'],[143200,'design-body'],
- [150200,'nova-open'],[152000,'nova-compose'],[156700,'nova-send'],[161000,'nova-proposal'],[165600,'nova-confirm'],[168500,'nova-close'],[171000,'design-body'],
- [173400,'share'],[175500,'menu-export'],[179000,'export-scope'],[183000,'export-confirm'],[187000,'design-card'],[188000,'design-card'],
+ [108400,'view'],[109200,'menu-split'],[110000,'video'],[110800,'design-card'],[112000,'split-video'],[114000,'split-note'],[115000,'bullets'],[118000,'split-note'],[127500,'split-close'],[128500,'travel-day'],[129000,'travel-day'],[129600,'merge-target'],[130000,'design-card'],[130400,'kyoto'],[130800,'kyoto'],[131400,'photo-target'],[132000,'design-body'],[133500,'research-note'],[134000,'research-web'],[135000,'group-name'],[137500,'group-color'],[138500,'group-save'],[139500,'design-card'],
+ [140200,'nova-open'],[142000,'nova-compose'],[146700,'nova-send'],[151000,'nova-proposal'],[155600,'nova-confirm'],[158500,'nova-close'],[161000,'design-body'],
+ [163400,'share'],[165500,'menu-export'],[169000,'export-scope'],[173000,'export-confirm'],[177000,'design-card'],[178000,'design-card'],
 ];
 
 // Measure in the embedded document: desktop body portals and React Flow transforms
 // have already been applied here, so cursor and controls share one coordinate space.
 const selectors: Record<string,string> = {
+ 'research-note':'.react-flow__node[data-id="saved-note"]','research-web':'.react-flow__node[data-id="web"]',
+ 'group-name':'.linked-map-group-composer-input','group-color':'[aria-label="Use group color #42a5b3"]','group-save':'[aria-label="Create group"]',
  saved:'.react-flow__node[data-id="saved-note"]',
  'preview-edit':'.document-view-modal [aria-label="Edit note"]',
  'saved-body':'[data-map-note-id="saved-edit"] .ProseMirror',
@@ -96,7 +98,7 @@ export default function Cursor({time, reduced}:{time:number; reduced:boolean}) {
     const rect=element.getBoundingClientRect();
     if(rect.width && rect.height) positions.current[name]={x:rect.left+Math.min(rect.width/2,130),y:rect.top+Math.min(rect.height/2,80)};
    }
-   const dragged=time>=129000&&time<129700?document.querySelector<HTMLElement>('.react-flow__node[data-id="travel-day"]'):time>=142000&&time<142700?document.querySelector<HTMLElement>('.react-flow__node[data-id="kyoto"]'):null;
+   const dragged=time>=129000&&time<129700?document.querySelector<HTMLElement>('.react-flow__node[data-id="travel-day"]'):time>=130800&&time<131500?document.querySelector<HTMLElement>('.react-flow__node[data-id="kyoto"]'):null;
    if(dragged?.dataset.tourDragX&&dragged.dataset.tourDragY){const point={x:Number(dragged.dataset.tourDragX),y:Number(dragged.dataset.tourDragY)};positions.current[time<129700?'merge-target':'photo-target']=point;setPoint(point);return}
    let index=PATH.findIndex(([at])=>at>time);
    if(index<0) index=PATH.length-1;
@@ -117,7 +119,7 @@ export default function Cursor({time, reduced}:{time:number; reduced:boolean}) {
   window.addEventListener('linked-map-viewport-changed',schedule);
   return()=>{cancelAnimationFrame(frame);observer.disconnect();window.removeEventListener('linked-map-viewport-changed',schedule)};
  },[time]);
- const clicking=[2000,5000,6500,8500,9000,10500,11500,18700,20500,21500,24000,27400,28300,31300,32300,32800,38400,39700,46300,46800,50900,53100,57800,60300,61100,64500,65000,67500,77000,86400,87200,90500,95500,108400,109200,110000,110800,115000,127500,150200,156700,165600,168500,173400,175500,183000].some(at=>time>=at&&time<at+170);
+ const clicking=[2000,5000,6500,8500,9000,10500,11500,18700,20500,21500,24000,27400,28300,31300,32300,32800,38400,39700,46300,46800,50900,53100,57800,60300,61100,64500,65000,67500,77000,86400,87200,90500,95500,108400,109200,110000,110800,115000,127500,133500,134000,137500,138500,139500,140200,146700,155600,158500,163400,165500,173000].some(at=>time>=at&&time<at+170);
  if(reduced) return null;
  return <div className="nv-map-tour-cursor" aria-hidden="true" style={{left:point.x,top:point.y}}><MousePointer2 size={30} fill="white" stroke="#101113" strokeWidth={1.5}/>{clicking&&<span/>}</div>;
 }
