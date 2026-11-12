@@ -1,13 +1,15 @@
 "use client";
 import { useDemoFocus } from "@/components/general/demoFocus";
+import { useDemoScale } from "../useDemoScale";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { MAP_CHAPTERS, MAP_DURATION } from "./mapProject";
 
 export function useMapTour() {
  const sectionRef=useRef<HTMLElement>(null), viewportRef=useRef<HTMLDivElement>(null), canvasRef=useRef<HTMLDivElement>(null);
+ const scale=useDemoScale(viewportRef);
  const visible=useDemoFocus("vault-map-demo",viewportRef);
  const clock=useRef(0);
- const [time,setTime]=useState(0), [playing,setPlaying]=useState(true), [scale,setScale]=useState(1), [reduced,setReduced]=useState(false);
+ const [time,setTime]=useState(0), [playing,setPlaying]=useState(true), [reduced,setReduced]=useState(false);
  const [tabVisible,setTabVisible]=useState(true);
  const active=playing&&visible&&tabVisible;
  const chapter=MAP_CHAPTERS.reduce((result,item,index)=>time>=item.at?index:result,0);
@@ -23,9 +25,7 @@ export function useMapTour() {
   const mq=matchMedia("(prefers-reduced-motion: reduce)");
   const update=()=>{setReduced(mq.matches);if(mq.matches) seek(MAP_DURATION)};
   update();mq.addEventListener("change",update);
-  const resize=new ResizeObserver(([entry])=>setScale(entry.contentRect.width/1600));
-  if(viewportRef.current) resize.observe(viewportRef.current);
-  return()=>{document.removeEventListener("visibilitychange",visibility);mq.removeEventListener("change",update);resize.disconnect()};
+  return()=>{document.removeEventListener("visibilitychange",visibility);mq.removeEventListener("change",update);};
  },[seek]);
  useEffect(()=>{
   if(!playing||!visible) return;

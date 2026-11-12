@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useDemoFocus } from "@/components/general/demoFocus";
+import { useDemoScale } from "../useDemoScale";
 import { activeNovaBatch } from "./plannerProject";
 export const PLANNER_DURATION = 106000;
 export const PLANNER_CHAPTERS = [
@@ -38,7 +39,8 @@ export function usePlannerTour() {
         x: number;
         y: number;
     }>>({});
-    const [time, setTime] = useState(0), [playing, setPlaying] = useState(true), [scale, setScale] = useState(1), [reduced, setReduced] = useState(false);
+    const [time, setTime] = useState(0), [playing, setPlaying] = useState(true), [reduced, setReduced] = useState(false);
+    const scale = useDemoScale(viewportRef);
     const visible = useDemoFocus("planner-demo", viewportRef);
     const chapter = PLANNER_CHAPTERS.reduce((current, step, index) => time >= step.at ? index : current, 0);
     const view = PLANNER_CHAPTERS[chapter].view;
@@ -54,10 +56,7 @@ export function usePlannerTour() {
         } };
         update();
         mq.addEventListener("change", update);
-        const resize = new ResizeObserver(([entry]) => setScale(entry.contentRect.width / 1600));
-        if (viewportRef.current)
-            resize.observe(viewportRef.current);
-        return () => { mq.removeEventListener("change", update); resize.disconnect(); };
+        return () => { mq.removeEventListener("change", update); };
     }, []);
     const scheduled = time >= 6500;
     const batch = activeNovaBatch(time);

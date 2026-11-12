@@ -2,6 +2,8 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { MousePointer2, Pause, Play, RotateCcw } from "lucide-react";
 import { useDemoFocus } from "@/components/general/demoFocus";
+import DemoViewer from "./DemoViewer";
+import { useDemoScale } from "./useDemoScale";
 import DesktopInterface, { type DemoPage } from "./capture/DesktopInterface";
 import styles from "./CaptureDemo.module.css";
 import { CAPTURE_TIMELINE as T } from "./capture/captureTimeline";
@@ -60,7 +62,7 @@ export default function CaptureDemo() {
     const [playing, setPlaying] = useState(true);
     const visible = useDemoFocus("capture", viewportRef);
     const [reducedMotion, setReducedMotion] = useState(false);
-    const [scale, setScale] = useState(1);
+    const scale = useDemoScale(viewportRef);
     const step = time >= T.vaultStart ? 3 : time >= T.notesStart ? 2 : time >= T.queueStart ? 1 : 0;
     const page = STEPS[step].page;
     useEffect(() => {
@@ -72,10 +74,7 @@ export default function CaptureDemo() {
         } };
         update();
         media.addEventListener("change", update);
-        const resize = new ResizeObserver(([entry]) => setScale(entry.contentRect.width / WIDTH));
-        if (viewportRef.current)
-            resize.observe(viewportRef.current);
-        return () => { media.removeEventListener("change", update); resize.disconnect(); };
+        return () => { media.removeEventListener("change", update); };
     }, []);
     const onAudioInteract = useCallback(() => setPlaying(false), []);
     const audioPhase = time >= T.documentOpen ? "document" : time >= T.podcastsOpen ? "podcasts" : time >= T.entertainmentOpen ? "entertainment" : time < T.audioImported ? "idle" : time < T.transcriptReady ? "transcribing" : time < T.summaryReady ? "summary" : "ready";
@@ -122,8 +121,8 @@ export default function CaptureDemo() {
     const cursor = cursorAt(time, targetsRef.current);
     const clicking = [1200, 3000, 6200, T.queueStart, T.notesStart, T.audioPlayback, T.noteSaved, T.entertainmentOpen, T.podcastsOpen, T.documentOpen].some(at => Math.abs(time - at) < 190);
     return <section className={styles.section} id="capture" ref={sectionRef} aria-labelledby="capture-title">
-    <div className={styles.heading}><p className={styles.eyebrow}><span>01</span> CAPTURE &amp; ORGANIZE</p><h2 id="capture-title">Your notes and files.<br /><span>Organized for you.</span></h2><p>Stop manually sorting your notes and files. Import your research, transcribe recordings into summaries and searchable notes, and let NeuVault organize them with AI.</p></div>
-    <div className={styles.demo}><div className={styles.demoTop}><span><i className={styles.liveDot}/>Inside NeuVault Desktop</span><span className={styles.demoLabel}>Product tour</span></div>
+    <div className={styles.heading}><p className={styles.eyebrow}><span>01</span> CAPTURE &amp; ORGANIZE</p><h2 id="capture-title">Your notes and files.<br /><span>Organized for you.</span></h2><p>Stop manually sorting your notes and files. Bring everything together, turn recordings into summaries and searchable notes, and let NeuVault organize it all with AI.</p></div>
+    <DemoViewer label="Note & Voice"><div className={styles.demoTop}><span><i className={styles.liveDot}/>Inside NeuVault Desktop</span><span className={styles.demoLabel}>Product tour</span></div>
       <div className={styles.viewport} ref={viewportRef} style={{ height: HEIGHT * scale }}>
         <div className={`nv-capture-desktop ${styles.canvas}`} ref={canvasRef} style={{ transform: `scale(${scale})` }}>
           <DesktopInterface page={page} time={time} reduced={reducedMotion} onNavigate={navigate} audioActive={playing && visible} audioVisible={visible} onAudioInteract={onAudioInteract} seekTour={seek} audioSeekVersion={audioSeekVersion}/>
@@ -131,6 +130,6 @@ export default function CaptureDemo() {
         </div>
       </div>
       <div className={styles.playback}><button type="button" onClick={() => time >= DURATION ? seek(0, true) : setPlaying(!playing)} aria-label={playing ? "Pause capture tour" : time >= DURATION ? "Restart capture tour" : "Play capture tour"}>{playing ? <Pause size={16}/> : <Play size={16}/>}</button><input type="range" aria-label="Capture tour progress" min={0} max={DURATION} step={100} value={time} onChange={e => seek(Number(e.target.value))}/><span>{Math.floor(time / 1000).toString().padStart(2, "0")} / {DURATION / 1000}s</span><button type="button" onClick={() => seek(0, true)} aria-label="Replay capture tour"><RotateCcw size={16}/></button></div>
-    </div>
+    </DemoViewer>
   </section>;
 }
