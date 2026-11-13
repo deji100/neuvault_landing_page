@@ -110,5 +110,5 @@ export function usePlannerTour() {
     const cursor = { x: start.x + (end.x - start.x) * ease, y: start.y + (end.y - start.y) * ease };
     const dragging = (time >= 18400 && time < 19000) || (time >= 35200 && time < 35800) || (time >= 39600 && time < 40200);
     const clicking = [2400, 8500, 9800, 11100, 11700, 13200, 14000, 23000, 25900, 29800, 31000, 44300, 53800, 62000, 68000, 73200, 80800, 89000, 94000, 100000].some(at => Math.abs(at - time) < 170);
-    return { sectionRef, viewportRef, canvasRef, time, playing, setPlaying, scale, reduced, chapter, view, dialog, picker, moved, stage, cursor, dragging, clicking, seek, showView };
+    return { sectionRef, viewportRef, canvasRef, time, active: playing && visible, playing, setPlaying, scale, reduced, chapter, view, dialog, picker, moved, stage, cursor, dragging, clicking, seek, showView };
 }

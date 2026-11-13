@@ -4,6 +4,8 @@ import Image from "next/image";
 import { AudioLines, Bell, CalendarDays, ChevronDown, ChevronLeft, ChevronRight, CircleHelp, Clock3, Coins, FileText, Folder, FolderOpen, Globe2, History, Images, Inbox, Info, Link2, LogOut, Mail, MoreHorizontal, Pin, Play, Pause, LoaderCircle, RotateCw, Search, Settings2, Share2, Sparkles, Sun, Upload, X, LockKeyhole, Lightbulb, House, type LucideIcon } from "lucide-react";
 import { CAPTURE_TIMELINE as T, TRANSCRIPT_TITLE, RECORDING_FILE } from "./captureTimeline";
 import "./DesktopApp.css";
+import "./SidebarMotion.css";
+import { installIconAnimationSync } from "./sidebarIconSync";
 import styles from "./DesktopInterface.module.css";
 const AudioNotesDemo = dynamic(() => import("./AudioNotesDemo"));
 export type DemoPage = "home" | "queue" | "notes" | "vault";
@@ -33,22 +35,42 @@ const SECTIONS: {
     { title: "Intelligence", items: [["Nova", Sparkles], ["Planner", CalendarDays], ["Reminders", Clock3], ["Queue", Upload, "queue"], ["Media Review", Images]] },
     { title: "System", items: [["Alerts", Bell], ["Plans", Coins], ["Settings", Settings2]] },
 ];
-export function DesktopSidebar({ page, onNavigate, queueCount = 0, onOpenPlanner }: {
+function SidebarRow({ label, Icon, navKey, count = 0, selected = false, onClick, cursor }: {
+    label: string; Icon: LucideIcon; navKey?: string; count?: number;
+    selected?: boolean; onClick?: () => void; cursor?: string;
+}) {
+    const Row = onClick ? "button" : "div";
+    return <Row type={onClick ? "button" : undefined} className="nv-finder-row" data-nav-key={navKey} data-alerting={count > 0 ? "true" : undefined} data-active={selected ? "true" : "false"} data-cursor={cursor} onClick={onClick} aria-label={onClick ? `Show ${label} in product tour` : undefined}>
+        <span className="nv-finder-icon"><Icon/></span>
+        <span className="nv-finder-label">{label}</span>
+        {count > 0 && <span className={`nv-finder-count ${styles.queueCount}`} data-queue-count={label === "Queue" ? count : undefined} aria-label={`${count} ${label} items`}>{count}</span>}
+        {selected && <span className={`nv-finder-active-marker ${styles.navMarker}`} data-visible="true"/>}
+    </Row>;
+}
+
+export function DesktopSidebar({ page, onNavigate, queueCount = 0, onOpenPlanner, active = false }: {
+    active?: boolean;
     page: DemoPage | "planner";
     onNavigate?: (page: DemoPage) => void;
     queueCount?: number;
     onOpenPlanner?: () => void;
 }) {
-    return <aside className={`desktop-sidebar-layout nv-finder-sidebar ${styles.sidebar}`}><div className="nv-finder-sidebar-scroll">
-    <div className="nv-finder-brand-row"><div className="nv-finder-brand"><span className="nv-finder-brand-icon"><Image src="/desktop-images/app-logo.png" alt="" width={29} height={29}/></span><span className="nv-finder-brand-copy"><small>NEUVAULT</small><strong>Alex</strong></span></div><span className={styles.themeButton}><Sun size={19}/></span></div>
-    {[["Recent Activity", History], ["Pinned docs", Pin], ["Search", Search], ["Share", Share2]].map(([label, Icon]) => { const Glyph = Icon as LucideIcon; return <div className="nv-finder-row" key={label as string}><span className="nv-finder-icon"><Glyph /></span><span className="nv-finder-label">{label as string}</span></div>; })}
-    <nav className="nv-finder-navigation" aria-label="Desktop tour navigation">{SECTIONS.map(section => <section className="nv-finder-section" key={section.title}><h2>{section.title}</h2><div className="nv-finder-list">{section.items.map(([label, Icon, target]) => {
-                const contents = <><span className="nv-finder-icon"><Icon /></span><span className="nv-finder-label">{label}</span>{label === "Queue" && queueCount > 0 && <span key={queueCount} className={`nv-finder-count ${styles.queueCount}`} data-queue-count={queueCount} aria-label={`${queueCount} item in Queue`}>{queueCount}</span>}</>;
-                if (label === "Planner" && onOpenPlanner) return <button type="button" key={label} className="nv-finder-row" data-active={page === "planner" ? "true" : "false"} data-cursor="nav-planner" onClick={onOpenPlanner} aria-label="Show Planner in product tour">{contents}{page === "planner" && <span className={styles.navMarker}/>}</button>;
-                return target && onNavigate ? <button type="button" className="nv-finder-row" key={label} data-active={page === target ? "true" : "false"} data-cursor={`nav-${target}`} onClick={() => onNavigate(target)} aria-label={`Show ${label} in product tour`}>{contents}{page === target && <span className={styles.navMarker}/>}</button> : <div className="nv-finder-row" key={label}>{contents}</div>;
-            })}</div></section>)}</nav>
-    <div className="nv-finder-footer">{[["Help", CircleHelp], ["Build with us", Lightbulb], ["Sign out", LogOut]].map(([label, Icon]) => { const Glyph = Icon as LucideIcon; return <div className="nv-finder-row" key={label as string}><span className="nv-finder-icon"><Glyph /></span><span className="nv-finder-label">{label as string}</span></div>; })}</div>
-  </div></aside>;
+    useEffect(() => { installIconAnimationSync(); }, []);
+    return <aside data-demo-active={active} className={`desktop-sidebar-layout nv-finder-sidebar ${styles.sidebar}`}><div className="nv-finder-sidebar-scroll">
+        <div className="nv-finder-brand-row"><div className="nv-finder-brand"><span className="nv-finder-brand-icon"><Image src="/desktop-images/app-logo.png" alt="" width={29} height={29}/></span><span className="nv-finder-brand-copy"><small>NEUVAULT</small><strong>Alex</strong></span></div><span className={styles.themeButton}><Sun size={19}/></span></div>
+        <SidebarRow label="Recent Activity" Icon={History}/>
+        <SidebarRow label="Pinned docs" Icon={Pin} navKey="pinned-docs" count={1}/>
+        <SidebarRow label="Search" Icon={Search}/>
+        <SidebarRow label="Share" Icon={Share2}/>
+        <nav className="nv-finder-navigation" aria-label="Desktop tour navigation">{SECTIONS.map(section => <section className="nv-finder-section" key={section.title}><h2>{section.title}</h2><div className="nv-finder-list">{section.items.map(([label, Icon, target]) => {
+            const navKey = ({ "Reminders": "smart-suggestions", "Queue": "vault-queue", "Alerts": "notifications", "Planner": "planner", "Media Review": "media-review" } as Record<string,string>)[label] ?? target;
+            const count = label === "Queue" ? queueCount : label === "Reminders" ? 4 : label === "Alerts" ? 2 : label === "Planner" ? 1 : 0;
+            const selected = label === "Planner" ? page === "planner" : page === target;
+            const onClick = label === "Planner" ? onOpenPlanner : target && onNavigate ? () => onNavigate(target) : undefined;
+            return <SidebarRow key={label} label={label} Icon={Icon} navKey={navKey} count={count} selected={selected} onClick={onClick} cursor={label === "Planner" && onOpenPlanner ? "nav-planner" : target && onNavigate ? `nav-${target}` : undefined}/>;
+        })}</div></section>)}</nav>
+        <div className="nv-finder-footer"><SidebarRow label="Help" Icon={CircleHelp}/><SidebarRow label="Build with us" Icon={Lightbulb}/><SidebarRow label="Sign out" Icon={LogOut}/></div>
+    </div></aside>;
 }
 function HomePage({ time }: {
     time: number;
@@ -121,5 +143,5 @@ export default function DesktopInterface({ page, time, reduced, onNavigate, audi
     audioSeekVersion: number;
 }) {
     const queueCount = (time >= T.audioImported && time < T.summaryReady) || (time >= T.noteSaved && time < T.noteComplete) ? 1 : 0;
-    return <div className={`updv-dark ${styles.shell}`} data-demo-page={page}><DesktopSidebar page={page} onNavigate={onNavigate} queueCount={queueCount}/><div className={styles.page}>{page === "home" ? <HomePage time={time}/> : page === "queue" ? <QueuePage time={time} onOpenEditor={() => seekTour(T.notesStart, true)} onAudioInteract={onAudioInteract}/> : <div className="audio-native-scope"><AudioNotesDemo time={time} page={page} vaultContent={<VaultPage time={time} seekTour={seekTour}/>} seekVersion={audioSeekVersion} active={audioActive} visible={audioVisible} reduced={reduced} onInteract={onAudioInteract} seekTour={seekTour}/></div>}</div></div>;
+    return <div className={`updv-dark ${styles.shell}`} data-demo-page={page}><DesktopSidebar page={page} onNavigate={onNavigate} queueCount={queueCount} active={audioActive}/><div className={styles.page}>{page === "home" ? <HomePage time={time}/> : page === "queue" ? <QueuePage time={time} onOpenEditor={() => seekTour(T.notesStart, true)} onAudioInteract={onAudioInteract}/> : <div className="audio-native-scope"><AudioNotesDemo time={time} page={page} vaultContent={<VaultPage time={time} seekTour={seekTour}/>} seekVersion={audioSeekVersion} active={audioActive} visible={audioVisible} reduced={reduced} onInteract={onAudioInteract} seekTour={seekTour}/></div>}</div></div>;
 }

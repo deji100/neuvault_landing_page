@@ -1,1 +1,5 @@
 html,body,#root{width:100%;height:100%;margin:0;overflow:hidden}body{background:#101012}.desktop-app-root{height:100vh}.desktop-shell-content{min-width:0}.reminder-demo-vault{height:100%;background:#101012}.reminder-demo-documents{padding:24px}.reminder-demo-cursor{position:fixed;z-index:2000;pointer-events:none;filter:drop-shadow(0 2px 3px #0008)}.reminder-demo-cursor i{position:absolute;left:-9px;top:-9px;width:33px;height:33px;border:2px solid #64a8ff;border-radius:50%;background:#0a84ff22}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+[data-demo-active="false"] .desktop-sidebar-layout .nv-finder-icon svg,[data-demo-active="false"] .desktop-sidebar-layout .nv-finder-icon svg path,[data-demo-active="false"] .desktop-sidebar-layout .nv-finder-count,[data-demo-active="false"] .desktop-sidebar-layout .nv-finder-active-marker{animation-play-state:paused!important}
+
+[data-demo-active="false"] .desktop-sidebar-layout .nv-finder-count{opacity:1!important;transform:none!important}

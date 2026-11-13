@@ -22,7 +22,7 @@ Object.assign(mocks,{
  '/lib/desktopNotificationApi':'',
  '/lib/desktopOnboarding':`export const isDesktopOnboardingTourOpen=()=>false;export const emitDesktopOnboardingInteraction=()=>{};export const DESKTOP_ONBOARDING_COMMAND_EVENT='tour-onboarding-command';`,
  '/hooks/useDesktopQueueSnapshot':`const value={queue:[],completed:[],audioAssetNamespace:'tour'};export default ()=>value;export const useDesktopQueueSummary=()=>({queueCount:0});`,
- '/hooks/useDesktopNotificationCount':`export default ()=>0;`,
+ '/hooks/useDesktopNotificationCount':`export default ()=>2;`,
  '/hooks/useDesktopReminderCount':`import {dataAt} from ${project};export default ()=>dataAt().suggestions.length+dataAt().manual.length;`,
  '/hooks/usePlannerBadgeCount':`export const usePlannerDueCount=()=>0;`,
  '/lib/intakeProcessingSettings':`export const readIntakeProcessingSettings=()=>({});`,
@@ -60,7 +60,7 @@ fs.renameSync(path.join(work,'output/.native-reminders-build/index.html'),path.j
 fs.cpSync(path.join(work,'output'),path.join(site,'public/desktop-tour/reminders'),{recursive:true});
 for(const name of ['pdf.png','note.png','markdown.png','img.png','audio.png']){const file=path.join(desktop,'public',name);if(fs.existsSync(file))fs.copyFileSync(file,path.join(site,'public/desktop-tour/reminders',name))}
 const hash=text=>createHash('sha256').update(text).digest('hex');const files=['src/pages/SmartSuggestionsPage.tsx','src/components/layout/AppSidebar.tsx','src/components/intake/DesktopSmartDocHandler.tsx','src/components/intake/DesktopResurfaceSection.tsx','src/components/intake/GlobalIntakePreview.tsx','src/components/intake/DesktopSectionShell.tsx','src/components/vault/VaultSubgroupDocumentCard.tsx','src/lib/documentThumbnails.ts','src/components/layout/DesktopVaultBrowserHeader.tsx','src/components/attention/ReminderCountdown.tsx','src/components/attention/FlipCountdown.tsx','src/styles.css','src/document-preview.css'];
-const sources=Object.fromEntries(files.map(file=>[file,hash(fs.readFileSync(path.join(desktop,file)))]));const local=fs.readdirSync(here).sort().map(file=>fs.readFileSync(path.join(here,file)));local.push(fs.readFileSync(path.join(site,'components/specific/home/reminders/reminderProject.ts')));
+const sources=Object.fromEntries(files.map(file=>[file,hash(fs.readFileSync(path.join(desktop,file)))]));const local=fs.readdirSync(here).sort().map(file=>fs.readFileSync(path.join(here,file)));local.push(fs.readFileSync(path.join(site,'components/specific/home/reminders/reminderProject.ts')),fs.readFileSync(path.join(site,'components/specific/home/capture/sidebarIconSync.ts')));
 fs.writeFileSync(path.join(site,'public/desktop-tour/reminders/source-manifest.json.next'),JSON.stringify({version:hash(Buffer.concat([...local,Buffer.from(JSON.stringify(sources))])).slice(0,16),jsxUnchanged:Object.values(fidelity).every(Boolean),controllers:fidelity,sources},null,2)+'\n');
 
 fs.renameSync(path.join(site,'public/desktop-tour/reminders/source-manifest.json.next'),path.join(site,'public/desktop-tour/reminders/source-manifest.json'));

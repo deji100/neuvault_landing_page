@@ -1,12 +1,12 @@
 {
-  "version": "9ea22ff1a827b420",
+  "version": "415425cf3f2eb9f1",
   "jsxUnchanged": true,
   "controllers": {
     "src/pages/SmartSuggestionsPage.tsx": true,
     "src/components/intake/DesktopSmartDocHandler.tsx": true
   },
   "sources": {
-    "src/pages/SmartSuggestionsPage.tsx": "4c6afe8d0c81a96ad0fc1f9c3256327096e595f435c62b28823ea5b99530f6fe",
+    "src/pages/SmartSuggestionsPage.tsx": "fd052dee6ec087a92a1583380f68cb54c6abfbe90309de9ebd298f59efefcd57",
     "src/components/layout/AppSidebar.tsx": "1a54dd78e556a31f294fb7882b172dd53572a5d4fe97cfb0a41e337a3c84cd0c",
     "src/components/intake/DesktopSmartDocHandler.tsx": "473f7a7020156be46e3d6919fffc2543f88e3bef00aa4e43d29a9d65052e9069",
     "src/components/intake/DesktopResurfaceSection.tsx": "1ec9e8d5c4dd9fdf66e223e711bb950fd7f775b42fc1dc4568500293ae43e1e3",

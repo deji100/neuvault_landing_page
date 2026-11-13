@@ -6,6 +6,8 @@ import GlobalIntakePreview from '@desktop/src/components/intake/GlobalIntakePrev
 import VaultSubgroupDocumentCard from '@desktop/src/components/vault/VaultSubgroupDocumentCard';
 import DesktopVaultBrowserHeader from '@desktop/src/components/layout/DesktopVaultBrowserHeader';
 import {DesktopThemeProvider} from '@desktop/src/lib/desktopTheme';
+import {installIconAnimationSync} from '../../components/specific/home/capture/sidebarIconSync';
+installIconAnimationSync();
 import '@desktop/src/styles.css';import '@desktop/src/document-preview.css';import '@desktop/src/isolated-controls.css';import '@desktop/src/notes-voice-workspace.css';
 import {REMINDER_DURATION,REMINDER_BASE_TIME,reminderDocumentAt,reminderPageAt} from '../../components/specific/home/reminders/reminderProject';
 import {ReminderContext} from './controllers';import {dataAt,setTime} from './project';import Cursor from './Cursor';import './frame.css';
@@ -23,7 +25,7 @@ function App(){
  useEffect(()=>{setOpenDoc(docId?dataAt(state.time).records.find(record=>record.id===docId):null)},[docId]);
  useEffect(()=>setPage(nextPage),[nextPage]);
  useEffect(()=>{const open=event=>setOpenDoc(event.detail);window.addEventListener('tour-open-document',open);return()=>window.removeEventListener('tour-open-document',open)},[]);
- return <ReminderContext.Provider value={state}><DesktopThemeProvider><div className="desktop-app-root relative h-screen overflow-hidden" data-reminder-time={state.time} data-reminder-page={page}><main className="relative z-10 flex h-screen overflow-hidden"><AppSidebar user={user} onSignOut={()=>{}} activeKey={page} onNavigate={setPage}/><section className="desktop-shell-content min-w-0 h-screen flex-1 overflow-hidden">
+ return <ReminderContext.Provider value={state}><DesktopThemeProvider><div className="desktop-app-root relative h-screen overflow-hidden" data-demo-active={state.active} data-reminder-time={state.time} data-reminder-page={page}><main className="relative z-10 flex h-screen overflow-hidden"><AppSidebar user={user} onSignOut={()=>{}} activeKey={page} onNavigate={setPage}/><section className="desktop-shell-content min-w-0 h-screen flex-1 overflow-hidden">
   {page==='smart-suggestions'?<SmartSuggestionsPage user={user} onSignOut={()=>{}} onNavigate={setPage} shellless/>:<div className="desktop-vault-page reminder-demo-vault"><DesktopVaultBrowserHeader title="Japan" summary="Your travel documents, kept together."/><div className="desktop-vault-subgroup-document-grid grid gap-4 xl:grid-cols-2 reminder-demo-documents">{dataAt(state.time).records.filter(record=>['japan','insurance','passport'].includes(record.id)).map(record=><VaultSubgroupDocumentCard key={record.id} documentId={record.id} title={record.title} documentTypeLabel="PDF" onOpen={()=>setOpenDoc(record)} onDetails={()=>setOpenDoc(record)}/>)}</div></div>}
  </section></main><GlobalIntakePreview item={openDoc} open={Boolean(openDoc)} onClose={()=>setOpenDoc(null)}/></div><Cursor {...state}/></DesktopThemeProvider></ReminderContext.Provider>
 }
