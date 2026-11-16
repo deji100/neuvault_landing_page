@@ -16,7 +16,6 @@ export default function Testimonials() {
           <h2 id="testimonials-title">Less scattered.<br /><span>More space for what matters.</span></h2>
           <p className={styles.intro}>Stories from people making room for a clearer day.</p>
           {!preview && <div className={styles.trust}><MessageSquareQuote size={17} aria-hidden="true" /><span>From people using NeuVault</span></div>}
-          {preview && <p className={styles.previewNote}>Illustrative quotes and ratings for this preview. These are not customer reviews and will not appear on the live site.</p>}
         </header>
 
         <div className={styles.grid}>
