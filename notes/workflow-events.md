@@ -141,3 +141,20 @@ not grant read access.
 References: [Google consent mode](https://developers.google.com/tag-platform/security/guides/consent),
 [configuration](https://developers.google.com/analytics/devguides/collection/ga4/reference/config),
 [SPA measurement and DebugView](https://developers.google.com/analytics/devguides/collection/ga4/single-page-applications).
+
+## Brief, source-checked product copy (16 November 2026)
+
+Reviewed the desktop and server implementation before simplifying the homepage, all eight workflow examples, feature descriptions and use-case introductions. Carousel paragraphs now contain 9–18 words, with concrete actions in the headings. The illustrations retain the exact example dates and separate optional Planner task. Demo introductions use one or two sentences; playback code and embedded demonstrations are unchanged.
+
+Evidence checked in sibling repositories:
+
+- `updv-desktop/src/lib/captureApi.ts`: local Inbox saves without processing; AI processing is a separate path with a credit check.
+- `updv-desktop/src/lib/desktopQueue.ts`: watched folders support AI processing or Inbox saving; audio goes through media review.
+- `updv-server/app/services/intake/schemas.py`: structured summaries, groups, subgroups, tags and future-date detection.
+- `updv-server/app/services/smart_suggestions_service.py`: upcoming dates generate document-linked suggestions, including recommended reminder timing. This is distinct from a manually scheduled reminder.
+- `updv-desktop/src/components/intake/DesktopResurfaceSection.tsx`: user-selected reminder date/time and repeat options.
+- `updv-desktop/src/pages/PlannerPage.tsx`: “Plan from reminders,” attached documents, Agenda/Week/Month/Board and confirmation of Nova changes.
+- `updv-server/app/services/planner_ai_service.py`: Nova proposes Planner changes; the client applies them after confirmation.
+- `updv-desktop/src/features/linked-document-map/README.md` and `NOVA_MAP_AI_README.md`: desktop canvas, source cards and notes, side-by-side reading, export, scoped Nova context and confirmed map actions. Avoided the earlier claim that Nova reads every card in full.
+
+The deadline and renewal stories are illustrative examples of these general capabilities, not separate industry-specific automation. AI date extraction is reviewed against the source. Reminders work without a Planner task; creating a task remains an explicit choice. Privacy and online-processing explanations remain visible.

@@ -22,7 +22,7 @@ export default function UseCasesPage() {
         <header className={styles.hero}>
           <p className={styles.eyebrow}>Many goals. One connected workspace.</p>
           <h1>What do you want to accomplish?</h1>
-          <p>Start with a goal, then explore how capture, AI organization, Vault Map and Planner work together. These examples are starting points—you can adapt them to the way you study, work and live.</p>
+          <p>Pick a goal. See how notes, AI organization, Vault Map, Reminders and Planner can help.</p>
         </header>
         <ul className={styles.grid}>
           {workflows.map((workflow) => <li key={workflow.id}><Link href={`/use-cases/${workflow.id}`} className={styles.card}>

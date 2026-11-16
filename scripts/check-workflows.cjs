@@ -123,7 +123,7 @@ const cases = ['study-smarter', 'organize-research', 'manage-work', 'develop-ide
         }
         if (step === 5) {
           const act = await ev(`document.querySelector('[data-reminder-state="upcoming-commitment"]').textContent`);
-          assert.match(act, /NO PLANNER TASK REQUIRED/);
+          assert.match(act, /REMINDERS WORK WITHOUT A PLANNER TASK/);
           assert.equal(await ev(`!!document.querySelector('#workflow-detail a[href="/#reminders-demo"]')`), true);
         }
       }

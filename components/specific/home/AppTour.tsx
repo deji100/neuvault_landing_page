@@ -20,12 +20,12 @@ const desktopSlides: Slide[] = [
   {
     src: "/desktop-images/planner-agenda.png",
     title: "Your next steps, connected to your notes.",
-    copy: "Plan tasks and events in Agenda, Week, Month, or Board view. Your local-first Planner saves on your device and syncs when connected.",
+    copy: "Plan tasks and events in four views. Work offline and sync when connected.",
   },
   {
     src: "/desktop-images/reminder.png",
     title: "Keep important dates in sight.",
-    copy: "Every date counts down live, overdue first, so nothing slips past.",
+    copy: "See upcoming and overdue dates, with the source document a click away.",
   },
   {
     src: "/desktop-images/home.png",
@@ -35,17 +35,17 @@ const desktopSlides: Slide[] = [
   {
     src: "/desktop-images/vault.png",
     title: "Sorted before you look.",
-    copy: "Everything lands in groups by what it is, not by where you happened to save it.",
+    copy: "Let AI sort files into groups, or save them to Inbox for later.",
   },
   {
     src: "/desktop-images/doc-info.png",
     title: "Know a file at a glance.",
-    copy: "A summary, tags, dates and related documents sit beside every file.",
+    copy: "After AI processing, find the summary, tags and dates beside the file.",
   },
   {
     src: "/desktop-images/structured-note.png",
     title: "From voice to structured notes.",
-    copy: "A recording becomes an overview, key points, action items and the full transcript, all in the note itself.",
+    copy: "Turn a recording into a summary, action items and a searchable transcript.",
   },
   {
     src: "/desktop-images/vault-map-overview.png",
@@ -97,7 +97,7 @@ const mobileSlides: Slide[] = [
   {
     src: "/mobile-images/vault-m.png",
     title: "The whole vault, in your pocket.",
-    copy: "The same groups as on your desktop, ready wherever you are.",
+    copy: "Browse the files and notes saved on your phone.",
   },
   {
     src: "/mobile-images/scan3.jpg",

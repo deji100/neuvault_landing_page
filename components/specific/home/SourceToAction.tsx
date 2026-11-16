@@ -126,10 +126,10 @@ function WorkflowCarousel({ workflow, surface }: { workflow: Workflow; surface: 
               <p className={styles.stepLabel}><span>0{active + 1}</span> {step.stage}</p>
               <h3>{workflowHeadlines[workflow.id][active].split("\n").map((line, index) => <span key={index}>{line}</span>)}</h3>
               <p className={styles.description}>{step.copy}</p>
-              {workflow.reminder && active === 3 && <p className={styles.reminderNote}>Reminders bring important dates back. Planner tasks organize work you choose to do.</p>}
+              {workflow.reminder && active === 3 && <p className={styles.reminderNote}>Reminders flag dates. Planner tasks schedule work.</p>}
               <div className={styles.demoLinks}>
                 {workflow.reminder && active === 3 && <Link href="/#reminders-demo">See Reminders <ArrowRight size={15} aria-hidden="true" /></Link>}
-                <Link href={`/#${step.demo}`}>See {demoLabels[step.demo]} in NeuVault <ArrowRight size={15} aria-hidden="true" /></Link>
+                <Link href={`/#${step.demo}`}>See {demoLabels[step.demo]} <ArrowRight size={15} aria-hidden="true" /></Link>
               </div>
             </div>
             <div className={styles.visual}><WorkflowIllustration workflow={workflow} stage={active} animate={animate} /></div>
@@ -170,7 +170,7 @@ export default function SourceToAction({ workflow: fixedWorkflow }: { workflow?:
   return (
     <section id="source-to-action" className={styles.section} aria-labelledby="workflow-title">
       <div className={styles.wrap}>
-        <div className={styles.heading}><p className={styles.eyebrow}>A little less scattered. A lot more possible.</p><h2 id="workflow-title">{fixedWorkflow ? "From the first spark to the next step." : "Your world. Brought together."}</h2><p className={styles.intro}>{fixedWorkflow ? workflow.summary : "Choose what matters to you. See how the pieces become a plan."}</p></div>
+        <div className={styles.heading}><p className={styles.eyebrow}>A little less scattered. A lot more possible.</p><h2 id="workflow-title">{fixedWorkflow ? "See how it works." : "Your world. Brought together."}</h2><p className={styles.intro}>{fixedWorkflow ? workflow.summary : "Pick a goal. See what you can do with NeuVault."}</p></div>
         {!fixedWorkflow && <ul className={styles.outcomes} aria-label="Choose a workflow">
           {featuredWorkflows.map(option => {
             const Icon = outcomeIcons[option.id];

@@ -27,9 +27,8 @@ export default function HomeHero() {
           </h1>
 
           <p className={styles.lede}>
-            Bring your notes, files, recordings and saved links together. Let AI help
-            organize what you save and find important dates. Connect the context in
-            Vault Map, choose reminders, and plan your next steps with the source material attached.
+            Save notes, files and recordings. Let AI organize them and find important dates.
+            Connect your ideas, set reminders and plan what to do next.
           </p>
 
           <p className={styles.privacyNote}><strong>Your files and notes are stored locally on your device.</strong></p>

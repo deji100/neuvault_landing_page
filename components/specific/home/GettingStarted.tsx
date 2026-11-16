@@ -20,7 +20,7 @@ export default function GettingStarted() {
       <section className={styles.start} aria-labelledby="first-step-title">
         <p className={styles.eyebrow}>Your first useful moment</p>
         <h2 id="first-step-title">Start with one item.</h2>
-        <p>Import a note or document. Let AI help organize it and review any dates it finds. Choose a reminder, a source-linked Planner task, or both when useful.</p>
+        <p>Save a note or document. Try AI organization, check any dates it finds and choose what to do next.</p>
         <p className={styles.allowance}>Explorer includes {explorer.allowance} free credits for 14 days. Storage uses no credits, and your vault remains usable when credits run out.</p>
         <Link href="/pricing">See plans and how credits work</Link>
       </section>

@@ -5,14 +5,14 @@ import type { Workflow, WorkflowReminder } from "@/lib/workflows";
 import styles from "./WorkflowIllustration.module.css";
 
 export const workflowHeadlines: Record<string, string[]> = {
-  "study-smarter": ["Catch the idea.\nKeep the context.", "Less sorting.\nMore understanding.", "Make the\nconnections click.", "A deadline found.\nA reminder you choose.", "The deadline returns.\nBefore the last minute."],
-  "organize-research": ["Good research\nstarts with a source.", "Find the signal\nin your sources.", "Follow the thread.\nSee the bigger picture.", "Keep the submission\nin sight.", "The right source.\nBefore the deadline."],
-  "manage-work": ["The commitment starts\nwith a document.", "Turn the pile\ninto a starting point.", "Keep the why\nwith the what.", "Renewal date found.\nYou choose the reminder.", "A renewal remembered.\nTime to decide."],
-  "develop-ideas": ["Ideas arrive\nin all shapes.", "Find a little order\nin the inspiration.", "Let your references\nstart a conversation.", "A milestone ahead.\nA reminder in place.", "Back to the brief.\nBefore the review."],
-  "organize-my-life": ["Life comes with\na lot of paperwork.", "Everything useful.\nEasier to find.", "Your plans and records,\nin one picture.", "A date you could miss.\nA reminder you control.", "It comes back.\nBefore it expires."],
-  "build-projects": ["Capture the spec.\nKeep the reasoning.", "Your context,\nin working order.", "See how the\ndecisions connect.", "A release ahead.\nA reminder before it.", "Back to the plan.\nBefore release day."],
-  "run-a-business": ["Every commitment\nhas a beginning.", "Know where\nthe details live.", "Keep the customer\ncontext connected.", "From a promise\nto a practical plan.", "Deliver the work.\nKeep the context."],
-  "keep-learning": ["Save what\nmakes you curious.", "Give your curiosity\na little structure.", "Connect an idea\nto another possibility.", "Make time\nto try it yourself.", "Turn what you learn\ninto what you do."],
+  "study-smarter": ["Keep your course\nmaterial together.", "Find the assignment\ndue date.", "Connect notes\nto the assignment.", "Set a reminder.\nPlan study time.", "Check the brief.\nFinish on time."],
+  "organize-research": ["Keep your\nsources together.", "Find the\nsubmission deadline.", "Compare papers.\nConnect the evidence.", "Set a reminder.\nPlan the review.", "Check the guidelines\nbefore you submit."],
+  "manage-work": ["Keep client\nrecords together.", "Find the contract\nrenewal date.", "Connect the contract\nto your notes.", "Set a reminder\nbefore renewal.", "Review the terms\nbefore you renew."],
+  "develop-ideas": ["Keep the brief\nand inspiration together.", "Find the\nclient-review date.", "Connect your ideas\nto the brief.", "Set a reminder.\nPlan your draft.", "Check your concepts\nbefore the review."],
+  "organize-my-life": ["Keep your travel\ndocuments together.", "Find the passport\nexpiry date.", "Connect your documents\nto the trip.", "Choose when\nto be reminded.", "Check your passport\nbefore it expires."],
+  "build-projects": ["Keep specs\nand decisions together.", "Find the target\nrelease date.", "Connect requirements\nto decisions.", "Set a reminder.\nPlan the review.", "Check what is left\nbefore release day."],
+  "run-a-business": ["Keep customer\nrecords together.", "Find the\nimportant details.", "Connect the proposal\nto customer needs.", "Plan the delivery.\nAttach the details.", "Check the requirements.\nFinish the plan."],
+  "keep-learning": ["Save tutorials\nand course notes.", "Find the ideas\nyou want to try.", "Connect what\nyou are learning.", "Make time\nto practice.", "Try the techniques.\nTrack your progress."],
 };
 
 function lines(text: string, length = 24) {
@@ -82,9 +82,9 @@ function ReminderPlan({ workflow, reminder }: { workflow: Workflow; reminder: Wo
       <path d="M24 29h14M31 22v14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
       <text x="51" y="33" fill="var(--soft)" fontSize="10" letterSpacing="1.2">OPTIONAL · CREATE A PLANNER TASK</text>
       {lines(workflow.steps[3].artifact, 58).map((line, i) => <text key={i} x="23" y={67 + i * 20} fill="var(--ink)" fontSize="16" fontWeight="550">{line}</text>)}
-      <text x="23" y="97" fill="var(--soft)" fontSize="11">Plan the work only if you choose. Keep the source attached.</text>
+      <text x="23" y="97" fill="var(--soft)" fontSize="11">Add work to your plan, with the document attached.</text>
     </g>
-    <text x="380" y="483" textAnchor="middle" fill="var(--soft)" fontSize="11">A detected date is context. A reminder brings it back. A task plans the work.</text>
+    <text x="380" y="483" textAnchor="middle" fill="var(--soft)" fontSize="11">Reminders flag dates. Planner tasks schedule the work.</text>
   </g>;
 }
 
@@ -99,7 +99,7 @@ function ReminderReturn({ reminder }: { reminder: WorkflowReminder }) {
       <text x="75" y="41" textAnchor="middle" fill="currentColor" fontSize="10" letterSpacing="1.1">REMINDERS</text>
       <text x="24" y="86" fill="var(--ink)" fontSize="22" fontWeight="550">{reminder.title}</text>
       <text x="24" y="116" fill="currentColor" fontSize="14">{reminder.leadTime} · {reminder.dateLabel}: {reminder.date}</text>
-      <text x="24" y="144" fill="var(--soft)" fontSize="12">Back in your attention on {reminder.remindAt}</text>
+      <text x="24" y="144" fill="var(--soft)" fontSize="12">Reminder: {reminder.remindAt}</text>
       <path d="M24 163h394" stroke="var(--line)" />
       <text x="24" y="199" fill="var(--ink)" fontSize="12">Open source: {reminder.source}</text>
       <path d="m402 188 7 7-7 7m-12-7h18" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
@@ -110,7 +110,7 @@ function ReminderReturn({ reminder }: { reminder: WorkflowReminder }) {
       <circle r="66" fill="none" stroke="currentColor" strokeOpacity=".4" className={styles.reminderPulse} />
       <Bell x={-21} y={-24} size={43} />
     </g>
-    <text x="380" y="454" textAnchor="middle" fill="currentColor" fontSize="11" letterSpacing="1.8">THE COMMITMENT RETURNS. NO PLANNER TASK REQUIRED.</text>
+    <text x="380" y="454" textAnchor="middle" fill="currentColor" fontSize="11" letterSpacing="1.8">REMINDERS WORK WITHOUT A PLANNER TASK.</text>
   </g>;
 }
 
@@ -136,7 +136,7 @@ export default function WorkflowIllustration({ workflow, stage, animate }: { wor
       <text x="395" y="342" textAnchor="middle" fill="currentColor" fontSize="11" letterSpacing="3">YOUR VAULT</text>
     </>}
     {stage === 1 && <>
-      <g transform="translate(270 54)"><rect width="220" height="46" rx="23" fill="currentColor" fillOpacity=".12" stroke="currentColor" strokeOpacity=".3" /><path d="m24 13 3 7 7 3-7 3-3 7-3-7-7-3 7-3Z" fill="currentColor" /><text x="49" y="28" fill="var(--ink)" fontSize="13">A little help from AI</text></g>
+      <g transform="translate(270 54)"><rect width="220" height="46" rx="23" fill="currentColor" fillOpacity=".12" stroke="currentColor" strokeOpacity=".3" /><path d="m24 13 3 7 7 3-7 3-3 7-3-7-7-3 7-3Z" fill="currentColor" /><text x="49" y="28" fill="var(--ink)" fontSize="13">AI summaries & sorting</text></g>
       <g className={styles.flow} fill="none" stroke="currentColor" strokeOpacity=".5"><path d="M380 102v33H165v55M380 102v88M380 135h215v55" /></g>
       {materials.map((material, index) => <g key={material} transform={`translate(${65 + index * 218} 184)`}>
         <g className={[styles.floatA, styles.floatB, styles.floatC][index]}>

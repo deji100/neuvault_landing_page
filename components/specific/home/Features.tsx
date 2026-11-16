@@ -77,14 +77,14 @@ const capture: {
     tone: "#007aff",
     shot: "/desktop-images/note-voice-nova.png",
     focus: ["50% 42%", 2.1],
-    copy: "A full editor for your ideas, with headings, checklists, tables and images. Stuck? Write with Nova, and it drafts or reshapes what you have. Connect documents from your vault while you're still writing.",
+    copy: "Write notes with checklists, tables and images. Ask Nova to help draft or edit, and attach files from your vault.",
   },
   {
     title: "NeuVault Batch Scanner",
     icon: ScanLine,
     tone: "#34c759",
     mobile: true,
-    copy: "Scan a stack of receipts, forms or pages in one go on your phone, and they stay together as one document instead of scattering across your camera roll.",
+    copy: "Scan several pages on your phone and keep them together as one document.",
   },
   {
     title: "NeuVault Voice Transcription",
@@ -92,7 +92,7 @@ const capture: {
     tone: "#ff9500",
     shot: "/desktop-images/structured-note.png",
     focus: ["50% 30%", 1.5],
-    copy: "Record a meeting or a voice note, or upload one you already have. Get back an overview, key points, action items and the full transcript. NeuVault even labels who said what, and the transcript scrolls along as the audio plays.",
+    copy: "Turn a recording into a summary, key points and a searchable transcript. Follow the text as the audio plays.",
   },
   {
     title: "NeuVault Links",
@@ -100,7 +100,7 @@ const capture: {
     tone: "#ff3b30",
     shot: "/desktop-images/map-doc-with-related-docs.png",
     focus: ["40% 35%", 1.12],
-    copy: "Save bookmarks and YouTube links once, straight from Chrome with the Save to NeuVault extension or from any app's share menu. Nova reads each page, writes a summary and files it, so you know what it is before you open it. YouTube videos play right inside NeuVault.",
+    copy: "Save webpages and YouTube links. AI can summarize and organize readable webpages; watch linked videos inside NeuVault.",
   },
   {
     title: "Automatic import",
@@ -108,7 +108,7 @@ const capture: {
     tone: "#5e5ce6",
     shot: "/desktop-images/home.png",
     focus: ["55% 30%", 1.7],
-    copy: "Watch a folder on your computer and new files are organized with AI as they arrive, using credits. Connect Gmail or Microsoft 365, or share from WhatsApp on your phone, and you choose what comes in.",
+    copy: "Watch a desktop folder for new files. Choose AI organization using credits, or save them to Inbox for later.",
   },
   {
     title: "Nova, your organizer",
@@ -116,7 +116,7 @@ const capture: {
     tone: "#af52de",
     shot: "/desktop-images/inbox.png",
     focus: ["35% 20%", 1.45],
-    copy: "Anything you save without AI waits in your Inbox, unread. When you're ready, Nova summarizes, tags and sorts it into the right group. Ask Nova anything about your files, and it answers from your own vault.",
+    copy: "Save to Inbox first, or use AI to summarize, tag and sort. Ask Nova questions about your saved material.",
   },
 ];
 
@@ -139,7 +139,7 @@ const mapSlides: Slide[] = [
   {
     src: "/desktop-images/vault-map-nova.png",
     title: "Ask Nova about the whole map.",
-    copy: "Nova reads every card, then summarizes, compares or drafts a revision document, and adds it only when you confirm.",
+    copy: "Ask Nova to compare selected material or draft a note. Confirm before it adds anything to your map.",
   },
   {
     src: "/desktop-images/vault-map-split.png",
@@ -204,8 +204,8 @@ export default function Features() {
                 <HardDrive size={18} aria-hidden="true" /> NeuVault Backup &amp; Recovery Key
               </h3>
               <p>
-                One encrypted file, saved where you choose. Only your Recovery Key opens it, and it
-                restores on any of your devices.
+                One encrypted file, saved where you choose. Open it with your Recovery Key
+                when you need to restore.
               </p>
               <BackupFlow />
             </div>
@@ -214,9 +214,8 @@ export default function Features() {
                 <WifiOff size={18} aria-hidden="true" /> Local-first, with offline access
               </h3>
               <p>
-                Your files and notes stay on your device. Browse saved material, edit notes, and manage
-                Planner tasks offline. AI processing and Planner sync need an internet connection.
-                Relevant content is sent for processing when you use AI.
+                Read files, edit notes and manage tasks offline. AI sends relevant content for online processing;
+                Planner and reminder data sync when connected.
               </p>
               <OfflineSplit />
             </div>
@@ -285,7 +284,7 @@ export default function Features() {
 
       {/* 3 */}
       <article className={styles.pillar} id="reminders" hidden>
-        <PillarHead n="03" title="Never miss what matters." answers={["Deadlines hiding in plain sight"]} />
+        <PillarHead n="03" title="Keep important dates in view." answers={["Deadlines hiding in plain sight"]} />
         <div className={`${styles.split} ${styles.splitReverse}`}>
           <div className={styles.copy}>
             <div className={styles.block}>
@@ -293,8 +292,7 @@ export default function Features() {
                 <CalendarCheck size={18} aria-hidden="true" /> NeuVault Reminders
               </h3>
               <p>
-                Organize a document, scan, note or recording with AI and NeuVault finds the dates inside.
-                Or set your own on anything.
+                AI can find upcoming dates in saved material. Review them, or set your own reminder.
               </p>
             </div>
             <ReminderTimeline />
@@ -314,14 +312,12 @@ export default function Features() {
           <div className={styles.block}>
             <h3>NeuVault Planner</h3>
             <p>
-              Plan action items from a note, a document, a Vault Map, or a Nova answer.
-              Keep the source material attached, with dates, priorities, reminders, and recurring tasks.
+              Schedule tasks and events with dates, priorities and supporting files attached.
             </p>
           </div>
           <p className={styles.mapSecond}>
-            Ask Nova what is due or have it help plan your day. Review proposed changes before confirming.
-            Your local-first Planner works offline; tasks, board columns, and reminder settings sync
-            through your account when connected. Attached files transfer separately.
+            Ask Nova to help plan your day; confirm its changes. Tasks work offline and sync when connected.
+            Attached files transfer separately.
           </p>
         </div>
         <DesktopCarousel slides={plannerSlides} label="NeuVault Planner" controlsLabel="Planner" />
