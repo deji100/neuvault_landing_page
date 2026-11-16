@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Check, Coins, CreditCard, ShieldCheck, Sparkles } from "lucide-react";
-import { creditRules, creditTopUps, includedPlanFeatures, pricingPlans } from "@/lib/pricing";
+import { creditRules, creditTopUps, creditUsageExamples, includedPlanFeatures, pricingFaqs, pricingPlans } from "@/lib/pricing";
 import styles from "./PricingPlans.module.css";
 
 type PricingPlansProps = {
@@ -151,12 +151,15 @@ export default function PricingPlans({ variant = "home" }: PricingPlansProps) {
                 <a key={plan.id} href={`#${plan.id}`}>{plan.name}</a>
               ))}
               <a href="#credits">How credits work</a>
+              <a href="#credit-usage">What can credits do?</a>
               <a href="#included">Included across plans</a>
+              <a href="#pricing-questions">Pricing questions</a>
             </nav>
 
             <div className={styles.regionNote}>
-              Prices are shown in USD. Final app-store pricing may vary by
-              region.
+              USD prices reflect the US App Store. Final prices and available
+              purchase options may vary by store, platform and region. Confirm
+              the price at checkout.
             </div>
           </div>
         </aside>
@@ -197,9 +200,24 @@ export default function PricingPlans({ variant = "home" }: PricingPlansProps) {
                     </li>
                   ))}
                 </ul>
+                {plan.billingNote && <p className={styles.billingNote}>{plan.billingNote}</p>}
               </article>
             );
           })}
+
+          <section id="credit-usage" className={styles.included} aria-labelledby="credit-usage-title">
+            <h2 id="credit-usage-title">What can my credits do?</h2>
+            <p className={styles.includedCopy}>A few reference examples to make credits more concrete. These show individual processing steps, not a fixed total for an entire workflow.</p>
+            <div className={styles.usageExamples}>
+              {creditUsageExamples.map((example) => <article key={example.title} className={styles.usageExample}>
+                <p className={styles.usageContext}>{example.example}</p>
+                <h3>{example.title}</h3>
+                <p className={styles.usageCredits}>{example.credits}</p>
+                <p className={styles.usageDetail}>{example.detail}</p>
+              </article>)}
+            </div>
+            <p className={styles.usageNote}>A recording can involve transcription and AI note-writing; a scanned PDF can involve text recognition and AI organization. Those steps add together. Check Credits → Usage in NeuVault for your actual charges.</p>
+          </section>
 
           <section id="credits" className={styles.included}>
             <div className={styles.includedHead}>
@@ -216,12 +234,14 @@ export default function PricingPlans({ variant = "home" }: PricingPlansProps) {
                 </div>
 
                 <h3 className={styles.topUpTitle}>Extra credits for paid plans</h3>
+                <p className={styles.topUpPolicy}><strong>Unlocks after 80% usage. Expires 15 days after purchase.</strong> Extra credits are spent after your plan credits, and unused extras expire on their own schedule.</p>
                 <div className={styles.topUps}>
                   {creditTopUps.map((pack) => (
                     <div key={pack.credits} className={styles.topUp}>
                       <p className={styles.topUpCredits}>{pack.credits}</p>
                       <p className={styles.topUpLabel}>extra credits</p>
                       <p className={styles.topUpPrice}>{pack.price}</p>
+                      <p className={styles.topUpExpiry}>Expires 15 days after purchase</p>
                     </div>
                   ))}
                 </div>
@@ -238,9 +258,9 @@ export default function PricingPlans({ variant = "home" }: PricingPlansProps) {
               <div className="flex-1">
                 <h2>Included across plans</h2>
                 <p className={styles.includedCopy}>
-                  Every paid plan includes all NeuVault features. Credits are
-                  the only difference, and the vault experience stays centered
-                  on private document memory, retrieval, reminders, and recovery.
+                  Every paid plan includes the same features. Choose your monthly
+                  AI credit allowance and billing frequency; your connected
+                  workspace stays the same.
                 </p>
 
                 <div className={styles.includedGrid}>
@@ -267,6 +287,16 @@ export default function PricingPlans({ variant = "home" }: PricingPlansProps) {
                   </Link>
                 </div>
               </div>
+            </div>
+          </section>
+
+          <section id="pricing-questions" className={styles.included} aria-labelledby="pricing-questions-title">
+            <h2 id="pricing-questions-title">Pricing questions, answered.</h2>
+            <div className={styles.faqs}>
+              {pricingFaqs.map((faq) => <details key={faq.question} className={styles.faq}>
+                <summary>{faq.question}</summary>
+                <p>{faq.answer}</p>
+              </details>)}
             </div>
           </section>
         </div>

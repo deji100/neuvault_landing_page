@@ -7,7 +7,11 @@ import Footer from "@/components/general/Footer";
 import ThemeModeToggle from "@/components/general/ThemeModeToggle";
 import ReferralTracker from "@/components/general/ReferralTracker";
 import ExtensionFab from "@/components/general/ExtensionFab";
+import MarketingEvents from "@/components/general/MarketingEvents";
+import GoogleAnalytics from "@/components/general/GoogleAnalytics";
 import JsonLd from "@/components/seo/JsonLd";
+import { guidePages } from "@/lib/guides";
+import { comparisonPages } from "@/lib/comparisons";
 
 import {
   DEFAULT_DESCRIPTION,
@@ -17,7 +21,15 @@ import {
   SITE_URL,
   buildOrganizationJsonLd,
   buildWebSiteJsonLd,
+  solutionPages,
 } from "@/lib/seo";
+
+// Send only known public routes to the client, never the full content catalogs.
+const publicAnalyticsPaths = [
+  ...guidePages.map((page) => `/guides/${page.slug}`),
+  ...comparisonPages.map((page) => `/compare/${page.slug}`),
+  ...solutionPages.map((page) => `/${page.slug}`),
+];
 
 const inter = Inter({
   weight: ["400", "500", "600", "700"],
@@ -130,6 +142,8 @@ export default function RootLayout({
         <Footer />
         <ThemeModeToggle />
         <ReferralTracker />
+        <MarketingEvents />
+        <GoogleAnalytics publicPaths={publicAnalyticsPaths} />
         <ExtensionFab />
       </body>
     </html>

@@ -28,7 +28,7 @@ export const WINDOWS_MICROSOFT_STORE_URL =
 export const DEFAULT_TITLE = "NeuVault — Local-First AI Notes, Files & Links";
 
 export const DEFAULT_DESCRIPTION =
-  "Keep notes, files and links on your device. Organize with AI, connect ideas, set reminders and control encrypted backups. Planner syncs when online.";
+  "Organize notes, files and recordings with AI. Connect context in Vault Map, review document dates, set reminders and plan work in a local-first workspace.";
 
 export const DEFAULT_OG_IMAGE_PATH = "/opengraph-image";
 

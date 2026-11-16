@@ -10,7 +10,8 @@
     "build:desktop-tour": "node scripts/native-map/build.mjs",
     "check:vault-map": "node scripts/check-vault-map.cjs",
     "build:reminders": "node scripts/native-reminders/build.mjs",
-    "check:reminders": "node scripts/check-reminders.cjs"
+    "check:reminders": "node scripts/check-reminders.cjs",
+    "check:workflows": "node scripts/check-workflows.cjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

@@ -1,0 +1,26 @@
+.art{display:block;width:100%;height:auto;overflow:visible;color:var(--workflow-accent);font-family:var(--font-instrument),system-ui,sans-serif;isolation:isolate}
+.art[data-animate="true"] .floatA{animation:float 5.6s ease-in-out infinite}
+.art[data-animate="true"] .floatB{animation:float 6.4s ease-in-out -1.8s infinite}
+.art[data-animate="true"] .floatC{animation:float 5.9s ease-in-out -3s infinite}
+.art[data-animate="true"] .orbit{transform-box:fill-box;transform-origin:center;animation:orbit 16s linear infinite}
+.art[data-animate="true"] .breathe{animation:breathe 4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.art[data-animate="true"] .flow{stroke-dasharray:5 9;animation:flow 1.8s linear infinite}
+.art[data-animate="true"] .scan{animation:scan 4.5s ease-in-out infinite}
+.art[data-animate="true"] .schedule{animation:schedule 6.8s cubic-bezier(.22,1,.36,1) infinite}
+.art[data-animate="true"] .check{animation:check 6s ease-in-out infinite}
+.art[data-animate="true"] .confetti{animation:confetti 6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.art[data-animate="true"] .arrive{animation:arrive .8s cubic-bezier(.22,1,.36,1) both}
+.art[data-animate="true"] .bell{animation:bell 4s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 0}
+.art[data-animate="true"] .reminderPulse{animation:reminderPulse 3s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes bell{0%,12%,100%{transform:rotate(0)}3%,8%{transform:rotate(8deg)}5%,10%{transform:rotate(-7deg)}}
+@keyframes reminderPulse{0%{transform:scale(1);opacity:.6}75%,100%{transform:scale(1.2);opacity:0}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes orbit{to{transform:rotate(360deg)}}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+@keyframes flow{to{stroke-dashoffset:-28}}
+@keyframes scan{0%,100%{transform:translateY(-90px);opacity:0}25%{opacity:.8}75%{transform:translateY(115px);opacity:.7}90%{opacity:0}}
+@keyframes schedule{0%,8%{transform:translate(-95px,113px) rotate(-7deg);opacity:0}17%{opacity:1}45%,88%{transform:translate(0,0) rotate(0);opacity:1}100%{opacity:0}}
+@keyframes check{0%,10%{stroke-dasharray:1;stroke-dashoffset:1}35%,100%{stroke-dasharray:1;stroke-dashoffset:0}}
+@keyframes confetti{0%,20%{opacity:0;transform:scale(.8)}40%{opacity:.9;transform:scale(1)}85%,100%{opacity:0;transform:scale(1.12)}}
+@keyframes arrive{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.art *{animation:none!important}}

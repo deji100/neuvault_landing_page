@@ -169,6 +169,17 @@
   color: var(--blue);
 }
 
+.billingNote {
+  margin-top: 20px;
+  border-left: 3px solid var(--blue);
+  border-radius: 0 9px 9px 0;
+  background: var(--elevated);
+  padding: 13px 16px;
+  color: var(--secondary);
+  font-size: 0.84rem;
+  line-height: 1.7;
+}
+
 .included {
   scroll-margin-top: 100px;
   border: 1px solid var(--line);
@@ -353,4 +364,22 @@
   color: var(--teal, #007aff);
   font-weight: 700;
 }
+
+.usageExamples { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; margin-top: 22px; }
+.usageExample { border: 1px solid var(--soft-line); border-radius: 15px; background: var(--elevated); padding: 20px; }
+.usageContext { color: var(--secondary); font-size: 0.75rem; margin-bottom: 8px; }
+.usageExample h3 { font-size: 0.96rem; font-weight: 650; }
+.usageCredits { margin: 12px 0; color: var(--blue-hover); font-family: var(--font-bricolage),system-ui,sans-serif; font-size: 1.35rem; font-weight: 650; letter-spacing: -0.02em; }
+.usageDetail,.usageNote,.topUpPolicy { color: var(--secondary); font-size: 0.82rem; line-height: 1.7; }
+.usageNote { margin-top: 18px; }
+.topUpPolicy { margin-top: 10px; }
+.topUpPolicy strong { display: block; color: var(--ink); margin-bottom: 4px; }
+.topUpExpiry { margin-top: 10px; color: var(--secondary); font-size: 0.74rem; line-height: 1.5; }
+.faqs { margin-top: 18px; }
+.faq { border-top: 1px solid var(--soft-line); padding: 16px 0; }
+.faq:first-child { border-top: 0; }
+.faq summary { cursor: pointer; color: var(--ink); font-size: 0.9rem; font-weight: 600; }
+.faq p { margin-top: 12px; color: var(--secondary); font-size: 0.85rem; line-height: 1.75; }
+.faq summary:focus-visible,.summaryNav a:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+@media(max-width:620px) { .usageExamples { grid-template-columns: 1fr; } .usageExample { padding: 18px; } .topUps { grid-template-columns: 1fr; } }
 

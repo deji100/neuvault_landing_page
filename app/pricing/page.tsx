@@ -3,7 +3,7 @@ import Link from "next/link";
 import { CreditCard, ShieldCheck } from "lucide-react";
 
 import PricingPlans from "@/components/specific/pricing/PricingPlans";
-import { pricingPlans } from "@/lib/pricing";
+import { pricingFaqs, pricingPlans } from "@/lib/pricing";
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
@@ -40,28 +40,7 @@ export default function PricingPage() {
 
   const websiteJsonLd = buildWebSiteJsonLd();
 
-  const faqJsonLd = buildFaqJsonLd([
-    {
-      question: "What do NeuVault plans change?",
-      answer:
-        "Every paid plan includes all NeuVault features. Plans differ by their monthly AI credits, used for Nova, summaries, organization, scanned text recognition, transcription, and web searches. Unused plan credits do not carry over.",
-    },
-    {
-      question: "Where do I manage my subscription?",
-      answer:
-        "Subscribe in the NeuVault mobile app, or in the Mac app through the App Store. Subscriptions stay synced with your NeuVault account, including on Windows.",
-    },
-    {
-      question: "Can I buy extra credits?",
-      answer:
-        "Yes. Paid plans can buy 2,000 extra credits for $5.99 or 4,000 for $11.99 after 80% of the plan allowance is used. Extra credits are used after plan credits and expire after 15 days.",
-    },
-    {
-      question: "Does NeuVault still store my vault locally?",
-      answer:
-        "Yes. NeuVault is designed around local-first storage, with encrypted backup and restore options under your control.",
-    },
-  ]);
+  const faqJsonLd = buildFaqJsonLd(pricingFaqs);
 
   const offerCatalogJsonLd = {
     "@context": "https://schema.org",
@@ -71,7 +50,7 @@ export default function PricingPage() {
     itemListElement: pricingPlans.map((plan) => ({
       "@type": "Offer",
       name: plan.name,
-      description: `${plan.price}. ${plan.allowance} ${plan.cadence}. ${plan.summary}`,
+      description: `${plan.price}. ${plan.allowance} ${plan.cadence}. ${plan.summary}${plan.billingNote ? ` ${plan.billingNote}` : ""}`,
       availability: "https://schema.org/InStock",
       price: getSchemaPrice(plan.price),
       priceCurrency: "USD",
@@ -114,22 +93,21 @@ export default function PricingPage() {
           </Link>
 
           <span className={styles.privacyNote}>
-            <ShieldCheck size={14} /> Local-first • In-app subscriptions
+            <ShieldCheck size={14} /> Local-first • Account-linked subscriptions
           </span>
         </div>
 
         <p className={styles.eyebrow}>NeuVault Pricing</p>
-        <h1>Plans for every notes and documents routine.</h1>
+        <h1>One workspace. Every feature. A plan that fits.</h1>
 
         <p className={styles.intro}>
-          Compare NeuVault credit allowances for Nova, summaries,
-          organization, reminders, notes, voice context, and encrypted backup
-          workflows.
+          Start free and choose the AI credits you need. Every paid plan includes
+          the same connected workspace: files, notes, Vault Map, Planner and reminders.
         </p>
 
         <div className={styles.facts}>
           <span className={styles.fact}><CreditCard size={15} /> Explorer includes 500 free credits available for 14 days</span>
-          <span className={styles.fact}><ShieldCheck size={15} /> Subscribe in the mobile app or the Mac app</span>
+          <span className={styles.fact}><ShieldCheck size={15} /> Same features across paid plans · More credits when you need them</span>
         </div>
       </div>
 

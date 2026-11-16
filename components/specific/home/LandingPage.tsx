@@ -7,6 +7,8 @@ import RemindersDemo from "./RemindersDemo";
 import Closing from "./Closing";
 import Features from "./Features";
 import HomeHero from "./HomeHero";
+import SourceToAction from "./SourceToAction";
+import GettingStarted from "./GettingStarted";
 import Problem from "./Problem";
 import Signoff from "./Signoff";
 import VideoCarousel from "./VideoCarousel";
@@ -16,6 +18,7 @@ export default function LandingPage() {
   return (
     <div className={styles.page}>
       <HomeHero />
+      <SourceToAction />
       <CaptureDemo />
       <PlannerDemo />
       <VaultMapDemo />
@@ -42,6 +45,10 @@ export default function LandingPage() {
           <VideoCarousel />
         </div>
       </section>
+
+      <div className={styles.wrap}>
+        <GettingStarted />
+      </div>
 
       <section id="download" className={styles.final}>
         <div className={styles.wrap}>

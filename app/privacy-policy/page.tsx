@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import {
+  Activity,
   Bell,
   Bot,
   CalendarDays,
@@ -23,7 +24,7 @@ import {
 
 import { Bullets, Callout, Chip, Chips, LegalPage, MetaPill, Section, type TocItem } from "@/components/specific/legal/Legal";
 
-const EFFECTIVE_DATE = "October 16, 2026";
+const EFFECTIVE_DATE = "November 16, 2026";
 const PRIVACY_EMAIL = "support@neuvault.app";
 
 const toc: TocItem[] = [
@@ -40,7 +41,8 @@ const toc: TocItem[] = [
   { id: "payments", label: "Subscriptions & payments" },
   { id: "communications", label: "Emails we send" },
   { id: "feedback-board", label: "Feedback board" },
-  { id: "diagnostics", label: "Diagnostics & no tracking" },
+  { id: "diagnostics", label: "Diagnostics" },
+  { id: "website-analytics", label: "Optional website analytics" },
   { id: "staff-access", label: "Staff access" },
   { id: "retention", label: "How long we keep data" },
   { id: "account-deletion", label: "Deleting your account" },
@@ -474,11 +476,11 @@ export default function PrivacyPolicyPage() {
         </Bullets>
       </Section>
 
-      <Section id="diagnostics" title="14. Diagnostics & no tracking" icon={Shield}>
+      <Section id="diagnostics" title="14. Diagnostics" icon={Shield}>
         <Bullets>
           <li>
-            NeuVault contains no advertising or third-party analytics tools, and does not track you across other
-            apps or websites.
+            NeuVault&apos;s desktop and mobile apps contain no advertising or third-party analytics tools, and do not track you across other
+            apps or websites. Optional analytics on the public marketing website is described below.
           </li>
           <li>
             We use server logs and error reports to keep the service reliable and secure. They are designed not
@@ -495,6 +497,22 @@ export default function PrivacyPolicyPage() {
             address or connect this to an account, and visits without a referral link are not recorded.
           </li>
         </Bullets>
+      </Section>
+
+      <Section id="website-analytics" title="Optional website analytics" icon={Activity}>
+        <p>
+          If you allow analytics, our public marketing website uses Google Analytics 4 to understand page visits,
+          selected workflows, explored steps, completed example walkthroughs, platform choices and app-store clicks.
+          Completing a website example does not mean you completed a task in the NeuVault app.
+        </p>
+        <Bullets>
+          <li>The Google tag loads only after you allow analytics. Rejecting analytics keeps it off. We also respect your browser&apos;s Do Not Track and Global Privacy Control signals.</li>
+          <li>Events include public workflow names, step numbers and operating-system choices. We do not send your name, email address, account ID, private documents, notes or vault content. Page URLs exclude query strings and fragments, and we do not send referrers.</li>
+          <li>Google receives analytics cookies and standard browser and connection information when analytics is enabled. Advertising storage, Google signals and advertising personalization are disabled in our tag configuration.</li>
+          <li>We exclude feedback, sign-in, account-deletion and contact pages from this analytics integration. The desktop and mobile apps are not part of this website measurement.</li>
+          <li>Your consent preference is stored in your browser for up to 180 days. The tag configures analytics cookies to expire after 180 days. You can change your choice using Analytics preferences in the footer; withdrawing consent stops collection and removes the website&apos;s accessible Google Analytics cookies.</li>
+        </Bullets>
+        <p>Google&apos;s processing is described in its <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>.</p>
       </Section>
 
       <Section id="staff-access" title="15. Staff access" icon={UserCheck}>

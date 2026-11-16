@@ -2,6 +2,7 @@
 import type { MetadataRoute } from "next";
 import { guidePages } from "@/lib/guides";
 import { comparisonPages } from "@/lib/comparisons";
+import { workflows } from "@/lib/workflows";
 import { SITE_URL, solutionPages } from "@/lib/seo";
 
 const staticRoutes = [
@@ -9,6 +10,11 @@ const staticRoutes = [
     path: "/",
     changeFrequency: "weekly" as const,
     priority: 1,
+  },
+  {
+    path: "/use-cases",
+    changeFrequency: "monthly" as const,
+    priority: 0.85,
   },
   {
     path: "/guides",
@@ -104,5 +110,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticEntries, ...solutionEntries, ...guideEntries, ...comparisonEntries];
+  const workflowEntries: MetadataRoute.Sitemap = workflows.map((workflow) => ({
+    url: `${SITE_URL}/use-cases/${workflow.id}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  return [...staticEntries, ...solutionEntries, ...guideEntries, ...comparisonEntries, ...workflowEntries];
 }

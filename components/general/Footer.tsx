@@ -22,12 +22,14 @@ export default function Footer() {
         <span>© {year} NeuVault</span>
         <div className="ml-auto flex flex-wrap gap-5">
           <Link href="/pricing" className="hover:text-[#12161b]">Pricing</Link>
+          <Link href="/use-cases" className="hover:text-[#12161b]">Use cases</Link>
           <Link href="/compare" className="hover:text-[#12161b]">Compare</Link>
           <Link href="/guides" className="hover:text-[#12161b]">Help</Link>
           <Link href="/feedback" className="hover:text-[#12161b]">Feedback</Link>
           <Link href="/privacy-policy" className="hover:text-[#12161b]">Privacy</Link>
           <Link href="/terms-and-conditions" className="hover:text-[#12161b]">Terms</Link>
           <Link href="/refund-policy" className="hover:text-[#12161b]">Refunds</Link>
+          <button type="button" className="hover:text-[#12161b]" onClick={() => window.dispatchEvent(new Event("neuvault:analytics-preferences"))}>Analytics preferences</button>
         </div>
       </div>
     </footer>

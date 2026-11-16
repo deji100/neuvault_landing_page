@@ -1,0 +1,13 @@
+.section{text-align:left;margin-bottom:80px}
+.privacy{padding:32px;border:1px solid var(--line);border-radius:20px;background:var(--surface);scroll-margin-top:110px}
+.section h2{max-width:none;margin:0;font-size:clamp(1.65rem,3vw,2.2rem);line-height:1.2}
+.privacy dl{display:grid;grid-template-columns:1fr 1fr;gap:24px 36px;margin:28px 0}
+.privacy dt{font-weight:650;color:var(--ink)}
+.privacy dd{margin:8px 0 0;color:var(--soft);font-size:.94rem}
+.section a{color:var(--deep);font-weight:600;text-decoration:underline;text-underline-offset:4px}
+.section a:focus-visible{outline:2px solid var(--teal);outline-offset:4px}
+.start{max-width:680px;text-align:center;margin:70px auto 0}
+.eyebrow{margin-bottom:12px;color:var(--deep);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.start>p:not(.eyebrow){margin:18px 0;color:var(--soft)}
+.allowance{font-size:.9rem}
+@media(max-width:600px){.privacy{padding:24px}.privacy dl{grid-template-columns:1fr;gap:22px}.start{margin-top:50px}.section{margin-bottom:50px}}

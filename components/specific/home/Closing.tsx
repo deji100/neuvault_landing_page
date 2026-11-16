@@ -35,20 +35,20 @@ export default function Closing() {
         Capture it. <span>Connect it. Plan your next step.</span> Local-first.
       </h2>
       <div className={styles.actions}>
-        <a className={styles.primary} href={storeUrl} {...(external ? { target: "_blank", rel: "noreferrer" } : {})}>
+        <a className={styles.primary} href={storeUrl} data-download-location="home_closing" {...(external ? { target: "_blank", rel: "noreferrer" } : {})}>
           Download free
         </a>
         <a className={styles.secondary} href={tourHref}>
           <span className={styles.playDot} aria-hidden="true">
             <Play size={13} fill="currentColor" strokeWidth={0} />
           </span>
-          Watch the 3-minute tour
+          Explore product walkthroughs
         </a>
       </div>
       <ul className={styles.platforms}>
         {platforms.map(([label, href]) => (
           <li key={label}>
-            <a href={href} target="_blank" rel="noreferrer">
+            <a href={href} data-download-location="home_platforms" data-platform-choice target="_blank" rel="noreferrer">
               {label}
             </a>
           </li>
