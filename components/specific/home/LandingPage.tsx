@@ -9,7 +9,6 @@ import Features from "./Features";
 import HomeHero from "./HomeHero";
 import SourceToAction from "./SourceToAction";
 import GettingStarted from "./GettingStarted";
-import Testimonials from "./Testimonials";
 import Problem from "./Problem";
 import Signoff from "./Signoff";
 import VideoCarousel from "./VideoCarousel";
@@ -24,7 +23,6 @@ export default function LandingPage() {
       <PlannerDemo />
       <VaultMapDemo />
       <RemindersDemo />
-      <Testimonials />
 
       <section id="problem" className={styles.problemSection}>
         <div className={styles.wrap}>
