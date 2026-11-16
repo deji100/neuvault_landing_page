@@ -14,4 +14,13 @@
 .expanded .playback{flex-shrink:0;padding-bottom:env(safe-area-inset-bottom);height:calc(49px + env(safe-area-inset-bottom))}
 .expanded .expandButton{display:flex;width:40px;height:40px;top:6px;right:8px}
 @media(max-width:960px),(pointer:coarse){.expandButton{display:flex}.demoTop{padding-right:46px}.demoLabel{display:none}}
+@media(max-width:960px){.expandButton{width:44px;height:44px;top:8px;right:8px;background:#28282de8;box-shadow:0 3px 12px #0005}.demoTop{display:none}}
 @media(orientation:portrait){.expanded .rotateHint{display:block;position:absolute;top:64px;left:16px;right:16px;text-align:center;font-size:12px;line-height:1.5;color:#c7c7ce;pointer-events:none}}
+
+@media(max-width:700px){.playback{height:58px;gap:8px;padding:0 10px}.playback button{width:44px;height:44px;flex-shrink:0;background:#ffffff08}.playback button svg{width:20px;height:20px}.playback input{height:6px}.playback>span{font-size:11px}}
+@media(max-width:960px){
+.expanded .demoTop{display:none}
+.expanded .expandButton{width:44px;height:44px;top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));border-radius:12px;box-shadow:0 4px 18px #0006}
+.expanded .playback{height:calc(58px + env(safe-area-inset-bottom))}
+.expanded .rotateHint{top:max(22px,env(safe-area-inset-top));left:12px;right:68px}
+}

@@ -62,10 +62,18 @@ export default function AudioNotesDemo({ time, active, visible, reduced, onInter
         if (!element || !element.paused || playPending.current) return;
         playPending.current = true;
         setError("");
-        void element.play().catch((reason: unknown) => {
+        void element.play().catch(async (reason: unknown) => {
             if (reason instanceof DOMException && reason.name === "AbortError") return;
             if (reason instanceof DOMException && reason.name === "NotAllowedError" && !element.muted) {
-                setNeedsSoundPermission(true); setPlaying(false); setManual(true); onInteract();
+                if (!window.matchMedia("(max-width: 960px)").matches) {
+                    setNeedsSoundPermission(true); setPlaying(false); setManual(true); onInteract();
+                    return;
+                }
+                // Keep the mobile tour and transcript moving when sound needs a gesture.
+                element.muted = true;
+                setMuted(true); setNeedsSoundPermission(true);
+                try { await element.play(); }
+                catch { setPlaying(false); setError("Tap Sound on to hear the recording."); }
                 return;
             }
             setPlaying(false); setError("Press play to start the audio.");
@@ -136,7 +144,7 @@ export default function AudioNotesDemo({ time, active, visible, reduced, onInter
 
                 </div>;
     return <div className={"notes-voice-page " + styles.page} data-notes-voice-page="true" data-audio-phase={phase || "ready"}>
-        <audio ref={audio} src={transcript.audioSrc} preload="metadata" muted={muted} onLoadedMetadata={() => { if (!manual && audio.current) { audio.current.currentTime = Math.max(0, Math.min(transcript.duration, (time - T.audioPlayback) / 1000)); setCurrentTime(audio.current.currentTime); } }} onPlay={() => { setPlaying(true); setNeedsSoundPermission(false); }} onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)} onTimeUpdate={() => setCurrentTime(audio.current?.currentTime ?? 0)} onError={() => setError("Audio could not be loaded. Try playing it again.")} aria-label="Reality Life with Kate Casey recording"/>
+        <audio ref={audio} src={transcript.audioSrc} preload="metadata" muted={muted} onLoadedMetadata={() => { if (!manual && audio.current) { audio.current.currentTime = Math.max(0, Math.min(transcript.duration, (time - T.audioPlayback) / 1000)); setCurrentTime(audio.current.currentTime); } }} onPlay={() => { setPlaying(true); if (!audio.current?.muted) setNeedsSoundPermission(false); }} onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)} onTimeUpdate={() => setCurrentTime(audio.current?.currentTime ?? 0)} onError={() => setError("Audio could not be loaded. Try playing it again.")} aria-label="Reality Life with Kate Casey recording"/>
         {page === "notes" ? <div className="notes-voice-layout"><div className="notes-voice-workspace"><section className="notes-voice-compose">
             <div className="notes-voice-header"><div className="notes-voice-header-bar"><div className="notes-voice-header-status">
                 <span className={styles.meeting}><i/>Meeting detection on</span>
@@ -153,15 +161,15 @@ export default function AudioNotesDemo({ time, active, visible, reduced, onInter
             </div>
         </section></div></div> : vaultContent}
         {modalOpen && <TranscriptDocumentModal editorRef={editor} followControl={followControl} onClose={() => { takeControl(); seekTour(T.podcastsOpen, false, true); }} onEdit={() => { takeControl(); seekTour(T.summaryReady, false, true); }}>{transcriptContent}</TranscriptDocumentModal>}
-        {imported && <aside className={"nv-global-audio-bar " + styles.player + (modalOpen ? " " + styles.modalPlayer : "") + (needsSoundPermission ? " " + styles.awaitingPlay : "")} data-collapsed={expanded?undefined:"true"} role="region" aria-label="Audio player">
+        {imported && <div className={styles.playerDock}><aside className={"nv-global-audio-bar " + styles.player + (modalOpen ? " " + styles.modalPlayer : "") + (needsSoundPermission ? " " + styles.awaitingPlay : "")} data-collapsed={expanded?undefined:"true"} role="region" aria-label="Audio player">
             <span className="nv-global-audio-bar-handle" aria-hidden="true"><GripVertical/></span><span className={styles.playControl}>
-                {needsSoundPermission && <span className={styles.playPrompt} id="capture-play-hint" role="status"><strong>Click Play to hear the recording</strong><span>Follow along with the highlighted transcript.</span><ArrowDown className={styles.playArrow} aria-hidden="true"/></span>}
-                <button type="button" className="nv-global-audio-bar-toggle" onClick={needsSoundPermission ? playWithSound : togglePlayback} disabled={!ready} data-cursor="audio-play" aria-label={playing?"Pause recording":"Play recording"} aria-describedby={needsSoundPermission ? "capture-play-hint" : undefined}>{playing?<Pause/>:<Play/>}</button>
+                {needsSoundPermission && <span className={styles.playPrompt} id="capture-play-hint" role="status"><strong>{muted ? "Playing muted" : "Click Play to hear the recording"}</strong><span>{muted ? "Tap Sound on to hear the recording." : "Follow along with the highlighted transcript."}</span><ArrowDown className={styles.playArrow} aria-hidden="true"/></span>}
+                <button type="button" className="nv-global-audio-bar-toggle" onClick={needsSoundPermission && !muted ? playWithSound : togglePlayback} disabled={!ready} data-cursor="audio-play" aria-label={playing?"Pause recording":"Play recording"} aria-describedby={needsSoundPermission && !muted ? "capture-play-hint" : undefined}>{playing?<Pause/>:<Play/>}</button>
             </span>
             {expanded?<div className="nv-global-audio-bar-body"><div className="nv-global-audio-bar-copy"><strong>{transcript.title}</strong><small>{transcript.subtitle}</small></div><div className="nv-global-audio-bar-scrub"><span>{stamp(currentTime)}</span><input type="range" min={0} max={transcript.duration} step={.1} value={currentTime} aria-label="Seek recording" onChange={e=>seekAudio(Number(e.target.value))}/><span>{stamp(transcript.duration)}</span></div></div>:<span className="nv-global-audio-bar-mini-time">{stamp(currentTime)}</span>}
-            <button type="button" className={"nv-global-audio-bar-close" + (muted ? " " + styles.enableSound : "")} onClick={toggleSound} aria-label={muted?"Unmute recording":"Mute recording"}>{muted?<><VolumeX/><span>Sound on</span></>:<Volume2/>}</button>
+            <button type="button" className={"nv-global-audio-bar-close" + (muted ? " " + styles.enableSound : "")} onClick={needsSoundPermission && muted ? playWithSound : toggleSound} aria-describedby={needsSoundPermission ? "capture-play-hint" : undefined} aria-label={muted?"Unmute recording":"Mute recording"}>{muted?<><VolumeX/><span>Sound on</span></>:<Volume2/>}</button>
             <button type="button" className="nv-global-audio-bar-close" onClick={()=>setExpanded(!expanded)} aria-label={expanded?"Collapse audio player":"Expand audio player"}>{expanded?<ChevronDown/>:<ChevronUp/>}</button>
-        </aside>}
+        </aside></div>}
         {error && <p className={styles.error} role="status">{error}</p>}
     </div>;
 }

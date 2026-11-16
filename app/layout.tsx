@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Instrument_Sans, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 import Navbar from "@/components/general/Navbar";
@@ -31,22 +31,24 @@ const publicAnalyticsPaths = [
   ...solutionPages.map((page) => `/${page.slug}`),
 ];
 
-const inter = Inter({
-  weight: ["400", "500", "600", "700"],
+const inter = localFont({
+  src: "./fonts/inter-latin.woff2",
+  weight: "400 700",
   variable: "--font-sans",
-  subsets: ["latin"],
   display: "swap",
 });
 
-const bricolage = Bricolage_Grotesque({
+const bricolage = localFont({
+  src: "./fonts/bricolage-grotesque-latin.woff2",
+  weight: "200 800",
   variable: "--font-bricolage",
-  subsets: ["latin"],
   display: "swap",
 });
 
-const instrument = Instrument_Sans({
+const instrument = localFont({
+  src: "./fonts/instrument-sans-latin.woff2",
+  weight: "400 700",
   variable: "--font-instrument",
-  subsets: ["latin"],
   display: "swap",
 });
 

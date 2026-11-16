@@ -24,3 +24,30 @@
 @keyframes confetti{0%,20%{opacity:0;transform:scale(.8)}40%{opacity:.9;transform:scale(1)}85%,100%{opacity:0;transform:scale(1.12)}}
 @keyframes arrive{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){.art *{animation:none!important}}
+
+.mobileArt{display:none}
+@media(max-width:760px){
+.desktopArt{display:none}
+.mobileArt{display:grid;gap:12px;color:var(--workflow-accent);font-family:var(--font-instrument),system-ui,sans-serif;background:radial-gradient(ellipse at center,color-mix(in srgb,var(--workflow-accent) 9%,transparent),transparent 75%)}
+.mobilePanel,.mobileSource{min-width:0;border:1px solid color-mix(in srgb,var(--ink) 23%,transparent);border-radius:15px;background:color-mix(in srgb,var(--surface) 95%,var(--ink));box-shadow:0 5px 16px #00000012}
+.mobilePanel{display:grid;gap:9px;padding:17px 18px}
+.mobilePanel strong{color:var(--ink);font-size:16px;font-weight:600;line-height:1.4;overflow-wrap:anywhere}
+.mobileLabel{font-size:10px;font-weight:650;letter-spacing:.07em;line-height:1.5}
+.mobileDetail{color:var(--soft);font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+.mobileAccent{border-color:color-mix(in srgb,var(--workflow-accent) 65%,var(--line));background:color-mix(in srgb,var(--workflow-accent) 10%,var(--surface))}
+.mobileCapture{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:stretch}
+.mobileSource{display:flex;flex-direction:column;gap:12px;padding:15px;min-height:148px}
+.mobileSource strong{color:var(--ink);font-size:14px;font-weight:550;line-height:1.45;overflow-wrap:anywhere}
+.mobileGlyph{display:grid;place-items:center;width:36px;height:36px;flex:none;border-radius:10px;background:color-mix(in srgb,var(--workflow-accent) 14%,transparent)}
+.mobileGlyph svg{width:26px;height:26px}
+.mobileSourceLine{height:3px;width:85%;border-radius:3px;margin-top:auto;background:color-mix(in srgb,var(--workflow-accent) 65%,transparent)}
+.mobileVault{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-width:0}
+.mobileVault svg{width:min(110px,90%)}
+.mobileVault span{font-size:10px;letter-spacing:.16em}
+.mobileConnections{position:relative;display:grid;gap:10px;padding-left:16px;border-left:1px dashed color-mix(in srgb,var(--workflow-accent) 65%,transparent);margin-left:16px}
+.mobileConnections .mobileSource{position:relative;flex-direction:row;align-items:center;min-height:74px;padding:14px;gap:12px}
+.mobileConnections .mobileSource:before{content:"";position:absolute;left:-17px;top:50%;width:16px;height:1px;background:var(--workflow-accent)}
+.mobileConnections .mobileSourceLine{display:none}
+.mobileResult{display:flex;justify-content:center}
+.mobileResult svg{width:72px;height:72px}
+}

@@ -114,10 +114,50 @@ function ReminderReturn({ reminder }: { reminder: WorkflowReminder }) {
   </g>;
 }
 
+// Native mobile cards keep their labels readable instead of scaling text with an SVG.
+function MobileIllustration({ workflow, stage, animate }: { workflow: Workflow; stage: number; animate: boolean }) {
+  const reminder = workflow.reminder;
+  const panel = (label: string, title: string, detail: string, accented = false) => <div className={`${styles.mobilePanel} ${accented ? styles.mobileAccent : ""}`}>
+    <span className={styles.mobileLabel}>{label}</span>
+    <strong>{title}</strong>
+    <span className={styles.mobileDetail}>{detail}</span>
+  </div>;
+  const source = (material: string, index: number) => <div key={material} className={styles.mobileSource}>
+    <span className={styles.mobileGlyph}><svg viewBox="0 0 28 28"><Glyph kind={index} /></svg></span>
+    <strong>{material}</strong>
+    <span className={styles.mobileSourceLine} />
+  </div>;
+  return <div className={styles.mobileArt} aria-hidden="true" data-animate={animate} data-mobile-workflow-scene={stage}>
+    {stage === 0 && <div className={styles.mobileCapture}>
+      {workflow.materials.map(source)}
+      <div className={styles.mobileVault}><svg viewBox="-65 -65 130 130"><circle r="62" fill="currentColor" fillOpacity=".12" stroke="currentColor" strokeOpacity=".3" /><Brand /></svg><span>YOUR VAULT</span></div>
+    </div>}
+    {stage === 1 && <>
+      {panel("AI SUMMARIES & SORTING", workflow.materials[0], "Organized with searchable context")}
+      {panel(reminder ? "AI-DETECTED DATE · REVIEW THE SOURCE" : "THE CONTEXT", reminder ? `${reminder.dateLabel}: ${reminder.date}` : workflow.materials[1], reminder ? `Source: ${reminder.source}` : "Keep supporting material together", true)}
+      {panel("YOUR NOTES", workflow.materials[2], "Ready when you need them")}
+    </>}
+    {stage === 2 && <>
+      {panel("VAULT MAP", workflow.project, "Your sources, connected", true)}
+      <div className={styles.mobileConnections}>{workflow.materials.map(source)}</div>
+    </>}
+    {stage === 3 && <>
+      {panel(reminder ? "AI-DETECTED DATE · REVIEW THE SOURCE" : "YOUR NEXT STEP", reminder ? `${reminder.dateLabel}: ${reminder.date}` : workflow.project, reminder ? `Source: ${reminder.source}` : "Keep your supporting material attached")}
+      {panel(reminder ? "REMINDER · YOU SET THE TIMING" : "MAKE TIME IN PLANNER", reminder ? reminder.title : workflow.steps[3].artifact, reminder ? `${reminder.remindAt} · ${reminder.leadTime}` : "Your plan. Your confirmation.", true)}
+      {panel(reminder ? "OPTIONAL · CREATE A PLANNER TASK" : "SOURCE MATERIAL ATTACHED", workflow.steps[3].artifact, reminder ? "Reminders flag dates. Tasks schedule work." : workflow.materials[0])}
+    </>}
+    {stage === 4 && <>
+      <div className={styles.mobileResult}><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="37" fill="currentColor" fillOpacity=".12" stroke="currentColor" strokeOpacity=".35" />{reminder ? <Bell x={25} y={23} size={30} /> : <path d="m23 40 11 11 23-24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />}</svg></div>
+      {panel(reminder ? "REMINDERS" : "DONE", reminder ? reminder.title : workflow.steps[3].artifact, reminder ? `${reminder.leadTime} · ${reminder.date}` : "The task is done. The context stays.", true)}
+      {panel(reminder ? "RETURN TO THE SOURCE" : "YOUR CONNECTED CONTEXT", reminder ? reminder.source : workflow.project, reminder ? `Reminder: ${reminder.remindAt}` : "Capture → connect → follow through")}
+    </>}
+  </div>;
+}
+
 export default function WorkflowIllustration({ workflow, stage, animate }: { workflow: Workflow; stage: number; animate: boolean }) {
   const uid = useId().replace(/:/g, "");
   const materials = workflow.materials;
-  return <svg className={styles.art} viewBox="0 0 760 500" aria-hidden="true" data-animate={animate} data-workflow-scene={stage}>
+  return <><MobileIllustration workflow={workflow} stage={stage} animate={animate} /><svg className={`${styles.art} ${styles.desktopArt}`} viewBox="0 0 760 500" aria-hidden="true" data-animate={animate} data-workflow-scene={stage}>
     <defs>
       <radialGradient id={`${uid}-glow`}><stop stopColor="currentColor" stopOpacity=".2" /><stop offset="1" stopColor="currentColor" stopOpacity="0" /></radialGradient>
       <pattern id={`${uid}-grid`} width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="var(--ink)" fillOpacity=".11" /></pattern>
@@ -181,5 +221,5 @@ export default function WorkflowIllustration({ workflow, stage, animate }: { wor
       <g className={styles.confetti} stroke="currentColor" strokeWidth="3" strokeLinecap="round"><path d="m452 50-5-9M616 89l10-5M600 195l8 8M491 209l-6 9" /><circle cx="571" cy="34" r="3" fill="currentColor" stroke="none" /><circle cx="646" cy="145" r="3" fill="currentColor" stroke="none" /></g>
       <text x="380" y="449" textAnchor="middle" fill="currentColor" fontSize="11" letterSpacing="3">CAPTURE → CONNECT → FOLLOW THROUGH</text>
     </>}
-  </svg>;
+  </svg></>;
 }

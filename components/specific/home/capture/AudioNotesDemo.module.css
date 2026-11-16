@@ -22,3 +22,20 @@
 @keyframes pointToPlay{0%,100%{transform:translateY(-3px)}50%{transform:translateY(5px)}}
 @keyframes controllerPulse{0%{box-shadow:0 0 0 0 #0a84ff80,0 0 22px #0a84ff30}75%,100%{box-shadow:0 0 0 13px #0a84ff00,0 0 22px #0a84ff30}}
 @media(prefers-reduced-motion:reduce){.page .player.awaitingPlay,.playPrompt .playArrow{animation:none!important}.page .player.awaitingPlay{box-shadow:0 0 0 3px #0a84ff50!important}}
+
+/* Keep mobile recording controls readable as the desktop canvas shrinks. */
+@media(max-width:960px){
+.playerDock{position:absolute;right:25px;bottom:20px;z-index:50;transform-origin:bottom right;transform:scale(max(1,calc(.85 / var(--demo-scale,1))))}
+.page .player{position:relative!important;inset:auto!important;width:min(650px,calc(1350px * var(--demo-scale,1) / max(.85,var(--demo-scale,1))));max-width:none;grid-template-columns:52px minmax(0,1fr) auto 52px!important;gap:10px;padding:12px;border-color:#64a8ff80;box-shadow:0 10px 40px #0008}
+.page .player[data-collapsed=true]{grid-template-columns:52px auto auto 52px!important;padding:10px 12px}
+.page .player :global(.nv-global-audio-bar-handle){display:none!important}
+.playControl{width:52px;height:52px}
+.page .player button{min-width:52px;min-height:52px;border-radius:14px}
+.page .player button svg{width:24px!important;height:24px!important}
+.page .player :global(.nv-global-audio-bar-toggle){background:#0a84ff;color:#fff}
+.page .player :global(.nv-global-audio-bar-mini-time){font-size:15px}
+.page .player .enableSound{padding:0 12px;background:#0a84ff20}
+.enableSound span{font-size:15px;font-weight:600}
+.playPrompt{right:-180px;width:250px;bottom:calc(100% + 20px)}
+.playPrompt .playArrow{left:181px;top:calc(100% + 1px);height:18px!important}
+}

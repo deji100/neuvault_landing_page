@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import { MousePointer2, Pause, Play, RotateCcw } from "lucide-react";
 import { useDemoFocus } from "@/components/general/demoFocus";
 import DemoViewer from "./DemoViewer";
@@ -124,7 +124,7 @@ export default function CaptureDemo() {
     <div className={styles.heading}><p className={styles.eyebrow}><span>01</span> CAPTURE &amp; ORGANIZE</p><h2 id="capture-title">Your notes and files.<br /><span>Organized for you.</span></h2><p>Save notes, files and links. Let AI summarize and sort them, or turn recordings into searchable transcripts.</p></div>
     <DemoViewer label="Note & Voice"><div className={styles.demoTop}><span><i className={styles.liveDot}/>Inside NeuVault Desktop</span><span className={styles.demoLabel}>Product tour</span></div>
       <div className={styles.viewport} ref={viewportRef} style={{ height: HEIGHT * scale }}>
-        <div className={`nv-capture-desktop ${styles.canvas}`} ref={canvasRef} style={{ transform: `scale(${scale})` }}>
+        <div className={`nv-capture-desktop ${styles.canvas}`} ref={canvasRef} style={{ transform: `scale(${scale})`, "--demo-scale": scale } as CSSProperties}>
           <DesktopInterface page={page} time={time} reduced={reducedMotion} onNavigate={navigate} audioActive={playing && visible} audioVisible={visible} onAudioInteract={onAudioInteract} seekTour={seek} audioSeekVersion={audioSeekVersion}/>
           {!reducedMotion && <div className={styles.cursor} aria-hidden="true" style={{ left: cursor.x, top: cursor.y }}><MousePointer2 size={30} fill="white" stroke="#101113" strokeWidth={1.5}/>{clicking && <span />}</div>}
         </div>
