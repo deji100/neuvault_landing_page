@@ -7,9 +7,11 @@ export const CAPTURE_TIMELINE = {
   titleStart: 15500,
   bodyStart: 17800,
   audioImported: 6500,
-  transcriptReady: 20500,
-  summaryReady: 26000,
-  audioPlayback: 27000,
+  // This is a scripted demo, not a live transcription request. Keep the full
+  // visible loading sequence within two seconds of opening Note & Voice.
+  transcriptReady: 15500,
+  summaryReady: 16000,
+  audioPlayback: 17000,
   noteSaved: 50000,
   vaultStart: 50000,
   noteComplete: 50000,

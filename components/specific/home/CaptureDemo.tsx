@@ -29,7 +29,7 @@ const PATH: [
     [7200, "nav-queue", 85, 650], [8000, "nav-queue", 85, 650],
     [10500, "", 800, 480], [13000, "queue-open-editor", 1100, 280], [T.notesStart, "queue-open-editor", 1100, 280],
     [16000, "", 800, 480],
-    [24500, "audio-follow", 530, 70], [T.audioPlayback, "audio-play", 1400, 1010],
+    [T.summaryReady + 500, "audio-follow", 530, 70], [T.audioPlayback, "audio-play", 1400, 1010],
     [49000, "note-save", 1400, 180],
     [T.noteSaved, "note-save", 1400, 180],
     [53000, "group-1", 740, 300], [T.entertainmentOpen, "group-1", 740, 300],
