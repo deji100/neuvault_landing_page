@@ -1,12 +1,9 @@
-# Homepage testimonial section
+# Homepage cards
 
-The section follows the supplied reference: centered heading, feature tags, individual star ratings, short quotes and reviewer attribution in a responsive three/two/one-column grid. It uses the landing page palette in light and dark mode and sits after the four live demos.
+The reference-inspired section now renders six factual product-benefit cards in both production and development when no approved testimonials are available. It uses the existing light/dark theme and responsive three/two/one-column layout after the four live demos.
 
-`lib/testimonials.ts` contains two separate arrays:
+`productHighlights` in `lib/testimonials.ts` covers capture, Vault Map, Reminders, Planner, transcription and offline access. Cards link to the corresponding product demonstration or privacy explanation. They contain no invented customer identities, first-person endorsements, ratings or social-proof claims. The earlier development-only sample quotes have been removed.
 
-- `testimonials`: genuine customer feedback approved for publication. Currently empty. Keep the reviewer's words/name and any actual rating; an optional original-review link appears on the card. Do not infer star ratings or invent identities.
-- `previewTestimonials`: six illustrative layout examples. The development server displays these only when genuine testimonials are absent. Each card is labeled as a sample. The preview badge and explanatory paragraph have been removed as requested.
+`testimonials` remains available for genuine customer feedback approved for publication. Adding entries replaces the benefit cards with the review layout. Preserve the reviewer's words/name and actual rating; do not infer ratings from praise. Optional original-review links appear on cards.
 
-Production renders no section while the approved array is empty. Do not publish the samples as customer endorsements. No aggregate score, customer total, verification badge or third-party rating is invented. Adding real entries makes the section appear in production after the next build.
-
-Checked desktop/tablet/mobile layouts in light and dark themes, sample card labels and absence of the removed badge. Production HTML is checked for absence of sample quotes and section markup.
+Production rendering must include all six benefit cards while the testimonials array is empty. No NODE_ENV condition hides the section.

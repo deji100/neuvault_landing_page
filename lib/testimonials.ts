@@ -12,36 +12,11 @@ export type Testimonial = {
 // An individual rating must come from the reviewer; do not infer one from praise.
 export const testimonials: Testimonial[] = [];
 
-// Layout samples are rendered only by the development server, never in production.
-export const previewTestimonials: Testimonial[] = [
-  {
-    id: "preview-capture", feature: "Less sorting", rating: 5,
-    quote: "My notes, files and links are finally in one place. I spend less time sorting and more time using what I saved.",
-    name: "Sample reviewer", role: "Capture & organization",
-  },
-  {
-    id: "preview-map", feature: "Seeing the connections", rating: 5,
-    quote: "Putting my research and working notes on one map makes it easier to see how the ideas fit together.",
-    name: "Sample reviewer", role: "Vault Map",
-  },
-  {
-    id: "preview-reminders", feature: "Remembering the date", rating: 5,
-    quote: "The date was buried in a document I had already saved. Having it brought back to my attention is the useful part.",
-    name: "Sample reviewer", role: "Reminders",
-  },
-  {
-    id: "preview-planner", feature: "A clearer next step", rating: 5,
-    quote: "Keeping the original notes attached to a task means I can pick up the work without searching for the details again.",
-    name: "Sample reviewer", role: "Planner",
-  },
-  {
-    id: "preview-audio", feature: "Back to the conversation", rating: 5,
-    quote: "I can return to the transcript and find what was said without playing the whole recording again.",
-    name: "Sample reviewer", role: "Voice transcription",
-  },
-  {
-    id: "preview-local", feature: "My files, close at hand", rating: 5,
-    quote: "I like being able to open my saved files and keep working on notes when I am offline.",
-    name: "Sample reviewer", role: "Local-first workspace",
-  },
+export const productHighlights = [
+  { id: "capture", feature: "Less sorting", title: "Everything in one place.", copy: "Save notes, files and links together. Use AI to summarize and sort them when you choose.", product: "Capture & organization", href: "/#capture" },
+  { id: "map", feature: "See the connections", title: "Make the ideas fit.", copy: "Connect related files and notes on a desktop canvas. Compare sources with Nova and read them side by side.", product: "Vault Map", href: "/#vault-map-demo" },
+  { id: "reminders", feature: "Remember the date", title: "Bring deadlines into view.", copy: "Review important dates AI finds in your documents, or set your own reminders to return when it matters.", product: "Reminders", href: "/#reminders-demo" },
+  { id: "planner", feature: "A clearer next step", title: "Keep the details with the task.", copy: "Plan tasks and events with the original notes and files attached, ready when you pick up the work.", product: "Planner", href: "/#planner-demo" },
+  { id: "audio", feature: "Back to the conversation", title: "Find what was said.", copy: "Turn recordings into summaries and searchable transcripts. Follow the text as the audio plays.", product: "Voice transcription", href: "/#capture" },
+  { id: "local", feature: "Your files, close at hand", title: "Keep working offline.", copy: "Open saved files, edit notes and manage tasks on your device. AI processing needs an internet connection.", product: "Local-first workspace", href: "/#privacy-at-a-glance" },
 ];
