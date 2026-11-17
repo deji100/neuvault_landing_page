@@ -377,6 +377,7 @@ export default function PrivacyPolicyPage() {
       </Section>
 
       <Section id="backup" title="9. Encrypted backup" icon={Cloud}>
+        <p>NeuVault does not charge you for cloud storage of your vault files. You control where encrypted backups are saved and where you secure your recovery information. Optional third-party storage providers may charge their own fees.</p>
         <Bullets>
           <li>
             A backup packs your vault into one file that is encrypted on your device before it is saved anywhere.

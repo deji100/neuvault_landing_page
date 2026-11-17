@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { creditPolicyNotice, paidCreditPolicyLive } from "@/lib/pricing";
 import {
   Ban,
   Bell,
@@ -224,11 +225,13 @@ export default function TermsPage() {
           </li>
           <li>The free Explorer plan includes 500 credits, which expire after 14 days.</li>
           <li>
-            Paid plans add a credit allowance each billing period. Unused plan credits do not carry over.
+            Paid plans add the specified monthly allocation. Premium Annual provides 8,000 credits each month, totaling 96,000 a year, rather than an upfront pool.
           </li>
           <li>
-            On a paid plan, you can buy extra credits once you have used 80% of your allowance. Extra credits are
-            used after your plan credits and expire 15 days after purchase.
+            {creditPolicyNotice}
+          </li>
+          <li>
+            {paidCreditPolicyLive ? "Under the paid-credit policy," : "Under the upcoming paid-credit policy,"} unused paid credits carry forward and remain usable after cancellation or failed renewal. New subscription grants stop when paid access ends. Eligible paid customers may purchase extras without a usage threshold or routine expiry.
           </li>
           <li>
             If a request fails after processing has started, it may use up to half of the credits it would have

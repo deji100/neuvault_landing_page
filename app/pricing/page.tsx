@@ -101,8 +101,8 @@ export default function PricingPage() {
         <h1>One workspace. Every feature. A plan that fits.</h1>
 
         <p className={styles.intro}>
-          Start free and choose the AI credits you need. Every paid plan includes
-          the same connected workspace: files, notes, Vault Map, Planner and reminders.
+          Start free and pay only for the AI processing you use. Your files stay on your devices,
+          your backups are yours to control, and you never pay NeuVault for cloud storage.
         </p>
 
         <div className={styles.facts}>

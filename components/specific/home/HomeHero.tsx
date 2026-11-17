@@ -27,11 +27,11 @@ export default function HomeHero() {
           </h1>
 
           <p className={styles.lede}>
-            Save notes, files and recordings. Let AI organize them and find important dates.
-            Connect your ideas, set reminders and plan what to do next.
+            Bring your files, notes, recordings and plans together in one private, local-first workspace.
+            Let AI organize what you save, connect related information, remember important dates and turn ideas into action.
           </p>
 
-          <p className={styles.privacyNote}><strong>Your files and notes are stored locally on your device.</strong></p>
+          <p className={styles.privacyNote}><strong>Your files stay on your devices. No NeuVault cloud storage fees. Your backups, your choice.</strong></p>
           <p className={styles.syncNote}>AI features send relevant content for online processing. Planner and reminder data sync through your account. <a href="#privacy-at-a-glance">How local-first works</a></p>
 
           <div className={styles.actions}>

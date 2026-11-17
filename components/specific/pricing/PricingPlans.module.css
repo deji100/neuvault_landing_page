@@ -3,6 +3,13 @@
   padding: 58px 24px 96px;
 }
 
+.ownershipGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px}
+.ownershipGrid article{padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.ownershipGrid svg{color:var(--blue)}
+.ownershipGrid h3{font-size:.96rem;line-height:1.4;margin:14px 0 10px;color:var(--ink)}
+.ownershipGrid p{font-size:.87rem;line-height:1.7;color:var(--secondary)}
+@media(max-width:1100px){.ownershipGrid{grid-template-columns:1fr}}
+
 .pageLayout {
   display: grid;
   grid-template-columns: 250px minmax(0, 1fr);
@@ -383,3 +390,5 @@
 .faq summary:focus-visible,.summaryNav a:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
 @media(max-width:620px) { .usageExamples { grid-template-columns: 1fr; } .usageExample { padding: 18px; } .topUps { grid-template-columns: 1fr; } }
 
+
+.policyNotice{padding:15px 18px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font-size:.85rem;line-height:1.6}

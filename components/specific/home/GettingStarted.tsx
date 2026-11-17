@@ -13,7 +13,7 @@ export default function GettingStarted() {
           <div><dt>Stored on your device</dt><dd>Your files and notes live locally. Browse saved material, edit notes and manage Planner tasks offline.</dd></div>
           <div><dt>Processed online for AI</dt><dd>Relevant content is sent for processing when you use AI organization, transcription or Nova. These features need an internet connection.</dd></div>
           <div><dt>Synced through your account</dt><dd>Planner and reminder data sync when connected. Reminder metadata is stored server-side to deliver notifications.</dd></div>
-          <div><dt>Backups you control</dt><dd>Save an encrypted backup where you choose and restore it with your Recovery Key.</dd></div>
+          <div><dt>Backups you control</dt><dd>No NeuVault cloud storage fees. Choose where to save encrypted backups and secure your Recovery Key. Third-party storage providers may charge their own fees.</dd></div>
         </dl>
         <Link href="/privacy-policy">Read the privacy policy</Link>
       </section>

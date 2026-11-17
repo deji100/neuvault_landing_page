@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Check, Coins, CreditCard, ShieldCheck, Sparkles } from "lucide-react";
-import { creditRules, creditTopUps, creditUsageExamples, includedPlanFeatures, pricingFaqs, pricingPlans } from "@/lib/pricing";
+import { Check, Coins, CreditCard, HardDrive, KeyRound, ShieldCheck, Sparkles } from "lucide-react";
+import { creditPolicyNotice, paidCreditPolicyLive, creditRules, creditTopUps, creditUsageExamples, includedPlanFeatures, pricingFaqs, pricingPlans } from "@/lib/pricing";
 import styles from "./PricingPlans.module.css";
 
 type PricingPlansProps = {
@@ -151,6 +151,7 @@ export default function PricingPlans({ variant = "home" }: PricingPlansProps) {
                 <a key={plan.id} href={`#${plan.id}`}>{plan.name}</a>
               ))}
               <a href="#credits">How credits work</a>
+              <a href="#storage-ownership">Storage and ownership</a>
               <a href="#credit-usage">What can credits do?</a>
               <a href="#included">Included across plans</a>
               <a href="#pricing-questions">Pricing questions</a>
@@ -165,6 +166,7 @@ export default function PricingPlans({ variant = "home" }: PricingPlansProps) {
         </aside>
 
         <div className={styles.plans}>
+          <p className={styles.policyNotice} role="note">{creditPolicyNotice}</p>
           {pricingPlans.map((plan) => {
             const featured = plan.id === "pro";
             return (
@@ -205,6 +207,17 @@ export default function PricingPlans({ variant = "home" }: PricingPlansProps) {
             );
           })}
 
+          <section id="storage-ownership" className={styles.included} aria-labelledby="storage-ownership-title">
+            <h2 id="storage-ownership-title">Your files. Your devices. No cloud storage fees.</h2>
+            <p className={styles.includedCopy}>Your files stay on your devices. You pay NeuVault for AI processing, not cloud storage. Choose where to save encrypted backups and keep your Recovery Key.</p>
+            <div className={styles.ownershipGrid}>
+              <article><ShieldCheck size={20} aria-hidden="true" /><h3>No NeuVault Cloud Storage Fees</h3><p>Pay for AI processing, not cloud storage of your files.</p></article>
+              <article><HardDrive size={20} aria-hidden="true" /><h3>Your Files Stay on Your Devices</h3><p>Keep files and notes locally. Choose when and how to transfer them.</p></article>
+              <article><KeyRound size={20} aria-hidden="true" /><h3>Backups and Recovery Under Your Control</h3><p>Save encrypted backups where you choose. Keep your Recovery Key secure.</p></article>
+            </div>
+            <p className={styles.usageNote}>Third-party storage fees may apply. AI processes relevant content online; account, Planner and reminder data may sync.</p>
+          </section>
+
           <section id="credit-usage" className={styles.included} aria-labelledby="credit-usage-title">
             <h2 id="credit-usage-title">What can my credits do?</h2>
             <p className={styles.includedCopy}>A few reference examples to make credits more concrete. These show individual processing steps, not a fixed total for an entire workflow.</p>
@@ -234,14 +247,14 @@ export default function PricingPlans({ variant = "home" }: PricingPlansProps) {
                 </div>
 
                 <h3 className={styles.topUpTitle}>Extra credits for paid plans</h3>
-                <p className={styles.topUpPolicy}><strong>Unlocks after 80% usage. Expires 15 days after purchase.</strong> Extra credits are spent after your plan credits, and unused extras expire on their own schedule.</p>
+                <p className={styles.topUpPolicy}>{paidCreditPolicyLive ? "Buy extra credits when needed. No routine expiry." : "Coming soon: buy extras when needed, with no usage threshold or routine expiry."}</p>
                 <div className={styles.topUps}>
                   {creditTopUps.map((pack) => (
                     <div key={pack.credits} className={styles.topUp}>
                       <p className={styles.topUpCredits}>{pack.credits}</p>
                       <p className={styles.topUpLabel}>extra credits</p>
                       <p className={styles.topUpPrice}>{pack.price}</p>
-                      <p className={styles.topUpExpiry}>Expires 15 days after purchase</p>
+                      <p className={styles.topUpExpiry}>{paidCreditPolicyLive ? "No routine expiry" : "No expiry under the upcoming policy"}</p>
                     </div>
                   ))}
                 </div>

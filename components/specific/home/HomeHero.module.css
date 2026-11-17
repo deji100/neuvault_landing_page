@@ -40,6 +40,6 @@
 .eyebrow{margin-bottom:18px;color:var(--teal);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
 .syncNote{max-width:72ch;margin:12px auto 0;color:var(--soft);font-size:.85rem;line-height:1.6;text-wrap:pretty}
 
-.privacyNote{margin:20px auto 0;color:var(--ink);font-size:1rem;line-height:1.5;text-wrap:pretty}.privacyNote strong{font-weight:700}
+.privacyNote{max-width:76ch;margin:18px auto 0;color:var(--ink);font-size:.86rem;line-height:1.5;text-wrap:pretty}.privacyNote strong{font-weight:600}
 .syncNote a{color:var(--deep);text-decoration:underline;text-underline-offset:3px}
 .syncNote a:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
