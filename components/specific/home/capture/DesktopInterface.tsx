@@ -160,7 +160,11 @@ function VaultPage({ time, seekTour, seekVersion }: { time: number; seekTour: (t
         </article>;
     };
     const populatedGroups = GROUPS.map(group => group.title === "Entertainment & Leisure" && organized ? { ...group, count: group.count + 1, subgroups: group.subgroups + 1 } : group);
-    const groups = organized ? [...populatedGroups.filter(group => group.title === "Entertainment & Leisure"), ...populatedGroups.filter(group => group.title !== "Entertainment & Leisure")] : populatedGroups;
+    const groups = organized ? [
+        ...populatedGroups.filter(group => group.title === "Inbox"),
+        ...populatedGroups.filter(group => group.title === "Entertainment & Leisure"),
+        ...populatedGroups.filter(group => group.title !== "Inbox" && group.title !== "Entertainment & Leisure"),
+    ] : populatedGroups;
     return <div ref={viewport} className={`desktop-vault-page ${styles.mapsPage}`} data-vault-location={location} data-vault-organized={organized}>
         <header className={styles.mapHeader}>{title ? <div className={styles.vaultTitleRow}><h1>{title}</h1><button type="button" onClick={back}><ChevronLeft size={17}/>Back</button></div> : <p>Browse your files by group.</p>}
             <div className={styles.mapToolbar}><div><Search size={17}/><span>{inPodcasts ? "Search documents" : inEntertainment ? "Search subgroups or document titles" : "Search groups or document titles"}</span><X size={14}/></div><span className={styles.segment}><strong>Grid</strong><span>List</span></span><span className={styles.sort}>Newest first<ChevronDown size={15}/></span>{inPodcasts ? <><span className={styles.sort}>Document type<ChevronDown size={15}/></span><span className={styles.sort}>Any time<ChevronDown size={15}/></span></> : <span className={styles.infoButton}><Info size={18}/></span>}</div>
