@@ -9,19 +9,36 @@ import { installIconAnimationSync } from "./sidebarIconSync";
 import styles from "./DesktopInterface.module.css";
 const AudioNotesDemo = dynamic(() => import("./AudioNotesDemo"));
 export type DemoPage = "home" | "queue" | "notes" | "vault";
+const ENTERTAINMENT_SUBGROUPS = [
+    { title: "Films & Series", count: 12, subgroups: 0, color: "purple" },
+    { title: "Music", count: 9, subgroups: 0, color: "pink" },
+    { title: "Books & Reviews", count: 8, subgroups: 0, color: "blue" },
+    { title: "Games", count: 6, subgroups: 0, color: "green" },
+    { title: "Live Events", count: 5, subgroups: 0, color: "orange" },
+];
+// Fictional populated vault for the product tour. The imported podcast adds
+// one subgroup and one document only after Organize with AI completes.
 export const GROUPS = [
     { title: "Inbox", count: 26, subgroups: 0, color: "slate" },
-    { title: "Entertainment & Leisure", count: 0, subgroups: 1, color: "blue" },
-    { title: "Business Strategy & Planning", count: 12, subgroups: 11, color: "pink" },
-    { title: "Information Management", count: 1, subgroups: 1, color: "blue" },
-    { title: "Politics & International Relations", count: 2, subgroups: 2, color: "purple" },
-    { title: "Personal & Family", count: 1, subgroups: 1, color: "blue" },
-    { title: "Media & Communication", count: 8, subgroups: 6, color: "orange" },
-    { title: "Meetings & Events", count: 1, subgroups: 1, color: "green" },
-    { title: "Travel & Tourism", count: 1, subgroups: 1, color: "blue" },
-    { title: "Travel & Immigration", count: 1, subgroups: 1, color: "purple" },
-    { title: "Education & Research", count: 19, subgroups: 8, color: "slate" },
-    { title: "Finance & Banking", count: 7, subgroups: 2, color: "pink" },
+    { title: "Business Strategy & Planning", count: 84, subgroups: 11, color: "pink" },
+    { title: "Information Management", count: 43, subgroups: 6, color: "blue" },
+    { title: "Politics & International Relations", count: 51, subgroups: 7, color: "purple" },
+    { title: "Entertainment & Leisure", count: ENTERTAINMENT_SUBGROUPS.reduce((sum, group) => sum + group.count, 0), subgroups: ENTERTAINMENT_SUBGROUPS.length, color: "blue" },
+    { title: "Personal & Family", count: 67, subgroups: 8, color: "blue" },
+    { title: "Media & Communication", count: 58, subgroups: 6, color: "orange" },
+    { title: "Meetings & Events", count: 73, subgroups: 9, color: "green" },
+    { title: "Travel & Tourism", count: 36, subgroups: 5, color: "blue" },
+    { title: "Travel & Immigration", count: 29, subgroups: 6, color: "purple" },
+    { title: "Education & Research", count: 112, subgroups: 8, color: "slate" },
+    { title: "Finance & Banking", count: 96, subgroups: 9, color: "pink" },
+    { title: "Health & Wellness", count: 64, subgroups: 8, color: "green" },
+    { title: "Legal & Compliance", count: 48, subgroups: 7, color: "slate" },
+    { title: "Technology & Engineering", count: 126, subgroups: 10, color: "blue" },
+    { title: "Creative Ideas", count: 53, subgroups: 7, color: "purple" },
+    { title: "Home & Property", count: 69, subgroups: 8, color: "orange" },
+    { title: "Career & Learning", count: 82, subgroups: 9, color: "blue" },
+    { title: "Shopping & Purchases", count: 44, subgroups: 6, color: "pink" },
+    { title: "Sports & Fitness", count: 38, subgroups: 6, color: "green" },
 ];
 const SECTIONS: {
     title: string;
@@ -117,18 +134,38 @@ function QueuePage({ time, onOpenEditor, onAudioInteract }: { time: number; onOp
         <aside className={styles.queueMiniPlayer} aria-label="Queue audio player"><AudioLines size={15}/><button type="button" onClick={toggleAudio} aria-label={playing ? "Pause queue audio" : "Play queue audio"}>{playing ? <Pause size={16}/> : <Play size={16}/>}</button><span>{Math.floor(currentTime / 60)}:{Math.floor(currentTime % 60).toString().padStart(2, "0")}</span><FileText size={14}/><ChevronDown size={14}/></aside>
     </div>;
 }
-function VaultPage({ time, seekTour }: { time: number; seekTour: (time: number, resume?: boolean, preserveAudio?: boolean) => void }) {
-    const inEntertainment = time >= T.entertainmentOpen, inPodcasts = time >= T.podcastsOpen;
+function VaultPage({ time, seekTour, seekVersion }: { time: number; seekTour: (time: number, resume?: boolean, preserveAudio?: boolean) => void; seekVersion: number }) {
+    const organized = time >= T.noteComplete;
+    const [browse, setBrowse] = useState<{ time: number; version: number; location: "root" | "entertainment" } | null>(null);
+    const viewport = useRef<HTMLDivElement>(null);
+    const scriptedLocation = time >= T.podcastsOpen ? "podcasts" : time >= T.entertainmentOpen ? "entertainment" : "root";
+    const location = browse?.time === time && browse.version === seekVersion ? browse.location : scriptedLocation;
+    const inEntertainment = location === "entertainment", inPodcasts = location === "podcasts";
+    useEffect(() => { viewport.current?.scrollTo({ top: 0, behavior: "instant" }); }, [location, seekVersion]);
     const title = inPodcasts ? "Podcasts" : inEntertainment ? "Entertainment & Leisure" : "";
-    const folder = (group: typeof GROUPS[number], index: number, podcasts = false) => <article className={`desktop-vault-folder-card is-compact ${styles.groupCard}`} data-cursor={podcasts ? "podcasts-folder" : `group-${index}`} data-group-title={group.title} key={group.title} role={podcasts || index === 1 ? "button" : undefined} tabIndex={podcasts || index === 1 ? 0 : undefined} onClick={() => { if (podcasts || index === 1) seekTour(podcasts ? T.podcastsOpen : T.entertainmentOpen, true, true); }} onKeyDown={event => { if ((podcasts || index === 1) && (event.key === "Enter" || event.key === " ")) { event.preventDefault(); seekTour(podcasts ? T.podcastsOpen : T.entertainmentOpen, true, true); } }}>
-        {index === 0 && !podcasts ? <span className={`nv-inbox-count-badge ${styles.inboxCount}`}>{group.count}</span> : <span className={styles.folderMenu}><MoreHorizontal size={19}/></span>}
-        <div className="desktop-vault-folder-card-content"><div className="desktop-vault-folder-art" data-folder-color={group.color}><span className="desktop-vault-folder-tab"/><span className="desktop-vault-folder-back"/><span className="desktop-vault-folder-front"/>{index === 0 && !podcasts && <span className="nv-inbox-folder-glyph"><Inbox/></span>}</div><h3 title={group.title}>{group.title}</h3><p>{podcasts ? "1 document" : index === 0 ? `${group.count} items ready to organize` : <>{group.subgroups} subgroup{group.subgroups === 1 ? "" : "s"}<span>•</span>{index === 1 && time >= T.noteComplete ? 1 : group.count} doc{index === 1 || group.count === 1 ? "" : "s"}</>}</p></div>
-    </article>;
-    return <div className={`desktop-vault-page ${styles.mapsPage}`} data-vault-location={inPodcasts ? "podcasts" : inEntertainment ? "entertainment" : "root"}>
-        <header className={styles.mapHeader}>{title ? <div className={styles.vaultTitleRow}><h1>{title}</h1><button type="button" onClick={() => seekTour(inPodcasts ? T.entertainmentOpen : T.vaultStart, false, true)}><ChevronLeft size={17}/>Back</button></div> : <p>Browse your files by group.</p>}
+    const openEntertainment = () => {
+        if (organized) seekTour(T.entertainmentOpen, true, true);
+        else { setBrowse({ time, version: seekVersion, location: "entertainment" }); seekTour(time, false, true); }
+    };
+    const back = () => {
+        if (organized) seekTour(inPodcasts ? T.entertainmentOpen : T.vaultStart, false, true);
+        else { setBrowse({ time, version: seekVersion, location: "root" }); seekTour(time, false, true); }
+    };
+    const folder = (group: typeof GROUPS[number], index: number, kind: "group" | "subgroup" | "podcasts" = "group") => {
+        const isInbox = kind === "group" && group.title === "Inbox";
+        const open = kind === "podcasts" ? () => seekTour(T.podcastsOpen, true, true) : kind === "group" && group.title === "Entertainment & Leisure" ? openEntertainment : undefined;
+        return <article className={`desktop-vault-folder-card is-compact ${styles.groupCard}`} data-cursor={kind === "podcasts" ? "podcasts-folder" : kind === "group" ? group.title === "Entertainment & Leisure" ? "group-1" : isInbox ? "group-0" : `group-${index + 2}` : undefined} data-group-title={group.title} key={group.title} role={open ? "button" : undefined} tabIndex={open ? 0 : undefined} onClick={open} onKeyDown={event => { if (open && (event.key === "Enter" || event.key === " ")) { event.preventDefault(); open(); } }}>
+            {isInbox ? <span className={`nv-inbox-count-badge ${styles.inboxCount}`}>{group.count}</span> : <span className={styles.folderMenu}><MoreHorizontal size={19}/></span>}
+            <div className="desktop-vault-folder-card-content"><div className="desktop-vault-folder-art" data-folder-color={group.color}><span className="desktop-vault-folder-tab"/><span className="desktop-vault-folder-back"/><span className="desktop-vault-folder-front"/>{isInbox && <span className="nv-inbox-folder-glyph"><Inbox/></span>}</div><h3 title={group.title}>{group.title}</h3><p>{isInbox ? `${group.count} items ready to organize` : kind !== "group" ? `${group.count} document${group.count === 1 ? "" : "s"}` : <>{group.subgroups} subgroup{group.subgroups === 1 ? "" : "s"}<span>•</span>{group.count} doc{group.count === 1 ? "" : "s"}</>}</p></div>
+        </article>;
+    };
+    const populatedGroups = GROUPS.map(group => group.title === "Entertainment & Leisure" && organized ? { ...group, count: group.count + 1, subgroups: group.subgroups + 1 } : group);
+    const groups = organized ? [...populatedGroups.filter(group => group.title === "Entertainment & Leisure"), ...populatedGroups.filter(group => group.title !== "Entertainment & Leisure")] : populatedGroups;
+    return <div ref={viewport} className={`desktop-vault-page ${styles.mapsPage}`} data-vault-location={location} data-vault-organized={organized}>
+        <header className={styles.mapHeader}>{title ? <div className={styles.vaultTitleRow}><h1>{title}</h1><button type="button" onClick={back}><ChevronLeft size={17}/>Back</button></div> : <p>Browse your files by group.</p>}
             <div className={styles.mapToolbar}><div><Search size={17}/><span>{inPodcasts ? "Search documents" : inEntertainment ? "Search subgroups or document titles" : "Search groups or document titles"}</span><X size={14}/></div><span className={styles.segment}><strong>Grid</strong><span>List</span></span><span className={styles.sort}>Newest first<ChevronDown size={15}/></span>{inPodcasts ? <><span className={styles.sort}>Document type<ChevronDown size={15}/></span><span className={styles.sort}>Any time<ChevronDown size={15}/></span></> : <span className={styles.infoButton}><Info size={18}/></span>}</div>
         </header>
-        <div className={styles.groupGrid}>{inPodcasts ? <button type="button" className={styles.transcriptFile} data-cursor="transcript-file" onClick={() => seekTour(T.documentOpen, true, true)}><div><span className={styles.documentInfo}><Info size={17}/></span><Image src="/desktop-tour/vault-map/markdown.png" alt="Markdown document" width={74} height={86}/></div><h2>{TRANSCRIPT_TITLE}</h2></button> : inEntertainment ? folder({ title: "Podcasts", count: 1, subgroups: 0, color: "blue" }, 1, true) : GROUPS.map((group, index) => folder(group, index))}</div>
+        <div className={styles.groupGrid}>{inPodcasts ? <button type="button" className={styles.transcriptFile} data-cursor="transcript-file" onClick={() => seekTour(T.documentOpen, true, true)}><div><span className={styles.documentInfo}><Info size={17}/></span><Image src="/desktop-tour/vault-map/markdown.png" alt="Markdown document" width={74} height={86}/></div><h2>{TRANSCRIPT_TITLE}</h2></button> : inEntertainment ? <>{organized && folder({ title: "Podcasts", count: 1, subgroups: 0, color: "blue" }, 0, "podcasts")}{ENTERTAINMENT_SUBGROUPS.map((group, index) => folder(group, index, "subgroup"))}</> : groups.map((group, index) => folder(group, index))}</div>
     </div>;
 }
 export default function DesktopInterface({ page, time, reduced, onNavigate, audioActive, audioVisible, onAudioInteract, seekTour, audioSeekVersion }: {
@@ -143,5 +180,5 @@ export default function DesktopInterface({ page, time, reduced, onNavigate, audi
     audioSeekVersion: number;
 }) {
     const queueCount = (time >= T.audioImported && time < T.summaryReady) || (time >= T.noteSaved && time < T.noteComplete) ? 1 : 0;
-    return <div className={`updv-dark ${styles.shell}`} data-demo-page={page}><DesktopSidebar page={page} onNavigate={onNavigate} queueCount={queueCount} active={audioActive}/><div className={styles.page}>{page === "home" ? <HomePage time={time}/> : page === "queue" ? <QueuePage time={time} onOpenEditor={() => seekTour(T.notesStart, true)} onAudioInteract={onAudioInteract}/> : <div className="audio-native-scope"><AudioNotesDemo time={time} page={page} vaultContent={<VaultPage time={time} seekTour={seekTour}/>} seekVersion={audioSeekVersion} active={audioActive} visible={audioVisible} reduced={reduced} onInteract={onAudioInteract} seekTour={seekTour}/></div>}</div></div>;
+    return <div className={`updv-dark ${styles.shell}`} data-demo-page={page}><DesktopSidebar page={page} onNavigate={onNavigate} queueCount={queueCount} active={audioActive}/><div className={styles.page}>{page === "home" ? <HomePage time={time}/> : page === "queue" ? <QueuePage time={time} onOpenEditor={() => seekTour(T.notesStart, true)} onAudioInteract={onAudioInteract}/> : <div className="audio-native-scope"><AudioNotesDemo time={time} page={page} vaultContent={<VaultPage time={time} seekTour={seekTour} seekVersion={audioSeekVersion}/>} seekVersion={audioSeekVersion} active={audioActive} visible={audioVisible} reduced={reduced} onInteract={onAudioInteract} seekTour={seekTour}/></div>}</div></div>;
 }
