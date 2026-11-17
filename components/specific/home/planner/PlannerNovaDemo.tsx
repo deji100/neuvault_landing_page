@@ -11,7 +11,7 @@ export default function PlannerNovaDemo({ time, seek }: { time: number; seek: (t
     const sent = time >= batch.sentAt, response = time >= batch.responseAt, confirmed = time >= batch.confirmAt;
     const applied = batch.proposals.filter(proposal => time >= proposal.applyAt).length;
     const complete = applied === batch.proposals.length;
-    const draft = batch.prompt.slice(0, Math.max(0, Math.floor((time - batch.draftAt) / 34)));
+    const draft = time >= batch.draftAt ? batch.prompt : "";
     useEffect(() => { if (response) list.current?.scrollTo({ top: list.current.scrollHeight, behavior: "instant" }); }, [batch.id, response, confirmed]);
     return <section className={`nv-planner-nova__panel ${styles.novaPanel}`} role="dialog" aria-label="Nova for your planner" data-nova-batch={batch.id}>
         <header className="nv-planner-nova__head"><span className="nv-planner-nova__badge"><NovaRobot size={28} followPointer={false}/></span><div><h2>Nova</h2><p>Ask about your planner, or tell Nova what to change.</p></div><button className="nv-planner-nova__icon" type="button" onClick={() => seek(batch.openAt)} aria-label="Restart Nova conversation"><RotateCcw/></button><button className="nv-planner-nova__icon" type="button" data-planner-target="nova-close" onClick={() => seek(batch.closeAt)} aria-label="Close Planner Nova"><X/></button></header>
