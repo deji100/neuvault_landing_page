@@ -24,6 +24,13 @@ const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
   await send('Page.navigate',{url:preview+'/?audio-check='+Date.now()+'#capture'});
   for(let n=0;n<60;n++){if(await ev('!!'+q('input[aria-label="Capture tour progress"]')))break;await wait(250)}
   for(let n=0;n<30;n++){await ev(q('[aria-label="Pause capture tour"]')+'?.click()');await wait(150);if(await ev('!!'+q('[aria-label="Play capture tour"]')))break}
+  await seek(0);
+  assert.equal(await ev(q('[data-demo-page]')+'.dataset.demoPage'),'vault','The first frame opens on the Vault');
+  assert.equal(await ev(q('[data-vault-location]')+'.dataset.vaultLocation'),'root');
+  await ev(q('[data-cursor="nav-home"]')+'.click()');await wait(200);
+  assert.equal(await ev(q('[data-demo-page]')+'.dataset.demoPage'),'home','Home navigation starts the import chapter');
+  await seek(T.autoImportOpen);
+  assert.ok(await ev('!!'+q('[data-cursor="auto-ai"]')),'Automatic import follows the Home transition');
   await seek(10000);
   assert.match(await ev(q('[data-demo-page=queue]')+'.textContent'), /Reality Life Interview: The Dynasty UConn Huskies\.mp3/);
   assert.match(await ev(q('[data-demo-page=queue]')+'.textContent'), /Transcript captured. Organizing your notes./);
@@ -133,7 +140,8 @@ const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
   assert.equal(await ev(q('audio')+'.paused'),false,'Closing the modal keeps playback running');
   await seek(85700);await ev(q('[aria-label="Play capture tour"]')+'.click()');await wait(800);
   assert.equal(await ev(q('audio')+'.paused'),false,'Recording continues after the visual tour finishes');
-  await seek(14000);assert.equal(await ev(q('audio')+'.paused'),true,'Replay starts cleanly');
+  await seek(0);assert.equal(await ev(q('audio')+'.paused'),true,'Replay starts cleanly');
+  assert.equal(await ev(q('[data-demo-page]')+'.dataset.demoPage'),'vault','Replay returns to the opening Vault');
   await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
   await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});await wait(400);
   assert.equal(await ev('document.documentElement.scrollWidth'),390);

@@ -11,9 +11,10 @@ const DURATION = T.duration;
 const WIDTH = 1600;
 const HEIGHT = 1080;
 const STEPS = [
-    { at: 0, page: "home", title: "Import on Home", copy: "Watch your Podcasts folder. New recordings arrive automatically, ready for transcription." },
-    { at: 8000, page: "queue", title: "Follow the Queue", copy: "Follow the imported recording as NeuVault captures its transcript, then opens it in the editor." },
-    { at: 14000, page: "notes", title: "Transcribe and follow audio", copy: "Read the recording’s summary and follow the highlighted sentences as the audio plays." },
+    { at: 0, page: "vault", title: "Start in your Vault", copy: "See where saved notes and files live, then open Home to import something new." },
+    { at: T.homeStart, page: "home", title: "Import on Home", copy: "Watch your Podcasts folder. New recordings arrive automatically, ready for transcription." },
+    { at: T.queueStart, page: "queue", title: "Follow the Queue", copy: "Follow the imported recording as NeuVault captures its transcript, then opens it in the editor." },
+    { at: T.notesStart, page: "notes", title: "Transcribe and follow audio", copy: "Read the recording’s summary and follow the highlighted sentences as the audio plays." },
     { at: T.vaultStart, page: "vault", title: "Explore your Vault", copy: "See the transcribed interview join Entertainment & Leisure → Podcasts, with its audio and summary kept together." },
 ] as const;
 // Targets are measured from the rendered desktop controls so the cursor lands
@@ -24,7 +25,8 @@ const PATH: [
     number,
     number
 ][] = [
-    [0, "", 1420, 210], [1200, "auto-open", 550, 700], [1800, "auto-ai", 700, 650], [3000, "auto-ai", 700, 650],
+    [0, "nav-vault", 85, 400], [1600, "nav-home", 85, 350], [T.homeStart, "nav-home", 85, 350],
+    [2200, "auto-open", 550, 700], [T.autoImportOpen, "auto-open", 550, 700], [3000, "auto-ai", 700, 650],
     [3800, "auto-folder", 650, 470], [5000, "auto-done", 1250, 850], [6200, "auto-done", 1250, 850],
     [7200, "nav-queue", 85, 650], [8000, "nav-queue", 85, 650],
     [10500, "", 800, 480], [13000, "queue-open-editor", 1100, 280], [T.notesStart, "queue-open-editor", 1100, 280],
@@ -63,7 +65,7 @@ export default function CaptureDemo() {
     const visible = useDemoFocus("capture", viewportRef);
     const [reducedMotion, setReducedMotion] = useState(false);
     const scale = useDemoScale(viewportRef);
-    const step = time >= T.vaultStart ? 3 : time >= T.notesStart ? 2 : time >= T.queueStart ? 1 : 0;
+    const step = STEPS.reduce((current, chapter, index) => time >= chapter.at ? index : current, 0);
     const page = STEPS[step].page;
     useEffect(() => {
         const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -78,7 +80,7 @@ export default function CaptureDemo() {
     }, []);
     const onAudioInteract = useCallback(() => setPlaying(false), []);
     const audioPhase = time >= T.documentOpen ? "document" : time >= T.podcastsOpen ? "podcasts" : time >= T.entertainmentOpen ? "entertainment" : time < T.audioImported ? "idle" : time < T.transcriptReady ? "transcribing" : time < T.summaryReady ? "summary" : "ready";
-    const autoImportOpen = time >= 1400 && time < 6500;
+    const autoImportOpen = time >= T.autoImportOpen && time < T.audioImported;
     useLayoutEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas)
@@ -117,9 +119,9 @@ export default function CaptureDemo() {
         return () => cancelAnimationFrame(frame);
     }, [playing, visible]);
     function seek(value: number, resume = false, preserveAudio = false) { if (!preserveAudio) setAudioSeekVersion(version => version + 1); timeRef.current = value; setTime(value); setPlaying(resume); }
-    function navigate(next: DemoPage) { const chapter = STEPS.find(s => s.page === next)!; seek(chapter.at); }
+    function navigate(next: DemoPage) { const chapter = next === "vault" && time >= T.notesStart ? STEPS[STEPS.length - 1] : STEPS.find(s => s.page === next)!; seek(chapter.at); }
     const cursor = cursorAt(time, targetsRef.current);
-    const clicking = [1200, 3000, 6200, T.queueStart, T.notesStart, T.audioPlayback, T.noteSaved, T.entertainmentOpen, T.podcastsOpen, T.documentOpen].some(at => Math.abs(time - at) < 190);
+    const clicking = [T.homeStart, T.autoImportOpen, 3000, 6200, T.queueStart, T.notesStart, T.audioPlayback, T.noteSaved, T.entertainmentOpen, T.podcastsOpen, T.documentOpen].some(at => Math.abs(time - at) < 190);
     return <section className={styles.section} id="capture" ref={sectionRef} aria-labelledby="capture-title">
     <div className={styles.heading}><p className={styles.eyebrow}><span>01</span> CAPTURE &amp; ORGANIZE</p><h2 id="capture-title">Your notes and files.<br /><span>Organized for you.</span></h2><p>Save notes, files and links. Let AI summarize and sort them, or turn recordings into searchable transcripts.</p></div>
     <DemoViewer label="Note & Voice"><div className={styles.demoTop}><span><i className={styles.liveDot}/>Inside NeuVault Desktop</span><span className={styles.demoLabel}>Product tour</span></div>

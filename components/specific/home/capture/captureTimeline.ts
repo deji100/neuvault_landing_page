@@ -2,6 +2,8 @@
 // badge and the resulting folder count change at the same moment.
 export const CAPTURE_TIMELINE = {
   duration: 86000,
+  homeStart: 2000,
+  autoImportOpen: 2400,
   queueStart: 8000,
   notesStart: 14000,
   titleStart: 15500,
