@@ -45,7 +45,7 @@ export function saveAnalyticsConsent(value: Exclude<AnalyticsConsent, null>) {
 
 /** Only public marketing routes; never send URL queries, fragments or account routes. */
 export function analyticsPath(path: string, additionalPublicPaths: readonly string[] = []): string | null {
-  const publicPaths = ["/", "/pricing", "/compare", "/guides", "/business", "/use-cases", "/privacy-policy", "/terms-and-conditions", "/refund-policy", "/save-from-browser", "/how-to-use-extension", "/meeting-notes-without-a-bot"];
+  const publicPaths = ["/", "/pricing", "/compare", "/guides", "/business", "/use-cases", "/privacy-policy", "/terms-and-conditions", "/refund-policy", "/save-from-browser", "/how-to-use-extension", "/connectors", "/meeting-notes-without-a-bot"];
   if (publicPaths.includes(path) || additionalPublicPaths.includes(path)) return path;
   if (path.startsWith("/use-cases/") && getWorkflow(path.slice("/use-cases/".length))) return path;
   return null;

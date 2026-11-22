@@ -57,6 +57,11 @@ const staticRoutes = [
     priority: 0.3,
   },
   {
+    path: "/connectors",
+    changeFrequency: "monthly" as const,
+    priority: 0.5,
+  },
+  {
     path: "/how-to-use-extension",
     changeFrequency: "monthly" as const,
     priority: 0.5,

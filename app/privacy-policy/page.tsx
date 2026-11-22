@@ -11,6 +11,7 @@ import {
   CreditCard,
   FileText,
   KeyRound,
+  Plug,
   Lock,
   Mail,
   Mic,
@@ -24,7 +25,7 @@ import {
 
 import { Bullets, Callout, Chip, Chips, LegalPage, MetaPill, Section, type TocItem } from "@/components/specific/legal/Legal";
 
-const EFFECTIVE_DATE = "November 16, 2026";
+const EFFECTIVE_DATE = "November 19, 2026";
 const PRIVACY_EMAIL = "support@neuvault.app";
 
 const toc: TocItem[] = [
@@ -35,6 +36,7 @@ const toc: TocItem[] = [
   { id: "reminders", label: "Reminders & notifications" },
   { id: "email-integrations", label: "Email accounts & Google user data" },
   { id: "imports", label: "Imports, recordings & other people" },
+  { id: "ai-apps", label: "AI apps you connect" },
   { id: "providers", label: "Service providers" },
   { id: "backup", label: "Encrypted backup" },
   { id: "sign-in", label: "Sign-in & device security" },
@@ -200,6 +202,11 @@ export default function PrivacyPolicyPage() {
             feature, such as pages read or minutes transcribed.
           </li>
           <li>
+            <strong>AI apps you connect:</strong> for each AI app you let into your vault from the web, its name and
+            address, the permissions you gave it, when you connected it and last used it, and the IP address you
+            approved it from. See section 8.
+          </li>
+          <li>
             <strong>Feedback and support messages</strong> you send us, with the app details you include.
           </li>
           <li>
@@ -340,7 +347,40 @@ export default function PrivacyPolicyPage() {
         </Bullets>
       </Section>
 
-      <Section id="providers" title="8. Service providers" icon={Share2}>
+      <Section id="ai-apps" title="8. AI apps you connect" icon={Plug}>
+        <p>
+          You can let AI apps such as Claude and ChatGPT search your vault, read what&apos;s inside your items and
+          save new items into it. This is off until you turn it on in NeuVault&apos;s Connectors page, and you choose
+          what each app may do.
+        </p>
+        <Bullets>
+          <li>
+            <strong>Apps on your computer</strong> (for example Claude Desktop) talk to the NeuVault app directly on
+            your computer. Nothing goes through our servers.
+          </li>
+          <li>
+            <strong>Apps on the web</strong> (for example claude.ai and chatgpt.com) reach the NeuVault app on your
+            computer through our secure connection service. Requests and answers pass through it while NeuVault is
+            open on your computer; we do not store what an app searches for, reads or saves. Our logs record only
+            which action ran, for which account, whether it worked and how long it took.
+          </li>
+          <li>
+            <strong>What an AI app receives</strong> is governed by that app&apos;s own privacy policy. Anything it reads
+            from your vault is shared with the company that runs it, so connect only apps you trust.
+          </li>
+          <li>
+            <strong>Protected items</strong> are never shared with AI apps. Items an app saves follow your import
+            preference: they stay in your Inbox as written, or NeuVault AI organizes them as described in section 3.
+          </li>
+          <li>
+            <strong>Your control:</strong> you can change what apps may do, see recent activity on your computer, or
+            disconnect an app at any time in the Connectors page. A web app&apos;s sign-in ends when you disconnect it,
+            or after 30 days without use.
+          </li>
+        </Bullets>
+      </Section>
+
+      <Section id="providers" title="9. Service providers" icon={Share2}>
         <p>
           We use trusted providers to run NeuVault. They receive only what is needed for their part of the
           service, and may not use it for their own purposes.
@@ -376,7 +416,7 @@ export default function PrivacyPolicyPage() {
         </p>
       </Section>
 
-      <Section id="backup" title="9. Encrypted backup" icon={Cloud}>
+      <Section id="backup" title="10. Encrypted backup" icon={Cloud}>
         <p>NeuVault does not charge you for cloud storage of your vault files. You control where encrypted backups are saved and where you secure your recovery information. Optional third-party storage providers may charge their own fees.</p>
         <Bullets>
           <li>
@@ -413,7 +453,7 @@ export default function PrivacyPolicyPage() {
         </Callout>
       </Section>
 
-      <Section id="sign-in" title="10. Sign-in & device security" icon={KeyRound}>
+      <Section id="sign-in" title="11. Sign-in & device security" icon={KeyRound}>
         <Bullets>
           <li>You sign in with your email address and a one-time code. We do not store a password.</li>
           <li>
@@ -424,7 +464,7 @@ export default function PrivacyPolicyPage() {
         </Bullets>
       </Section>
 
-      <Section id="payments" title="11. Subscriptions & payments" icon={CreditCard}>
+      <Section id="payments" title="12. Subscriptions & payments" icon={CreditCard}>
         <p>
           Subscriptions and credit packs are bought through the Apple App Store or Google Play. They handle your
           payment details, which we never see. We receive your purchase status, and a subscription identifier
@@ -432,7 +472,7 @@ export default function PrivacyPolicyPage() {
         </p>
       </Section>
 
-      <Section id="communications" title="12. Emails we send" icon={Mail}>
+      <Section id="communications" title="13. Emails we send" icon={Mail}>
         <Bullets>
           <li>Sign-in codes and important account, security and billing messages.</li>
           <li>Reminder emails for your dates, if reminders are turned on.</li>
@@ -447,7 +487,7 @@ export default function PrivacyPolicyPage() {
         </Bullets>
       </Section>
 
-      <Section id="feedback-board" title="13. Feedback board" icon={Users}>
+      <Section id="feedback-board" title="14. Feedback board" icon={Users}>
         <p>
           The feedback board at <Link href="/feedback">neuvault.app/feedback</Link> is public: anyone can read it.
           Posting, voting and commenting need a NeuVault account.
@@ -477,7 +517,7 @@ export default function PrivacyPolicyPage() {
         </Bullets>
       </Section>
 
-      <Section id="diagnostics" title="14. Diagnostics" icon={Shield}>
+      <Section id="diagnostics" title="15. Diagnostics" icon={Shield}>
         <Bullets>
           <li>
             NeuVault&apos;s desktop and mobile apps contain no advertising or third-party analytics tools, and do not track you across other
@@ -516,7 +556,7 @@ export default function PrivacyPolicyPage() {
         <p>Google&apos;s processing is described in its <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>.</p>
       </Section>
 
-      <Section id="staff-access" title="15. Staff access" icon={UserCheck}>
+      <Section id="staff-access" title="16. Staff access" icon={UserCheck}>
         <p>
           A small number of authorized staff can use internal tools to run the service, answer support requests,
           keep it secure and fix billing problems. They can see account details, sessions, subscription and credit
@@ -530,14 +570,15 @@ export default function PrivacyPolicyPage() {
         </Bullets>
       </Section>
 
-      <Section id="retention" title="16. How long we keep data" icon={Lock}>
+      <Section id="retention" title="17. How long we keep data" icon={Lock}>
         <Bullets>
           <li>
             Files sent for processing and their results: deleted automatically once processed; kept up to an hour
             only for a retry if processing fails or your device goes offline (section 3).
           </li>
           <li>Reminders: until you delete them or your account.</li>
-          <li>Feedback board posts, comments and votes: until your account is deleted (section 13).</li>
+          <li>Connected AI apps on the web: until you disconnect them, or 30 days after their last use.</li>
+          <li>Feedback board posts, comments and votes: until your account is deleted (section 14).</li>
           <li>Notification history: 30 days, or up to 180 days if unopened.</li>
           <li>Account, device, subscription and credit records: while your account is open.</li>
           <li>Server logs: for a limited period, for security and troubleshooting.</li>
@@ -545,7 +586,7 @@ export default function PrivacyPolicyPage() {
         </Bullets>
       </Section>
 
-      <Section id="account-deletion" title="17. Deleting your account" icon={Trash2}>
+      <Section id="account-deletion" title="18. Deleting your account" icon={Trash2}>
         <p>
           You can delete your account in the app (Settings &gt; Delete Account) or from{" "}
           <Link href="/account-deletion">neuvault.app/account-deletion</Link>.
@@ -568,7 +609,7 @@ export default function PrivacyPolicyPage() {
         </Bullets>
       </Section>
 
-      <Section id="rights" title="18. Your rights" icon={UserCheck}>
+      <Section id="rights" title="19. Your rights" icon={UserCheck}>
         <p>
           Depending on where you live, you may have the right to access, correct, export or delete your personal
           data, to object to or restrict certain processing, and to withdraw consent. You can also complain to your
@@ -577,14 +618,14 @@ export default function PrivacyPolicyPage() {
         </p>
       </Section>
 
-      <Section id="children" title="19. Children" icon={Mic}>
+      <Section id="children" title="20. Children" icon={Mic}>
         <p>
           NeuVault is not intended for children under 13, and we do not knowingly collect their personal data. If
           you believe a child has given us personal data, contact us and we will delete it.
         </p>
       </Section>
 
-      <Section id="security" title="20. Security" icon={Lock}>
+      <Section id="security" title="21. Security" icon={Lock}>
         <p>
           We protect data in transit with encryption (TLS), limit access to our systems, and encrypt backups on
           your device. No system is perfectly secure, so please keep your device, email account and Recovery Key
@@ -592,7 +633,7 @@ export default function PrivacyPolicyPage() {
         </p>
       </Section>
 
-      <Section id="changes" title="21. Changes & contact" icon={FileText}>
+      <Section id="changes" title="22. Changes & contact" icon={FileText}>
         <p>
           We will update this policy when NeuVault changes, change the effective date above, and tell you in the
           app or by email about significant changes. For any privacy question or request, contact:
