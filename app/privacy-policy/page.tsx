@@ -25,7 +25,7 @@ import {
 
 import { Bullets, Callout, Chip, Chips, LegalPage, MetaPill, Section, type TocItem } from "@/components/specific/legal/Legal";
 
-const EFFECTIVE_DATE = "November 19, 2026";
+const EFFECTIVE_DATE = "November 22, 2026";
 const PRIVACY_EMAIL = "support@neuvault.app";
 
 const toc: TocItem[] = [
@@ -359,7 +359,7 @@ export default function PrivacyPolicyPage() {
             your computer. Nothing goes through our servers.
           </li>
           <li>
-            <strong>Apps on the web</strong> (for example claude.ai and chatgpt.com) reach the NeuVault app on your
+            <strong>Apps on the web</strong> (for example claude.ai, chatgpt.com and their phone apps) reach the NeuVault app on your
             computer through our secure connection service. Requests and answers pass through it while NeuVault is
             open on your computer; we do not store what an app searches for, reads or saves. Our logs record only
             which action ran, for which account, whether it worked and how long it took.
@@ -369,8 +369,8 @@ export default function PrivacyPolicyPage() {
             from your vault is shared with the company that runs it, so connect only apps you trust.
           </li>
           <li>
-            <strong>Protected items</strong> are never shared with AI apps. Items an app saves follow your import
-            preference: they stay in your Inbox as written, or NeuVault AI organizes them as described in section 3.
+            <strong>Protected items</strong> are never shared with AI apps. NeuVault AI organizes items an app saves,
+            as described in section 3, using your credits; without credits they wait in your Inbox as written.
           </li>
           <li>
             <strong>Your control:</strong> you can change what apps may do, see recent activity on your computer, or
