@@ -1,0 +1,24 @@
+.section{padding:72px 24px 80px;scroll-margin-top:100px}
+.wrap{width:min(1200px,100%);margin:auto}
+.heading{text-align:center;margin:0 auto 34px;max-width:800px}
+.logos{display:flex;justify-content:center;gap:12px;margin-bottom:18px}
+.logo{display:grid;place-items:center;width:60px;height:60px;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 10px 30px -18px #0004}
+.logo img{display:block;width:40px;height:40px;border-radius:10px}
+.eyebrow{color:var(--deep);font-size:.7rem;font-weight:650;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+.section h2{font-family:var(--font-bricolage),system-ui,sans-serif;font-size:clamp(2rem,4.5vw,3.25rem);font-weight:600;letter-spacing:-.045em;line-height:1.12;text-wrap:balance}
+.intro{margin-top:16px;color:var(--soft);font-size:1.03rem;line-height:1.6;text-wrap:pretty}
+.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;list-style:none;margin:0;padding:0}
+.card{display:flex;flex-direction:column;gap:8px;padding:20px 18px;border:1px solid var(--line);border-radius:18px;background:var(--surface)}
+.icon{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;color:var(--deep);background:color-mix(in srgb,var(--teal) 12%,var(--surface))}
+.card h3{margin-top:6px;font-size:1rem;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+.card p{color:var(--soft);font-size:.84rem;line-height:1.6}
+.card .prompt{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);color:var(--ink);font-size:.8rem;font-style:italic}
+.note{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:18px;padding:20px 24px;border:1px solid var(--line);border-radius:18px;background:var(--paper)}
+.note p{max-width:78ch;color:var(--soft);font-size:.88rem;line-height:1.65}
+.note strong{color:var(--ink)}
+.cta{display:inline-flex;align-items:center;gap:8px;flex:none;padding:11px 18px;border-radius:999px;background:var(--ink);color:var(--surface);font-size:.85rem;font-weight:600}
+.cta:hover{opacity:.9}
+.trademarks{margin-top:12px;text-align:center;color:var(--soft);font-size:.7rem;opacity:.8}
+.section a:focus-visible{outline:2px solid var(--teal);outline-offset:4px}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){.section{padding:40px 16px 48px}.heading{margin-bottom:22px}.intro{font-size:.94rem}.grid{grid-template-columns:1fr}.note{flex-direction:column;align-items:flex-start;padding:18px}}

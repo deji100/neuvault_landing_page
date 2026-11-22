@@ -1,3 +1,4 @@
+import AiApps from "./AiApps";
 import AppTour from "./AppTour";
 import { ChevronDown } from "lucide-react";
 import CaptureDemo from "./CaptureDemo";
@@ -19,6 +20,7 @@ export default function LandingPage() {
     <div className={styles.page}>
       <HomeHero />
       <SourceToAction />
+      <AiApps />
       <CaptureDemo />
       <PlannerDemo />
       <VaultMapDemo />
