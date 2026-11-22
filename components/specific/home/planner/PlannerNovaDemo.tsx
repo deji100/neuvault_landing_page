@@ -11,8 +11,20 @@ export default function PlannerNovaDemo({ time, seek }: { time: number; seek: (t
     const sent = time >= batch.sentAt, response = time >= batch.responseAt, confirmed = time >= batch.confirmAt;
     const applied = batch.proposals.filter(proposal => time >= proposal.applyAt).length;
     const complete = applied === batch.proposals.length;
-    const draft = time >= batch.draftAt ? batch.prompt : "";
+    // The prompt types out over most of the draft window, so visitors watch it being written.
+    const typeEnd = batch.draftAt + (batch.sentAt - batch.draftAt) * 0.8;
+    const typed = Math.min(1, Math.max(0, (time - batch.draftAt) / (typeEnd - batch.draftAt)));
+    const draft = time >= batch.draftAt ? batch.prompt.slice(0, Math.ceil(batch.prompt.length * typed)) : "";
+    const composer = useRef<HTMLTextAreaElement>(null);
     useEffect(() => { if (response) list.current?.scrollTo({ top: list.current.scrollHeight, behavior: "instant" }); }, [batch.id, response, confirmed]);
+    // Grow with the text (CSS caps it), and keep the newest line in view while it types.
+    useEffect(() => {
+        const box = composer.current;
+        if (!box) return;
+        box.style.height = "auto";
+        box.style.height = `${box.scrollHeight + 2}px`;
+        box.scrollTop = box.scrollHeight;
+    }, [draft, sent]);
     return <section className={`nv-planner-nova__panel ${styles.novaPanel}`} role="dialog" aria-label="Nova for your planner" data-nova-batch={batch.id}>
         <header className="nv-planner-nova__head"><span className="nv-planner-nova__badge"><NovaRobot size={28} followPointer={false}/></span><div><h2>Nova</h2><p>Ask about your planner, or tell Nova what to change.</p></div><button className="nv-planner-nova__icon" type="button" onClick={() => seek(batch.openAt)} aria-label="Restart Nova conversation"><RotateCcw/></button><button className="nv-planner-nova__icon" type="button" data-planner-target="nova-close" onClick={() => seek(batch.closeAt)} aria-label="Close Planner Nova"><X/></button></header>
         <div className="nv-planner-nova__list" ref={list}>
@@ -24,7 +36,7 @@ export default function PlannerNovaDemo({ time, seek }: { time: number; seek: (t
                 return <div key={proposal.id} data-planner-proposal={proposal.id} className={`nv-planner-nova__proposal is-${done ? "applied" : confirmed ? "applying" : "pending"}`}><span>{proposal.label}</span>{done ? <em><Check aria-hidden="true"/>Done</em> : confirmed ? <LoaderCircle className="animate-spin" aria-label="Applying"/> : <div><button type="button" onClick={() => seek(batch.closeAt)}>Dismiss</button><button type="button" className="is-primary" onClick={() => seek(batch.confirmAt, true)}>Confirm</button></div>}</div>;
             })}{!confirmed && <div className="nv-planner-nova__bulk"><button type="button" onClick={() => seek(batch.closeAt)}>Dismiss all</button><button type="button" className="is-primary" data-planner-target="nova-confirm-all" onClick={() => seek(batch.confirmAt, true)}>Confirm all {batch.proposals.length}</button></div>}</div>{confirmed && <p className="nv-planner-nova__status" role="status">{complete ? <Check/> : <LoaderCircle className="animate-spin"/>}{complete ? `All ${applied} changes applied.` : `Applying your changes… ${applied} of ${batch.proposals.length} complete`}</p>}</article>}
         </div>
-        <div className="nv-planner-nova__composer"><textarea readOnly rows={3} value={sent ? "" : draft} data-planner-target="nova-compose" placeholder="Ask Nova about your planner…" aria-label="Planner Nova message"/><button type="button" data-planner-target="nova-send" aria-label="Send Planner Nova message" onClick={() => seek(batch.sentAt)}><ArrowUp/></button></div>
+        <div className="nv-planner-nova__composer"><textarea ref={composer} readOnly rows={2} value={sent ? "" : draft} data-planner-target="nova-compose" placeholder="Ask Nova about your planner…" aria-label="Planner Nova message"/><button type="button" data-planner-target="nova-send" aria-label="Send Planner Nova message" onClick={() => seek(batch.sentAt)}><ArrowUp/></button></div>
         <p className="nv-planner-nova__note">Each message uses credits. Nothing changes until you confirm.</p>
     </section>;
 }
