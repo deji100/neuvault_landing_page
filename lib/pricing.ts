@@ -3,7 +3,11 @@ export const paidCreditPolicyLive = process.env.NEXT_PUBLIC_PAID_CREDIT_POLICY_L
 export const creditPolicyNotice = paidCreditPolicyLive
   ? "Unused paid credits roll over. Purchased extras have no routine expiry."
   : "Coming soon: paid-credit rollover and non-expiring extras. Current in-app purchase terms apply until rollout.";
-const rolloverFeature = paidCreditPolicyLive ? "Unused paid credits roll over" : "Paid-credit rollover coming soon";
+/**
+ * Until the paid-credit policy is live the site shows only what is true today: no "coming soon" rollover
+ * lines anywhere (Deji 2026-11-23). Each pre-launch line below is left out, not reworded as a promise.
+ */
+const rolloverFeature: string[] = paidCreditPolicyLive ? ["Unused paid credits roll over"] : [];
 
 /**
  * Plans as the apps sell them. Credit amounts and badges follow updv-desktop
@@ -58,7 +62,7 @@ export const pricingPlans: PricingPlan[] = [
     features: [
       "2,000 new credits each month",
       "Every NeuVault feature included",
-      rolloverFeature,
+      ...rolloverFeature,
     ],
   },
   {
@@ -73,7 +77,7 @@ export const pricingPlans: PricingPlan[] = [
     features: [
       "4,000 new credits each month",
       "Every NeuVault feature included",
-      rolloverFeature,
+      ...rolloverFeature,
     ],
   },
   {
@@ -89,7 +93,7 @@ export const pricingPlans: PricingPlan[] = [
     features: [
       "6,000 new credits each month",
       "Every NeuVault feature included",
-      rolloverFeature,
+      ...rolloverFeature,
     ],
   },
   {
@@ -104,7 +108,7 @@ export const pricingPlans: PricingPlan[] = [
     features: [
       "8,000 new credits each month",
       "Every NeuVault feature included",
-      rolloverFeature,
+      ...rolloverFeature,
     ],
   },
   {
@@ -116,12 +120,12 @@ export const pricingPlans: PricingPlan[] = [
     cadence: "credits / month · billed yearly",
     audience: "For Premium usage with annual billing.",
     summary: "The same monthly allowance as Premium, paid once a year.",
-    billingNote: `8,000 credits each month, totaling 96,000 a year—not upfront. ${paidCreditPolicyLive ? "Unused allocated credits carry forward." : "Rollover begins when the updated policy launches."}`,
+    billingNote: `8,000 credits each month, totaling 96,000 a year—not upfront.${paidCreditPolicyLive ? " Unused allocated credits carry forward." : ""}`,
     highlight: "Best value",
     features: [
       "8,000 credits each monthly credit period",
       "Every NeuVault feature included",
-      rolloverFeature,
+      ...rolloverFeature,
       "One annual payment",
     ],
   },
@@ -134,12 +138,14 @@ export const creditTopUps = [
 ];
 
 /** How credits work, in the desktop app's own words (CreditsPage "How plans and credits work"). */
-export const creditRules = [
+export const creditRules: string[] = [
   "No NeuVault cloud storage fees. Your local vault works without AI credits.",
   "AI organization, text recognition, transcription, Nova and web searches use credits. Usage varies by task.",
   "Explorer includes 500 introductory credits for 14 days. Unused free credits expire; your local vault stays accessible.",
-  `${paidCreditPolicyLive ? "Paid credits roll over" : "Upcoming policy: paid credits roll over"} across successful renewals and remain usable after cancellation or failed renewal. New grants stop when paid access ends.`,
-  `${paidCreditPolicyLive ? "Eligible paid customers can buy" : "Upcoming policy: eligible paid customers can buy"} extra credits when needed, with no usage threshold or routine time-based expiry.`,
+  ...(paidCreditPolicyLive ? [
+    "Paid credits roll over across successful renewals and remain usable after cancellation or failed renewal. New grants stop when paid access ends.",
+    "Eligible paid customers can buy extra credits when needed, with no usage threshold or routine time-based expiry.",
+  ] : []),
   "Premium Annual provides 8,000 credits monthly, totaling 96,000 yearly—not an upfront pool.",
   "Open Credits → Usage in NeuVault for your actual charges. Completed AI processing can use credits even if the overall task stops.",
 ];
@@ -189,24 +195,26 @@ export const pricingFaqs = [
   },
   {
     question: "Do I receive all 96,000 annual credits at once?",
-    answer: `No. Premium Annual costs $200 a year and provides 8,000 credits each month. ${paidCreditPolicyLive ? "Unused allocated credits carry forward." : "Rollover begins when the updated policy launches."}`,
+    answer: `No. Premium Annual costs $200 a year and provides 8,000 credits each month.${paidCreditPolicyLive ? " Unused allocated credits carry forward." : ""}`,
   },
-  {
+  ...(paidCreditPolicyLive ? [{
     question: "Do unused credits roll over?",
-    answer: `${paidCreditPolicyLive ? "Yes." : "Under the upcoming policy, yes."} Unused paid credits carry forward across successful renewals and remain usable after cancellation, expiry or failed renewal. New grants stop when paid access ends. Explorer’s 500 free credits still expire after 14 days.`,
-  },
+    answer: "Yes. Unused paid credits carry forward across successful renewals and remain usable after cancellation, expiry or failed renewal. New grants stop when paid access ends. Explorer’s 500 free credits still expire after 14 days.",
+  }] : []),
   {
     question: "When can I buy extra credits?",
-    answer: `${paidCreditPolicyLive ? "Eligible paid customers can" : "Under the upcoming policy, eligible paid customers can"} buy extras when needed, without a usage threshold or routine expiry. Packs remain 2,000 credits for $5.99 or 4,000 for $11.99 at US App Store prices. ${paidCreditPolicyLive ? "" : "Current in-app purchase terms apply until rollout."}`,
+    answer: paidCreditPolicyLive
+      ? "Eligible paid customers can buy extras when needed, without a usage threshold or routine expiry. Packs are 2,000 credits for $5.99 or 4,000 for $11.99 at US App Store prices."
+      : "Packs are 2,000 credits for $5.99 or 4,000 for $11.99 at US App Store prices. Open Credits in NeuVault to see the options available to you.",
   },
   {
     question: "Where can I see what I actually spent?",
     answer: "Open Credits in NeuVault and choose Usage to review your credit changes. The examples on this page illustrate individual processing steps; they are not fixed total prices for complete documents, recordings or Nova conversations.",
   },
-  {
+  ...(paidCreditPolicyLive ? [{
     question: "What happens to credits after a refund?",
-    answer: `${paidCreditPolicyLive ? "Under the paid-credit policy," : "Under the upcoming paid-credit policy,"} only unused credits from the refunded purchase are revoked. Unrelated paid credits and your spending history are preserved; your balance does not become negative.`,
-  },
+    answer: "Under the paid-credit policy, only unused credits from the refunded purchase are revoked. Unrelated paid credits and your spending history are preserved; your balance does not become negative.",
+  }] : []),
   {
     question: "Where do I subscribe or manage my plan?",
     answer: "Open Credits in NeuVault to see the purchase and management options available to you. Options depend on your platform and where you downloaded the app; supported direct desktop downloads may offer web checkout. Your subscription is linked to your NeuVault account across devices. Store purchases are managed through the store where you subscribed.",

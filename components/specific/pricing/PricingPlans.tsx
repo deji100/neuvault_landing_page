@@ -248,14 +248,14 @@ export default function PricingPlans({ variant = "home" }: PricingPlansProps) {
                 </div>
 
                 <h3 className={styles.topUpTitle}>Extra credits for paid plans</h3>
-                <p className={styles.topUpPolicy}>{paidCreditPolicyLive ? "Buy extra credits when needed. No routine expiry." : "Coming soon: buy extras when needed, with no usage threshold or routine expiry."}</p>
+                {paidCreditPolicyLive ? <p className={styles.topUpPolicy}>Buy extra credits when needed. No routine expiry.</p> : null}
                 <div className={styles.topUps}>
                   {creditTopUps.map((pack) => (
                     <div key={pack.credits} className={styles.topUp}>
                       <p className={styles.topUpCredits}>{pack.credits}</p>
                       <p className={styles.topUpLabel}>extra credits</p>
                       <p className={styles.topUpPrice}>{pack.price}</p>
-                      <p className={styles.topUpExpiry}>{paidCreditPolicyLive ? "No routine expiry" : "No expiry under the upcoming policy"}</p>
+                      {paidCreditPolicyLive ? <p className={styles.topUpExpiry}>No routine expiry</p> : null}
                     </div>
                   ))}
                 </div>
