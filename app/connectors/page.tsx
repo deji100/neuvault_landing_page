@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Globe, KeyRound, Laptop, Lightbulb, MessageSquare, Shield, Smartphone, Wrench } from "lucide-react";
+import { Globe, KeyRound, Laptop, Lightbulb, MessageSquare, Mic, Shield, Smartphone, Wrench } from "lucide-react";
 
 import { Bullets, Callout, LegalPage, MetaPill, Section, type TocItem } from "@/components/specific/legal/Legal";
 
@@ -15,6 +15,7 @@ const toc: TocItem[] = [
   { id: "claude-web", label: "Claude on the web" },
   { id: "chatgpt", label: "ChatGPT" },
   { id: "phone", label: "On your phone" },
+  { id: "voice", label: "Use voice commands" },
   { id: "permissions", label: "Choose what apps may do" },
   { id: "try", label: "Things to ask" },
   { id: "privacy", label: "Privacy" },
@@ -57,7 +58,7 @@ export default function ConnectorsPage() {
             PowerPoint, Excel, text and more, plus images and the saved details of links.
           </li>
           <li>
-            <strong>Create and save:</strong> make a PDF, Word, Excel or PowerPoint file, or a note, and put it in your
+            <strong>Create and save:</strong> make a PDF, Word, Excel or PowerPoint file, an image, or a note, and put it in your
             vault; keep web pages and YouTube videos; save a file you give it. NeuVault AI organizes what AI apps save
             into your groups using your credits; without credits it waits in your Inbox.
           </li>
@@ -71,14 +72,14 @@ export default function ConnectorsPage() {
           </li>
           <li>
             <strong>Vault Maps:</strong> make a new map from your documents, add documents, notes, checklists and
-            lines, edit a note card or tick items on its checklist, group cards and rename a map.
+            lines, edit a note card or tick items on its checklist, group cards, tidy up a map or move cards next to each other, and rename a map.
           </li>
           <li>
             <strong>Open things in NeuVault:</strong> bring up a document, map, task or reminder in the NeuVault app on
             your computer.
           </li>
           <li>AI apps can&apos;t delete anything in your vault.</li>
-          <li>In ChatGPT or Claude, you can do all of this by voice.</li>
+          <li>In ChatGPT or a Claude chat, you can do all of this with voice commands.</li>
         </Bullets>
       </Section>
 
@@ -167,7 +168,17 @@ export default function ConnectorsPage() {
         </Bullets>
       </Section>
 
-      <Section id="permissions" title="7. Choose what apps may do" icon={KeyRound}>
+      <Section id="voice" title="7. Use voice commands" icon={Mic}>
+        <Bullets>
+          <li>Open a chat in ChatGPT or Claude, on your phone or computer.</li>
+          <li>Tap or click the sound wave button beside the message box, then talk.</li>
+          <li>Ask for anything you&apos;d type, and mention NeuVault so they use it. For example: &ldquo;What&apos;s on my plan today in NeuVault?&rdquo;</li>
+          <li>In Claude, voice works in chats, not in Claude Code or Cowork.</li>
+          <li>Keep NeuVault open and unlocked on your computer.</li>
+        </Bullets>
+      </Section>
+
+      <Section id="permissions" title="8. Choose what apps may do" icon={KeyRound}>
         <Bullets>
           <li>
             When you sign in, choose whether the app may <strong>search</strong> your vault, <strong>read</strong>{" "}
@@ -182,7 +193,7 @@ export default function ConnectorsPage() {
         </Bullets>
       </Section>
 
-      <Section id="try" title="8. Things to ask" icon={Lightbulb}>
+      <Section id="try" title="9. Things to ask" icon={Lightbulb}>
         <Bullets>
           <li>&ldquo;What groups do I have in NeuVault, and how many items are in each?&rdquo;</li>
           <li>&ldquo;Find my lease and tell me when I need to give notice.&rdquo;</li>
@@ -200,7 +211,7 @@ export default function ConnectorsPage() {
         </p>
       </Section>
 
-      <Section id="privacy" title="9. Privacy" icon={Shield}>
+      <Section id="privacy" title="10. Privacy" icon={Shield}>
         <Bullets>
           <li>Your vault stays on your computer. Apps on your computer talk to NeuVault directly.</li>
           <li>
@@ -217,7 +228,7 @@ export default function ConnectorsPage() {
         </p>
       </Section>
 
-      <Section id="help" title="10. If something doesn't work" icon={Wrench}>
+      <Section id="help" title="11. If something doesn't work" icon={Wrench}>
         <Bullets>
           <li>
             <strong>&ldquo;NeuVault isn&apos;t open on your computer&rdquo;:</strong> open NeuVault, sign in and
