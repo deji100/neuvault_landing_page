@@ -78,7 +78,7 @@ export default function ConnectorsPage() {
             your computer.
           </li>
           <li>AI apps can&apos;t delete anything in your vault.</li>
-          <li>In ChatGPT, you can do all of this by voice.</li>
+          <li>In ChatGPT or Claude, you can do all of this by voice.</li>
         </Bullets>
       </Section>
 

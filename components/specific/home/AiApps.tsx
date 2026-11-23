@@ -28,7 +28,7 @@ export default function AiApps() {
           <h2 id="ai-apps-title">Your vault. Your AI. Just ask.</h2>
           <p className={styles.intro}>
             Connect ChatGPT or Claude to create documents, find files, update checklists, manage tasks, and organize your
-            Vault Maps, all through natural conversation. Type it, or in ChatGPT, just say it.
+            Vault Maps, all through natural conversation. Type it or just say it.
           </p>
         </div>
 
