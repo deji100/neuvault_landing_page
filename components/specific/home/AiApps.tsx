@@ -11,7 +11,7 @@ const abilities: Array<{ icon: LucideIcon; title: string; body: string; prompt: 
   { icon: Search, title: "Find and read", body: "Search your vault, read what a document says, and answer from your own files.", prompt: "What does my car insurance say about windshield damage?" },
   { icon: FilePlus2, title: "Create and save", body: "Make a PDF, Word, Excel, or PowerPoint file, an image, or a note, and put it in your vault. Keep web pages and YouTube videos too.", prompt: "Make a budget spreadsheet for my trip and save it in NeuVault." },
   { icon: CalendarCheck, title: "Plan", body: "Tell you what’s on today, add tasks and events, reschedule them, move them across your board, or mark them done.", prompt: "What’s on my plan this week? Move the website task to In Review." },
-  { icon: BellRing, title: "Remind", body: "Set a reminder for a document, a Vault Map, or anything else, and tell you what’s coming up.", prompt: "Remind me to renew my passport on March 1." },
+  { icon: BellRing, title: "Remind", body: "Set a reminder for anything in NeuVault or anything else, attach a document to it, and tell you what’s coming up.", prompt: "Remind me to pay my electricity bill on March 1 and attach the latest bill." },
   { icon: Network, title: "Vault Maps", body: "Build a map from your documents, add notes and checklists, connect the pieces, tidy it up, and tick items off.", prompt: "Make a Vault Map for my move, with a packing checklist." },
 ];
 

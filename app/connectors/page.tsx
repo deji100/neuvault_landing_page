@@ -67,8 +67,8 @@ export default function ConnectorsPage() {
             move them to another board column, mark them done, and attach documents to them.
           </li>
           <li>
-            <strong>Remind:</strong> set a reminder for a document, a Vault Map, or anything else, list what&apos;s
-            coming up, and mark a reminder done.
+            <strong>Remind:</strong> set a reminder for anything in NeuVault (a document, photo, note, web page or
+            Vault Map) or for anything else, attach a document to it, list what&apos;s coming up, and mark a reminder done.
           </li>
           <li>
             <strong>Vault Maps:</strong> make a new map from your documents, add documents, notes, checklists and
@@ -202,7 +202,7 @@ export default function ConnectorsPage() {
           <li>&ldquo;Save this article to NeuVault: [link]&rdquo;</li>
           <li>&ldquo;Make a budget spreadsheet for my trip and save it in NeuVault.&rdquo;</li>
           <li>&ldquo;What&apos;s on my plan this week? Move the website task to In Review.&rdquo;</li>
-          <li>&ldquo;Remind me to renew my passport on March 1.&rdquo;</li>
+          <li>&ldquo;Remind me to pay my electricity bill on March 1 and attach the latest bill.&rdquo;</li>
           <li>&ldquo;Make a Vault Map for my move, with a packing checklist.&rdquo;</li>
         </Bullets>
         <p>
