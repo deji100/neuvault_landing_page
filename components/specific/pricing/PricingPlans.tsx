@@ -166,7 +166,8 @@ export default function PricingPlans({ variant = "home" }: PricingPlansProps) {
         </aside>
 
         <div className={styles.plans}>
-          <p className={styles.policyNotice} role="note">{creditPolicyNotice}</p>
+          {/* The "coming soon" rollover notice is hidden until the policy is live (Deji 2026-11-23). */}
+          {paidCreditPolicyLive ? <p className={styles.policyNotice} role="note">{creditPolicyNotice}</p> : null}
           {pricingPlans.map((plan) => {
             const featured = plan.id === "pro";
             return (
