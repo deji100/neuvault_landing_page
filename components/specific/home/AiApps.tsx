@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BellRing, CalendarCheck, FilePlus2, Network, Search, type LucideIcon } from "lucide-react";
+import { ArrowRight, BellRing, CalendarCheck, FilePlus2, MessageCircle, Network, Search, type LucideIcon } from "lucide-react";
+import { SHOW_AI_APP_LOGOS } from "@/lib/brand";
 import styles from "./AiApps.module.css";
 
 /**
@@ -20,10 +21,16 @@ export default function AiApps() {
     <section id="ai-apps" className={styles.section} aria-labelledby="ai-apps-title">
       <div className={styles.wrap}>
         <div className={styles.heading}>
-          <div className={styles.logos} aria-label="Works with ChatGPT and Claude">
-            <span className={styles.logo}><Image src="/connectors/chatgpt.png" alt="ChatGPT" width={40} height={40} /></span>
-            <span className={styles.logo}><Image src="/connectors/claude.png" alt="Claude" width={40} height={40} /></span>
-          </div>
+          {SHOW_AI_APP_LOGOS ? (
+            <div className={styles.logos} aria-label="Works with ChatGPT and Claude">
+              <span className={styles.logo}><Image src="/connectors/chatgpt.png" alt="ChatGPT" width={40} height={40} /></span>
+              <span className={styles.logo}><Image src="/connectors/claude.png" alt="Claude" width={40} height={40} /></span>
+            </div>
+          ) : (
+            <div className={styles.logos} aria-hidden="true">
+              <span className={`${styles.logo} ${styles.neutral}`}><MessageCircle size={28} /></span>
+            </div>
+          )}
           <p className={styles.eyebrow}>Works with ChatGPT and Claude</p>
           <h2 id="ai-apps-title">Your vault. Your AI. Just ask.</h2>
           <p className={styles.intro}>
