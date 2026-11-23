@@ -72,7 +72,7 @@ export default function ConnectorsPage() {
           </li>
           <li>
             <strong>Vault Maps:</strong> make a new map from your documents, add documents, notes, checklists and
-            lines, edit a note card or tick items on its checklist, group cards, tidy up a map or move cards next to each other, and rename a map.
+            lines, edit a note card or tick items on its checklist, group cards, tidy up a map or move cards next to each other, save a note card to your vault, open two documents side by side, and rename a map.
           </li>
           <li>
             <strong>Open things in NeuVault:</strong> bring up a document, map, task or reminder in the NeuVault app on
