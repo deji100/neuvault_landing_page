@@ -27,7 +27,7 @@ export default function AiApps() {
           <p className={styles.eyebrow}>Works with ChatGPT and Claude</p>
           <h2 id="ai-apps-title">Your vault. Your AI. Just ask.</h2>
           <p className={styles.intro}>
-            Connect ChatGPT or Claude to create documents, find files, update checklists, manage tasks, and build
+            Connect ChatGPT or Claude to create documents, find files in NeuVault, update checklists, manage tasks, and build
             Vault Maps, all through natural conversation. Type it or use voice commands.
           </p>
         </div>
