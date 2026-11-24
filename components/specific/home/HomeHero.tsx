@@ -33,8 +33,8 @@ export default function HomeHero() {
           </h1>
 
           <p className={styles.lede}>
-            Bring your files, notes, recordings and plans together in one private workspace. Connect ChatGPT and Claude
-            to find, organize and act on your information through natural conversations — using voice or text. Let your
+            Bring your files, notes, recordings, web pages, YouTube videos, social media posts and plans together in one
+            private workspace. Connect ChatGPT and Claude to find, organize and act on your information through natural conversations — using voice or text. Let your
             AI assistants do more than answer questions; let them help get things done.
           </p>
 
