@@ -11,6 +11,12 @@ const trust: { label: string; icon: LucideIcon }[] = [
   { label: "Mac, Windows, iPhone & Android", icon: Laptop },
 ];
 
+const ASSISTANTS = [
+  { name: "ChatGPT", tone: "blue" },
+  { name: "Claude", tone: "purple" },
+  { name: "Nova AI", tone: "green" },
+] as const;
+
 export default function HomeHero() {
   const storeUrl = useStoreUrl();
   const external = storeUrl.startsWith("http");
@@ -27,11 +33,16 @@ export default function HomeHero() {
           </h1>
 
           <p className={styles.lede}>
-            Bring your files, notes, recordings and plans together in one private, local-first workspace.
-            Let AI organize what you save, connect related information, remember important dates and turn ideas into action.
+            Bring your files, notes, recordings and plans together in one private workspace. Connect ChatGPT and Claude
+            to find, organize and act on your information through natural conversations — using voice or text. Let your
+            AI assistants do more than answer questions; let them help get things done.
           </p>
 
           <p className={styles.privacyNote}><strong>Your files stay on your devices. No NeuVault cloud storage fees. Your backups, your choice.</strong></p>
+          {/* Plain-text names only, in NeuVault's own tints: no logos (SHOW_AI_APP_LOGOS is off), no partner styling. */}
+          <ul className={styles.assistants} aria-label="Works with">
+            {ASSISTANTS.map(({ name, tone }) => <li key={name} data-tone={tone}>{name}</li>)}
+          </ul>
           <p className={styles.syncNote}>AI features send relevant content for online processing. Planner and reminder data sync through your account. <a href="#privacy-at-a-glance">How local-first works</a></p>
 
           <div className={styles.actions}>
