@@ -34,7 +34,7 @@ export default function HomeHero() {
 
           <p className={styles.lede}>
             Bring your files, notes, recordings, web pages, YouTube videos, social media posts and plans together in one
-            private workspace. Connect ChatGPT and Claude to find, organize and act on your information through natural conversations — using voice or text. Let your
+            private workspace. Connect ChatGPT and Claude, and just ask, by voice or text: they search your vault, answer from your documents, create files and notes and save them, plan your week, set reminders and build Vault Maps. Let your
             AI assistants do more than answer questions; let them help get things done.
           </p>
 
