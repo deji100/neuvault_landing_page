@@ -34,7 +34,7 @@ export default function HomeHero() {
 
           <p className={styles.lede}>
             Your smarter Finder for macOS and File Explorer for Windows — one that organizes itself. Save files, notes,
-            recordings, links, videos and social posts. NeuVault&apos;s AI organizes them and helps you find anything by
+            recordings, links, YouTube videos and social posts. NeuVault&apos;s AI organizes them and helps you find anything by
             context.
           </p>
           <p className={styles.lede}>
