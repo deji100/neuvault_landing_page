@@ -33,9 +33,13 @@ export default function HomeHero() {
           </h1>
 
           <p className={styles.lede}>
-            Bring your files, notes, recordings, web pages, YouTube videos, social media posts and plans together in one
-            private workspace. Connect ChatGPT and Claude, and just ask, by voice or text: they search your vault, answer from your documents, create files and notes and save them, plan your week, set reminders and build Vault Maps. Let your
-            AI assistants do more than answer questions; let them help get things done.
+            Your smarter Finder for macOS and File Explorer for Windows, one that organizes itself. Save your files,
+            notes, recordings, links, YouTube videos and social media posts, and NeuVault&apos;s AI puts each one in the
+            right place. Link related items, or let ChatGPT and Claude do it, so everything about an event, a project or anything
+            else comes together on a Vault Map. Connect ChatGPT and Claude and just ask, by voice or text:
+            they search your vault, answer from your documents, create files and notes and save them, plan your week,
+            set reminders and build Vault Maps. Let your AI assistants do more than answer questions; let them help get
+            things done.
           </p>
 
           <p className={styles.privacyNote}><strong>Your files stay on your devices. No NeuVault cloud storage fees. Your backups, your choice.</strong></p>
