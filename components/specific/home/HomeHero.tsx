@@ -33,17 +33,15 @@ export default function HomeHero() {
           </h1>
 
           <p className={styles.lede}>
-            Your smarter Finder for macOS and File Explorer for Windows — one that organizes itself. Save files, notes,
-            recordings, links, YouTube videos and social posts. NeuVault&apos;s AI organizes them and helps you find anything by
-            context.
+            Your smarter Finder for macOS and File Explorer for Windows — one that organizes itself.
           </p>
           <p className={styles.lede}>
-            Connect ChatGPT and Claude and simply ask, by voice or text, to find documents, get answers from your files,
-            create and save content, plan your week, set reminders and build Vault Maps connecting everything around a
-            project, event or idea.
+            Just talk to ChatGPT or Claude. Ask out loud or type, and they find your documents, answer from your files,
+            create and save notes, plan your week, set reminders and build Vault Maps around a project, event or idea.
           </p>
           <p className={styles.lede}>
-            Your AI assistants do more than answer questions. They help you get things done with your information.
+            Save files, notes, recordings, links, YouTube videos and social posts. NeuVault&apos;s AI organizes them and
+            helps you find anything by context.
           </p>
 
           <p className={styles.privacyNote}><strong>Your files stay on your devices. No NeuVault cloud storage fees. Your backups, your choice.</strong></p>
@@ -62,11 +60,11 @@ export default function HomeHero() {
             >
               Download free
             </a>
-            <a className={styles.secondary} href="#source-to-action">
+            <a className={styles.secondary} href="#capture">
               <span className={styles.playDot} aria-hidden="true">
                 <ArrowRight size={16} />
               </span>
-              Find your workflow
+              See it in action
             </a>
           </div>
 
