@@ -37,8 +37,9 @@ export default function HomeHero() {
             up: no folders to plan, no templates or databases to build.
           </p>
           <p className={styles.lede}>
-            Just talk to ChatGPT or Claude. Ask out loud or type, and they find your documents, answer from your files,
-            create and save notes, plan your week, set reminders and build Vault Maps around a project, event or idea.
+            Just talk to ChatGPT or Claude. With a quick voice command, or by typing, they find your documents, answer
+            from your files, create notes and documents and save them to NeuVault, plan your week, set reminders and
+            build Vault Maps around a project, event or idea.
           </p>
           <p className={styles.lede}>
             Save files, notes, recordings, links, YouTube videos and social posts. NeuVault&apos;s AI organizes them and
