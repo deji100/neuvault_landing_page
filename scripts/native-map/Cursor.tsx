@@ -2,9 +2,9 @@ import {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import {MousePointer2} from 'lucide-react';
 const PATH:[number,string][]=[
  [0,'saved'],[2000,'saved'],[3500,'preview-edit'],[5000,'preview-edit'],[6500,'edit-in-map'],[8000,'saved-body'],[8500,'expand-tools'],[9000,'heading'],[10500,'bold'],[11500,'bullets'],[13000,'saved-body'],[17500,'saved-body'],[18700,'save-edit'],
- [20500,'add'],[21500,'menu-upload'],[24000,'upload-save'],[26000,'kyoto'],[27400,'image-expand'],[28300,'image-close'],[30000,'pdf'],[31300,'preview-close'],
- [32300,'add'],[32800,'menu-youtube'],[35000,'url'],[38400,'link-save'],[39700,'video-play'],[40200,'video'],[44200,'video'],
- [46300,'add'],[46800,'menu-web'],[48500,'url'],[50900,'link-save'],[52100,'web'],[53100,'preview-expand'],[57800,'preview-close'],
+ [20500,'add'],[21500,'menu-upload'],[22600,'upload-save'],[24000,'upload-save'],[26000,'kyoto'],[27400,'image-expand'],[28300,'image-close'],[30000,'pdf'],[31300,'preview-close'],
+ [32300,'add'],[32800,'menu-youtube'],[33600,'link-save'],[38400,'link-save'],[39700,'video-play'],[40200,'video'],[44200,'video'],
+ [46300,'add'],[46800,'menu-web'],[47600,'link-save'],[50900,'link-save'],[52100,'web'],[53100,'preview-expand'],[57800,'preview-close'],
  [60300,'add'],[61100,'menu-note'],[62500,'design-title'],[64000,'design-body'],[64500,'expand-tools'],[65000,'heading'],[67500,'bold'],[69000,'design-body'],[76000,'design-body'],[77000,'table'],[82000,'design-body'],[84700,'design-body'],
  [86400,'add'],[87200,'menu-sticky'],[88500,'milestone-title'],[90500,'expand-tools'],[92000,'milestone-body'],[94500,'milestone-body'],[95500,'note-green'],[96500,'milestone-body'],
  [99000,'pdf-handle'],[100000,'pdf-handle'],[102000,'design-target'],[104000,'design-handle'],[106000,'milestone-target'],
@@ -24,7 +24,7 @@ const selectors: Record<string,string> = {
  'save-edit':'[data-map-note-id="saved-edit"] [aria-label="Save edited note"]',
  'expand-tools':'[aria-label="Expand note tools"], [aria-label="Collapse note tools"]',
  heading:'[aria-label="Heading 2"]',bold:'[aria-label="Bold"]',table:'[aria-label="Insert table"]',bullets:'[aria-label="Bullet list"]',
- 'upload-save':'.linked-map-upload-dialog .is-secondary',
+ 'upload-save':'.linked-map-upload-dialog .is-primary',
  kyoto:'.react-flow__node[data-id="kyoto"]',pdf:'.react-flow__node[data-id="pdf"]',
  'image-expand':'.react-flow__node[data-id="kyoto"] button[title="Expand image"]',
  'image-close':'[aria-label="Close expanded image"]',

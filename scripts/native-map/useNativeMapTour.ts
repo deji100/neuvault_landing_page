@@ -83,7 +83,9 @@ export function useNativeMapTour(context){
   c.setYoutubeLinkDraft(typed(VIDEO.url,time,34000,70));
   c.setWebBookmarkOpen(time>=47000&&time<51500);
   c.setWebBookmarkDraft(typed(WEBPAGE.url,time,47500,55));
-  const menu=time>=20000&&time<22000||time>=32000&&time<33000||time>=46000&&time<47000||time>=60000&&time<61500||time>=86000&&time<87500?'add':time>=108000&&time<109500?'view':time>=163000&&time<166000?'transfer':null;
+  // Each menu opens at the click that opens it, so it never shows up already
+  // open before the arrow arrives.
+  const menu=time>=20500&&time<22000||time>=32300&&time<33000||time>=46300&&time<47000||time>=60300&&time<61500||time>=86400&&time<87500?'add':time>=108400&&time<109500?'view':time>=163400&&time<166000?'transfer':null;
   c.setOpenToolbarCategory(menu);
   c.setPreviewDocument(time>=28800&&time<31800?pdfItem:time>=2500&&time<7000?savedItem:time>=52500&&time<59000?webItem:null);
   c.setPlayingMediaNodeId(time>=39700&&time<46000?'video':null);

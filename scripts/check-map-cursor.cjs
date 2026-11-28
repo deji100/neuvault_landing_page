@@ -82,9 +82,9 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
     assert.equal(await evaluate(`document.querySelector('#vault-map-demo iframe').tabIndex`),-1);
     const actions=[
       [5000,'Edit note'],[6500,'Edit here in the map'],
-      [20500,'Add tools'],[21500,'Upload files'],[24000,'Save without AI'],
-      [32300,'Add tools'],[32800,'YouTube link'],[38400,'Save to Inbox'],
-      [46300,'Add tools'],[46800,'Webpage bookmark'],[50900,'Save to Inbox'],
+      [20500,'Add tools'],[21500,'Upload files'],[24000,'Organize with AI'],
+      [32300,'Add tools'],[32800,'YouTube link'],[38400,'Organize with AI'],
+      [46300,'Add tools'],[46800,'Webpage bookmark'],[50900,'Organize with AI'],
       [60300,'Add tools'],[61100,'Note'],[86400,'Add tools'],[87200,'Sticky note'],
       [109200,'Split view'],[137500,'Use group color #42a5b3'],[138500,'Create group'],[165500,'Save as Vault Map file'],[173000,'Export'],
     ];
