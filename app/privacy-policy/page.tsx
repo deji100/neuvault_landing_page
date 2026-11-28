@@ -25,7 +25,7 @@ import {
 
 import { Bullets, Callout, Chip, Chips, LegalPage, MetaPill, Section, type TocItem } from "@/components/specific/legal/Legal";
 
-const EFFECTIVE_DATE = "November 22, 2026";
+const EFFECTIVE_DATE = "November 28, 2026";
 const PRIVACY_EMAIL = "support@neuvault.app";
 
 const toc: TocItem[] = [
@@ -242,6 +242,10 @@ export default function PrivacyPolicyPage() {
             reminders off in the app&apos;s notification settings.
           </li>
           <li>
+            Backup reminders are push notifications on the schedule you choose. They are based only on that
+            schedule: we never know when or where you back up.
+          </li>
+          <li>
             Notification history is kept for 30 days, or up to 180 days for notifications you have not opened.
           </li>
         </Bullets>
@@ -420,15 +424,18 @@ export default function PrivacyPolicyPage() {
         <p>NeuVault does not charge you for cloud storage of your vault files. You control where encrypted backups are saved and where you secure your recovery information. Optional third-party storage providers may charge their own fees.</p>
         <Bullets>
           <li>
-            A backup packs your vault into one file that is encrypted on your device before it is saved anywhere.
+            A backup is made of two files, both encrypted on your device before they are saved anywhere: a vault
+            backup with your documents, notes and their details, and a media backup with your original recordings
+            and videos. To restore, open the vault backup first, then the media backup.
           </li>
           <li>
             It is sealed with your <strong>Recovery Key</strong>, which is created and kept on your device and is
-            never sent to NeuVault. We cannot open your backups.
+            never sent to NeuVault. We cannot open your backups. Anyone who has both a backup file and your Recovery
+            Key can open that backup, so keep the key separate from your backup files.
           </li>
           <li>
-            You choose where to save it: any folder or synced cloud folder on desktop, the Files app on iPhone, or
-            Files or Google Drive on Android. The storage provider cannot read it.
+            You choose where to save them: any folder or synced cloud folder on desktop, the Files app on iPhone, or
+            Files or Google Drive on Android. The storage provider cannot read them.
           </li>
           <li>
             Backing up and restoring happen entirely in the NeuVault app on your device. Our servers are not
@@ -436,8 +443,8 @@ export default function PrivacyPolicyPage() {
             checked with us when you restore.
           </li>
           <li>
-            A backup can only be restored into the NeuVault account that created it. The app checks this on your
-            device before anything is restored.
+            A backup can only be restored into the NeuVault account that created it. After the backup is unlocked
+            with your Recovery Key, the app checks this on your device before anything is restored.
           </li>
           <li>
             On desktop you can also export a <strong>Vault Map package</strong> to share a single map. Unlike a
@@ -476,10 +483,6 @@ export default function PrivacyPolicyPage() {
         <Bullets>
           <li>Sign-in codes and important account, security and billing messages.</li>
           <li>Reminder emails for your dates, if reminders are turned on.</li>
-          <li>
-            Backup reminders, on the schedule you choose. They are based only on that schedule: we never know when
-            or where you back up.
-          </li>
           <li>
             Occasional requests for feedback if you have not used NeuVault for a while, which you can unsubscribe
             from.
