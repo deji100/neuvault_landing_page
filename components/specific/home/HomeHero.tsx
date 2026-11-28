@@ -11,6 +11,12 @@ const trust: { label: string; icon: LucideIcon }[] = [
   { label: "Mac, Windows, iPhone & Android", icon: Laptop },
 ];
 
+const ASSISTANTS = [
+  { name: "ChatGPT", tone: "blue" },
+  { name: "Claude", tone: "purple" },
+  { name: "Nova AI", tone: "green" },
+] as const;
+
 export default function HomeHero() {
   const storeUrl = useStoreUrl();
   const external = storeUrl.startsWith("http");
@@ -35,6 +41,10 @@ export default function HomeHero() {
           </p>
 
           <p className={styles.privacyNote}><strong>Your files stay yours. Your originals stay untouched.</strong></p>
+          {/* Plain-text names only, in NeuVault's own tints: no logos (SHOW_AI_APP_LOGOS is off), no partner styling. */}
+          <ul className={styles.assistants} aria-label="Works with">
+            {ASSISTANTS.map(({ name, tone }) => <li key={name} data-tone={tone}>{name}</li>)}
+          </ul>
 
           <div className={styles.actions}>
             <a
