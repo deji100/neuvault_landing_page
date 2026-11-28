@@ -34,6 +34,9 @@ export default function HomeHero() {
 
           <p className={styles.lede}>
             Your smarter Finder for macOS and File Explorer for Windows — one that organizes itself.
+            <br />
+            No setup, no templates to build. Just add your files, or point it at a folder, and it keeps itself
+            organized.
           </p>
           <p className={styles.lede}>
             An intelligent, local-first personal information workspace that makes your files actionable without taking
