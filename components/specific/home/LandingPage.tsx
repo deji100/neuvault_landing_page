@@ -19,12 +19,12 @@ export default function LandingPage() {
   return (
     <div className={styles.page}>
       <HomeHero />
-      <SourceToAction />
-      <AiApps />
       <CaptureDemo />
       <PlannerDemo />
       <VaultMapDemo />
       <RemindersDemo />
+      <AiApps />
+      <SourceToAction />
 
       <section id="problem" className={styles.problemSection}>
         <div className={styles.wrap}>
