@@ -45,6 +45,7 @@ export default function HomeHero() {
           <ul className={styles.assistants} aria-label="Works with">
             {ASSISTANTS.map(({ name, tone }) => <li key={name} data-tone={tone}>{name}</li>)}
           </ul>
+          <p className={styles.syncNote}>AI features send relevant content for online processing. <a href="#privacy-at-a-glance">How local-first works</a></p>
 
           <div className={styles.actions}>
             <a
