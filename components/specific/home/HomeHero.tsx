@@ -33,7 +33,8 @@ export default function HomeHero() {
           </h1>
 
           <p className={styles.lede}>
-            Your smarter Finder for macOS and File Explorer for Windows — one that organizes itself.
+            Your smarter Finder for macOS and File Explorer for Windows — one that organizes itself. Nothing to set
+            up: no folders to plan, no templates or databases to build.
           </p>
           <p className={styles.lede}>
             Just talk to ChatGPT or Claude. Ask out loud or type, and they find your documents, answer from your files,
